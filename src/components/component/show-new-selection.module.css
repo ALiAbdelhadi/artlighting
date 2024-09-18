@@ -1,0 +1,9 @@
+.animateButton {
+    padding: 0.5rem 1rem;
+}
+
+.animateButton::after {
+    content: "";
+    position: absolute;
+
+}

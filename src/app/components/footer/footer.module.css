@@ -1,0 +1,18 @@
+.Logo {
+    background-color: #fff;
+    background-image: linear-gradient(to right, #4fabff 0%, #beceef 20%, #ffd181 30%);
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #0000;
+    -moz-background-clip: text;
+    -moz-text-fill-color: #0000;
+    z-index: 10000;
+    text-shadow: 2px 2px 5px #0000;
+}
+
+.links {
+    font-size: 1.125rem;
+}

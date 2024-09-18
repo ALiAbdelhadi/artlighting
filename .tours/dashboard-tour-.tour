@@ -1,0 +1,16 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "Dashboard tour ",
+  "steps": [
+    {
+      "file": "src/app/dashboard/fetchDashboardData.tsx",
+      "description": "fetch data from database to show sales on the website , customers and sold out products",
+      "line": 6
+    },
+    {
+      "file": "src/app/dashboard/fetchDashboardData.tsx",
+      "description": "fetch data from db to dispaly sales on the website , customers and sold out products",
+      "line": 6
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "jsx": "preserve",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/components/header/MiddleNav.jsx",
+    "src/app/(pages)/Blog/EventOfTheYear.tsx",
+    "src/app/(pages)/About/About.jsx",
+    "src/app/(pages)/category/Chandelier/ChandelierCategoriesLightingPage.jsx",
+    "src/app/(pages)/category/Chandelier/[lightingType]/metadata.jsx",
+    "src/app/(pages)/category/Chandelier/[lightingType]/[ProductId]/ProductClientComponent.jsx",
+    "src/app/(pages)/category/Chandelier/[lightingType]/CategoryContent.jsx",
+    "src/app/(pages)/category/Chandelier/[lightingType]/[ProductId]/metadata.jsx",
+    "src/app/(pages)/category/IndoorLighting/IndoorCategoriesLightingPage.jsx",
+    "src/app/(pages)/category/IndoorLighting/[lightingType]/CategoryContent.jsx",
+    "src/app/(pages)/category/IndoorLighting/[lightingType]/metadata.jsx",
+    "src/app/(pages)/category/IndoorLighting/[lightingType]/[ProductId]/ProductClientComponent.jsx",
+    "src/app/(pages)/category/IndoorLighting/[lightingType]/[ProductId]/metadata.jsx",
+    "src/app/(pages)/category/OutdoorLighting/OutdoorCategoriesLightingPage.jsx",
+    "src/app/(pages)/category/OutdoorLighting/[lightingType]/metadata.jsx",
+    "src/app/(pages)/category/OutdoorLighting/[lightingType]/CategoryContent.jsx",
+    "src/app/(pages)/category/OutdoorLighting/[lightingType]/[ProductId]/metadata.jsx",
+    "src/app/(pages)/category/OutdoorLighting/[lightingType]/[ProductId]/ProductClientComponent.jsx",
+    "src/app/(pages)/category/Chandelier/[lightingType]/[ProductId]/page.jsx",
+    "src/app/(pages)/category/IndoorLighting/[lightingType]/[ProductId]/page.jsx",
+    "src/app/(pages)/category/OutdoorLighting/[lightingType]/[ProductId]/page.jsx",
+    "src/app/(pages)/projects/Projects.jsx",
+    "src/app/components/AddToCardIcon.jsx",
+    "src/app/components/header/Header.tsx",
+    "src/app/components/header/RightNav.tsx",
+    "src/app/components/ProductCard/ProductCard.jsx",
+    "src/app/components/ProductMainInfo.tsx",
+    "src/components/component/show-new-selection.jsx",
+    "src/scripts/importProducts.تs",
+    "prisma/seed.js",
+    "src/app/(pages)/category/page.tsx",
+    "src/app/(pages)/category/IndoorLighting/page.tsx",
+    "src/app/auth-callback/action.ts",
+    "src/context/cartContext.jsx",
+    "src/app/(pages)/projects/AllProjects/[ProjectName]/page.jsx",
+    "src/app/(pages)/projects/AllProjects/[ProjectName]/ProjectPage.jsx",
+    "src/app/(pages)/All-Projects/[projectId]/ProjectPage.tsx",
+    "src/app/(pages)/All-Projects/[projectId]/page.tsx",
+    "src/app/components/ShippingAddressForm.jsx",
+    "src/app/(pages)/configure/preview/[orderId]/page.jsx",
+    "src/app/(pages)/thank-you/[orderId]/page.jsx",
+    "src/app/(pages)/configure/preview/[ProductId]/page.jsx",
+    "src/app/(pages)/Landing/Landing.jsx",
+    "src/app/api/orders/[orderId]/route.ts",
+    "src/app/api/orders/route.ts",
+    "src/app/(pages)/category/Balcom/BalcomSection.tsx",
+    "src/app/(pages)/category/MisterLed/[subCategory]/[lightingType]/[ProductId]/ProductClientComponent.jsx",
+    "src/app/(pages)/AboutUs/achievements/achievements.jsx"
+, "src/app/(configure)/complete/action.t.s", "src/scripts/seed.js", "src/app/api/getDiscount/route.ts", "src/app/(pages)/category/Balcom/[subCategory]/[lightingType]/[ProductId]/ProductClientComponent.tsx", "src/app/api/webhooks/completeOrder/route.ts", "src/app/loading.js", "src/app/utils/motion.js", "src/scripts/importProducts.js"  ],
+  "exclude": [
+    "node_modules"
+  ],
+}

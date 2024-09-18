@@ -1,0 +1,26 @@
+.mission {
+    padding: var(--main-padding-top) 0;
+}
+
+.container {
+    padding: 0 30px;
+}
+
+.aboutContent {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    max-width: 1024px;
+
+}
+
+.aboutContent h2 {
+    font-size: 40px;
+    font-weight: 400;
+}
+
+@media (max-width: 767px) {
+    .aboutContent h2 {
+        font-size: 25px;
+    }
+}

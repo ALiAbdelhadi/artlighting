@@ -1,0 +1,173 @@
+.SelectedProducts {
+    padding: var(--main-padding-top) 0;
+}
+
+.container {
+    padding: 0 30px;
+    margin: 0;
+}
+
+.specialHeading {
+    font-size: calc(1.425rem + 1.4vw);
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+    line-height: 1.2em;
+}
+
+.headerPar {
+    text-align: center;
+    margin: 20px 0;
+    text-transform: uppercase;
+    font-size: calc(1.425rem + 0.5vw);
+}
+
+.ProductCards {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media (max-width: 1024px) {
+    .ProductCards {
+        flex-wrap: wrap;
+    }
+}
+
+.productItem {
+    border-radius: 3px;
+    padding: 10px;
+    position: relative;
+    transition: var(--transition-time);
+    background-color: #fdfdfd;
+}
+
+.productContent {
+    width: 100%;
+}
+
+.imageContainer {
+    max-width: 100%;
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+}
+
+.shipping {
+    position: absolute;
+    top: 5%;
+    left: 0;
+    z-index: 10;
+    padding: 7px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #dadadc;
+    font-size: 12px;
+    border-radius: 0 6px 6px 0;
+    background-color: #676769;
+}
+
+.shippingText {
+    margin-left: 5px;
+}
+
+.productItem:hover {
+    transform: scale(1.01);
+    box-shadow: var(--box-shadow-box);
+}
+
+.textContainer {
+    width: 100%;
+    margin: -25px 0 0;
+}
+
+.productTitle {
+    font-size: 19px;
+    font-weight: 500;
+    margin: 10px 0 0;
+    text-transform: uppercase;
+}
+
+.textParagraph {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.buttons {
+    max-width: 100%;
+}
+
+.DetailsContainer {
+    margin-right: 10px;
+    width: 100%;
+}
+
+.Details {
+    padding: 10px 25px;
+    display: flex;
+    justify-content: center;
+    border-radius: 3px;
+    border: 1px solid var(--third-color);
+}
+
+.AddToCard {
+    display: flex;
+    width: fit-content;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 6px;
+    margin: 1px 0px;
+    border-radius: 3px;
+    background-color: #000;
+}
+
+.PriceTag {
+    margin: 5px 0 0;
+    font-weight: 500;
+    font-size: 19px;
+}
+
+.imageCarousel .control-arrow {
+    background: none;
+    border: none;
+}
+
+.controlPrev,
+.controlNext {
+    position: absolute;
+    display: inline-block;
+    z-index: 100000;
+    bottom: 40%;
+    padding: 5px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transition: var(--transition-time);
+}
+
+.controlPrev:hover,
+.controlNext:hover {
+    box-shadow: var(--box-shadow-box);
+    background-color: #FFF;
+}
+
+.controlPrev {
+    left: 0;
+}
+
+.controlNext {
+    right: 0;
+}
+
+.arrowPrev,
+.arrowNext {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrowPrev svg,
+.arrowNext svg {
+    margin: -1px 0;
+}
