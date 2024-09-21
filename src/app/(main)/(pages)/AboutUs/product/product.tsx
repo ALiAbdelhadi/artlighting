@@ -12,7 +12,7 @@ function Product() {
             <Container>
                 <div className={styles.aboutContent}>
                     <div className={styles.image}>
-                        <Image className={styles.img} src="/Indoor/products500/jy-535-5w/JY-535-5W (1).png"
+                        <Image className={styles.img} src="/indoor/products500/jy-535-5w/JY-535-5W (1).png"
                             alt="product-jy-539-7w" width="350" height="350" />
                     </div>
                     <div className={styles.text}>
