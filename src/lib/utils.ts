@@ -36,7 +36,7 @@ export function constructMetadata({
     openGraph: openGraph ?? {
       type: "website",
       locale: "ar_EG",
-      url: "https://www.artlighting-eg.com",
+      url: "https://eg-artlighting.vercel.app/",
       siteName: "Art Lighting Company",
       title,
       description,
@@ -105,7 +105,7 @@ export function constructMetadata({
       "تصميم الإضاءة",
       "تركيب الإضاءة",
     ],
-    metadataBase: new URL("https://www.artlighting-eg.com"),
+    metadataBase: new URL("https://eg-artlighting.vercel.app/"),
     robots: {
       index: true,
       follow: true,
@@ -118,7 +118,7 @@ export function constructMetadata({
       },
     },
     alternates: {
-      canonical: "https://www.artlighting-eg.com",
+      canonical: "https://eg-artlighting.vercel.app/",
     },
     other: {
       "application-name": "Art Lighting Company",
