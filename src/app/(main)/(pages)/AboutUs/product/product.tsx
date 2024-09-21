@@ -50,7 +50,7 @@ function Product() {
             <Container>
                 <div className={styles.aboutContent}>
                     <div className={styles.image}>
-                        <Image className={styles.img} src="/chandelier-product-1.jpg" alt="chandelier product 1"
+                        <Image className={styles.img} src="/chandelier/MC6091/MC6091-H3.png" alt="chandelier product 1"
                             width="350" height="350" />
                     </div>
                     <div className={styles.text}>
