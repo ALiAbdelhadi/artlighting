@@ -119,10 +119,6 @@ export function constructMetadata({
     },
     alternates: {
       canonical: "https://www.artlighting-eg.com",
-      languages: {
-        "en-US": "https://www.artlighting-eg.com/en",
-        "ar-EG": "https://www.artlighting-eg.com",
-      },
     },
     other: {
       "application-name": "Art Lighting Company",
