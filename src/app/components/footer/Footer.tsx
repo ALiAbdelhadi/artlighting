@@ -31,16 +31,18 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h3 className="text-xl font-bold text-primary">Outdoor Lighting</h3>
                         <ul className="space-y-2">
-                            {["Poles", "Spikes", "Bollard", "Uplight", "Flood Light"].map(
+                            {["Spikes", "Bollard", "uplight", "Floodlight"].map(
                                 (item) => (
                                     <li
                                         key={item}
-                                        className="hover:text-primary transition-colors"
+                                        className="hover:text-primary transition-colors "
                                     >
                                         <Link
-                                            href={`/category/Balcom/Outdoor/${item.toLowerCase()}`}
+                                            href={`/category/Balcom/Outdoor/${item}`}
                                         >
-                                            {item}
+                                            <span className="capitalize">
+                                                {item}
+                                            </span>
                                         </Link>
                                     </li>
                                 )
@@ -51,8 +53,8 @@ export default function Footer() {
                         <h3 className="text-xl font-bold text-primary">Chandeliers</h3>
                         <ul className="space-y-2 grid grid-cols-2 gap-x-4">
                             {[
-                                "MC15C001",
-                                "MC15C001F",
+                                "MC15C",
+                                "MC15F",
                                 "MC15G",
                                 "MC15P",
                                 "MC15E",

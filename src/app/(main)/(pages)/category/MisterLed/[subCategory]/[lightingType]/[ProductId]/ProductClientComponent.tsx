@@ -9,7 +9,6 @@ import ProductSpecifications from "@/app/components/ProductSpecifications";
 import { Order, OrderStatus, Product } from "@prisma/client";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-
 interface ProductClientComponentProps {
     children: React.ReactNode;
     product: Product & {
@@ -17,12 +16,8 @@ interface ProductClientComponentProps {
         lightingtype: { name: string };
     };
 }
-
 const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ children, product }) => {
-    const [isMounted, setIsMounted] = useState(false);
     const [quantity, setQuantity] = useState(1);
-    const ContentRef = useRef(null);
-
     const variants = {
         hidden: { opacity: 0, y: 15 },
         visible: {
@@ -34,11 +29,6 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
             }
         }
     };
-
-    if (!isMounted) {
-        return <div>Products Are Loading...</div>;
-    }
-
     const increaseQuantity = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
     };
@@ -89,7 +79,7 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
             variants={variants}
         >
             {children}
-            <div className="py-16" ref={ContentRef}>
+            <div className="py-16">
                 <Container>
                     <div>
                         <div className="flex md:flex-row flex-col items-start">
@@ -108,6 +98,7 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                                 colorTemperature={"Color Temperature"}
                                 Brand={product.Brand}
                                 ChandelierLightingType={product.ChandelierLightingType ?? ""}
+                                hNumber={product.hNumber || null}
                             />
                         </div>
                         <ProductSpecifications

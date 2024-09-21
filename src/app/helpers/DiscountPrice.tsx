@@ -4,11 +4,12 @@ import React from "react";
 interface DiscountPriceProps {
     price: number;
     discount: number,
-    quantity?: number
+    quantity?: number,
+    shippingPrice?: number
 }
-const DiscountPrice: React.FC<DiscountPriceProps> = ({ price,discount, quantity = 1}) => {
+const DiscountPrice: React.FC<DiscountPriceProps> = ({ price,discount, quantity = 1, shippingPrice = 0}) => {
     const discountedPrice = Math.ceil(price * (1 - discount));
-    const formattedPrice = formatPrice(discountedPrice * quantity);
+    const formattedPrice = formatPrice(discountedPrice * quantity + shippingPrice);
     return (
         <div>
             <p className="text-destructive font-semibold">{formattedPrice}</p>

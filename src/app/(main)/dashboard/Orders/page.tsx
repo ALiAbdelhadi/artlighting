@@ -16,7 +16,7 @@ const OrdersPage = async () => {
     const orders = await db.order.findMany({
         where: { isCompleted: true },
         orderBy: { createdAt: "desc" },
-        include: { user: true, shippingAddress: true, product: true },
+        include: { user: true, shippingAddress: true, product: true , configuration: true},
     });
     const discountData = await db.configuration.findFirst({
         select: {discount: true}

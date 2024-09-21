@@ -1,31 +1,45 @@
-"use client"
+"use client";
 import { Button } from "@/components/ui/button";
-import gsap from "gsap";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useState } from "react";
 import { DASHBOARDS } from "@/constants";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const Layout = ({ children }: { children: ReactNode }) => {
-    const [isOpen, setIsOpen] = useState(false)
-    const pathName = usePathname()
-    const sideBarRef = useRef(null)
+    const [isOpen, setIsOpen] = useState(false);
+    const pathName = usePathname();
+
     const toggleSideBar = () => {
-        setIsOpen(!isOpen)
-    }
-    useEffect(() => {
-        if (isOpen) {
-            gsap.to(sideBarRef.current, { width: 250, opacity: 1, duration: 0.3 })
-        } else {
-            gsap.to(sideBarRef.current, { width: 0, opacity: 0, duration: 0.3 })
-        }
-    }, [isOpen])
+        setIsOpen(!isOpen);
+    };
+
+    // Animation variants for the sidebar
+    const sidebarVariants = {
+        open: {
+            width: 250,
+            opacity: 1,
+            transition: {
+                duration: 0.3,
+            },
+        },
+        closed: {
+            width: 0,
+            opacity: 0,
+            transition: {
+                duration: 0.3,
+            },
+        },
+    };
+
     return (
         <div className="relative z-50">
-            <aside
-                ref={sideBarRef}
+            <motion.aside
+                initial={false}
+                animate={isOpen ? "open" : "closed"}
+                variants={sidebarVariants}
                 className="fixed left-0 top-0 z-40 h-screen bg-white text-black shadow-lg overflow-hidden"
                 style={{ width: isOpen ? 250 : 0, opacity: isOpen ? 1 : 0 }}
             >
@@ -48,23 +62,26 @@ const Layout = ({ children }: { children: ReactNode }) => {
                                     {dash.icon}
                                     <span>{dash.name}</span>
                                 </Link>
-                            )
+                            );
                         })}
                     </nav>
                 </div>
-            </aside>
+            </motion.aside>
+
             <Button
                 onClick={toggleSideBar}
                 className={cn(
                     "fixed left-0 top-10 z-50 rounded-r-lg bg-primary p-2 text-white transition-all duration-300",
-                    { "left-[250px]": isOpen , "left-0" : !isOpen })}
+                    { "left-[250px]": isOpen, "left-0": !isOpen }
+                )}
                 aria-label={isOpen ? "close sidebar" : "Open sidebar"}
             >
-                {isOpen ? <ChevronLeft className="w-6 h-6"/> : <ChevronRight className="w-6 h-6"/>}
+                {isOpen ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
             </Button>
+
             {children}
         </div>
-    )
-}
+    );
+};
 
-export default Layout
+export default Layout;

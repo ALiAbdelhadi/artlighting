@@ -1,51 +1,125 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Contact, Home, Search, ShoppingBag } from 'lucide-react'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Contact, Home, Search, ShoppingBag, Star } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
+import { useDebounce } from 'use-debounce'
+import { searchProducts } from "@/app/(main)/actions/search"
+import ProductCard from "./components/ProductCard/ProductCard"
+
+type Product = {
+    id: string;
+    productId: string;
+    ProductId: string; // Added this field
+    productName: string;
+    price: number;
+    Brand: string;
+    sectionType: string;
+    spotlightType: string | null;
+    productImages: string[];
+    discount: number; // Added this field
+}
+
 export default function NotFound() {
+    const [searchTerm, setSearchTerm] = useState('')
+    const [debouncedSearchTerm] = useDebounce(searchTerm, 300)
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+    const [isSearching, setIsSearching] = useState(false)
+    useEffect(() => {
+        const performSearch = async () => {
+            if (debouncedSearchTerm.trim() === '') {
+                setFilteredProducts([])
+                return
+            }
+            setIsSearching(true)
+            try {
+                const results = await searchProducts(debouncedSearchTerm)
+                const formattedResults: Product[] = results.map(product => ({
+                    ...product,
+                    ProductId: product.productId,
+                    discount: product.discount || 0,
+                }))
+                setFilteredProducts(formattedResults)
+            } catch (error) {
+                console.error('Error searching products:', error)
+                setFilteredProducts([])
+            } finally {
+                setIsSearching(false)
+            }
+        }
+
+        performSearch()
+    }, [debouncedSearchTerm])
+
     return (
         <div className="flex flex-col min-h-screen bg-background">
-            <main className="flex-grow flex flex-col items-center justify-center text-center px-4 md:px-6">
-                <div className="space-y-4 max-w-3xl">
-                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">404 - Page Not Found</h1>
-                    <p className="text-xl text-muted-foreground">Oops! The page you're looking for doesn't exist.</p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-2">
-                        <div className="relative w-full max-w-sm">
-                            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                            <Input
-                                type="search"
-                                placeholder="Search for products..."
-                                className="pl-8"
-                            />
-                        </div>
-                        <Button type="submit">Search</Button>
+            <main className="flex-grow flex flex-col items-center justify-start pt-16 px-4 md:px-6">
+                <div className="w-full space-y-8">
+                    <h1 className="text-4xl font-extrabold tracking-tight text-center lg:text-5xl">404 - Page Not Found</h1>
+                    <p className="text-xl text-center text-muted-foreground">Oops! The page you're looking for doesn't exist.</p>
+                    <div className="relative max-w-xl mx-auto">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                        <Input
+                            type="search"
+                            placeholder="Search for products..."
+                            className="pl-10 pr-4 py-4 h-12 w-full text-lg  shadow-md focus:ring-2 focus:ring-primary"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
                     </div>
-                    <div className="pt-8">
-                        <h2 className="text-xl font-semibold mb-4">Or try one of these:</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <Link
-                                href="/"
-                                className="flex items-center justify-center p-4 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                            >
-                                <Home className="mr-2 h-5 w-5" />
-                                Home Page
-                            </Link>
-                            <Link
-                                href="/category"
-                                className="flex items-center justify-center p-4 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                            >
-                                <ShoppingBag className="mr-2 h-5 w-5" />
-                                All Products
-                            </Link>
-                            <Link
-                                href="/ContactUs"
-                                className="flex items-center justify-center p-4 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                            >
-                                <Contact className="mr-2 h-5 w-5"  />
-                                Contact Us
-                            </Link>
+                    {isSearching && (
+                        <div className="text-center">
+                            <p className="text-lg text-muted-foreground">Searching...</p>
                         </div>
-                    </div>
+                    )}
+                    {filteredProducts.length > 0 && (
+                        <Card className="w-full">
+                            <CardHeader>
+                                <CardTitle>Search Results</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-6">
+                                    {filteredProducts.map((product) => (
+                                        <ProductCard key={product.productId} product={product} />
+                                    ))}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    )}
+                    <Card className="max-w-2xl mx-auto">
+                        <CardHeader>
+                            <CardTitle>Try one of these</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 ">
+                                <Link
+                                    href="/"
+                                    className="flex items-center justify-center p-4 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+                                >
+                                    <Home className="mr-2 h-5 w-5" />
+                                    Home Page
+                                </Link>
+                                <Link
+                                    href="/category"
+                                    className="flex items-center justify-center p-4 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+                                >
+                                    <ShoppingBag className="mr-2 h-5 w-5" />
+                                    All Products
+                                </Link>
+                                <Link
+                                    href="/ContactUs"
+                                    className="flex items-center justify-center p-4 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+                                >
+                                    <Contact className="mr-2 h-5 w-5" />
+                                    Contact Us
+                                </Link>
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
             </main>
         </div>

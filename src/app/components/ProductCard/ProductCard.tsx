@@ -2,7 +2,7 @@ import { addToCart } from '@/app/(main)/actions/cart';
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/hooks/use-toast"
 import { cn } from '@/lib/utils';
 import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
@@ -76,7 +76,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
   return (
     <div className={`${styles.productItem} select-none `}>
-      <div className="absolute top-[5%] left-[0] z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0] bg-[#676769]">
+      <div className="absolute top-[5%] left-[0] z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0] bg-[#676769] dark:bg-[#dad4d4]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -203,7 +203,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               aria-label="More details"
               className={cn(
                 `px-[25px] py-[10px] rounded-[3px] flex justify-center border border-black dark:border-gray-50 text-gray-950 dark:hover:text-gray-950 dark:text-gray-50  w-full hover:bg-gray-950 hover:text-gray-50 dark:hover:bg-gray-50 transition-colors`,
-                { "dark:bg-primary dark:text-primary-foreground bg-black text-gray-50": isClicked }
+                { "dark:bg-gray-50 dark:text-primary-foreground bg-black text-gray-50": isClicked }
               )}
               onClick={HandleClickedButtons}
             >

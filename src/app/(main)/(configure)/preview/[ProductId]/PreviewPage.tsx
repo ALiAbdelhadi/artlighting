@@ -6,7 +6,7 @@ import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/hooks/use-toast"
 import { formatPrice } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
 import { Configuration, Product } from "@prisma/client";
@@ -65,7 +65,10 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
             fetchProduct();
         }
     }, [ProductId, toast]);
-
+    useEffect(() => {
+        console.log("Configuration:", configuration);
+      }, [configuration]);
+      
     useEffect(() => {
         if (configuration) {
             localStorage.setItem("configurationId", configuration.id);
@@ -76,7 +79,8 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
         mutationKey: ["get-order-session"],
         mutationFn: createOrder,
         onSuccess: ({ userId, orderId, productId }) => {
-            localStorage.removeItem("configurationId");
+            localStorage.removeItem("configurationId",);
+            localStorage.clear()
             router.push(
                 `/confirm/?orderId=${orderId}&userId=${userId}&productId=${productId}`
             );
@@ -95,7 +99,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
     const handleConfirm = async () => {
         if (isSignedIn) {
             if (configuration) {
-                CreateOrderSession({ configId: configuration.id, quantity });
+                CreateOrderSession({ configId: configuration.id, quantity,});
             }
         } else {
             setIsLoginModalOpen(true);
@@ -255,7 +259,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p>Price Per item</p>
                                                                 <s className="text-gray-500">
-                                                                    <NormalPrice price={product.price} />
+                                                                    <NormalPrice price={configuration.configPrice} />
                                                                 </s>
                                                             </div>
                                                             {/* products quantity */}
@@ -275,7 +279,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                                 <p>Price after Discount</p>
                                                                 <span className="text-lg text-destructive font-semibold">
                                                                     <DiscountPrice
-                                                                        price={product.price}
+                                                                        price={configuration.configPrice}
                                                                         discount={product.discount}
                                                                         quantity={quantity}
                                                                     />
@@ -286,7 +290,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                         <>
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p>Price Per item</p>
-                                                                <p>{formatPrice(product.price)}</p>
+                                                                <p>{formatPrice(configuration.configPrice)}</p>
                                                             </div>
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p>Quantity</p>
@@ -296,7 +300,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                                 <p>Total Price</p>
                                                                 <p>
                                                                     <NormalPrice
-                                                                        price={product.price}
+                                                                        price={configuration.configPrice}
                                                                         quantity={quantity}
                                                                     />
                                                                 </p>

@@ -13,6 +13,7 @@ export const getUserStatus = async ({ orderId }: { orderId: number }) => {
             include: {
                 user: true,
                 shippingAddress: true,
+                configuration: true
             }
         })
         if (!order) {

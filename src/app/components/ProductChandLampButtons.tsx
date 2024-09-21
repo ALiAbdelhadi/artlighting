@@ -4,24 +4,28 @@ import { Button } from "@/components/ui/button"
 import { ProductChandLamp } from "@prisma/client"
 import { useMutation } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { changeProductChandLamp } from "@/app/(main)/actions/productChandLamp"
 import { cn } from "../utils/utils"
 
-const PRODUCT_CHAND_LAMP_LABEL_MAP: Record<ProductChandLamp, { label: string; }> = {
-    lamp12w: { label: "Lamp 12w" },
-    lamp9w: { label: "Lamp 9W" }
+const PRODUCT_CHAND_LAMP_LABEL_MAP: Record<ProductChandLamp, { label: string; priceIncrease: number }> = {
+    lamp9w: { label: "Lamp 9W", priceIncrease: 0 },
+    lamp12w: { label: "Lamp 12w", priceIncrease: 20 },
 }
 
 interface ProductChandLampButtonsProps {
     productId: string
     productChandLamp: ProductChandLamp
-    onProductLampChange: (newProductLamp: ProductChandLamp) => void
+    basePrice: number
+    hNumber: number
+    onProductLampChange: (newProductLamp: ProductChandLamp, priceIncrease: number) => void
 }
 
 export default function ProductChandLampButtons({
     productId,
     productChandLamp,
+    basePrice,
+    hNumber,
     onProductLampChange,
 }: ProductChandLampButtonsProps) {
     const router = useRouter()
@@ -33,9 +37,14 @@ export default function ProductChandLampButtons({
         onSuccess: () => router.refresh(),
     })
 
+    useEffect(() => {
+        const { priceIncrease } = PRODUCT_CHAND_LAMP_LABEL_MAP[activeProductLamp]
+        const calculatedPriceIncrease = priceIncrease * hNumber
+        onProductLampChange(activeProductLamp, calculatedPriceIncrease)
+    }, [activeProductLamp, onProductLampChange, hNumber])
+
     const handleColorTempChange = (productLamp: ProductChandLamp) => {
         setActiveProductLamp(productLamp)
-        onProductLampChange(productLamp)
         mutate({ productId, newProductLamp: productLamp })
     }
 

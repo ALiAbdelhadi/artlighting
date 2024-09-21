@@ -1,11 +1,6 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { ProductIP } from "@prisma/client";
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { changeProductIP } from "@/app/(main)/actions/productIP";
+import { useState, useEffect } from "react";
 import { cn } from "../utils/utils";
 import { Droplets } from "lucide-react";
 import {
@@ -14,42 +9,61 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
-const PRODUCT_IP_LABEL_MAP: Record<ProductIP, { label: string; description: string }> = {
-    IP20: { label: "IP 20", description: "Protected against solid objects over 12mm" },
-    IP44: { label: "IP 44", description: "Protected against water splashes from all directions" },
-    IP54: { label: "IP 54", description: "Protected against dust and water splashes" },
-    IP65: { label: "IP 65", description: "Dust tight and protected against water jets" },
-    IP68: { label: "IP 68", description: "Dust tight and protected against long periods of immersion" },
+
+const PRODUCT_IP_LABEL_MAP: Record<
+    ProductIP,
+    { label: string; description: string; increaseOnPricePercent: number }
+> = {
+    IP20: {
+        label: "IP 20",
+        description: "Protected against solid objects over 12mm",
+        increaseOnPricePercent: 0,
+    },
+    IP44: {
+        label: "IP 44",
+        description: "Protected against water splashes from all directions",
+        increaseOnPricePercent: 0.02,
+    },
+    IP54: {
+        label: "IP 54",
+        description: "Protected against dust and water splashes",
+        increaseOnPricePercent: 0.04,
+    },
+    IP65: {
+        label: "IP 65",
+        description: "Dust tight and protected against water jets",
+        increaseOnPricePercent: 0.06,
+    },
+    IP68: {
+        label: "IP 68",
+        description: "Dust tight and protected against long periods of immersion",
+        increaseOnPricePercent: 0.08,
+    },
+};
+
+interface ProductIPButtonsProps {
+    productId: string;
+    productIp: ProductIP;
+    basePrice: number;
+    onProductIpChange: (newProductIp: ProductIP, priceIncrease: number) => void;
 }
 
-interface ProductIpStatusProps {
-    productId: string;
-    productIp: ProductIP;
-    onProductIpChange: (newProductIp: ProductIP) => void;
-}
-interface ProductIpButtonsProps {
-    productId: string;
-    productIp: ProductIP;
-    onProductIpChange: (newProductIp: ProductIP) => void;
-}
-export default function ProductIPButtons({
+const ProductIPButtons: React.FC<ProductIPButtonsProps> = ({
     productId,
     productIp,
+    basePrice,
     onProductIpChange,
-}: ProductIpButtonsProps) {
-    const router = useRouter();
-    const [activeIp, setActiveIp] = useState<ProductIP>(productIp);
+}) => {
+    const [selectedIp, setSelectedIp] = useState<ProductIP>(productIp);
 
-    const { mutate } = useMutation({
-        mutationKey: ["change-product-ip"],
-        mutationFn: changeProductIP,
-        onSuccess: () => router.refresh(),
-    });
+    useEffect(() => {
+        const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[selectedIp];
+        const priceIncrease = basePrice * increaseOnPricePercent;
+        onProductIpChange(selectedIp, priceIncrease);
+    }, [selectedIp, basePrice, onProductIpChange]);
 
-    const handleIpChange = (ip: ProductIP) => {
-        setActiveIp(ip);
-        onProductIpChange(ip);
-        mutate({ productId, newProductIp: ip });
+    const handleIpChange = (newIp: ProductIP) => {
+        setSelectedIp(newIp);
     };
 
     return (
@@ -65,10 +79,10 @@ export default function ProductIPButtons({
                                 <TooltipTrigger asChild>
                                     <Button
                                         onClick={() => handleIpChange(ip as ProductIP)}
-                                        variant={activeIp === ip ? "default" : "outline"}
+                                        variant={selectedIp === ip ? "default" : "outline"}
                                         className={cn(
-                                            " flex items-center justify-center w-full rounded-full",
-                                            activeIp === ip
+                                            "flex items-center justify-center w-full rounded-full",
+                                            selectedIp === ip
                                                 ? "bg-primary text-primary-foreground"
                                                 : "bg-background hover:bg-secondary"
                                         )}
@@ -87,4 +101,6 @@ export default function ProductIPButtons({
             </div>
         </div>
     );
-}
+};
+
+export default ProductIPButtons;

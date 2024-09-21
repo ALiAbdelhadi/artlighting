@@ -1,5 +1,7 @@
 "use client";
 import DashboardHeader from "@/app/components/DashboardHeader";
+import DiscountPrice from "@/app/helpers/DiscountPrice";
+import NormalPrice from "@/app/helpers/NormalPrice";
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -21,29 +23,25 @@ import { Prisma, ProductChandLamp } from "@prisma/client";
 import { MoveHorizontalIcon, SearchIcon } from "lucide-react";
 import { useState } from "react";
 import StatusDropdown from "../StatusDropdown";
-import DiscountPrice from "@/app/helpers/DiscountPrice";
-import NormalPrice from "@/app/helpers/NormalPrice";
 
 type OrderWithShipping = Prisma.OrderGetPayload<{
-    include: { shippingAddress: true; product: true };
+    include: { shippingAddress: true; product: true, configuration: true };
 }>;
 
 interface OrdersClientProps {
     orders: OrderWithShipping[];
 }
 
-const OrdersClient: React.FC<OrdersClientProps> = ({ orders,  }) => {
+const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
     const [searchItem, setSearchItem] = useState<string>("");
     const [filteredOrders, setFilteredOrders] = useState<OrderWithShipping[]>(orders);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const searchValue = e.target.value;
         setSearchItem(searchValue);
         setLoading(true);
         setError(null);
-
         try {
             const searchId = Number(searchValue);
             const newFilteredOrders = orders.filter(
@@ -104,6 +102,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders,  }) => {
                                     <TableHead className="text-nowrap">Customer</TableHead>
                                     <TableHead className="text-nowrap">Phone Number</TableHead>
                                     <TableHead>Date</TableHead>
+                                    <TableHead className="text-nowrap">Estimated Order Date</TableHead>
                                     <TableHead>Status</TableHead>
                                     <TableHead>Action</TableHead>
                                 </TableRow>
@@ -157,7 +156,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders,  }) => {
                                                     : "No Lamp"}
                                             </TableCell>
                                             <TableCell className="px-4 py-2 font-medium">
-                                                <NormalPrice price={order.productPrice} />
+                                                <NormalPrice price={order.configPrice} />
                                             </TableCell>
                                             <TableCell className="text-nowrap px-4 py-2">
                                                 {order.discountRate && order.discountRate > 0 ? (
@@ -168,7 +167,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders,  }) => {
                                             </TableCell>
                                             <TableCell>
                                                 {order.discountRate && order.discountRate > 0 ? (
-                                                    <DiscountPrice price={order.productPrice} discount={order.discountRate} />
+                                                    <DiscountPrice price={order.configPrice} discount={order.discountRate} />
                                                 ) : (
                                                     <span>No Discount On This Product</span>
                                                 )}
@@ -176,21 +175,24 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders,  }) => {
                                             <TableCell>{order.quantity}</TableCell>
                                             <TableCell>{formatPrice(order.shippingPrice)}</TableCell>
                                             <TableCell>
-                                                {order.discountRate && order.discountRate > 0 ? (
-                                                    <DiscountPrice
-                                                        price={order.productPrice + order.shippingPrice}
-                                                        discount={order.discountRate}
-                                                        quantity={order.quantity}
-                                                    />
-                                                ) : (
-                                                    <NormalPrice price={order.productPrice + order.shippingPrice} quantity={order.quantity} />
-                                                )}
+                                                {
+                                                    order.discountRate && order.discountRate > 0 ? (
+                                                        <DiscountPrice
+                                                            price={order.configPrice}
+                                                            discount={order.discountRate}
+                                                            quantity={order.quantity}
+                                                            shippingPrice={order.shippingPrice}
+                                                        />
+                                                    ) : (
+                                                        <NormalPrice price={order.configPrice} shippingPrice={order.shippingPrice} quantity={order.quantity} />
+                                                    )}
                                             </TableCell>
                                             <TableCell className="text-nowrap">
                                                 {order.shippingAddress?.fullName}
                                             </TableCell>
                                             <TableCell>{order.shippingAddress?.phoneNumber}</TableCell>
                                             <TableCell>{order.createdAt.toLocaleDateString()}</TableCell>
+                                            <TableCell className="text-nowrap">{order.OrderTimeReceived?.toLocaleDateString()}</TableCell>
                                             <TableCell>
                                                 <StatusDropdown id={order.id} orderStatus={order.status} />
                                             </TableCell>

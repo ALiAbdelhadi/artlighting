@@ -1,9 +1,10 @@
+import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Roboto } from "next/font/google";
-import { ThemeProvider } from "@/components/ui/theme-provider";
-import "./globals.css";
 import { constructMetadata } from '../lib/utils';
 import Providers from "./components/Providers";
+import "./globals.css";
 const roboto = Roboto({
     weight: ["400", "500"],
     subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         {children}
                     </Providers>
                     </ThemeProvider>
+                    <Toaster />
                 </body>
             </html>
         </ClerkProvider>

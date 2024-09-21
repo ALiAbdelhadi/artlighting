@@ -27,13 +27,16 @@ export async function GET(request: NextRequest) {
 
         const cartItems = cart.items.map(item => ({
             id: item.id,
-            productId: item.product.productId, // Use the custom productId
+            productId: item.product.productId,
             productName: item.product.productName,
             quantity: item.quantity,
             price: item.product.price,
             totalPrice: item.product.price * item.quantity * (1 - item.product.discount),
             productImages: item.product.productImages,
-            discount: item.product.discount
+            discount: item.product.discount,
+            sectionType: item.product.sectionType,
+            spotlightType: item.product.spotlightType,
+            Brand: item.product.Brand,
         }))
 
         return NextResponse.json(cartItems)

@@ -28,7 +28,6 @@ function About() {
                 }
             });
         });
-
         timelineElements.forEach((element) => {
             gsap.fromTo(element, {
                 opacity: 0,

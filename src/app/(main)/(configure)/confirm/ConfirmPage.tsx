@@ -4,20 +4,21 @@ import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/hooks/use-toast"
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getUserStatus } from "./action";
-import gsap from "gsap";
+import { motion } from "framer-motion";
 type Order = {
     id: string;
     userId: string;
     configurationId: string;
     quantity: number;
     totalPrice: number;
+    configPrice: number;
     product: {
         id: string;
         productName: string;
@@ -48,17 +49,6 @@ type ConfirmPageProps = {
     discount: number;
 };
 const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
-
-    const ContentRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (ContentRef.current) {
-            gsap.fromTo(
-                ContentRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1, delay: 0.3 }
-            );
-        }
-    }, []);
     const [quantity, setQuantity] = useState<number>(0);
 
     const searchParams = useSearchParams();
@@ -134,6 +124,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                     productName: order?.product.productName,
                     productImages: order?.product.productImages || [],
                     quantity: order?.quantity,
+                    configPrice: order?.configPrice,
                     productPrice: order?.product.price,
                     totalPrice: order?.totalPrice,
                     shippingMethod: "standard",
@@ -183,7 +174,12 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
     if (!order)
         return <div className="text-center py-8 text-lg">No order found</div>;
     return (
-        <div className="py-8" ref={ContentRef}>
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="py-12"
+        >
             <Container>
                 <h1 className="text-2xl font-bold mb-6">Confirm Your Order</h1>
                 <div className="flex flex-col lg:flex-row gap-8">
@@ -224,7 +220,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                             <div className="flex items-center lg:justify-between">
                                                 <span>Price Per Item:</span>{" "}
                                                 <s className="ml-1.5 text-gray-500">
-                                                    <NormalPrice price={order.product?.price} />
+                                                    <NormalPrice price={order.configPrice} />
                                                 </s>
                                             </div>
                                             <div className="flex items-center lg:justify-between">
@@ -238,7 +234,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                                 <span>Price:</span>{" "}
                                                 <span className="text-lg text-destructive font-semibold ml-1.5">
                                                     <DiscountPrice
-                                                        price={order.product?.price}
+                                                        price={order.configPrice}
                                                         discount={order.product?.discount}
                                                         quantity={quantity}
                                                     />
@@ -250,7 +246,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                             <div className="flex items-center lg:justify-between">
                                                 <span>Price Per Item: </span>{" "}
                                                 <span >
-                                                    <NormalPrice price={order.product?.price} />
+                                                    <NormalPrice price={order.configPrice} />
                                                 </span>
                                             </div>
                                             <div className="flex items-center lg:justify-between">
@@ -260,7 +256,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                                 <span>Price:</span>{" "}
                                                 <span className="text-lg font-semibold">
                                                     <NormalPrice
-                                                        price={order.product?.price}
+                                                        price={order.configPrice}
                                                         quantity={quantity}
                                                     />
                                                 </span>
@@ -341,7 +337,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                     </div>
                 </div>
             </Container>
-        </div>
+        </motion.div>
     );
 };
 

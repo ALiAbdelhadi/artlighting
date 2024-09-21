@@ -14,6 +14,8 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { addDays, format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 interface Order {
     id: string;
     totalPrice: number;
@@ -26,9 +28,15 @@ interface Order {
     shippingAddress: ShippingAddress
     shippingPrice: number;
     discount: number;
+    configPrice: number
+    OrderTimeReceived: string
 }
 
-
+const calculateEstimatedDeliveryDate = () => {
+    const currentDate = new Date()
+    const estimatedDeliveryDate = addDays(currentDate, 7)
+    return format(estimatedDeliveryDate, "dd MMM, yyyy", { locale: enUS })
+}
 const ThankYouPage: React.FC<Order> = ({ discount }) => {
     const variants = {
         hidden: { opacity: 0, y: 15 },
@@ -41,6 +49,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
             }
         }
     };
+    const estimatedDeliveryDate = calculateEstimatedDeliveryDate();
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const searchParams = useSearchParams();
     const orderId = searchParams.get('orderId') || "";
@@ -121,8 +130,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                             <div className="grid grid-cols-2 items-center">
                                                 <div className="font-medium">Delivery:</div>
                                                 <div>
-                                                    Expected by June 30, 2023 <br />
-                                                    via USPS Priority Mail
+                                                {estimatedDeliveryDate}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-2 items-center">
@@ -136,7 +144,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                         <TableRow>
                                                             <TableHead>Item</TableHead>
                                                             <TableHead className='pl-20 sm:pl-0'>Qty</TableHead>
-                                                            <TableHead>Price Per Item</TableHead>
+                                                            <TableHead className='text-nowrap'>Price Per Item</TableHead>
                                                             {discount > 0 ?
                                                                 <TableHead>Discount </TableHead>
                                                                 :
@@ -163,7 +171,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                                 </div>
                                                             </TableCell>
                                                             <TableCell className="text-sm md:text-base pl-20 sm:pl-0 font-medium">{order.quantity}</TableCell>
-                                                            <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.product?.price} /></TableCell>
+                                                            <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.configPrice} /></TableCell>
                                                             {discount > 0 ?
                                                                 <TableCell className='text-sm md:text-base text-destructive font-medium'>{order.product?.discount * 100}%</TableCell>
                                                                 :
@@ -171,11 +179,11 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             }
                                                             {discount > 0 ?
                                                                 (
-                                                                    <TableCell className="text-sm md:text-base font-medium"><DiscountPrice price={order.product?.price} discount={order.product?.discount} /></TableCell>
+                                                                    <TableCell className="text-sm md:text-base font-medium"><DiscountPrice price={order.configPrice} discount={order.product?.discount} /></TableCell>
                                                                 )
                                                                 :
                                                                 (
-                                                                    <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.product?.price} quantity={order.quantity} /></TableCell>
+                                                                    <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.configPrice} quantity={order.quantity} /></TableCell>
                                                                 )
                                                             }
                                                         </TableRow>
@@ -189,7 +197,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                         <>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">Subtotal:</div>
-                                                                <s className="text-right text-base font-semibold text-gray-500"><NormalPrice price={order.productPrice} quantity={order.quantity} /></s>
+                                                                <s className="text-right text-base font-semibold text-gray-500"><NormalPrice price={order.configPrice} quantity={order.quantity} /></s>
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium  text-muted-foreground">Shipping Fee:</div>
@@ -203,7 +211,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium ">Total:</div>
                                                                 <div className="text-right text-base font-semibold text-destructive">
-                                                                    <DiscountPrice price={order.productPrice + order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} />
+                                                                    <DiscountPrice price={order.configPrice } shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} />
                                                                 </div>
                                                             </div>
                                                         </>
@@ -212,7 +220,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                         <>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">Subtotal:</div>
-                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.productPrice} quantity={order.quantity} /></span>
+                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} /></span>
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium  text-muted-foreground">Shipping Fee:</div>
@@ -220,7 +228,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">total:</div>
-                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.productPrice} quantity={order.quantity} /></span>
+                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} /></span>
                                                             </div>
                                                         </>
                                                     )

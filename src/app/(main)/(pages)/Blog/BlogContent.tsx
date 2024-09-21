@@ -24,7 +24,7 @@ function BlogContent() {
             animate="visible"
             variants={variants}
         >
-            <PastEvents />
+            {/* <PastEvents /> */}
             <JetraArriving />
             <EventOfTheYear
                 targetDate={targetDate}

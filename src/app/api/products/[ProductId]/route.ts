@@ -22,6 +22,7 @@ export async function GET(
                 mainMaterial: true,
                 cri: true,
                 beamAngle: true
+            
             }
         })
 

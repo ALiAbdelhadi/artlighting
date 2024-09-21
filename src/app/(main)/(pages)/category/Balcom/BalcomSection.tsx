@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/app/components/Container";
+import { motion } from "framer-motion";
 
 interface Category {
     sectionType: string;
@@ -18,26 +18,33 @@ interface BalcomSectionProps {
     children: React.ReactNode;
     categories: Category[];
 }
+
 const BalcomSection: React.FC<BalcomSectionProps> = ({ children, categories }) => {
-    const sectionRef = useRef<HTMLElement>(null);
-    useEffect(() => {
-        if (sectionRef.current) {
-            gsap.fromTo(
-                sectionRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1 }
-            );
-        }
-    }, []);
+    const fadeIn = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 1 } },
+    };
+
     return (
         <>
             {children}
-            <section className="Indoor-lighting py-11 md:py-15 lg:py-19" ref={sectionRef}>
+            <motion.section
+                className="Indoor-lighting py-11 md:py-15 lg:py-19"
+                initial="hidden"
+                animate="visible"
+                variants={fadeIn}
+            >
                 <Container>
                     <h1 className="text-center text-3xl">Balcom</h1>
                     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
                         {categories.map((category) => (
-                            <div key={category.sectionType} className="text-center">
+                            <motion.div
+                                key={category.sectionType}
+                                className="text-center"
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: 0.1 }}
+                            >
                                 <Link href={`/category/Balcom/${category.sectionType}`} scroll={true}>
                                     <div className="card">
                                         <Image
@@ -50,11 +57,11 @@ const BalcomSection: React.FC<BalcomSectionProps> = ({ children, categories }) =
                                         <h2 className="text-lg py-3 capitalize">{category.sectionType}</h2>
                                     </div>
                                 </Link>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </Container>
-            </section>
+            </motion.section>
         </>
     );
 };

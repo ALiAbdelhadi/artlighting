@@ -69,6 +69,7 @@ export const fetchDashboardData = async () => {
             shippingPrice: order.shippingPrice,
             quantity: order.quantity,
             totalPrice: totalPrice,
+            configPrice: order.configPrice,
             discountRate: discountRate,
             user: {
                 id: order.user.id,

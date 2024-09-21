@@ -19,7 +19,7 @@ export async function generateStaticParams() {
       Brand: 'Balcom'
     },
     orderBy: {
-      sectionType: 'asc'
+      sectionType: "desc"
     }
   });
 
@@ -38,7 +38,7 @@ async function Page() {
       _all: true
     },
     orderBy: {
-      sectionType: 'asc'
+      sectionType: 'desc'
     }
   });
 

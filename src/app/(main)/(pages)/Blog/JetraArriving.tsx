@@ -1,7 +1,10 @@
-import { Badge } from "@/components/ui/badge";
+import Breadcrumb from '@/app/components/Breadcrumb/Breadcrumb';
+import { Fragment } from "react";
 
 export default function JetraArriving() {
     return (
+        <Fragment>
+            <Breadcrumb/>
         <section className="w-full py-8 md:py-12 lg:py-16">
             <div className="container px-4 md:px-6 mx-auto max-w-6xl">
                 <div className="flex flex-col items-center space-y-4 text-center">
@@ -29,5 +32,6 @@ export default function JetraArriving() {
                 </div>
             </div>
         </section>
+        </Fragment>
     )
 }

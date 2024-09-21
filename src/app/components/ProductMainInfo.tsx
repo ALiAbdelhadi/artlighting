@@ -1,23 +1,29 @@
 "use client";
+import { addToCart } from "@/app/(main)/actions/cart";
 import {
     saveConfig as _saveConfig,
     SaveConfigArgs,
 } from "@/app/components/action";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/components/hooks/use-toast"
 import { cn } from "@/lib/utils";
-import { Order, ProductChandLamp, ProductColorTemp, ProductIP } from "@prisma/client";
+import {
+    Order,
+    ProductChandLamp,
+    ProductColorTemp,
+    ProductIP
+} from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Minus, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { addToCart } from "@/app/(main)/actions/cart";
 import DiscountPrice from "../helpers/DiscountPrice";
 import NormalPrice from "../helpers/NormalPrice";
 import AddToCardIcon from "./AddToCardIcon";
+import ProductChandLampButtons from "./ProductChandLampButtons";
 import ProductColorTempStatus from "./ProductColorTempButtons";
 import ProductIPButtons from "./ProductIPButtons";
-import ProductChandLampButtons from "./ProductChandLampButtons";
+
 type ProductDetailsProps = {
     productName: string;
     price: number;
@@ -30,9 +36,11 @@ type ProductDetailsProps = {
     discount: number;
     colorTemperature: string;
     order: Order;
-    ChandelierLightingType: string,
-    Brand: string
+    ChandelierLightingType: string;
+    Brand: string;
+    hNumber: number
 };
+
 const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     productName,
     price,
@@ -45,7 +53,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     discount,
     order,
     ChandelierLightingType,
-    Brand
+    Brand,
+    hNumber
 }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -56,33 +65,25 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     const [selectedProductIp, setSelectProductIp] = useState<ProductIP>(
         (order?.productIp as ProductIP) || ProductIP.IP20
     );
-    const [selectedProductChandLamp, setSelectedProductChandLamp] = useState<ProductChandLamp>(
-        (order?.productChandLamp as ProductChandLamp) || ProductChandLamp.lamp9w
-    )
+    const [selectedProductChandLamp, setSelectedProductChandLamp] =
+        useState<ProductChandLamp>(
+            (order?.productChandLamp as ProductChandLamp) || ProductChandLamp.lamp9w
+        );
     const { toast } = useToast();
     const router = useRouter();
     useEffect(() => {
         localStorage.setItem(`quantity-${ProductId}`, currentQuantity.toString());
     }, [currentQuantity, ProductId]);
+
     const handleIncreaseQuantity = () => {
         setCurrentQuantity(currentQuantity + 1);
         increaseQuantity();
     };
+
     const handleDecreaseQuantity = () => {
         if (currentQuantity > 0) {
             setCurrentQuantity(currentQuantity - 1);
             decreaseQuantity();
-        }
-    };
-    const handleAddToBag = async () => {
-        if (currentQuantity >= 10) {
-            setShowPopup(true);
-        } else {
-            await addToCart(ProductId);
-            toast({
-                title: "Product Add To Card",
-                description: `${productName} has been added to your card`,
-            });
         }
     };
     const { mutate: saveConfig } = useMutation({
@@ -103,17 +104,12 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
         },
     });
     const handleClick = () => {
-        console.log("Order Now clicked", {
-            ProductId,
-            price,
-            quantity: currentQuantity,
-            configId,
-            discount,
-        });
         saveConfig({
             configId,
             ProductId,
-            price,
+            configPrice: totalPrice,
+            priceIncrease,
+            lampPriceIncrease,
             quantity: currentQuantity,
             productImages: [],
             discount,
@@ -123,12 +119,35 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     const handleColorTempChange = (newColorTemp: ProductColorTemp) => {
         setSelectedColorTemp(newColorTemp);
     };
-    const handleProductIpChange = (newProductIp: ProductIP) => {
-        setSelectProductIp(newProductIp);
+
+    const handleAddToBag = async () => {
+        if (currentQuantity >= 10) {
+            setShowPopup(true);
+        } else {
+            await addToCart(ProductId);
+            toast({
+                title: "Product Add To Card",
+                description: `${productName} has been added to your card`,
+            });
+        }
     };
-    const handleProductChandLampChange = (newProductLamp: ProductChandLamp) => {
+    const [ipPriceIncrease, setIpPriceIncrease] = useState(0);
+    const [priceIncrease, setPriceIncrease] = useState(0);
+    const [lampPriceIncrease, setLampPriceIncrease] = useState(0)
+    const handleProductChandLampChange = (newProductLamp: ProductChandLamp, newPriceIncrease: number) => {
         setSelectedProductChandLamp(newProductLamp);
+        setLampPriceIncrease(newPriceIncrease);
     };
+    const handleProductIPChange = (
+        newProductIp: ProductIP,
+        newPriceIncrease: number
+    ) => {
+        setSelectProductIp(newProductIp);
+        setPriceIncrease(newPriceIncrease);
+    };
+    const totalPrice = price + priceIncrease  + lampPriceIncrease;
+    console.log('Price:', price, 'Price Increase:', priceIncrease, 'Lamp Price Increase:', lampPriceIncrease, 'Total Price:', totalPrice);
+
     return (
         <div className="md:ml-16">
             <h1 className="md:text-4xl sm:text-3xl text-2xl mt-5 mb-2 font-bold uppercase">
@@ -140,25 +159,31 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                 wide beam angle, and long-lasting performance.
             </p>
             <div className="flex flex-col mb-1 ">
-                <div className={cn("grid gap-x-12 gap-y-4",
-                    ChandelierLightingType === "lamp" && Brand === "MisterLed" && "sm:grid-cols-2",
-                    Brand === "Balcom" && "sm:grid-cols-2"
-                )}>
+                <div
+                    className={cn(
+                        "grid gap-x-12 gap-y-4",
+                        ChandelierLightingType === "lamp" &&
+                        Brand === "MisterLed" &&
+                        "sm:grid-cols-2",
+                        Brand === "Balcom" && "sm:grid-cols-2"
+                    )}
+                >
                     <div className="space-x-2">
                         {ChandelierLightingType === "lamp" && Brand === "MisterLed" ? (
                             <ProductChandLampButtons
                                 productId={ProductId}
                                 productChandLamp={selectedProductChandLamp}
                                 onProductLampChange={handleProductChandLampChange}
+                                basePrice={price}
+                                hNumber={hNumber}
                             />
-                        )
-                            : null
-                        }
+                        ) : null}
                         {Brand === "Balcom" && (
                             <ProductIPButtons
                                 productId={ProductId}
                                 productIp={selectedProductIp}
-                                onProductIpChange={handleProductIpChange}
+                                onProductIpChange={handleProductIPChange}
+                                basePrice={price}
                             />
                         )}
                     </div>
@@ -171,19 +196,21 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                     </div>
                 </div>
             </div>
-            <div className="flex items-center gap-3"></div>
             <div className="my-4 flex items-center space-x-3">
                 {discount > 0 ? (
                     <>
                         <span className="text-lg">
                             <DiscountPrice
-                                price={price}
+                                price={totalPrice}
                                 discount={discount}
                                 quantity={currentQuantity}
                             />
                         </span>
                         <s className="text-gray-500 font-semibold ml-1.5 text-base">
-                            <NormalPrice price={price} quantity={currentQuantity} />
+                            <NormalPrice
+                                price={totalPrice}
+                                quantity={currentQuantity}
+                            />
                         </s>
                         <span className="text-green-500 font-medium">
                             {discount * 100}%
@@ -191,7 +218,10 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                     </>
                 ) : (
                     <span className="text-lg font-semibold">
-                        <NormalPrice price={price} quantity={currentQuantity} />
+                        <NormalPrice
+                            price={totalPrice}
+                            quantity={currentQuantity}
+                        />
                     </span>
                 )}
             </div>
@@ -245,7 +275,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                             {
                                 "bg-black text-white": isClicked,
                                 "hover:bg-black hover:text-white": !isClicked,
-                                "dark:hover:bg-gray-100 dark:hover:text-gray-950 dark:text-gray-100 dark:bg-background": !isClicked,
+                                "dark:hover:bg-gray-100 dark:hover:text-gray-950 dark:text-gray-100 dark:bg-background":
+                                    !isClicked,
                                 "dark:bg-white dark:text-gray-950": isClicked && "dark",
                             }
                         )}

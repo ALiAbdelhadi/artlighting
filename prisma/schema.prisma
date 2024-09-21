@@ -8,17 +8,19 @@ datasource db {
 }
 
 model Configuration {
-  id            String   @id @default(cuid())
-  ProductId     String
-  category      String
-  lightingtype  String
-  price         Float
-  shippingPrice Float
-  discount      Float
-  quantity      Int
-  productImages String[]
-  orders        Order[]  @relation("ConfigurationToOrder")
-  users         User[]   @relation("ConfigurationToUser")
+  id                String   @id @default(cuid())
+  ProductId         String
+  category          String
+  lightingtype      String
+  configPrice       Float
+  priceIncrease     Float
+  shippingPrice     Float
+  discount          Float
+  quantity          Int
+  lampPriceIncrease Float?
+  productImages     String[]
+  orders            Order[]  @relation("ConfigurationToOrder")
+  users             User[]   @relation("ConfigurationToUser")
 }
 
 model User {
@@ -57,6 +59,8 @@ model Order {
   discountApplied        Boolean          @default(false)
   discountRate           Float?
   totalPrice             Float
+  configPrice            Float
+  priceIncrease          Float?
   Brand                  String?
   ChandelierLightingType String?
   shippingPrice          Float
@@ -65,6 +69,7 @@ model Order {
   shippingAddress        ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
   shippingAddressId      String?
   user                   User             @relation(fields: [userId], references: [id])
+  OrderTimeReceived      DateTime?
 }
 
 model ShippingAddress {
@@ -126,6 +131,7 @@ model Product {
   maxIP                  Int?
   spotlightType          String
   price                  Float
+  priceIncrease          Float?
   sectionType            String
   createdAt              DateTime          @default(now())
   updatedAt              DateTime          @updatedAt

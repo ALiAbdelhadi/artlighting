@@ -1,27 +1,29 @@
-"use server";
+"use server"
 import { db } from '@/db';
 
 export type SaveConfigArgs = {
     ProductId: string;
-    price: number;
+    configPrice: number;
+    priceIncrease: number;
     quantity: number;
     configId: string;
     productImages: string[];
+    lampPriceIncrease: number
     discount: number;
-    
 };
 
-export async function saveConfig({ configId, ProductId, price, quantity, productImages, discount , }: SaveConfigArgs) {
+export async function saveConfig({ configId, ProductId, configPrice, priceIncrease, quantity, productImages, discount, lampPriceIncrease }: SaveConfigArgs) {
     const existingConfig = await db.configuration.findUnique({
         where: { id: configId }
     });
-
     if (existingConfig) {
         await db.configuration.update({
             where: { id: configId },
             data: {
                 ProductId,
-                price,
+                configPrice,
+                lampPriceIncrease,
+                priceIncrease,
                 quantity,
                 productImages,
                 shippingPrice: 69,
@@ -33,11 +35,13 @@ export async function saveConfig({ configId, ProductId, price, quantity, product
             data: {
                 ProductId,
                 quantity,
-                price,
+                configPrice,
+                priceIncrease,
                 category: "YourCategoryHere",
                 lightingtype: "YourLightingTypeHere",
                 productImages,
                 shippingPrice: 69,
+                lampPriceIncrease,
                 discount,
             },
         });

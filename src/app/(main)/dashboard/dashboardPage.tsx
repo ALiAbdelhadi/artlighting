@@ -41,6 +41,7 @@ interface Order {
     createdAt: string;
     totalPrice: number;
     status: string;
+    configPrice: number
     quantity: number;
     productPrice: number;
     shippingPrice: number;
@@ -120,11 +121,11 @@ const Dashboard = ({ discount }: { discount: number }) => {
                     <TableCell className="px-4 py-2">
                         {order.discountRate > 0 ? (
                             <DiscountPrice
-                                price={order.productPrice}
+                                price={order.configPrice}
                                 discount={order.discountRate}
                             />
                         ) : (
-                            <NormalPrice price={order.productPrice} />
+                            <NormalPrice price={order.configPrice} />
                         )}
                     </TableCell>
                     <TableCell className="px-4 py-2">
@@ -137,12 +138,12 @@ const Dashboard = ({ discount }: { discount: number }) => {
                     <TableCell className="px-4 py-2">
                         {order.discountRate > 0 ? (
                             <DiscountPrice
-                                price={order.productPrice}
+                                price={order.configPrice}
                                 discount={order.discountRate}
                                 quantity={order.quantity}
                             />
                         ) : (
-                            <NormalPrice price={order.productPrice} quantity={order.quantity} />
+                            <NormalPrice price={order.configPrice} quantity={order.quantity} />
                         )}
                     </TableCell>
                     <TableCell className="px-4 py-2">

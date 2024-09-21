@@ -2,6 +2,7 @@
 import Container from "@/app/components/Container";
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
+import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,19 +14,20 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { ToastAction } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/use-toast";
-import { Product, ProductChandLamp, ShippingAddress } from "@prisma/client";
+import { Configuration, Product, ProductChandLamp, ShippingAddress } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { addDays, format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
+import { motion } from "framer-motion";
 import { CheckCircle, DiscIcon, LightbulbIcon, Package, Truck, VariableIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment } from "react";
-import gsap from "gsap";
-import { useEffect, useRef } from "react"
 interface Order {
     id: string;
     totalPrice: number;
     status: string;
     isCompleted: boolean;
+    configPrice: number
     product: Product;
     quantity: number;
     productPrice: number;
@@ -35,6 +37,7 @@ interface Order {
     productIp: String
     Brand: string
     productChandLamp: string
+    configuration: Configuration
 }
 interface UpdateOrderStatusResponse {
     success: boolean;
@@ -67,17 +70,12 @@ type CompletePageProps = {
     Brand: string,
     ChandelierLightingType: string
 };
+const calculateEstimatedDeliveryDate = () => {
+    const currentDate = new Date()
+    const estimatedDeliveryDate = addDays(currentDate, 7)
+    return format(estimatedDeliveryDate, "dd MMM, yyyy", { locale: enUS })
+}
 const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
-    const ContentRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        if (ContentRef.current) {
-            gsap.fromTo(
-                ContentRef.current,
-                { opacity: 0 },
-                { opacity: 1, duration: 1, delay: 0.3 }
-            );
-        }
-    }, []);
     const searchParams = useSearchParams();
     const orderId = searchParams.get("orderId");
     const { toast } = useToast();
@@ -92,7 +90,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
         queryFn: () => fetchOrderDetails(orderId!),
         enabled: !!orderId,
     });
-
+    const estimatedDeliveryDate = calculateEstimatedDeliveryDate();
     const { mutate: handleComplete, isPending } = useMutation({
         mutationKey: ["confirmOrder", orderId],
         mutationFn: async () => {
@@ -138,8 +136,15 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
     function isProductChandLamp(value: string): value is ProductChandLamp {
         return value === 'lamp9w' || value === 'lamp12w';
     }
+
+
     return (
-        <div className=" py-8" ref={ContentRef}>
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="py-8"
+        >
             <Container>
                 <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
                     <div className="lg:col-span-2">
@@ -243,24 +248,24 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                             <Fragment>
                                                                 <TableCell className="text-sm pr-4 sm:pr-0">
                                                                     <DiscountPrice
-                                                                        price={order.product?.price}
+                                                                        price={order.configPrice}
                                                                         discount={discount}
                                                                     />
                                                                 </TableCell>
                                                                 <TableCell>
-                                                                    <DiscountPrice price={order.product?.price} discount={discount} quantity={order?.quantity} />
+                                                                    <DiscountPrice price={order.configPrice} discount={discount} quantity={order?.quantity} />
                                                                 </TableCell>
                                                             </Fragment>
                                                         ) : (
                                                             <>
                                                                 <TableCell className="font-semibold">
                                                                     <NormalPrice
-                                                                        price={order.product?.price}
+                                                                        price={order.configPrice}
                                                                     />
                                                                 </TableCell>
                                                                 <TableCell className="font-semibold">
                                                                     <NormalPrice
-                                                                        price={order.product?.price}
+                                                                        price={order.configPrice}
                                                                         quantity={order?.quantity}
                                                                     />
                                                                 </TableCell>
@@ -299,7 +304,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                         Estimated Delivery Date
                                                     </h3>
                                                     <p className="not-italic text-muted-foreground tracking-wide md:text-base sm:text-sm text-xs leading-5 ">
-                                                        June 23, 2023
+                                                        {estimatedDeliveryDate}
                                                     </p>
                                                 </div>
                                             </div>
@@ -492,7 +497,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
           }
         `}
             </style>
-        </div>
+        </motion.div>
     );
 };
 

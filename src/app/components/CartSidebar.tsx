@@ -18,6 +18,10 @@ interface CartItem {
     productImages: string[]
     discount: number
     price: number
+    Brand: string
+    sectionType: string
+    spotlightType: string
+    totalPrice: number
 }
 
 export function CartSidebar() {
@@ -186,7 +190,7 @@ export function CartSidebar() {
                                         >
                                             <Trash2 className="h-4 w-4" />
                                         </Button>
-                                        <Link href={`/preview/${item.productId}`}>
+                                        <Link href={`/category/${item.Brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`}>
                                             <Button variant="link" size="sm">
                                                 View Product
                                             </Button>

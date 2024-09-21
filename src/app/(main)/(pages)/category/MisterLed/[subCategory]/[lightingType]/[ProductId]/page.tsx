@@ -46,9 +46,11 @@ export default async function ProductPage({ params }: { params: { lightingType: 
     }
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <ProductClientComponent product={product}>
-                <Breadcrumb />
-            </ProductClientComponent>
+            {product && (
+                <ProductClientComponent product={product} >
+                    <Breadcrumb />
+                </ProductClientComponent>
+            )}
         </Suspense>
     );
 }

@@ -1,16 +1,21 @@
 import { auth } from "@clerk/nextjs/server";
 import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
+import { addDays, format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 const prisma = new PrismaClient();
+
 interface RequestBody {
-    configurationId: string;
     productId: string;
     productName: string;
     productImages: string[];
     quantity: number;
+    configPrice: number;
     productPrice: number;
-    discount: number;
-    shippingPrice?: number;
+    totalPrice: number;
+    shippingMethod: string;
+    shippingPrice: number;
+    configurationId: string;
     shippingAddress: {
         fullName: string;
         address: string;
@@ -21,102 +26,84 @@ interface RequestBody {
         phoneNumber: string;
     };
 }
+const calculateEstimatedDeliveryDate = () => {
+    const currentDate = new Date()
+    const estimatedDeliveryDate = addDays(currentDate, 8)
+    return format(estimatedDeliveryDate, "dd MMM, yyyy", { locale: enUS })
+}
 export async function POST(request: Request) {
     try {
         const { userId } = auth();
         if (!userId) {
             return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
         }
+
         const body: RequestBody = await request.json();
         console.log('Received order data:', body);
-        if (!body.shippingAddress || !body.shippingAddress.fullName || !body.shippingAddress.address ||
-            !body.shippingAddress.city || !body.shippingAddress.state ||
-            !body.shippingAddress.zipCode || !body.shippingAddress.country ||
-            !body.shippingAddress.phoneNumber) {
-            return NextResponse.json({ error: 'Shipping address is incomplete' }, { status: 400 });
+
+        // Validate required fields
+        const requiredFields: (keyof RequestBody)[] = ['productId', 'productName', 'quantity', 'configPrice', 'productPrice', 'totalPrice', 'configurationId', 'shippingAddress'];
+        const missingFields = requiredFields.filter(field => !body[field]);
+        if (missingFields.length > 0) {
+            return NextResponse.json({ error: `Missing required fields: ${missingFields.join(', ')}` }, { status: 400 });
         }
+
+        // Validate shipping address
+        const addressFields: (keyof RequestBody['shippingAddress'])[] = ['fullName', 'address', 'city', 'state', 'zipCode', 'country', 'phoneNumber'];
+        const missingAddressFields = addressFields.filter(field => !body.shippingAddress[field]);
+        if (missingAddressFields.length > 0) {
+            return NextResponse.json({ error: `Missing required shipping address fields: ${missingAddressFields.join(', ')}` }, { status: 400 });
+        }
+
+        // Fetch product details
         const product = await prisma.product.findUnique({
             where: { id: body.productId },
         });
+
         if (!product) {
             return NextResponse.json({ error: 'Product not found' }, { status: 404 });
         }
-        let shippingAddress = await prisma.shippingAddress.findUnique({
+
+        // Create or update shipping address
+        const shippingAddress = await prisma.shippingAddress.upsert({
             where: { userId: userId },
+            update: {
+                ...body.shippingAddress,
+            },
+            create: {
+                userId: userId,
+                ...body.shippingAddress,
+            },
         });
-        if (!shippingAddress) {
-            shippingAddress = await prisma.shippingAddress.create({
-                data: {
-                    userId: userId,
-                    fullName: body.shippingAddress.fullName,
-                    address: body.shippingAddress.address,
-                    city: body.shippingAddress.city,
-                    state: body.shippingAddress.state,
-                    zipCode: body.shippingAddress.zipCode,
-                    country: body.shippingAddress.country,
-                    phoneNumber: body.shippingAddress.phoneNumber,
-                },
-            });
-        } else {
-            shippingAddress = await prisma.shippingAddress.update({
-                where: { userId: userId },
-                data: {
-                    fullName: body.shippingAddress.fullName,
-                    address: body.shippingAddress.address,
-                    city: body.shippingAddress.city,
-                    state: body.shippingAddress.state,
-                    zipCode: body.shippingAddress.zipCode,
-                    country: body.shippingAddress.country,
-                    phoneNumber: body.shippingAddress.phoneNumber,
-                },
-            });
-        }
         const discountRate = product.discount;
-        let discountedPrice = body.productPrice;
-        let discountApplied = false;
-        let totalPrice;
-        if (discountRate > 0) {
-            discountedPrice = Math.ceil(body.productPrice * (1 - discountRate));
-            discountApplied = true;
-        }
-        if (discountRate > 0) {
-            totalPrice = (discountedPrice * body.quantity) + (body.shippingPrice || 0);
-        } else {
-            totalPrice = (body.productPrice * body.quantity) + (body.shippingPrice || 0);
-        }
-        console.log('Calculated values:', { discountRate, discountedPrice, totalPrice, discountApplied });
-        // Create order
+        const discountedPrice = discountRate > 0 ? Math.ceil(body.configPrice * (1 - discountRate)) : body.configPrice;
+        const discountApplied = discountRate > 0;
         const order = await prisma.order.create({
             data: {
-                user: {
-                    connect: { id: userId }
-                },
-                configuration: {
-                    connect: { id: body.configurationId }
-                },
-                product: {
-                    connect: { id: body.productId }
-                },
+                user: { connect: { id: userId } },
+                configuration: { connect: { id: body.configurationId } },
+                product: { connect: { id: body.productId } },
                 quantity: body.quantity,
                 productPrice: body.productPrice,
                 discountRate: discountRate,
                 discountedPrice: discountedPrice,
                 discountApplied: discountApplied,
-                totalPrice: totalPrice,
+                totalPrice: body.totalPrice,
                 productName: body.productName,
                 productImages: body.productImages,
-                shippingPrice: body.shippingPrice || 0,
+                shippingPrice: body.shippingPrice,
                 status: "awaiting_shipment",
-                shippingAddress: {
-                    connect: { id: shippingAddress.id }
-                },
-                productColorTemp: product.productColor || "",
-                productIp: product.productIp || "",
-                productChandLamp: product.productChandLamp || "",
-                Brand: product.Brand || "",
-                ChandelierLightingType: product.ChandelierLightingType
+                shippingAddress: { connect: { id: shippingAddress.id } },
+                productColorTemp: product.productColor || 'warm',
+                productIp: product.productIp || 'IP20',
+                productChandLamp: product.productChandLamp || 'lamp9w',
+                Brand: product.Brand,
+                ChandelierLightingType: product.ChandelierLightingType,
+                configPrice: body.configPrice,
+                OrderTimeReceived : new Date(calculateEstimatedDeliveryDate())
             },
         });
+
         return NextResponse.json(order, { status: 201 });
     } catch (error) {
         console.error('Error creating order:', error);

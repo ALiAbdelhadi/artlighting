@@ -6,7 +6,7 @@ import ProductFeatures from "@/app/components/ProductFeatures";
 import ProductImages from "@/app/components/ProductImages";
 import ProductMainInfo from "@/app/components/ProductMainInfo";
 import ProductSpecifications from "@/app/components/ProductSpecifications";
-import { Order, OrderStatus, Product } from "@prisma/client";
+import { Configuration, Order, OrderStatus, Product } from "@prisma/client";
 import { motion } from 'framer-motion';
 import { useState } from "react";
 
@@ -16,10 +16,11 @@ interface ProductClientComponentProps {
         category: { name: string };
         lightingtype: { name: string };
     };
+    configuration?: Configuration
     relatedProducts: Product[];
 }
 
-const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ children, product, relatedProducts }) => {
+const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ children, product, relatedProducts,configuration }) => {
     const [quantity, setQuantity] = useState(1);
     const variants = {
         hidden: { opacity: 0, y: 15 },
@@ -61,6 +62,7 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
         totalPrice: product.price * quantity,
         shippingPrice: 69,
         shippingAddressId: null,
+        configPrice : configuration?.configPrice
     };
 
     const specificationsTable = {
@@ -107,6 +109,7 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                                 colorTemperature={"Color Temperature"}
                                 Brand={product.Brand}
                                 ChandelierLightingType={product.ChandelierLightingType ?? ""}
+                                hNumber={product.hNumber || null}
                             />
                         </div>
                         <ProductSpecifications

@@ -58,30 +58,32 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
                 },
             });
         }
-        // Apply the discount using the reusable function
-        const discountedPrice = configuration.price
-        const shippingPrice = configuration.shippingPrice
-        const finalPrice = discountedPrice * quantity +  shippingPrice;
+
+        const discountedPrice = configuration.configPrice - (configuration.configPrice * configuration.discount);
+        const shippingPrice = configuration.shippingPrice;
+        const finalPrice = discountedPrice * quantity + shippingPrice;
+
         const order = await db.order.create({
             data: {
                 userId: userId,
                 configurationId: configId,
                 productId: product.id,
                 quantity: quantity,
-                productPrice: configuration.price,
+                productPrice: configuration.configPrice,
                 discountRate: configuration.discount,
                 discountedPrice: discountedPrice,
                 totalPrice: finalPrice,
+                configPrice: configuration.configPrice, // Add this line
                 productName: product.productName,
                 productImages: product.productImages,
                 status: "awaiting_shipment",
-                shippingPrice: 69,
+                shippingPrice: shippingPrice,
                 shippingAddressId: shippingAddress.id,
                 productColorTemp: product.productColor || "",
                 productIp: product.productIp || "",
                 productChandLamp: product.productChandLamp || "",
                 Brand: product.Brand,
-                ChandelierLightingType : product.ChandelierLightingType
+                ChandelierLightingType: product.ChandelierLightingType,
             },
         });
 
