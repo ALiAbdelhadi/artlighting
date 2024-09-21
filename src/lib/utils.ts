@@ -32,7 +32,7 @@ export function constructMetadata({
 } = {}): Metadata {
   return {
     title,
-    description,
+  description,
     openGraph: openGraph ?? {
       type: "website",
       locale: "ar_EG",

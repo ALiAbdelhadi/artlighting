@@ -7,15 +7,10 @@ const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
     images: {
-        domains: ['localhost', process.env.NEXT_PUBLIC_SERVER_URL]
-            .filter(Boolean)
-            .map(url => url.replace(/https?:\/\//, '')),
+        domains: ['localhost', 'eg-artlighting.vercel.app'],
     },
     compiler: {
         styledComponents: true,
-    },
-    typescript: {
-        ignoreBuildErrors: true,
     },
     async headers() {
         return [
