@@ -34,6 +34,12 @@ export const newCollectionProducts = [
 
 export const brands = [
     {
+        name: "Balcom",
+        description: "Premium home appliances for discerning customers",
+        logo: "/brand/balcom.jpeg",
+        link: "/category/Balcom"
+    },
+    {
         name: "Mister LED",
         description: "Innovative LED lighting solutions for every space",
         logo: "/brand/mrled.png",
@@ -44,12 +50,6 @@ export const brands = [
         description: "High-performance electronics for modern living",
         logo: "/brand/jetra.png",
         link: "/category/Jetra"
-    },
-    {
-        name: "Balcom",
-        description: "Premium home appliances for discerning customers",
-        logo: "/brand/balcom.jpeg",
-        link: "/category/Balcom"
     },
 ];
 
