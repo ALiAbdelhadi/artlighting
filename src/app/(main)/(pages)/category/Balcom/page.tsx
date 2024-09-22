@@ -8,7 +8,7 @@ import BalcomSection from "./BalcomSection";
 type SectionType = 'Indoor' | 'Outdoor';
 
 const sectionTypeImages: Record<SectionType, string> = {
-  "Indoor": "/Indoor/linear/jy-lnrd-001b-32w/JY-LNRD-001B-32W (1).png",
+  "Indoor": "/indoor/linear/jy-lnrd-001b-32w/JY-LNRD-001B-32W (1).png",
   "Outdoor": "/NewCollection/new-collection-2.jpg"
 };
 
