@@ -32,7 +32,7 @@ const CategoryContent = () => {
                         className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
                         <div className="text-center ">
                             <Link href="/category/Balcom">
-                                <Image src={"/Indoor/products500/jy-535-5w/JY-535-5W (1).png"}
+                                <Image src={"/indoor/products500/jy-535-5w/JY-535-5W (1).png"}
                                     alt={'Indoor lighting products'} width={"475"}
                                     height={"475"} />
                                 <div className="card ">
