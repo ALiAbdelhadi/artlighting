@@ -86,10 +86,10 @@ export function ShowNewSelection() {
                                 </div>
                             </div>
                             <div className="my-4 animate-text">
-                                <h2 className="text-sm md:text-2xl lg:text-3xl font-bold uppercase">
+                                <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
                                     Halo — LED Ring Suspended Lamp
                                 </h2>
-                                <Link scroll={true} className="block mt-2 text-sm md:text-xl" href="Collection/spot">
+                                <Link scroll={true} className="block mt-2 text-sm sm:text-base md:text-lg" href="Collection/spot">
                                     Discover more
                                 </Link>
                             </div>
@@ -109,10 +109,10 @@ export function ShowNewSelection() {
                                 </div>
                             </div>
                             <div className="mt-4 animate-text absolute">
-                                <h2 className="text-sm md:text-3xl lg:text-4xl font-bold uppercase">
+                            <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
                                     Halo — LED Ring Suspended Lamp
                                 </h2>
-                                <Link scroll={true} className="block mt-2 text-sm md:text-2xl" href="Collection/hallo">
+                                <Link scroll={true} className="block mt-2 text-sm sm:text-base md:text-lg" href="Collection/hallo">
                                     Discover more
                                 </Link>
                             </div>
@@ -133,10 +133,10 @@ export function ShowNewSelection() {
                             </div>
                         </div>
                         <div className="mt-4 animate-text">
-                            <h2 className="text-sm md:text-2xl lg:text-3xl font-bold uppercase">
+                        <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
                                 Line — Up/Down LED Suspended Lamp
                             </h2>
-                            <Link scroll={true} className="block mt-2 text-sm md:text-xl" href="Collection/track">
+                            <Link scroll={true} className="block mt-2 text-sm sm:text-base md:text-lg" href="Collection/track">
                                 Discover more
                             </Link>
                         </div>
