@@ -1,5 +1,6 @@
 "use client";
 import Container from "@/app/components/Container";
+import ShippingInfoCard from "@/app/components/ShippingInfoCard";
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { useToast } from "@/components/hooks/use-toast";
@@ -21,7 +22,7 @@ import { enUS } from 'date-fns/locale';
 import { motion } from "framer-motion";
 import { CheckCircle, DiscIcon, LightbulbIcon, Package, Truck, VariableIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 interface Order {
     id: string;
     totalPrice: number;
@@ -102,6 +103,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                 console.log(
                     "Order completed successfully. Redirecting to thank you page"
                 );
+                localStorage.setItem("lastCompletedOrderId", orderId!);
                 router.push(`/thank-you?orderId=${response.order.id}`);
             } else {
                 console.error(
@@ -126,6 +128,25 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
             });
         },
     });
+    useEffect(() => {
+        const checkOrderStatus = async () => {
+            if (orderId) {
+                try {
+                    const response = await fetch(`/api/orders/${orderId}`);
+                    const orderData = await response.json();
+
+                    if (orderData.isCompleted) {
+                        // If the order is already completed, redirect to the product page
+                        router.push(`/category/${orderData.product.Brand}/${orderData.product.sectionType}/${orderData.product.spotlightType}/${orderData.product.productId}`);
+                    }
+                } catch (error) {
+                    console.error('Error checking order status:', error);
+                }
+            }
+        };
+
+        checkOrderStatus();
+    }, [orderId, router]);
     if (isLoading) return <div>Loading order details...</div>;
     if (error) return <div>Error loading order details</div>;
     if (!order) return <div>No order found</div>;
@@ -136,7 +157,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
     function isProductChandLamp(value: string): value is ProductChandLamp {
         return value === 'lamp9w' || value === 'lamp12w';
     }
-
+    const isCairo = order.shippingAddress.state.toLowerCase().replace(/\s/g, '').match(/cairo|القاهرة/) !== null;
 
     return (
         <motion.div
@@ -295,7 +316,8 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                         <p>{order.shippingAddress.address}</p>
                                                         <p>
                                                             {order.shippingAddress.city},{" "}
-                                                            {order.shippingAddress.zipCode}
+                                                            {order.shippingAddress.zipCode}, {" "}
+                                                            {order.shippingAddress.state}
                                                         </p>
                                                     </address>
                                                 </div>
@@ -358,7 +380,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                     <div className="grid gap-8">
                         <Card className="overflow-hidden">
                             <CardHeader>
-                                <CardTitle>Product Information</CardTitle>
+                                <CardTitle className="text-lg sm:text-xl">Shipping Information</CardTitle>
                             </CardHeader>
                             <CardContent className="p-0">
                                 <div className="overflow-x-auto custom-scrollbar">
@@ -366,31 +388,59 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                         <div className="grid gap-4">
                                             <div>
                                                 <h3 className="font-medium text-base sm:text-lg">
-                                                    LED Spotlight
+                                                    Delivery Details
                                                 </h3>
                                                 <p className="text-muted-foreground tracking-wide sm:text-base text-sm leading-5 -my-1">
-                                                    Illuminate Your Space with Precision.
+                                                    {isCairo
+                                                        ? "Standard shipping to Cairo"
+                                                        : "Shipping to locations outside Cairo"}
                                                 </p>
                                                 <p className="tracking-wide leading-6">
-                                                    Illuminate your world with precision. Our LED
-                                                    spotlights deliver powerful, focused beams of light,
-                                                    perfect for accentuating architectural details,
-                                                    highlighting landscape features, or creating dramatic
-                                                    effects. Experience superior energy efficiency and
-                                                    long-lasting performance.
+                                                    {isCairo
+                                                        ? `Your order will be delivered to Cairo. The shipping price is ${order.shippingPrice} EGP.`
+                                                        : "We will contact you within 48 hours to provide the shipping price for your location."}
                                                 </p>
                                             </div>
                                             <div>
                                                 <h3 className="font-medium text-base sm:text-lg">
-                                                    Brilliant Brightness
+                                                    Shipping Address
                                                 </h3>
                                                 <p className="text-muted-foreground tracking-wide sm:text-base text-sm leading-5 -my-1">
-                                                    {order.product.luminousFlux} lumens for optimal
-                                                    visibility.
+                                                    {order.shippingAddress.fullName}
                                                 </p>
                                                 <p className="tracking-wide leading-6">
-                                                    Choose from warm white (3000K), neutral white (4000K),
-                                                    or cool white (6500K) to match your ambiance.
+                                                    {order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zipCode}, {order.shippingAddress.country}
+                                                </p>
+                                                <p className="tracking-wide leading-6">
+                                                    Phone: {order.shippingAddress.phoneNumber}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <h3 className="font-medium text-base sm:text-lg">
+                                                    Shipping Cost
+                                                </h3>
+                                                <p className="text-muted-foreground tracking-wide sm:text-base text-sm leading-5 -my-1">
+                                                    {isCairo ? "Fixed rate for Cairo" : "To be determined"}
+                                                </p>
+                                                <p className="tracking-wide leading-6 font-semibold">
+                                                    {isCairo ? (
+                                                        <NormalPrice price={order.shippingPrice} />
+                                                    ) : (
+                                                        "We will contact you with the shipping price."
+                                                    )}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <h3 className="font-medium text-base sm:text-lg">
+                                                    Estimated Delivery Time
+                                                </h3>
+                                                <p className="text-muted-foreground tracking-wide sm:text-base text-sm leading-5 -my-1">
+                                                    {isCairo ? "3-5 business days" : "To be determined"}
+                                                </p>
+                                                <p className="tracking-wide leading-6">
+                                                    {isCairo
+                                                        ? "We strive to deliver your order as quickly as possible."
+                                                        : "Delivery time will be provided when we contact you with the shipping price."}
                                                 </p>
                                             </div>
                                         </div>

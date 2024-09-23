@@ -11,11 +11,12 @@ import { Product, ShippingAddress } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import React from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { useEffect } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { addDays, format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+
 interface Order {
     id: string;
     totalPrice: number;
@@ -49,6 +50,8 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
             }
         }
     };
+    const router = useRouter()
+
     const estimatedDeliveryDate = calculateEstimatedDeliveryDate();
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const searchParams = useSearchParams();
@@ -62,6 +65,13 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
         },
         enabled: !!orderId,
     });
+    useEffect(() => {
+        const lastCompletedOrderId = localStorage.getItem("lastCompletedOrderId");
+
+        if (orderId !== lastCompletedOrderId) {
+            router.push('/');
+        }
+    }, [orderId, router]);
     if (isLoading) return <div>Loading order details...</div>;
     if (error) return <div>Error loading order details: {(error as Error).message}</div>;
     if (!order) return <div>No order found. Please check your order ID.</div>;
@@ -69,6 +79,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
     const handleSlideChange = (index: number) => {
         setCurrentIndex(index);
     };
+
     const getProductWattage = (productName: string) => {
         const lastIndex = productName.lastIndexOf("-");
         if (lastIndex !== -1) {
@@ -77,6 +88,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
         }
         return "Not Available";
     };
+    const isCairo = order.shippingAddress.state.toLowerCase().replace(/\s/g, '').match(/cairo|القاهرة/) !== null;
     return (
         <motion.div
             initial="hidden"
@@ -130,7 +142,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                             <div className="grid grid-cols-2 items-center">
                                                 <div className="font-medium">Delivery:</div>
                                                 <div>
-                                                {estimatedDeliveryDate}
+                                                    {estimatedDeliveryDate}
                                                 </div>
                                             </div>
                                             <div className="grid grid-cols-2 items-center">
@@ -201,7 +213,16 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium  text-muted-foreground">Shipping Fee:</div>
-                                                                <div className="text-right text-base font-semibold">{formatPrice(order.shippingPrice)}</div>
+                                                                <div className="text-right text-base font-semibold">
+                                                                    {isCairo ? (
+                                                                        formatPrice(order.shippingPrice)
+                                                                    )
+                                                                        :
+                                                                        (
+                                                                            <p>We will inform you of the shipping cost as your location is outside Cairo, and your order will be completed once the shipping fee is confirmed</p>
+                                                                        )
+                                                                    }
+                                                                </div>
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">Discount:</div>
@@ -211,7 +232,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium ">Total:</div>
                                                                 <div className="text-right text-base font-semibold text-destructive">
-                                                                    <DiscountPrice price={order.configPrice } shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} />
+                                                                    <DiscountPrice price={order.configPrice} shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} />
                                                                 </div>
                                                             </div>
                                                         </>

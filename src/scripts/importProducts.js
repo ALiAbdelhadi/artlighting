@@ -100,14 +100,6 @@ async function main() {
                                 update: productCreateData,
                                 create: productCreateData,
                             });
-                            await prisma.inventory.upsert({
-                                where: { productId: productData.ProductId },
-                                update: { quantity: productData.quantity || 0 },
-                                create: {
-                                    productId: productData.ProductId,
-                                    quantity: productData.quantity || 0,
-                                },
-                            });
                             console.log(`Product with ID ${productData.ProductId} processed.`);
                         } catch (error) {
                             console.error(

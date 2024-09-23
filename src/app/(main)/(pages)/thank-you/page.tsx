@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 import ThankYouPage from './ThankYouPage'
 import { constructMetadata } from '@/lib/utils'
 import { Metadata } from 'next'
+import { cookies } from 'next/headers'
 interface ThankYouProps {
     searchParams: {
         [key: string]: string | string[] | undefined

@@ -135,7 +135,6 @@ model Product {
   updatedAt              DateTime          @updatedAt
   quantity               Int
   Brand                  String
-  inventory              Inventory?
   cartItems              CartItem[]
   orders                 Order[]
   users                  User[]
@@ -186,14 +185,6 @@ model LightingType {
   products Product[]
 }
 
-model Inventory {
-  id        String   @id @default(cuid())
-  productId String   @unique
-  quantity  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  product   Product  @relation(fields: [productId], references: [productId])
-}
 
 enum OrderOption {
   BasicShipping
