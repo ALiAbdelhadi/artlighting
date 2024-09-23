@@ -7,15 +7,16 @@ export type SaveConfigArgs = {
     priceIncrease: number;
     quantity: number;
     configId: string;
-    productImages: string[];
     lampPriceIncrease: number
     discount: number;
+    totalPrice: number
 };
 
-export async function saveConfig({ configId, ProductId, configPrice, priceIncrease, quantity, productImages, discount, lampPriceIncrease }: SaveConfigArgs) {
+export async function saveConfig({ configId, ProductId, configPrice, priceIncrease, quantity, discount, lampPriceIncrease, }: SaveConfigArgs) {
     const existingConfig = await db.configuration.findUnique({
         where: { id: configId }
     });
+    const totalPrice =  configPrice
     if (existingConfig) {
         await db.configuration.update({
             where: { id: configId },
@@ -25,9 +26,9 @@ export async function saveConfig({ configId, ProductId, configPrice, priceIncrea
                 lampPriceIncrease,
                 priceIncrease,
                 quantity,
-                productImages,
                 shippingPrice: 69,
-                discount
+                discount,
+                totalPrice
             }
         });
     } else {
@@ -37,12 +38,10 @@ export async function saveConfig({ configId, ProductId, configPrice, priceIncrea
                 quantity,
                 configPrice,
                 priceIncrease,
-                category: "YourCategoryHere",
-                lightingtype: "YourLightingTypeHere",
-                productImages,
                 shippingPrice: 69,
                 lampPriceIncrease,
                 discount,
+                totalPrice
             },
         });
     }

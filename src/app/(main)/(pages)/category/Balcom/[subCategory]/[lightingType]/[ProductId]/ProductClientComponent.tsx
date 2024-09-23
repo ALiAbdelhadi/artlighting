@@ -16,11 +16,21 @@ interface ProductClientComponentProps {
         category: { name: string };
         lightingtype: { name: string };
     };
-    configuration?: Configuration
+    configuration?: {
+        id: string;
+        ProductId: string;
+        configPrice: number;
+        priceIncrease: number;
+        shippingPrice: number;
+        discount: number;
+        quantity: number;
+        lampPriceIncrease: number | null;
+        totalPrice: number;
+    }
     relatedProducts: Product[];
 }
 
-const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ children, product, relatedProducts,configuration }) => {
+const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ children, product, relatedProducts, configuration }) => {
     const [quantity, setQuantity] = useState(1);
     const variants = {
         hidden: { opacity: 0, y: 15 },
@@ -59,10 +69,9 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
         discountedPrice: null,
         discountApplied: false,
         discountRate: null,
-        totalPrice: product.price * quantity,
         shippingPrice: 69,
         shippingAddressId: null,
-        configPrice : configuration?.configPrice
+        configPrice: configuration?.configPrice,
     };
 
     const specificationsTable = {

@@ -10,15 +10,13 @@ datasource db {
 model Configuration {
   id                String   @id @default(cuid())
   ProductId         String
-  category          String
-  lightingtype      String
   configPrice       Float
   priceIncrease     Float
   shippingPrice     Float
   discount          Float
   quantity          Int
   lampPriceIncrease Float?
-  productImages     String[]
+  totalPrice Float
   orders            Order[]  @relation("ConfigurationToOrder")
   users             User[]   @relation("ConfigurationToUser")
 }

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/hooks/use-toast"
 import { cn } from "@/lib/utils";
 import {
+    Configuration,
     Order,
     ProductChandLamp,
     ProductColorTemp,
@@ -39,6 +40,7 @@ type ProductDetailsProps = {
     ChandelierLightingType: string;
     Brand: string;
     hNumber: number
+    configuration: Configuration
 };
 
 const ProductMainInfo: React.FC<ProductDetailsProps> = ({
@@ -54,7 +56,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     order,
     ChandelierLightingType,
     Brand,
-    hNumber
+    hNumber,
+    configuration
 }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -103,6 +106,21 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
             router.push(`/preview/${ProductId}`);
         },
     });
+    const [ipPriceIncrease, setIpPriceIncrease] = useState(0);
+    const [priceIncrease, setPriceIncrease] = useState(0);
+    const [lampPriceIncrease, setLampPriceIncrease] = useState(0)
+    const handleProductChandLampChange = (newProductLamp: ProductChandLamp, newPriceIncrease: number) => {
+        setSelectedProductChandLamp(newProductLamp);
+        setLampPriceIncrease(newPriceIncrease);
+    };
+    const handleProductIPChange = (
+        newProductIp: ProductIP,
+        newPriceIncrease: number
+    ) => {
+        setSelectProductIp(newProductIp);
+        setPriceIncrease(newPriceIncrease);
+    };
+    const totalPrice = price + priceIncrease  + lampPriceIncrease;
     const handleClick = () => {
         saveConfig({
             configId,
@@ -111,8 +129,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
             priceIncrease,
             lampPriceIncrease,
             quantity: currentQuantity,
-            productImages: [],
             discount,
+            totalPrice
         });
         setIsClicked(true);
     };
@@ -131,22 +149,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
             });
         }
     };
-    const [ipPriceIncrease, setIpPriceIncrease] = useState(0);
-    const [priceIncrease, setPriceIncrease] = useState(0);
-    const [lampPriceIncrease, setLampPriceIncrease] = useState(0)
-    const handleProductChandLampChange = (newProductLamp: ProductChandLamp, newPriceIncrease: number) => {
-        setSelectedProductChandLamp(newProductLamp);
-        setLampPriceIncrease(newPriceIncrease);
-    };
-    const handleProductIPChange = (
-        newProductIp: ProductIP,
-        newPriceIncrease: number
-    ) => {
-        setSelectProductIp(newProductIp);
-        setPriceIncrease(newPriceIncrease);
-    };
-    const totalPrice = price + priceIncrease  + lampPriceIncrease;
-    console.log('Price:', price, 'Price Increase:', priceIncrease, 'Lamp Price Increase:', lampPriceIncrease, 'Total Price:', totalPrice);
+
+    console.log('Price:', price, 'Price Increase:', priceIncrease, 'Lamp Price Increase:', lampPriceIncrease, 'Total Price:',totalPrice);
 
     return (
         <div className="md:ml-16">
