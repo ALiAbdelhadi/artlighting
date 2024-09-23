@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import EventOfTheYear from "./EventOfTheYear";
 import Explore from "./Explore";
 import JetraArriving from "./JetraArriving";
-import PastEvents from "./PastEvents";
 function BlogContent() {
     const variants = {
         hidden: { opacity: 0, y: 15 },

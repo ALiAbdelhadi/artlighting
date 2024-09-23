@@ -1,11 +1,10 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import Container from "./Container";
 import { motion } from "framer-motion";
 import { CheckCircle, Circle } from "lucide-react";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const Steps = () => {
     const pathname = usePathname();

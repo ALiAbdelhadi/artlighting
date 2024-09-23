@@ -8,7 +8,7 @@ import ProductMainInfo from "@/app/components/ProductMainInfo";
 import ProductSpecifications from "@/app/components/ProductSpecifications";
 import { Order, OrderStatus, Product } from "@prisma/client";
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
 interface ProductClientComponentProps {
     children: React.ReactNode;
     product: Product & {

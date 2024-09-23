@@ -1,5 +1,4 @@
 import { constructMetadata } from '@/lib/utils';
-import React from 'react'
 import FAQs from './faqContnet';
 const page = () => {
     return (

@@ -1,11 +1,11 @@
 "use client"
 
-import { newCollectionProducts } from "@/constants"
-import { useParams } from "next/navigation"
-import Image from "next/image"
-import Container from "@/app/components/Container"
 import CustomBreadcrumb from "@/app/components/Breadcrumb/Breadcrumb"
+import Container from "@/app/components/Container"
+import { newCollectionProducts } from "@/constants"
 import { motion } from "framer-motion"
+import Image from "next/image"
+import { useParams } from "next/navigation"
 import { Fragment } from "react"
 const CollectionPage = () => {
     const { collectionId } = useParams() as { collectionId: string }

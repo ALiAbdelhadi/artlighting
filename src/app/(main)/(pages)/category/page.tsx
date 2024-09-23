@@ -1,4 +1,4 @@
-import { constructMetadata } from '@/lib/utils'
+import { constructMetadata } from '@/lib/utils';
 import CategoryContent from './CategoryContent';
 const page = () => {
     return (

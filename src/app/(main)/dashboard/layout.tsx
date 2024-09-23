@@ -1,22 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { DASHBOARDS } from "@/constants";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useState } from "react";
-import { DASHBOARDS } from "@/constants";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 const Layout = ({ children }: { children: ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false);
     const pathName = usePathname();
-
     const toggleSideBar = () => {
         setIsOpen(!isOpen);
     };
-
-    // Animation variants for the sidebar
     const sidebarVariants = {
         open: {
             width: 250,
@@ -33,7 +30,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
             },
         },
     };
-
     return (
         <div className="relative z-50">
             <motion.aside
@@ -67,7 +63,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
                     </nav>
                 </div>
             </motion.aside>
-
             <Button
                 onClick={toggleSideBar}
                 className={cn(
@@ -78,7 +73,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
             >
                 {isOpen ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
             </Button>
-
             {children}
         </div>
     );

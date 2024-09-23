@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { ProductIP } from "@prisma/client";
-import { useState, useEffect } from "react";
-import { cn } from "../utils/utils";
-import { Droplets } from "lucide-react";
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { ProductIP } from "@prisma/client";
+import { Droplets } from "lucide-react";
+import { useEffect, useState } from "react";
+import { cn } from "../utils/utils";
 
 const PRODUCT_IP_LABEL_MAP: Record<
     ProductIP,

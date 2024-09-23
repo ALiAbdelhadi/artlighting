@@ -1,7 +1,7 @@
 import { db } from "@/db";
+import { Metadata } from "next";
 import { notFound } from 'next/navigation';
 import PreviewPage from './PreviewPage';
-import { Metadata } from "next";
 
 interface PageProps {
     params: {

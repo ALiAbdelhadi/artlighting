@@ -1,8 +1,8 @@
 "use client";
+import Container from '@/app/components/Container';
+import Chart from 'chart.js/auto';
 import { useEffect, useState } from 'react';
 import styles from "./achievements.module.css";
-import Chart from 'chart.js/auto';
-import Container from '@/app/components/Container';
 
 const Achievements = () => {
     const [started, setStarted] = useState(false);

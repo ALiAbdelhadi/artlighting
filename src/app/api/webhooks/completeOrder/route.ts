@@ -1,6 +1,6 @@
 import { CompletingAllOrderInfo } from '@/app/(main)/(configure)/complete/action';
-import { NextResponse } from 'next/server';
 import { db } from '@/db';
+import { NextResponse } from 'next/server';
 export async function GET(request: Request, { params }: { params: { orderId: string } }) {
     const orderId = parseInt(params.orderId, 10);
     if (isNaN(orderId)) {

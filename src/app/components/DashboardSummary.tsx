@@ -1,6 +1,6 @@
 "use client";
-import SummaryCard from "./SummaryCard";
 import { formatPrice } from "../utils/utils";
+import SummaryCard from "./SummaryCard";
 
 
 const DashboardSummary = ({ totalSales, totalCustomers, totalOrders }: {

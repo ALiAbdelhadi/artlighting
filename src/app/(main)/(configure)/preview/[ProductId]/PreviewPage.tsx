@@ -4,9 +4,9 @@ import Container from "@/app/components/Container";
 import LoginModal from "@/app/components/LoginModal";
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
+import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useToast } from "@/components/hooks/use-toast"
 import { formatPrice } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
 import { Configuration, Product } from "@prisma/client";
@@ -67,8 +67,8 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
     }, [ProductId, toast]);
     useEffect(() => {
         console.log("Configuration:", configuration);
-      }, [configuration]);
-      
+    }, [configuration]);
+
     useEffect(() => {
         if (configuration) {
             localStorage.setItem("configurationId", configuration.id);
@@ -99,7 +99,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
     const handleConfirm = async () => {
         if (isSignedIn) {
             if (configuration) {
-                CreateOrderSession({ configId: configuration.id, quantity,});
+                CreateOrderSession({ configId: configuration.id, quantity, });
             }
         } else {
             setIsLoginModalOpen(true);

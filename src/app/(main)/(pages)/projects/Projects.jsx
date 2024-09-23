@@ -1,12 +1,12 @@
 "use client"
 import Container from "@/app/components/Container"
+import ProjectCard from "@/app/components/ProjectCard.tsx"
 import { cn } from '@/lib/utils'
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { TextPlugin } from "gsap/TextPlugin"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import ProjectCard from "@/app/components/ProjectCard.tsx"
 import "./projects.module.css"
 const Projects = () => {
     const [projectData, setProjectData] = useState({})

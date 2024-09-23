@@ -1,6 +1,6 @@
+import Breadcrumb from '@/app/components/Breadcrumb/Breadcrumb';
 import { constructMetadata } from '@/lib/utils';
 import AllProjectPage from './AllProjectPage';
-import Breadcrumb from '@/app/components/Breadcrumb/Breadcrumb';
 
 const Page = () => {
     return (

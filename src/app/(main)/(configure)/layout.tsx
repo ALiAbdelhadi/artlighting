@@ -1,5 +1,5 @@
-import { ReactNode } from "react"
 import Steps from "@/app/components/Steps"
+import { ReactNode } from "react"
 const layout = ({ children }: { children: ReactNode }) => {
     return (
         <div>

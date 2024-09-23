@@ -8,12 +8,11 @@ import {
     SignUpButton,
     UserButton,
 } from '@clerk/nextjs'
-import { auth, currentUser } from "@clerk/nextjs/server"
+import { currentUser } from "@clerk/nextjs/server"
 import Link from "next/link"
 import { CartSidebar } from "../CartSidebar"
 
 const AuthInDesktop = async () => {
-    const { userId } = auth()
     const user = await currentUser()
     const isAdmin = user?.emailAddresses[0]?.emailAddress === process.env.ADMIN_EMAIL
 

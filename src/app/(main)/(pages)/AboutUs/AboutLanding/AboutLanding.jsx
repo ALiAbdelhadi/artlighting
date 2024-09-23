@@ -1,10 +1,10 @@
 'use client'
-import { useEffect } from "react";
+import Container from "@/app/components/Container";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import styles from "./aboutLanding.module.css"
 import Image from "next/image";
-import Container from "@/app/components/Container";
+import { useEffect } from "react";
+import styles from "./aboutLanding.module.css";
 
 
 gsap.registerPlugin(ScrollTrigger);

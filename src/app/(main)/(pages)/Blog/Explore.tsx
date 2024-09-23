@@ -2,7 +2,7 @@
 import Container from '@/app/components/Container'
 import EftarRamdanCard from '@/app/components/EftarRamdanCard'
 import { exploreEftar } from '@/constants'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const Explore = () => {
   const [active, setActive] = useState("eftar-2024")

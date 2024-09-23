@@ -1,9 +1,9 @@
 import Breadcrumb from '@/app/components/Breadcrumb/Breadcrumb';
+import { constructMetadata } from '@/lib/utils';
 import AboutLanding from './AboutLanding/AboutLanding';
 import Achievements from './achievements/achievements';
 import Mission from './MissionAndVision/Mission';
 import Product from './product/product';
-import { constructMetadata } from '@/lib/utils'
 const AboutUsPage = () => {
     return (
         <div>

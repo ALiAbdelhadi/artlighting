@@ -2,12 +2,12 @@ import Container from "@/app/components/Container"
 import DashboardHeader from "@/app/components/DashboardHeader"
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { db } from "@/db"
 import { formatPrice } from "@/lib/utils"
 import { auth, currentUser } from "@clerk/nextjs/server"
-import { MoveHorizontalIcon, SearchIcon } from "lucide-react"
+import { MoveHorizontalIcon } from "lucide-react"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 
 const Products = async () => {
@@ -56,7 +56,7 @@ const Products = async () => {
                                 {orders.map((order) => (
                                     <TableRow key={order.id}>
                                         <TableCell className="flex items-center" >
-                                            <img src={order.productImages[0]} alt={order.productName} width={60} height={60} className="rounded-lg" />
+                                            <Image src={order.productImages[0]} alt={order.productName} width={60} height={60} className="rounded-lg" />
                                             <p className="ml-2 uppercase">
                                                 {order.productName}
                                             </p>

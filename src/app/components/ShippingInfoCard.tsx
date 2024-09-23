@@ -1,5 +1,5 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
-import NormalPrice from "@/app/helpers/NormalPrice"
+import NormalPrice from "@/app/helpers/NormalPrice";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface ShippingInfoCardProps {
     shippingAddress: {

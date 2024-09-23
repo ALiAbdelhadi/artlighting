@@ -9,7 +9,7 @@ import React, { useState } from "react";
 
 interface Product {
     productId: string;
-    ProductId: string; // Added this line
+    ProductId: string;
     productName: string;
     Brand: string;
     price: number;

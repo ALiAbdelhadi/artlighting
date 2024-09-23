@@ -1,8 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
 import { addDays, format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 interface RequestBody {

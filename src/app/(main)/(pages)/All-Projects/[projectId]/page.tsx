@@ -1,7 +1,7 @@
-import React from 'react';
-import ProjectPage from "./ProjectPage";
 import Breadcrumb from '@/app/components/Breadcrumb/Breadcrumb';
 import { constructMetadata } from '@/lib/utils';
+import React from 'react';
+import ProjectPage from "./ProjectPage";
 
 const Page: React.FC = () => {
     return (

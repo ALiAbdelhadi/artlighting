@@ -1,6 +1,5 @@
 "use client";
 import Container from "@/app/components/Container";
-import ShippingInfoCard from "@/app/components/ShippingInfoCard";
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { useToast } from "@/components/hooks/use-toast";

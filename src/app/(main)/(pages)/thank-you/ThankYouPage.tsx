@@ -9,13 +9,13 @@ import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Product, ShippingAddress } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
+import { addDays, format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { addDays, format } from 'date-fns';
-import { enUS } from 'date-fns/locale';
 
 interface Order {
     id: string;

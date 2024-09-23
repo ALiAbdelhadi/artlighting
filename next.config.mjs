@@ -15,12 +15,11 @@ const nextConfig = {
     async headers() {
         return [
             {
-                // Define the routes for which to enable HSTS
                 source: "/(.*)",
                 headers: [
                     {
                         key: "Strict-Transport-Security",
-                        value: "max-age=63072000; includeSubDomains; preload", // HSTS header with preload
+                        value: "max-age=63072000; includeSubDomains; preload",
                     },
                 ],
             },

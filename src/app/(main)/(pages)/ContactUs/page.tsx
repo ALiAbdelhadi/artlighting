@@ -1,6 +1,5 @@
-import React from 'react'
-import ContactContent from './ContactContent'
 import { constructMetadata } from '@/lib/utils'
+import ContactContent from './ContactContent'
 const page = () => {
     return (
         <ContactContent />

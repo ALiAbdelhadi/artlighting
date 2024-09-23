@@ -1,8 +1,8 @@
 import { addToCart } from '@/app/(main)/actions/cart';
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
+import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/hooks/use-toast"
 import { cn } from '@/lib/utils';
 import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";

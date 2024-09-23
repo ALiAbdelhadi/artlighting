@@ -16,23 +16,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ClerkProvider
             appearance={{
                 variables: {
-                    colorPrimary: '#f59e0b',
+                    colorPrimary: '#f6a100',
                     colorBackground: '',
-                    // colorText: 'hsl(var(--foreground))',
-                    // colorInputBackground: 'hsl(var(--input))',
-                    // colorInputText: 'hsl(var(--foreground))',
-                    // colorSuccess: 'hsl(var(--primary))',
+                    colorInputBackground: '#d8c9a8',
+                    colorInputText: '#211c17',
+                    colorSuccess: '#f6a100',
                     fontFamily: roboto.style.fontFamily,
-                    fontSize: "15px"
+                    fontSize: "16px"
                 },
             }}
         >
             <html lang="en">
                 <body className={`${roboto.className} antialiased overflow-x-hidden`}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-                    <Providers>
-                        {children}
-                    </Providers>
+                        <Providers>
+                            {children}
+                        </Providers>
                     </ThemeProvider>
                     <Toaster />
                 </body>

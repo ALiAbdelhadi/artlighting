@@ -1,9 +1,9 @@
 import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
+import { db } from "@/db";
 import { constructMetadata } from "@/lib/utils";
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import { db } from "@/db";
 import ProductClientComponent from "./ProductClientComponent";
 const getProductWattage = (productName: string): number => {
     if (!productName) return 0;

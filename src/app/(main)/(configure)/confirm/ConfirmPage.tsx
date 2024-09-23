@@ -2,16 +2,16 @@
 import Container from "@/app/components/Container";
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
+import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/hooks/use-toast"
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getUserStatus } from "./action";
-import { motion } from "framer-motion";
 type Order = {
     id: string;
     userId: string;

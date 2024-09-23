@@ -1,11 +1,11 @@
 "use client"
 
 import Breadcrumb from '@/app/components/Breadcrumb/Breadcrumb';
-import Container from '@/app/components/Container'
-import { constructMetadata } from '@/lib/utils'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Link from 'next/link'
+import Container from '@/app/components/Container';
+import { constructMetadata } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Link from 'next/link';
 const CategoryContent = () => {
     const variants = {
         hidden: { opacity: 0, y: 15 },

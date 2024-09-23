@@ -6,7 +6,7 @@ import ProductFeatures from "@/app/components/ProductFeatures";
 import ProductImages from "@/app/components/ProductImages";
 import ProductMainInfo from "@/app/components/ProductMainInfo";
 import ProductSpecifications from "@/app/components/ProductSpecifications";
-import { Configuration, Order, OrderStatus, Product } from "@prisma/client";
+import { Order, OrderStatus, Product } from "@prisma/client";
 import { motion } from 'framer-motion';
 import { useState } from "react";
 

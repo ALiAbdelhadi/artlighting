@@ -1,5 +1,5 @@
 import { CompletingAllOrderInfo } from '@/app/(main)/(configure)/complete/action';
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequeqt NextRessponsn } from 'next/server';
 export async function GET(request:Request, {params}: {params: {orderId : string}}) {
     const orderId = parseInt(params.orderId, 10)
     if(isNaN(orderId)) {

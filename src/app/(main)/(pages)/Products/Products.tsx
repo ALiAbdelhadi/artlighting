@@ -1,7 +1,5 @@
 import { db } from "@/db";
 import ProductsClient from "./ProductClient";
-
-
 const ProductsPage =  async () => {
     const productIds = [
         "product-jy-805-7w",

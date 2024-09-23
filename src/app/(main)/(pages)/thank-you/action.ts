@@ -1,6 +1,5 @@
 "use server";
 import { db } from "@/db";
-import { cookies } from "next/headers";
 import { getAuth } from "@clerk/nextjs/server";
 import { NextRequest } from "next/server";
 

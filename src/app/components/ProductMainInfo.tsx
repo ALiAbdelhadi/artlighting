@@ -4,8 +4,8 @@ import {
     saveConfig as _saveConfig,
     SaveConfigArgs,
 } from "@/app/components/action";
+import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/hooks/use-toast"
 import { cn } from "@/lib/utils";
 import {
     Configuration,

@@ -1,5 +1,5 @@
 "use server"
-import { db } from "@/db"
+import { db } from "@/db";
 import { auth } from "@clerk/nextjs/server";
 export const getUserStatus = async ({ orderId }: { orderId: number }) => {
     try {

@@ -4,7 +4,7 @@ const CustomersImage = async () => {
   const user = await currentUser()
   const userImage = user?.imageUrl
   return (
-    <img src={user?.imageUrl} alt="User Image" className='object-cover rounded-full mr-1.5 ' width={30} height={30} />
+    <img src={userImage} alt="User Image" className='object-cover rounded-full mr-1.5 ' width={30} height={30} />
   )
 }
 

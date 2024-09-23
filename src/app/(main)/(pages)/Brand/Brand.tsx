@@ -1,9 +1,9 @@
 import Container from "@/app/components/Container";
 import { Badge } from "@/components/ui/badge";
+import { brands } from "@/constants";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { brands } from "@/constants";
 
 const Brand = () => {
     return (

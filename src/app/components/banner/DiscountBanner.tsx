@@ -22,8 +22,8 @@ export default function ResponsiveDiscountBanner() {
                         <h2 className="text-base sm:text-lg md:text-xl font-bold">Chandelier Sale!</h2>
                     </div>
                     <div className="flex flex-col items-center sm:items-end space-y-2">
-                        <p className="text-lg sm:text-xl md:text-2xl font-bold flex items-center flex-wrap justify-center sm:justify-end">
-                            <span className="mr-2 inline-block animate-bounce">20% OFF</span>
+                        <p className="font-bold flex items-center flex-wrap justify-center sm:justify-end">
+                            <span className="mr-2 inline-block animate-bounce text-base sm:text-lg md:text-xl lg:text-2xl">20% OFF</span>
                             <span className="text-sm sm:text-base md:text-lg font-semibold">All Chandeliers</span>
                         </p>
                         <div className="flex items-center space-x-2 text-xs sm:text-sm">

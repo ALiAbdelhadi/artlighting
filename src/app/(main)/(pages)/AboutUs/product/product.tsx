@@ -1,7 +1,7 @@
-import styles from "./product.module.css"
-import Image from "next/legacy/image";
-import dynamic from 'next/dynamic';
 import Container from "@/app/components/Container";
+import dynamic from 'next/dynamic';
+import Image from "next/legacy/image";
+import styles from "./product.module.css";
 
 const Button = dynamic(() => import("../../../../components/Button/button"), { ssr: false });
 
