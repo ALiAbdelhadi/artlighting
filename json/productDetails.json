@@ -1606,7 +1606,8 @@
                      "ProductId": "product-jy-un-002-24w",
                      "productName": "Product-JY-UN-002-24W",
                      "productImages": [
-                        "/outdoor/uplight/JY-UN-002-24W/JY-UN-002-24W (1).jpg"
+                        "/outdoor/uplight/JY-UN-002-24W/JY-UN-002-24W (1).png",
+                        "/outdoor/uplight/JY-UN-002-24W/JY-UN-002-24W (2).png"
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
