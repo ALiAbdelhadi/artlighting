@@ -8,9 +8,11 @@ import { TextPlugin } from "gsap/TextPlugin"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import "./projects.module.css"
+
 const Projects = () => {
     const [projectData, setProjectData] = useState({})
     const [projectKeys, setProjectKeys] = useState([])
+
     useEffect(() => {
         const data = {
             "Project-four": {
@@ -41,6 +43,7 @@ const Projects = () => {
         setProjectData(data)
         setProjectKeys(Object.keys(data))
     }, [])
+
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger, TextPlugin)
         const projectCards = gsap.utils.toArray(".projectCard")
@@ -111,16 +114,16 @@ const Projects = () => {
             <Container>
                 <div className="flex items-center justify-center flex-col">
                     <div
-                        className="projectsContainer mt-12 flex flex-wrap justify-center items-center gap-2 overflow-hidden">
+                        className="projectsContainer mt-12 flex flex-wrap lg:flex-nowrap justify-center items-center gap-4 overflow-hidden">
                         {projectData &&
                             projectKeys.map(key => (
                                 <ProjectCard key={key} project={projectData[key]} />
                             ))}
                     </div>
-                    <div className="flex items-center justify-center mt-10 ">
-                    <Link
+                    <div className="flex items-center justify-center mt-10 w-full max-w-[400px]">
+                        <Link
                             className={cn(
-                                "flex items-center justify-center transition-colors border-[1.50px] font-medium h-14 md:px-10 px-7 md:text-lg text-sm w-full rounded",
+                                "flex items-center justify-center transition-colors border-[1.50px] font-medium h-12 md:h-14 px-7 md:px-10 text-sm md:text-lg rounded",
                                 "bg-background text-foreground border-border hover:bg-gray-950 hover:text-muted",
                                 "dark:bg-background dark:text-foreground dark:border-border dark:hover:bg-accent dark:hover:text-accent-foreground",
                                 {
