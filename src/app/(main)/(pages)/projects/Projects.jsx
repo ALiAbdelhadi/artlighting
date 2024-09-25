@@ -111,7 +111,7 @@ const Projects = () => {
             <Container>
                 <div className="flex items-center justify-center flex-col">
                     <div
-                        className="projectsContainer mt-12 flex flex-wrap lg:flex-nowrap justify-center items-center gap-2 overflow-hidden">
+                        className="projectsContainer mt-12 flex flex-wrap justify-center items-center gap-2 overflow-hidden">
                         {projectData &&
                             projectKeys.map(key => (
                                 <ProjectCard key={key} project={projectData[key]} />

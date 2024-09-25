@@ -31,12 +31,12 @@ export default async function AuthInMobile() {
             ) : (
                 <>
                     <SignedOut>
-                        <SignUpButton mode="modal">
+                        <SignUpButton>
                             <Button variant="default">
                                 Sign Up
                             </Button>
                         </SignUpButton>
-                        <SignInButton mode="modal">
+                        <SignInButton>
                             <Button variant="outline">
                                 Sign In
                             </Button>
