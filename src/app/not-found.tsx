@@ -51,7 +51,6 @@ export default function NotFound() {
                 setIsSearching(false)
             }
         }
-
         performSearch()
     }, [debouncedSearchTerm])
 

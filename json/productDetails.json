@@ -1185,7 +1185,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": 15,
+                        "Maximum wattage": "",
                         "Brand Of Led": "Epistar",
                         "Luminous Flux": "590LM/M",
                         "Main Material": "Die-Casting Aluminum",
@@ -1217,7 +1217,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": 15,
+                        "Maximum wattage": "",
                         "Brand Of Led": "Epistar",
                         "Luminous Flux": "620LM/M",
                         "Main Material": "Die-Casting Aluminum",
