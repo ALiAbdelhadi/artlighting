@@ -151,13 +151,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             >
               {product.productImages.map((image, index) => (
                 <div key={index}>
-                  <Image
-                    className={`${styles.image} overflow-x-hidden`}
+                  <img
+                    className={`w-full overflow-x-hidden `}
                     src={image}
                     alt={product.productId}
-                    width={475}
-                    height={475}
-                    quality={100}
                   />
                 </div>
               ))}
@@ -170,8 +167,8 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </h2>
           <p className={`${styles.textParagraph} text-muted-foreground  font-medium capitalize`}>
             {`${product.Brand} spotlight with Maximum wattage of ${product.productName
-                ? getProductWattage(product.productName)
-                : "Not Available"
+              ? getProductWattage(product.productName)
+              : "Not Available"
               }...`}
           </p>
           <div>
