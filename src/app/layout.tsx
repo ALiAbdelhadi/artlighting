@@ -18,7 +18,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 variables: {
                     colorPrimary: '#f6a100',
                     colorBackground: '',
-                    colorInputBackground: '#d8c9a8',
                     colorInputText: '#211c17',
                     colorSuccess: '#f6a100',
                     fontFamily: roboto.style.fontFamily,
