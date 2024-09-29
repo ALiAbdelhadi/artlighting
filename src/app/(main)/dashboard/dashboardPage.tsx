@@ -97,8 +97,8 @@ const Dashboard = ({ discount }: { discount: number }) => {
         if (!data) return 0;
         const cancelledOrdersTotal = data.orders
             .filter((order) => order.status === "cancelled")
-            .reduce((acc, order) => acc + (order.totalPrice || 0), 0);
-        const totalSales = data.TotalSales?._sum?.totalPrice ?? 0;
+            .reduce((acc, order) => acc + (order.configPrice || 0), 0);
+        const totalSales = Math.ceil(data.TotalSales?._sum?.totalPrice ?? 0);
         return totalSales - cancelledOrdersTotal;
     }, [data]);
     const filteredOrder = useMemo(() => {
@@ -138,12 +138,13 @@ const Dashboard = ({ discount }: { discount: number }) => {
                     <TableCell className="px-4 py-2">
                         {order.discountRate > 0 ? (
                             <DiscountPrice
-                                price={order.configPrice}
-                                discount={order.discountRate}
-                                quantity={order.quantity}
+                            price={order.configPrice}
+                            discount={order.discountRate}
+                            quantity={order.quantity}
+                            shippingPrice={order.shippingPrice}
                             />
                         ) : (
-                            <NormalPrice price={order.configPrice} quantity={order.quantity} />
+                            <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} />
                         )}
                     </TableCell>
                     <TableCell className="px-4 py-2">

@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from "@/components/ui/button"
 import {
     Tooltip,
@@ -66,18 +68,11 @@ export default function ProductIPButtons({
     }, [selectedIp, basePrice, onProductIpChange])
 
     const handleIpChange = async (newIp: ProductIP) => {
-        setSelectedIp(newIp);
-        const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[newIp];
-        const priceIncrease = basePrice * increaseOnPricePercent;
-        
-        try {
-            await updateProductIP({ productId, configId, newProductIp: newIp, priceIncrease });
-            onProductIpChange(newIp, priceIncrease);
-        } catch (error) {
-            console.error('Error updating product IP:', error);
-            // Handle the error, maybe show a toast to the user
-        }
-    };
+        setSelectedIp(newIp)
+        const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[newIp]
+        const priceIncrease = basePrice * increaseOnPricePercent
+        await updateProductIP({ productId, configId, newProductIp: newIp, priceIncrease })
+    }
 
     return (
         <div className="space-y-2">

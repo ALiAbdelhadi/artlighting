@@ -37,34 +37,24 @@ export async function POST(request: Request) {
         if (!userId) {
             return NextResponse.json({ error: 'User not authenticated' }, { status: 401 });
         }
-
         const body: RequestBody = await request.json();
         console.log('Received order data:', body);
-
-        // Validate required fields
         const requiredFields: (keyof RequestBody)[] = ['productId', 'productName', 'quantity', 'configPrice', 'productPrice', 'totalPrice', 'configurationId', 'shippingAddress'];
         const missingFields = requiredFields.filter(field => !body[field]);
         if (missingFields.length > 0) {
             return NextResponse.json({ error: `Missing required fields: ${missingFields.join(', ')}` }, { status: 400 });
         }
-
-        // Validate shipping address
-        const addressFields: (keyof RequestBody['shippingAddress'])[] = ['fullName', 'address', 'city', 'state', 'zipCode', 'country', 'phoneNumber'];
+        const addressFields: (keyof RequestBody['shippingAddress'])[] = ['fullName', 'address', 'city', 'state', 'country', 'phoneNumber'];
         const missingAddressFields = addressFields.filter(field => !body.shippingAddress[field]);
         if (missingAddressFields.length > 0) {
             return NextResponse.json({ error: `Missing required shipping address fields: ${missingAddressFields.join(', ')}` }, { status: 400 });
         }
-
-        // Fetch product details
         const product = await prisma.product.findUnique({
             where: { id: body.productId },
         });
-
         if (!product) {
             return NextResponse.json({ error: 'Product not found' }, { status: 404 });
         }
-
-        // Create or update shipping address
         const shippingAddress = await prisma.shippingAddress.upsert({
             where: { userId: userId },
             update: {
@@ -103,7 +93,6 @@ export async function POST(request: Request) {
                 OrderTimeReceived : new Date(calculateEstimatedDeliveryDate())
             },
         });
-
         return NextResponse.json(order, { status: 201 });
     } catch (error) {
         console.error('Error creating order:', error);

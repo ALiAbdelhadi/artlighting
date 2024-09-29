@@ -156,8 +156,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
     function isProductChandLamp(value: string): value is ProductChandLamp {
         return value === 'lamp9w' || value === 'lamp12w';
     }
-    const isCairo = order.shippingAddress.state.toLowerCase().replace(/\s/g, '').match(/cairo|القاهرة/) !== null;
-
+    const isCairo = order.shippingAddress.city.toLowerCase().replace(/\s/g, '').match(/cairo|القاهرة/) !== null ;
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -277,7 +276,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                                 </TableCell>
                                                             </Fragment>
                                                         ) : (
-                                                            <>
+                                                            <Fragment>
                                                                 <TableCell className="font-semibold">
                                                                     <NormalPrice
                                                                         price={order.configPrice}
@@ -289,7 +288,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                                         quantity={order?.quantity}
                                                                     />
                                                                 </TableCell>
-                                                            </>
+                                                            </Fragment>
                                                         )}
                                                     </TableRow>
                                                 </TableBody>
@@ -517,33 +516,26 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
             </Container>
             <style jsx global>
                 {`
-          .custom-scrollbar {
+        .custom-scrollbar {
             scrollbar-width: thin;
             scrollbar-color: #a0aec0 #edf2f7;
-          }
-          .custom-scrollbar::-webkit-scrollbar {
+        }
+        .custom-scrollbar::-webkit-scrollbar {
             height: 8px;
             width: 8px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-track {
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
             background: #edf2f7;
             border-radius: 10px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb {
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, #4a5568, #2d3748);
             border-radius: 10px;
             border: 2px solid #edf2f7;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, #2d3748, #1a202c);
-          }
-          img {
-            max-width: 100%;
-            height: auto;
-          }
-          address {
-            word-wrap: break-word;
-          }
+        }
         `}
             </style>
         </motion.div>

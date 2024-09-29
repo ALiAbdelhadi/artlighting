@@ -52,7 +52,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                                     href={dash.url}
                                     className={cn(
                                         "flex items-center space-x-3 p-3 rounded-lg transition-colors",
-                                        { "bg-primary text-white": isCurrent, "hover:bg-muted/50": !isCurrent }
+                                        { "bg-primary text-white": isCurrent, "hover:bg-primary/50": !isCurrent }
                                     )}
                                 >
                                     {dash.icon}

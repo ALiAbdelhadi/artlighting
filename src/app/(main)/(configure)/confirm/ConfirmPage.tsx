@@ -5,6 +5,7 @@ import NormalPrice from "@/app/helpers/NormalPrice";
 import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -50,7 +51,6 @@ type ConfirmPageProps = {
 };
 const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
     const [quantity, setQuantity] = useState<number>(0);
-
     const searchParams = useSearchParams();
     const orderId = searchParams.get("orderId");
     const {
@@ -62,7 +62,6 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
         queryFn: () => fetchOrderDetails(orderId!),
         enabled: !!orderId,
     });
-
     const [shippingInfo, setShippingInfo] = useState({
         fullName: "",
         address: "",
@@ -72,7 +71,6 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
         country: "",
         phoneNumber: "",
     });
-
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { toast } = useToast();
     const router = useRouter();
@@ -89,7 +87,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                     zipCode: orderDetails.shippingAddress?.zipCode || "",
                     country: orderDetails.shippingAddress?.country || "",
                     phoneNumber:
-                        orderDetails.shippingAddress?.phoneNumber.toString() || "", // Convert number to string
+                        orderDetails.shippingAddress?.phoneNumber.toString() || "",
                 });
                 setQuantity(orderDetails.quantity || 0);
             } catch (error) {
@@ -103,14 +101,11 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                 router.push("/");
             }
         };
-
         checkUserStatus();
     }, [orderId, router, toast]);
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setShippingInfo({ ...shippingInfo, [e.target.name]: e.target.value });
     };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -220,7 +215,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                             <div className="flex items-center lg:justify-between">
                                                 <span>Price Per Item:</span>{" "}
                                                 <s className="ml-1.5 text-gray-500">
-                                                    <NormalPrice price={order.configPrice} />
+                                                    <NormalPrice price={order.totalPrice} />
                                                 </s>
                                             </div>
                                             <div className="flex items-center lg:justify-between">
@@ -234,7 +229,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                                 <span>Price:</span>{" "}
                                                 <span className="text-lg text-destructive font-semibold ml-1.5">
                                                     <DiscountPrice
-                                                        price={order.configPrice}
+                                                        price={order.totalPrice}
                                                         discount={order.product?.discount}
                                                         quantity={quantity}
                                                     />
@@ -270,59 +265,86 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                     <div className="w-full">
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="grid grid-cols-2 gap-4">
-                                <Input
-                                    name="fullName"
-                                    placeholder="Full Name"
-                                    value={shippingInfo.fullName}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                                <Input
-                                    name="phoneNumber"
-                                    placeholder="Phone Number"
-                                    value={shippingInfo.phoneNumber}
-                                    onChange={handleInputChange}
-                                    required
-                                />
+                                <div className="space-y-2">
+                                    <Label htmlFor="fullName" className="font-semibold text-base text-primary">Full Name</Label>
+                                    <Input
+                                        id="fullName"
+                                        name="fullName"
+                                        placeholder="John Doe"
+                                        value={shippingInfo.fullName}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="phoneNumber" className="font-semibold text-base text-primary">Phone Number</Label>
+                                    <Input
+                                        id="phoneNumber"
+                                        name="phoneNumber"
+                                        placeholder="+1 (555) 123-4567"
+                                        value={shippingInfo.phoneNumber}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </div>
                             </div>
-                            <Input
-                                name="address"
-                                placeholder="Address"
-                                value={shippingInfo.address}
-                                onChange={handleInputChange}
-                                required
-                            />
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="address" className="font-semibold text-base text-primary">Address</Label>
                                 <Input
-                                    name="city"
-                                    placeholder="City"
-                                    value={shippingInfo.city}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                                <Input
-                                    name="state"
-                                    placeholder="State"
-                                    value={shippingInfo.state}
+                                    id="address"
+                                    name="address"
+                                    placeholder="123 Main St, Apt 4B"
+                                    value={shippingInfo.address}
                                     onChange={handleInputChange}
                                     required
                                 />
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                                <Input
-                                    name="zipCode"
-                                    placeholder="Zip Code"
-                                    value={shippingInfo.zipCode}
-                                    onChange={handleInputChange}
-                                    required
-                                />
-                                <Input
-                                    name="country"
-                                    placeholder="Country"
-                                    value={shippingInfo.country}
-                                    onChange={handleInputChange}
-                                    required
-                                />
+                                <div className="space-y-2">
+                                    <Label htmlFor="state" className="font-semibold text-base text-primary">State / Province</Label>
+                                    <Input
+                                        id="state"
+                                        name="state"
+                                        placeholder="NY"
+                                        value={shippingInfo.state}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="city" className="font-semibold text-base text-primary">City / Government</Label>
+                                    <Input
+                                        id="city"
+                                        name="city"
+                                        placeholder="New York"
+                                        value={shippingInfo.city}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2" >
+                                    <Label htmlFor="zipCode" className="font-semibold text-base text-primary">Zip/Postal Code (optional)  </Label>
+                                    <Input
+                                        id="zipCode"
+                                        name="zipCode"
+                                        placeholder="10001"
+                                        value={shippingInfo.zipCode}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="country" className="font-semibold text-base text-primary">Country</Label>
+                                    <Input
+                                        id="country"
+                                        name="country"
+                                        placeholder="United States"
+                                        value={shippingInfo.country}
+                                        onChange={handleInputChange}
+                                        required
+                                    />
+                                </div>
                             </div>
                             <div className="w-full flex justify-end">
                                 <Button
@@ -330,7 +352,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                     disabled={isSubmitting}
                                     className="h-[52px] px-10 bg-primary text-primary-foreground text-lg"
                                 >
-                                    {isSubmitting ? "Sending your data..." : "Send Your order"}
+                                    {isSubmitting ? "Sending your data..." : "Send Your Order"}
                                 </Button>
                             </div>
                         </form>

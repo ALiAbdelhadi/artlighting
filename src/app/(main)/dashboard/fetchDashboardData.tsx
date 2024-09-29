@@ -55,10 +55,10 @@ export const fetchDashboardData = async () => {
         const discountRate = order.product.discount ?? order.configuration.discount ?? 0; // Fetch discount for each product
         let totalPrice ;
         if(discountRate > 0) {
-            const discountedPrice = order.productPrice * (1 - discountRate);
+            const discountedPrice = order.configPrice * (1 - discountRate);
             totalPrice = (discountedPrice * order.quantity) + order.shippingPrice;
         } else {
-            totalPrice = (order.productPrice * order.quantity) + order.shippingPrice;
+            totalPrice = (order.configPrice * order.quantity) + order.shippingPrice;
         }
 
         return {

@@ -21,6 +21,7 @@ import {
 import { formatPrice } from "@/lib/utils";
 import { Prisma, ProductChandLamp } from "@prisma/client";
 import { MoveHorizontalIcon, SearchIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import StatusDropdown from "../StatusDropdown";
 
@@ -133,7 +134,11 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                     !error &&
                                     filteredOrders.map((order) => (
                                         <TableRow key={order.id}>
-                                            <TableCell># {order.id}</TableCell>
+                                            <TableCell className="hover:text-primary hover:underline">
+                                                <Link href={`/dashboard/Orders/${order.id}`}>
+                                                    # {order.id}
+                                                </Link>
+                                            </TableCell>
                                             <TableCell className="flex w-[250px] items-center">
                                                 {order.productImages && order.productImages.length > 0 && (
                                                     <img
