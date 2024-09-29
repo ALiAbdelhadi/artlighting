@@ -49,10 +49,35 @@ export default async function ProductPage({ params }: { params: { lightingType: 
         notFound();
     }
     const relatedProducts = await getRelatedProducts(product, subCategory);
+    let configuration = await db.configuration.findFirst({
+        where: { ProductId: product.productId },
+    });
+
+    if (!configuration) {
+        console.log(`Configuration not found for ProductId: ${product.productId}. Creating new configuration.`);
+        configuration = await db.configuration.create({
+            data: {
+                ProductId: product.productId,
+                configPrice: product.price,
+                priceIncrease: 0,
+                shippingPrice: 0,
+                discount: product.discount,
+                quantity: 1,
+                totalPrice: product.price,
+            },
+        });
+        console.log(`New configuration created with ID: ${configuration.id}`);
+    } else {
+        console.log(`Existing configuration found with ID: ${configuration.id}`);
+    }
     return (
         <Suspense fallback={<div>Loading...</div>}>
             {product && (
-                <ProductClientComponent product={product} relatedProducts={relatedProducts}>
+                <ProductClientComponent
+                    product={product}
+                    relatedProducts={relatedProducts}
+                    configuration={configuration}
+                >
                     <Breadcrumb />
                 </ProductClientComponent>
             )}

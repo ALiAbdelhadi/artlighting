@@ -22,11 +22,12 @@ import AuthInDesktop from "./AuthInDesktop";
 import AuthInMobile from "./AuthInMobile";
 import ContainerAuthInDesktop from "./ContainerAuthInDesktop";
 import ContainerAuthInMobile from "./ContainerAuthInMobile";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Header() {
     return (
         <header className=" relative top-0 z-50 w-full bg-background shadow-sm">
-            <div className=" container mx-auto flex h-16 md:h-20 items-center justify-between px-4 md:px-6">
+            <div className=" container flex h-16 md:h-20 items-center justify-between px-4 md:px-6">
                 <Link href="/" className="flex items-center gap-2" prefetch={false}>
                     <img
                         src={"/Logo.png"}
@@ -421,67 +422,72 @@ export default function Header() {
                         </ContainerAuthInDesktop>
                     </div>
                 </nav>
-                <Sheet>
-                    <SheetTrigger asChild>
-                        <Button variant="outline" size="icon" className="lg:hidden">
-                            <MenuIcon className="h-6 w-6" />
-                            <span className="sr-only">Toggle navigation menu</span>
-                        </Button>
-                    </SheetTrigger>
-                    <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-                        <nav className="grid gap-6 text-lg font-medium">
-                            <Link
-                                href="/AboutUs"
-                                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                prefetch={false}
-                            >
-                                <UserIcon className="h-5 w-5" />
-                                About Us
-                            </Link>
-                            <Link
-                                href="/All-Projects"
-                                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                prefetch={false}
-                            >
-                                <BriefcaseIcon className="h-5 w-5" />
-                                Projects
-                            </Link>
-                            <Link
-                                href="/category"
-                                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                prefetch={false}
-                            >
-                                <BoxIcon className="h-5 w-5" />
-                                Products
-                            </Link>
-                            <Link
-                                href="/Blog"
-                                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                prefetch={false}
-                            >
-                                <NewspaperIcon className="h-5 w-5" />
-                                Blog
-                            </Link>
-                            <Link
-                                href="/ContactUs"
-                                className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                prefetch={false}
-                            >
-                                <MailIcon className="h-5 w-5" />
-                                Contact
-                            </Link>
-                            <ContainerAuthInMobile>
-                                <AuthInMobile />
-                            </ContainerAuthInMobile>
-                            <Button variant="outline" size="icon" className="relative">
-                                <ShoppingCartIcon className="h-5 w-5" />
-                                <span className="absolute -top-2 -right-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
-                                    0
-                                </span>
+                <div className="flex items-center gap-2 lg:hidden">
+                    <Sheet>
+                        <div className="order-1 flex items-center">
+                            <UserButton afterSignOutUrl="/" />
+                        </div>
+                        <SheetTrigger asChild>
+                            <Button variant="outline" size="icon" className="lg:hidden">
+                                <MenuIcon className="h-6 w-6" />
+                                <span className="sr-only">Toggle navigation menu</span>
                             </Button>
-                        </nav>
-                    </SheetContent>
-                </Sheet>
+                        </SheetTrigger>
+                        <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                            <nav className="grid gap-6 text-lg font-medium">
+                                <Link
+                                    href="/AboutUs"
+                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                    prefetch={false}
+                                >
+                                    <UserIcon className="h-5 w-5" />
+                                    About Us
+                                </Link>
+                                <Link
+                                    href="/All-Projects"
+                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                    prefetch={false}
+                                >
+                                    <BriefcaseIcon className="h-5 w-5" />
+                                    Projects
+                                </Link>
+                                <Link
+                                    href="/category"
+                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                    prefetch={false}
+                                >
+                                    <BoxIcon className="h-5 w-5" />
+                                    Products
+                                </Link>
+                                <Link
+                                    href="/Blog"
+                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                    prefetch={false}
+                                >
+                                    <NewspaperIcon className="h-5 w-5" />
+                                    Blog
+                                </Link>
+                                <Link
+                                    href="/ContactUs"
+                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                    prefetch={false}
+                                >
+                                    <MailIcon className="h-5 w-5" />
+                                    Contact
+                                </Link>
+                                <ContainerAuthInMobile>
+                                    <AuthInMobile />
+                                </ContainerAuthInMobile>
+                                <Button variant="outline" size="icon" className="relative">
+                                    <ShoppingCartIcon className="h-5 w-5" />
+                                    <span className="absolute -top-2 -right-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
+                                        0
+                                    </span>
+                                </Button>
+                            </nav>
+                        </SheetContent>
+                    </Sheet>
+                </div>
             </div>
         </header>
     );

@@ -15,21 +15,24 @@ export default async function AuthInMobile() {
     return (
         <Fragment>
             {user ? (
-                <>
+                <Fragment>
                     {isAdmin ? (
                         <Link scroll={true}
                             href="/dashboard"
                         >
                             <Button variant="default"
+                                className="w-full"
                             >
                                 Dashboard
                             </Button>
                         </Link>
                     ) : null}
-                    <UserButton afterSignOutUrl="/" />
-                </>
+                    <div className="order-1">
+                        
+                    </div>
+                </Fragment>
             ) : (
-                <>
+                <Fragment>
                     <SignedOut>
                         <SignUpButton>
                             <Button variant="default">
@@ -42,7 +45,7 @@ export default async function AuthInMobile() {
                             </Button>
                         </SignInButton>
                     </SignedOut>
-                </>
+                </Fragment>
             )}
         </Fragment>
     )

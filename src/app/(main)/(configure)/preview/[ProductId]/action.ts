@@ -59,7 +59,7 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
             });
         }
 
-        const discountedPrice = configuration.configPrice - (configuration.configPrice * configuration.discount);
+        const discountedPrice = configuration.totalPrice - (configuration.totalPrice * configuration.discount);
         const shippingPrice = configuration.shippingPrice;
         const finalPrice = discountedPrice * quantity + shippingPrice;
 
@@ -69,11 +69,11 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
                 configurationId: configId,
                 productId: product.id,
                 quantity: quantity,
-                productPrice: configuration.configPrice,
+                productPrice: configuration.totalPrice,
                 discountRate: configuration.discount,
                 discountedPrice: discountedPrice,
                 totalPrice: finalPrice,
-                configPrice: configuration.configPrice, // Add this line
+                configPrice: configuration.totalPrice,
                 productName: product.productName,
                 productImages: product.productImages,
                 status: "awaiting_shipment",

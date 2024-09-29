@@ -1,14 +1,15 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
     Tooltip,
     TooltipContent,
     TooltipProvider,
     TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { ProductIP } from "@prisma/client";
-import { Droplets } from "lucide-react";
-import { useEffect, useState } from "react";
-import { cn } from "../utils/utils";
+} from "@/components/ui/tooltip"
+import { ProductIP } from "@prisma/client"
+import { Droplets } from "lucide-react"
+import { useEffect, useState } from "react"
+import { cn } from "../utils/utils"
+import { updateProductIP } from '@/app/(main)/actions/productIP'
 
 const PRODUCT_IP_LABEL_MAP: Record<
     ProductIP,
@@ -39,31 +40,43 @@ const PRODUCT_IP_LABEL_MAP: Record<
         description: "Dust tight and protected against long periods of immersion",
         increaseOnPricePercent: 0.08,
     },
-};
-
-interface ProductIPButtonsProps {
-    productId: string;
-    productIp: ProductIP;
-    basePrice: number;
-    onProductIpChange: (newProductIp: ProductIP, priceIncrease: number) => void;
 }
 
-const ProductIPButtons: React.FC<ProductIPButtonsProps> = ({
+interface ProductIPButtonsProps {
+    productId: string
+    configId: string
+    productIp: ProductIP
+    basePrice: number
+    onProductIpChange: (newProductIp: ProductIP, priceIncrease: number) => void
+}
+
+export default function ProductIPButtons({
     productId,
+    configId,
     productIp,
     basePrice,
     onProductIpChange,
-}) => {
-    const [selectedIp, setSelectedIp] = useState<ProductIP>(productIp);
+}: ProductIPButtonsProps) {
+    const [selectedIp, setSelectedIp] = useState<ProductIP>(productIp)
 
     useEffect(() => {
-        const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[selectedIp];
-        const priceIncrease = basePrice * increaseOnPricePercent;
-        onProductIpChange(selectedIp, priceIncrease);
-    }, [selectedIp, basePrice, onProductIpChange]);
+        const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[selectedIp]
+        const priceIncrease = basePrice * increaseOnPricePercent
+        onProductIpChange(selectedIp, priceIncrease)
+    }, [selectedIp, basePrice, onProductIpChange])
 
-    const handleIpChange = (newIp: ProductIP) => {
+    const handleIpChange = async (newIp: ProductIP) => {
         setSelectedIp(newIp);
+        const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[newIp];
+        const priceIncrease = basePrice * increaseOnPricePercent;
+        
+        try {
+            await updateProductIP({ productId, configId, newProductIp: newIp, priceIncrease });
+            onProductIpChange(newIp, priceIncrease);
+        } catch (error) {
+            console.error('Error updating product IP:', error);
+            // Handle the error, maybe show a toast to the user
+        }
     };
 
     return (
@@ -100,7 +113,5 @@ const ProductIPButtons: React.FC<ProductIPButtonsProps> = ({
                 )}
             </div>
         </div>
-    );
-};
-
-export default ProductIPButtons;
+    )
+}

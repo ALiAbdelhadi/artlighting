@@ -24,6 +24,7 @@ import AddToCardIcon from "./AddToCardIcon";
 import ProductChandLampButtons from "./ProductChandLampButtons";
 import ProductColorTempStatus from "./ProductColorTempButtons";
 import ProductIPButtons from "./ProductIPButtons";
+import { updateProductIP } from "../(main)/actions/productIP";
 
 type ProductDetailsProps = {
     productName: string;
@@ -57,7 +58,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     ChandelierLightingType,
     Brand,
     hNumber,
-    configuration
+    configuration : initialConfiguration
 }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -65,6 +66,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     const [selectedColorTemp, setSelectedColorTemp] = useState<ProductColorTemp>(
         (order?.productColorTemp as ProductColorTemp) || ProductColorTemp.warm
     );
+    const [configuration, setConfiguration] = useState<Configuration>(initialConfiguration);
     const [selectedProductIp, setSelectProductIp] = useState<ProductIP>(
         (order?.productIp as ProductIP) || ProductIP.IP20
     );
@@ -113,14 +115,36 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
         setSelectedProductChandLamp(newProductLamp);
         setLampPriceIncrease(newPriceIncrease);
     };
-    const handleProductIPChange = (
+    const handleProductIPChange = async (
         newProductIp: ProductIP,
-        newPriceIncrease: number
+        newPriceIncrease: number,
     ) => {
         setSelectProductIp(newProductIp);
         setPriceIncrease(newPriceIncrease);
+    
+        if (configId) {
+            const result = await updateProductIP({
+                productId: ProductId,
+                configId,
+                newProductIp,
+                priceIncrease: newPriceIncrease,
+            });
+            if (result.success) {
+                console.log('Configuration updated successfully');
+                // Update the local state with the new configuration
+                if (result.updatedConfig) {
+                    setConfiguration(result.updatedConfig);
+                }
+            } else {
+                console.error('Failed to update configuration:', result.error);
+                // Handle the error, maybe show a toast to the user
+            }
+        } else {
+            console.error('Configuration ID is missing');
+            // Handle the error, maybe show a toast to the user
+        }
     };
-    const totalPrice = price + priceIncrease  + lampPriceIncrease;
+    const totalPrice = price + priceIncrease + lampPriceIncrease;
     const handleClick = () => {
         saveConfig({
             configId,
@@ -150,7 +174,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
         }
     };
 
-    console.log('Price:', price, 'Price Increase:', priceIncrease, 'Lamp Price Increase:', lampPriceIncrease, 'Total Price:',totalPrice);
+    console.log('Price:', price, 'Price Increase:', priceIncrease, 'Lamp Price Increase:', lampPriceIncrease, 'Total Price:', totalPrice);
 
     return (
         <div className="md:ml-16">
@@ -188,6 +212,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                                 productIp={selectedProductIp}
                                 onProductIpChange={handleProductIPChange}
                                 basePrice={price}
+                                configId={configId}
                             />
                         )}
                     </div>

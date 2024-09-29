@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { useToast } from "@/components/ui/use-toast"
 import { SignUpButton, useAuth } from "@clerk/nextjs"
-import { Minus, Plus, ShoppingCartIcon, Trash2 } from 'lucide-react'
+import { ShoppingCartIcon, Trash2 } from 'lucide-react'
 import Image from 'next/image'
 import Link from "next/link"
 import { useEffect, useState } from 'react'
@@ -29,7 +29,6 @@ export function CartSidebar() {
     const [cartItems, setCartItems] = useState<CartItem[]>([])
     const { isSignedIn, userId } = useAuth()
     const { toast } = useToast()
-
     useEffect(() => {
         const fetchCartItems = async () => {
             if (!isSignedIn || !userId) return
@@ -49,41 +48,6 @@ export function CartSidebar() {
             fetchCartItems()
         }
     }, [isOpen, isSignedIn, userId])
-
-    const updateQuantity = async (itemId: string, newQuantity: number) => {
-        try {
-            const response = await fetch('/api/cart', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ itemId, quantity: newQuantity }),
-            })
-            if (response.ok) {
-                const updatedItem = await response.json()
-                setCartItems(prevItems =>
-                    prevItems.map(item =>
-                        item.id === itemId ? { ...item, quantity: updatedItem.quantity, totalPrice: updatedItem.totalPrice } : item
-                    )
-                )
-                toast({
-                    title: "Quantity updated",
-                    description: "The item quantity has been updated in your cart.",
-                })
-            } else {
-                const errorData = await response.json()
-                throw new Error(errorData.error || 'Failed to update quantity')
-            }
-        } catch (error) {
-            console.error('Error updating quantity:', error)
-            toast({
-                title: "Error",
-                description: (error as Error).message || "Failed to update quantity. Please try again.",
-                variant: "destructive",
-            })
-        }
-    }
-
     const removeItem = async (itemId: string) => {
         try {
             const response = await fetch('/api/cart', {
@@ -111,12 +75,6 @@ export function CartSidebar() {
             })
         }
     }
-
-    const totalPrice = cartItems.reduce((sum, item) => {
-        const itemPrice = item.discount > 0 ? item.price * (1 - item.discount / 100) : item.price
-        return sum + itemPrice * item.quantity
-    }, 0)
-
     return (
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -162,23 +120,6 @@ export function CartSidebar() {
                                                         </span>
                                                     </div>
                                                 )}
-                                            </div>
-                                            <div className="flex items-center space-x-2">
-                                                <Button
-                                                    variant="outline"
-                                                    size="icon"
-                                                    onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
-                                                >
-                                                    <Minus className="h-4 w-4" />
-                                                </Button>
-                                                <span className="w-8 text-center">{item.quantity}</span>
-                                                <Button
-                                                    variant="outline"
-                                                    size="icon"
-                                                    onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                >
-                                                    <Plus className="h-4 w-4" />
-                                                </Button>
                                             </div>
                                         </div>
                                     </div>

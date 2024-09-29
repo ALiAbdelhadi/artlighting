@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Configuration {
-  id                String   @id @default(cuid())
+  id                String     @id @default(cuid())
   ProductId         String
   configPrice       Float
   priceIncrease     Float
@@ -16,9 +16,11 @@ model Configuration {
   discount          Float
   quantity          Int
   lampPriceIncrease Float?
-  totalPrice Float
-  orders            Order[]  @relation("ConfigurationToOrder")
-  users             User[]   @relation("ConfigurationToUser")
+  totalPrice        Float
+  productIp         ProductIP?
+  updatedAt DateTime @updatedAt
+  orders            Order[]    @relation("ConfigurationToOrder")
+  users             User[]     @relation("ConfigurationToUser")
 }
 
 model User {
@@ -184,7 +186,6 @@ model LightingType {
   name     String    @unique
   products Product[]
 }
-
 
 enum OrderOption {
   BasicShipping

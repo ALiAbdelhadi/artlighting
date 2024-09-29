@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatPrice } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
-import { Configuration, Product } from "@prisma/client";
-import { useMutation } from "@tanstack/react-query";
+import { Configuration } from "@prisma/client";
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import Image from "next/image";
@@ -25,46 +25,41 @@ type PreviewPageProps = {
     discount: number;
 };
 
+const fetchProduct = async (productId: string) => {
+    const response = await fetch(`/api/products/${productId}`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch product");
+    }
+    return response.json();
+};
+
 const PreviewPage: React.FC<PreviewPageProps> = ({
-    configuration,
+    configuration :initialConfiguration ,
     discount,
 }) => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const handleSlideChange = (index: number) => {
         setCurrentIndex(index);
     };
+    const [configuration, setConfiguration] = useState<Configuration>(initialConfiguration);
     const { ProductId } = useParams();
-    const [product, setProduct] = useState<Product | null>(null);
     const [quantity, setQuantity] = useState<number>(1);
     const router = useRouter();
     const { toast } = useToast();
     const { isLoaded, isSignedIn, user } = useUser();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
+    const { data: product, isLoading, isError } = useQuery({
+        queryKey: ['product', ProductId],
+        queryFn: () => fetchProduct(ProductId as string),
+        enabled: !!ProductId,
+    });
+
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await fetch(`/api/products/${ProductId}`);
-                if (!response.ok) {
-                    throw new Error("Failed to fetch product");
-                }
-                const data = await response.json();
-                setProduct(data);
-                const storedQuantity = localStorage.getItem(`quantity-${ProductId}`);
-                setQuantity(storedQuantity ? parseInt(storedQuantity, 10) : 1);
-            } catch (error) {
-                console.error("Error fetching product:", error);
-                toast({
-                    title: "Error",
-                    description: "Failed to fetch product details. Please try again.",
-                    variant: "destructive",
-                });
-            }
-        };
-        if (ProductId) {
-            fetchProduct();
-        }
-    }, [ProductId, toast]);
+        const storedQuantity = localStorage.getItem(`quantity-${ProductId}`);
+        setQuantity(storedQuantity ? parseInt(storedQuantity, 10) : 1);
+    }, [ProductId]);
+
     useEffect(() => {
         console.log("Configuration:", configuration);
     }, [configuration]);
@@ -79,7 +74,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
         mutationKey: ["get-order-session"],
         mutationFn: createOrder,
         onSuccess: ({ userId, orderId, productId }) => {
-            localStorage.removeItem("configurationId",);
+            localStorage.removeItem("configurationId");
             localStorage.clear()
             router.push(
                 `/confirm/?orderId=${orderId}&userId=${userId}&productId=${productId}`
@@ -95,7 +90,19 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
             console.error("Error creating order:", error);
         },
     });
-
+    useEffect(() => {
+        const fetchLatestConfiguration = async () => {
+            if (ProductId) {
+                const response = await fetch(`/api/configurations/${ProductId}`);
+                if (response.ok) {
+                    const latestConfig = await response.json();
+                    setConfiguration(latestConfig);
+                }
+            }
+        };
+    
+        fetchLatestConfiguration();
+    }, [ProductId]);
     const handleConfirm = async () => {
         if (isSignedIn) {
             if (configuration) {
@@ -106,7 +113,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
         }
     };
 
-    if (!product)
+    if (isLoading)
         return (
             <div className="w-full mt-24 flex justify-center pb-24">
                 <div className="flex flex-col items-center gap-2">
@@ -117,6 +124,18 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
             </div>
         );
 
+    if (isError) {
+        return (
+            <div className="w-full mt-24 flex justify-center pb-24">
+                <div className="flex flex-col items-center gap-2">
+                    <h3 className="font-semibold text-2xl">Error loading product</h3>
+                    <p>There was an error fetching the product details. Please try again.</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!product) return null;
     return (
         <div className=" min-h-screen">
             <Container>

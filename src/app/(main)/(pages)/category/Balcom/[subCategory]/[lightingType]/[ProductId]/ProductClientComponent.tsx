@@ -119,6 +119,7 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                                 Brand={product.Brand}
                                 ChandelierLightingType={product.ChandelierLightingType ?? ""}
                                 hNumber={product.hNumber || null}
+                                configuration={configuration}
                             />
                         </div>
                         <ProductSpecifications

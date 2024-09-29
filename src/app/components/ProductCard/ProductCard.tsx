@@ -167,8 +167,8 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </h2>
           <p className={`${styles.textParagraph} text-muted-foreground  font-medium capitalize`}>
             {`${product.Brand} spotlight with Maximum wattage of ${product.productName
-              ? getProductWattage(product.productName)
-              : "Not Available"
+                ? getProductWattage(product.productName)
+                : "Not Available"
               }...`}
           </p>
           <div>
