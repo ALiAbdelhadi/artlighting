@@ -1,15 +1,13 @@
 import Container from "@/app/components/Container"
-import styles from "./missionAndvision.module.css"
-
 function Mission() {
     return (
-        <div className={`${styles.mission}`}>
+        <div className="py-16">
             <Container>
-                <div className={`${styles.aboutContent}`}>
-                    <h2 className={`${styles.h2}`}>
+                <div className={`flex items-center my-[0] flex-col md:max-w-screen-lg w-full`}>
+                    <h2 className="md:text-3xl text-2xl font-medium">
                         Our mission is to recognize the world about the actual lighting
                     </h2>
-                    <h2 className={`${styles.h2} mt-[50px]`}>
+                    <h2 className={"md:text-3xl text-2xl font-medium mt-[50px]"}>
                         To be the leader in shaping human experience through innovative lighting solutions. We envision
                         a
                         world where light actively enhances environments, fostering well-being, productivity, and focus.

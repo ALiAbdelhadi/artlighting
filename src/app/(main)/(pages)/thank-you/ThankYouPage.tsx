@@ -249,7 +249,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">total:</div>
-                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} /></span>
+                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} /></span>
                                                             </div>
                                                         </>
                                                     )

@@ -105,7 +105,6 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                     <TableHead>Date</TableHead>
                                     <TableHead className="text-nowrap">Estimated Order Date</TableHead>
                                     <TableHead>Status</TableHead>
-                                    <TableHead>Action</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -200,21 +199,6 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                             <TableCell className="text-nowrap">{order.OrderTimeReceived?.toLocaleDateString()}</TableCell>
                                             <TableCell>
                                                 <StatusDropdown id={order.id} orderStatus={order.status} />
-                                            </TableCell>
-                                            <TableCell className="text-right">
-                                                <DropdownMenu>
-                                                    <DropdownMenuTrigger asChild>
-                                                        <Button variant="ghost" size="icon">
-                                                            <MoveHorizontalIcon className="w-4 h-4" />
-                                                            <span className="sr-only">Actions</span>
-                                                        </Button>
-                                                    </DropdownMenuTrigger>
-                                                    <DropdownMenuContent align="end">
-                                                        <DropdownMenuItem>
-                                                            Customer details
-                                                        </DropdownMenuItem>
-                                                    </DropdownMenuContent>
-                                                </DropdownMenu>
                                             </TableCell>
                                         </TableRow>
                                     ))}

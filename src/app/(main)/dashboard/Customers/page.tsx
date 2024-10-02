@@ -25,7 +25,7 @@ const Customers = async () => {
     return (
         <div>
             <CustomersClient users={users} >
-                <CustomersImage/>
+                <CustomersImage width={30} height={30} className="mr-1.5"/>
             </CustomersClient>
         </div>
     );

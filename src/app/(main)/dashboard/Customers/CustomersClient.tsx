@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ShippingAddress, User } from "@prisma/client";
 import { SearchIcon } from "lucide-react";
+import Link from "next/link";
 import { ReactNode, useState } from "react";
 type UserWithShipping = User & { shippingAddress: ShippingAddress | null };
 const CustomersClient = ({ users, children }: { users: UserWithShipping[], children: ReactNode }) => {
@@ -81,7 +82,11 @@ const CustomersClient = ({ users, children }: { users: UserWithShipping[], child
                                         )}
                                         {!loading && !error && filteredUsers.map((user) => (
                                             <TableRow key={user.id.slice(0, 18)}>
-                                                <TableCell>{user.id.slice(0, 18)}</TableCell>
+                                                <TableCell>
+                                                    <Link href={`/dashboard/Customers/${user.id}`}>
+                                                        {user.id.slice(0, 18)}
+                                                    </Link>
+                                                </TableCell>
                                                 <TableCell className="flex items-center">
                                                     {children}
                                                     {user.shippingAddress?.fullName}

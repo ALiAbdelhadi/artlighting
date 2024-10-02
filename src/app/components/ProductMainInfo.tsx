@@ -40,8 +40,11 @@ type ProductDetailsProps = {
     order: Order;
     ChandelierLightingType: string;
     Brand: string;
+    ip: number
+    maxIP: number
     hNumber: number
     configuration: Configuration
+    sectionTypes: string[];
 };
 
 const ProductMainInfo: React.FC<ProductDetailsProps> = ({
@@ -58,7 +61,11 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     ChandelierLightingType,
     Brand,
     hNumber,
-    configuration : initialConfiguration
+    configuration: initialConfiguration,
+    ip,
+    maxIP,
+    sectionTypes
+
 }) => {
     const [showPopup, setShowPopup] = useState(false);
     const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -121,7 +128,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     ) => {
         setSelectProductIp(newProductIp);
         setPriceIncrease(newPriceIncrease);
-    
+
         if (configId) {
             const result = await updateProductIP({
                 productId: ProductId,
@@ -175,7 +182,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     };
 
     console.log('Price:', price, 'Price Increase:', priceIncrease, 'Lamp Price Increase:', lampPriceIncrease, 'Total Price:', totalPrice);
-
+    const productsWithIP20Text = ['product-jy-810-10w', 'product-jy-810-12w', "product-jy-810-18w", "product-jy-810-30w"];
+    const productsWithMaxIpText = ['product-jy-913-5w', 'product-jy-913-8w', "product-jy-913-12w", "product-jy-913-18w"];
     return (
         <div className="md:ml-16">
             <h1 className="md:text-4xl sm:text-3xl text-2xl mt-5 mb-2 font-bold uppercase">
@@ -255,11 +263,22 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                 )}
             </div>
             <div className="flex justify-between w-full">
-                <p className="text-primary md:text-xl text-[16px] flex items-center">
+                <p className="text-primary md:text-xl sm:text-lg text-base flex items-center">
                     Check Stores Availability
-                    <ArrowRight className="w-6 h-6 ml-2 mt-2.5" />
+                    <ArrowRight className="sm:w-6 sm:h-6 w-5 h-5 ml-2" />
                 </p>
-                <p className="text-green-400 md:text-lg text-[16px]">in Stock</p>
+                <p className="text-green-400 md:text-lg text-[16px]">
+                    in Stock
+                    {productsWithIP20Text.includes(ProductId) && (
+                        <span className="text-destructive font-semibold"> (Available only in IP20)</span>
+                    )}
+                    {productsWithMaxIpText.includes(ProductId) && (
+                        <span className="text-destructive font-semibold"> (Available only in IP20,IP44,IP54)</span>
+                    )}
+                    {sectionTypes.includes("Outdoor") && (
+                        <span className="text-destructive font-semibold"> (Available only in IP20,IP44,IP54)</span>
+                    )}
+                </p>
             </div>
             <div>
                 <div className="flex items-center justify-center gap-2 mt-4 max-w-full">

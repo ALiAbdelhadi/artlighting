@@ -1,185 +1,199 @@
-import Container from "@/app/components/Container";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { formatPrice } from "@/lib/utils";
-import { Order } from "@prisma/client";
-import { Box, Calendar, MapPin, Phone, Tag, Truck, User } from "lucide-react";
-import React from 'react';
-import StatusDropdown from "../../StatusDropdown";
-
-interface OrderClientPageProps {
-    order: Order;
+import Container from "@/app/components/Container"
+import DiscountPrice from '@/app/helpers/DiscountPrice'
+import NormalPrice from '@/app/helpers/NormalPrice'
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Separator } from "@/components/ui/separator"
+import { formatPrice } from "@/lib/utils"
+import { Order, Product, ShippingAddress, User } from '@prisma/client'
+import { format } from 'date-fns'
+import { Box, Calendar, MapPin, Truck } from 'lucide-react'
+import Link from "next/link"
+import React from 'react'
+import CustomersImage from "../../Customers/CustomersImage"
+import StatusDropdown from "../../StatusDropdown"
+interface OrderPageProps {
+    order: Order & {
+        shippingAddress: ShippingAddress | null;
+        product: Product;
+        user: User
+    }
 }
 
-export default function Component({ order }: OrderClientPageProps) {
-    const orderProgress = getOrderProgress(order.status);
+export default function OrderPage({ order }: OrderPageProps) {
+    const orderProgress = getOrderProgress(order.status)
 
     return (
-        <div>
-            <Card>
-                <CardHeader className="bg-primary px-4 md:px-6  text-white rounded-lg ">
-                    <div className="flex justify-between items-center">
-                        <div>
-                            <CardTitle className="text-3xl">Order #{order.id}</CardTitle>
-                            <p className="text-primary-foreground/80">Placed on {new Date(order.createdAt).toLocaleDateString()}</p>
+        <div className="py-8">
+            <Container>
+                <Card className="mb-8 overflow-hidden">
+                    <CardHeader className="bg-primary text-primary-foreground p-6">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                            <div>
+                                <CardTitle className="text-3xl mb-2">Order #{order.id}</CardTitle>
+                                <CardDescription className="text-primary-foreground/80">
+                                    Placed on {format(new Date(order.createdAt), 'PPP')}
+                                </CardDescription>
+                            </div>
+                            <StatusDropdown id={order.id} orderStatus={order.status} />
                         </div>
-                        <StatusDropdown id={order.id} orderStatus={order.status} />
-                    </div>
-                </CardHeader>
-            </Card>
-            <Container >
-                <Card className="overflow-hidden">
-                    <CardContent className="py-6 px-4 space-y-8">
-                        {/* Order Status */}
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-4 flex items-center">
-                                <Tag className="mr-2" /> Order Status
-                            </h2>
-                            <div className="mb-2 text-sm text-muted-foreground">
-                                Last updated: {new Date(order.updatedAt).toLocaleString()}
-                            </div>
-                            <Progress value={orderProgress} className="w-full h-3" />
-                            <div className="flex justify-between mt-2 text-sm text-muted-foreground">
-                                <span>Ordered</span>
-                                <span>Processing</span>
-                                <span>fulfilled</span>
-                            </div>
-                        </section>
-                        {/* Product Information */}
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-4 flex items-center">
-                                <Box className="mr-2" /> Product Information
-                            </h2>
-                            <Card>
-                                <CardContent className="p-6">
-                                    <div className="flex flex-col md:flex-row md:items-start md:space-x-6">
-                                        {order.productImages?.[0] && (
-                                            <img
-                                                src={order.productImages[0]}
-                                                alt={order.productName}
-                                                className="w-full md:w-48 h-48 object-cover rounded-md shadow-md mb-4 md:mb-0"
-                                            />
-                                        )}
-                                        <div className="flex-1">
-                                            <h3 className="text-xl font-semibold mb-2">{order.productName}</h3>
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                                                <ProductDetail label="Quantity" value={order.quantity} />
-                                                <ProductDetail label="Color Temperature" value={order.productColorTemp} />
-                                                <ProductDetail label="IP Rating" value={order.productIp} />
-                                                <ProductDetail label="Lamp Type" value={order.productChandLamp} />
-                                                {order.Brand && <ProductDetail label="Brand" value={order.Brand} />}
-                                                {order.ChandelierLightingType && <ProductDetail label="Lighting Type" value={order.ChandelierLightingType} />}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </section>
-                        {/* Price Breakdown */}
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-4 flex items-center">
-                                Price Breakdown
-                            </h2>
-                            <Card>
-                                <CardContent className="p-6">
-                                    <div className="space-y-4">
-                                        <PriceDetail label="Product Price" value={formatPrice(order.productPrice)} />
-                                        <PriceDetail label="Configuration Price" value={formatPrice(order.configPrice)} />
-                                        {order.priceIncrease > 0 && (
-                                            <PriceDetail label="Price Increase" value={formatPrice(order.priceIncrease)} />
-                                        )}
-                                        {order.discountApplied && (
-                                            <PriceDetail
-                                                label={`Discount (${(order.discountRate * 100).toFixed(0)}%)`}
-                                                value={`-${formatPrice((order.productPrice - (order.discountedPrice || 0)) * order.quantity)}`}
-                                                className="text-green-600"
-                                            />
-                                        )}
-                                        <PriceDetail label="Shipping" value={formatPrice(order.shippingPrice)} />
-                                        <div className="border-t pt-4 mt-4">
-                                            <PriceDetail label="Total" value={formatPrice(order.totalPrice)} className="font-bold text-lg" />
-                                        </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </section>
-
-                        {/* Shipping Information */}
-                        <section>
-                            <h2 className="text-2xl font-semibold mb-4 flex items-center">
-                                <Truck className="mr-2" /> Shipping Information
-                            </h2>
-                            <Card>
-                                <CardContent className="p-6">
-                                    {order.shippingAddress ? (
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div className="space-y-4">
-                                                <ShippingDetail icon={User} value={order.shippingAddress.fullName} />
-                                                <ShippingDetail icon={Phone} value={order.shippingAddress.phoneNumber} />
-                                            </div>
-                                            <div className="space-y-4">
-                                                <ShippingDetail
-                                                    icon={MapPin}
-                                                    value={`${order.shippingAddress.address}, ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.postalCode}, ${order.shippingAddress.country}`}
-                                                />
-                                                {order.OrderTimeReceived && (
-                                                    <ShippingDetail
-                                                        icon={Calendar}
-                                                        value={`Estimated Delivery: ${new Date(order.OrderTimeReceived).toLocaleDateString()}`}
-                                                    />
-                                                )}
-                                            </div>
-                                        </div>
-                                    ) : (
-                                        <p className="text-muted-foreground">No shipping information available</p>
-                                    )}
-                                </CardContent>
-                            </Card>
-                        </section>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                        <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
+                            <span>Last updated: {format(new Date(order.updatedAt), 'PPp')}</span>
+                        </div>
+                        <Progress value={orderProgress} className="w-full h-3 mb-2" />
+                        <div className="flex justify-between text-sm font-medium">
+                            <span>Ordered</span>
+                            <span>Processing</span>
+                            <span>Fulfilled</span>
+                        </div>
                     </CardContent>
                 </Card>
+
+                <div className="grid gap-8 md:grid-cols-3">
+                    <Card className="md:col-span-2">
+                        <CardHeader>
+                            <CardTitle className="flex items-center text-2xl">
+                                <Box className="mr-2" /> Product Information
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="flex flex-col md:flex-row md:items-start md:space-x-6">
+                                {order.productImages?.[0] && (
+                                    <img
+                                        src={order.productImages[0]}
+                                        alt={order.productName}
+                                        className="w-full md:w-48 h-48 object-cover rounded-md shadow-md mb-4 md:mb-0"
+                                    />
+                                )}
+                                <div className="flex-1 space-y-4">
+                                    <h3 className="text-xl font-semibold">{order.productName}</h3>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <ProductDetail label="Quantity" value={order.quantity} />
+                                        <ProductDetail label="Color Temperature" value={order.productColorTemp} />
+                                        <ProductDetail label="IP Rating" value={order.productIp} />
+                                        {order.ChandelierLightingType && (
+                                            <ProductDetail label="Lamp Type" value={order.productChandLamp} />
+                                        )}
+                                        {order.Brand && <ProductDetail label="Brand" value={order.Brand} />}
+                                        {order.ChandelierLightingType && <ProductDetail label="Lighting Type" value={order.ChandelierLightingType} />}
+                                    </div>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center text-2xl">
+                                Price Breakdown
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="space-y-4">
+                                <PriceDetail label="Product Price" value={<NormalPrice price={order.configPrice} />} />
+                                {order.discountRate > 0 && (
+                                    <PriceDetail
+                                        label={`Discount (${((order.discountRate) * 100).toFixed(0)}%)`}
+                                        value={`-${formatPrice((order.productPrice - (order.discountedPrice || 0)) * order.quantity)}`}
+                                        className="text-green-600"
+                                    />
+                                )}
+                                {order.priceIncrease > 0 && (
+                                    <PriceDetail label="Price Increase" value={formatPrice(order.priceIncrease)} />
+                                )}
+                                <PriceDetail label="Shipping" value={formatPrice(order.shippingPrice)} />
+                                <Separator className="my-2" />
+                                <PriceDetail
+                                    label="Total"
+                                    value={
+                                        order.discountRate > 0
+                                            ? <DiscountPrice price={order.configPrice} shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} />
+                                            : <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} />
+                                    }
+                                    className="font-bold text-lg"
+                                />
+                            </div>
+                        </CardContent>
+                    </Card>
+                    <Card className="md:col-span-3">
+                        <CardHeader>
+                            <CardTitle className="flex items-center text-2xl">
+                                <Truck className="mr-2" /> Shipping Information
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            {order.shippingAddress ? (
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <div className="space-y-4">
+                                        <div className="flex items-center space-x-2">
+                                            <CustomersImage width={40} height={40} className="rounded-full" />
+                                            <div>
+                                                <p className="font-semibold">{order.shippingAddress.fullName}</p>
+                                                <p className="text-sm text-muted-foreground">{order.shippingAddress.phoneNumber}</p>
+                                                <Link href={`/dashboard/Customers${order.user.id}`} className="font-semibold">{order.user.id}</Link>
+                                            </div>
+                                        </div>
+                                        <ShippingDetail
+                                            icon={MapPin}
+                                            value={`${order.shippingAddress.address}, ${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zipCode}, ${order.shippingAddress.country}`}
+                                        />
+                                    </div>
+                                    <div className="space-y-4">
+                                        {order.OrderTimeReceived && (
+                                            <ShippingDetail
+                                                icon={Calendar}
+                                                value={`Estimated Delivery: ${format(new Date(order.OrderTimeReceived), 'PPP')}`}
+                                            />
+                                        )}
+                                    </div>
+                                </div>
+                            ) : (
+                                <p className="text-muted-foreground">No shipping information available</p>
+                            )}
+                        </CardContent>
+                    </Card>
+                </div>
             </Container>
         </div>
-    );
+    )
 }
-
 function ProductDetail({ label, value }: { label: string; value: string | number }) {
     return (
-        <div>
-            <span className="text-muted-foreground">{label}:</span>
-            <Badge variant="secondary" className="ml-2">
-                {value}
-            </Badge>
+        <div className="flex flex-col space-y-1">
+            <span className="text-sm text-muted-foreground">{label}</span>
+            <Badge variant="secondary" className="w-fit">{value}</Badge>
         </div>
-    );
+    )
 }
 
-function PriceDetail({ label, value, className = '' }: { label: string; value: string; className?: string }) {
+function PriceDetail({ label, value, className = '' }: { label: string; value: React.ReactNode; className?: string }) {
     return (
         <div className={`flex justify-between items-center ${className}`}>
-            <span className="text-muted-foreground">{label}:</span>
+            <span className="text-muted-foreground">{label}</span>
             <span className="font-medium">{value}</span>
         </div>
-    );
+    )
 }
 
 function ShippingDetail({ icon: Icon, value }: { icon: React.ElementType; value: string }) {
     return (
-        <div className="flex items-start">
-            <Icon className="mr-2 h-5 w-5 mt-1 text-muted-foreground" />
-            <span>{value}</span>
+        <div className="flex items-start space-x-2">
+            <Icon className="h-5 w-5 text-muted-foreground mt-0.5" />
+            <span className="text-sm">{value}</span>
         </div>
-    );
+    )
 }
 
 function getOrderProgress(status: string): number {
     switch (status.toLowerCase()) {
         case 'processing':
-            return 50;
+            return 50
         case 'fulfilled':
-            return 100;
+            return 100
         default:
-            return 0;
+            return 0
     }
 }

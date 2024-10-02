@@ -138,10 +138,10 @@ const Dashboard = ({ discount }: { discount: number }) => {
                     <TableCell className="px-4 py-2">
                         {order.discountRate > 0 ? (
                             <DiscountPrice
-                            price={order.configPrice}
-                            discount={order.discountRate}
-                            quantity={order.quantity}
-                            shippingPrice={order.shippingPrice}
+                                price={order.configPrice}
+                                discount={order.discountRate}
+                                quantity={order.quantity}
+                                shippingPrice={order.shippingPrice}
                             />
                         ) : (
                             <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} />
@@ -192,7 +192,7 @@ const Dashboard = ({ discount }: { discount: number }) => {
                             totalSales={totalSalesAfterCancellation}
                             totalCustomers={totalCustomers}
                             totalOrders={totalOrdersThatOrdered}
-                            
+
                         />
                         <Tabs defaultValue="all" className="mt-4">
                             <TabsList className="space-x-0 md:space-x-2 ">

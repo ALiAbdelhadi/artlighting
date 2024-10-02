@@ -35,7 +35,7 @@ export async function generateStaticParams() {
 export default async function ProductPage({ params }: { params: { lightingType: string; ProductId: string; subCategory: string } }) {
     const { lightingType, ProductId, subCategory } = params;
     console.log('Params:', params);
-    const product = await db.product.findFirst({
+    const product = await db.product.findUnique({
         where: {
             productId: ProductId,
             sectionType: subCategory,
@@ -87,7 +87,7 @@ export default async function ProductPage({ params }: { params: { lightingType: 
 export async function generateMetadata({ params }: { params: { subCategory: string, ProductId: string, lightingType: string } }): Promise<Metadata> {
     const { lightingType, ProductId, subCategory } = params;
 
-    const product = await db.product.findFirst({
+    const product = await db.product.findUnique({
         where: {
             productId: ProductId,
             sectionType: subCategory,

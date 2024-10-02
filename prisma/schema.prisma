@@ -125,7 +125,7 @@ model Product {
   electrical             String?
   powerFactor            String?
   colorTemperature       String?
-  ip                     String?
+  ip                     Int?
   energySaving           String?
   lifeTime               String?
   maxIP                  Int?

@@ -1,15 +1,20 @@
 import React from 'react'
 import { db } from '../../../../../db/index';
-import OrderPage from './OrderPage';
-
+import dynamic from 'next/dynamic';
+const OrderPage = dynamic(() => import('./OrderPage'), { ssr: false })
 const OrderIdPage = async ({ params }: { params: { orderId: string } }) => {
 
   const order = await db.order.findFirst({
     where: {
-      id: parseInt(params.orderId),
+      isCompleted : true
     },
     include: {
-      shippingAddress: true
+      shippingAddress: true,
+      product: true,
+      user: true,
+    },
+    orderBy: {
+      createdAt: "desc"
     }
   })
   if (!order) {

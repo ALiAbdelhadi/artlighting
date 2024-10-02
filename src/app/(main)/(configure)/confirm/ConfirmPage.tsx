@@ -215,7 +215,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                             <div className="flex items-center lg:justify-between">
                                                 <span>Price Per Item:</span>{" "}
                                                 <s className="ml-1.5 text-gray-500">
-                                                    <NormalPrice price={order.totalPrice} />
+                                                    <NormalPrice price={order.configPrice} />
                                                 </s>
                                             </div>
                                             <div className="flex items-center lg:justify-between">
@@ -229,7 +229,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                                 <span>Price:</span>{" "}
                                                 <span className="text-lg text-destructive font-semibold ml-1.5">
                                                     <DiscountPrice
-                                                        price={order.totalPrice}
+                                                        price={order.configPrice}
                                                         discount={order.product?.discount}
                                                         quantity={quantity}
                                                     />
