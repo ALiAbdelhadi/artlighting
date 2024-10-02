@@ -1,6 +1,7 @@
 import Container from "@/app/components/Container"
 import DiscountPrice from '@/app/helpers/DiscountPrice'
 import NormalPrice from '@/app/helpers/NormalPrice'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
@@ -11,7 +12,6 @@ import { format } from 'date-fns'
 import { Box, Calendar, MapPin, Truck } from 'lucide-react'
 import Link from "next/link"
 import React from 'react'
-import CustomersImage from "../../Customers/CustomersImage"
 import StatusDropdown from "../../StatusDropdown"
 interface OrderPageProps {
     order: Order & {
@@ -129,7 +129,10 @@ export default function OrderPage({ order }: OrderPageProps) {
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-4">
                                         <div className="flex items-center space-x-2">
-                                            <CustomersImage width={40} height={40} className="rounded-full" />
+                                            <Avatar className="h-7 w-7 mr-1.5">
+                                                <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${user.email}`} alt={user.email} />
+                                                <AvatarFallback>{user.email?.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)}</AvatarFallback>
+                                            </Avatar>
                                             <div>
                                                 <p className="font-semibold">{order.shippingAddress.fullName}</p>
                                                 <p className="text-sm text-muted-foreground">{order.shippingAddress.phoneNumber}</p>

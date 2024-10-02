@@ -1,10 +1,10 @@
-import { ReactNode } from 'react'
+import { Fragment, ReactNode } from 'react'
 
 const ContainerAuthInDesktop = ({ children }: { children: ReactNode }) => {
     return (
-        <>
-        {children}
-        </>
+        <Fragment>
+            {children}
+        </Fragment>
     )
 }
 

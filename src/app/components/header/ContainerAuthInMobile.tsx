@@ -1,10 +1,10 @@
-import { ReactNode } from 'react'
+import { Fragment, ReactNode } from 'react'
 
-const ContainerAuthInMobile = ({children} : {children:ReactNode}) => {
+const ContainerAuthInMobile = ({ children }: { children: ReactNode }) => {
     return (
-        <>
+        <Fragment>
             {children}
-        </>
+        </Fragment>
     )
 }
 

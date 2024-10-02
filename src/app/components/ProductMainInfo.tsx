@@ -276,7 +276,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                         <span className="text-destructive font-semibold"> (Available only in IP20,IP44,IP54)</span>
                     )}
                     {sectionTypes.includes("Outdoor") && (
-                        <span className="text-destructive font-semibold"> (Available only in IP20,IP44,IP54)</span>
+                        <span className="text-destructive font-semibold"> (Available only in IP65,IP68)</span>
                     )}
                 </p>
             </div>

@@ -7,7 +7,7 @@ const CustomersPageClient = dynamic(() => import('./CustomersPageClient'), { ssr
 const CustomerPage = async ({ params }: { params: { userId: string } }) => {
     const user = await db.user.findFirst({
         where: {
-            id: params.userId
+            id: params.userId 
         },
         include: {
             shippingAddress: true,
@@ -18,7 +18,8 @@ const CustomerPage = async ({ params }: { params: { userId: string } }) => {
                 },
                 include: {
                     shippingAddress: true,
-                    product: true
+                    product: true,
+                    user:true
                 },
                 orderBy: {
                     createdAt: "desc"

@@ -1,15 +1,18 @@
 "use client";
 
 import DashboardHeader from "@/app/components/DashboardHeader";
+import UserAvatar from "@/app/components/UserAvatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ShippingAddress, User } from "@prisma/client";
 import { SearchIcon } from "lucide-react";
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
+
 type UserWithShipping = User & { shippingAddress: ShippingAddress | null };
-const CustomersClient = ({ users, children }: { users: UserWithShipping[], children: ReactNode }) => {
+
+const CustomersClient = ({ users }: { users: UserWithShipping[] }) => {
     const [searchItem, setSearchItem] = useState<string>("");
     const [filteredUsers, setFilteredUsers] = useState<UserWithShipping[]>(users);
     const [loading, setLoading] = useState<boolean>(false);
@@ -34,9 +37,10 @@ const CustomersClient = ({ users, children }: { users: UserWithShipping[], child
             setLoading(false)
         }
     };
+
     return (
         <div className="flex flex-col min-h-screen pb-10">
-            <DashboardHeader Route="Customers" >
+            <DashboardHeader Route="Customers">
                 <div className="flex items-center gap-4 md:ml-auto">
                     <form className="ml-auto flex-1 sm:flex-initial">
                         <div className="relative">
@@ -62,46 +66,44 @@ const CustomersClient = ({ users, children }: { users: UserWithShipping[], child
                     </CardHeader>
                     <CardContent className="px-4 p-0">
                         <div className="overflow-x-auto custom-scrollbar">
-                            <div>
-                                <Table>
-                                    <TableHeader>
-                                        <TableRow>
-                                            <TableHead>Customer Id</TableHead>
-                                            <TableHead>Customer Name</TableHead>
-                                            <TableHead>Phone Number</TableHead>
-                                            <TableHead>Shipping address</TableHead>
-                                            <TableHead>Email</TableHead>
-                                            <TableHead>Date</TableHead>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Customer Id</TableHead>
+                                        <TableHead>Customer Name</TableHead>
+                                        <TableHead>Phone Number</TableHead>
+                                        <TableHead>Shipping address</TableHead>
+                                        <TableHead>Email</TableHead>
+                                        <TableHead>Date</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {loading && <TableRow><TableCell colSpan={8} className="text-center">Loading...</TableCell></TableRow>}
+                                    {error && <TableRow><TableCell colSpan={8} className="text-center text-red-600">{error}</TableCell></TableRow>}
+                                    {!loading && !error && filteredUsers.length === 0 && (
+                                        <TableRow><TableCell colSpan={8} className="text-center">No Orders Found</TableCell></TableRow>
+                                    )}
+                                    {!loading && !error && filteredUsers.map((user) => (
+                                        <TableRow key={user.id.slice(0, 18)}>
+                                            <TableCell>
+                                                <Link href={`/dashboard/Customers/${user.id}`}>
+                                                    {user.id.slice(0, 18)}
+                                                </Link>
+                                            </TableCell>
+                                            <TableCell className="flex items-center">
+                                                <UserAvatar email={user.email} className="mr-1.5"/>
+                                                {user.shippingAddress?.fullName}
+                                            </TableCell>
+                                            <TableCell>{user.shippingAddress?.phoneNumber}</TableCell>
+                                            <TableCell>{user.shippingAddress?.address}</TableCell>
+                                            <TableCell>{user.email}</TableCell>
+                                            <TableCell className="hidden md:table-cell">
+                                                {new Date(user.createdAt).toLocaleDateString()}
+                                            </TableCell>
                                         </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {loading && <TableRow><TableCell colSpan={8} className="text-center">Loading...</TableCell></TableRow>}
-                                        {error && <TableRow><TableCell colSpan={8} className="text-center text-red-600">{error}</TableCell></TableRow>}
-                                        {!loading && !error && filteredUsers.length === 0 && (
-                                            <TableRow><TableCell colSpan={8} className="text-center">No Orders Found</TableCell></TableRow>
-                                        )}
-                                        {!loading && !error && filteredUsers.map((user) => (
-                                            <TableRow key={user.id.slice(0, 18)}>
-                                                <TableCell>
-                                                    <Link href={`/dashboard/Customers/${user.id}`}>
-                                                        {user.id.slice(0, 18)}
-                                                    </Link>
-                                                </TableCell>
-                                                <TableCell className="flex items-center">
-                                                    {children}
-                                                    {user.shippingAddress?.fullName}
-                                                </TableCell>
-                                                <TableCell>{user.shippingAddress?.phoneNumber}</TableCell>
-                                                <TableCell>{user.shippingAddress?.address}</TableCell>
-                                                <TableCell>{user.email}</TableCell>
-                                                <TableCell className="hidden md:table-cell">
-                                                    {new Date(user.createdAt).toLocaleDateString()}
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </div>
+                                    ))}
+                                </TableBody>
+                            </Table>
                         </div>
                     </CardContent>
                 </Card>
@@ -127,15 +129,7 @@ const CustomersClient = ({ users, children }: { users: UserWithShipping[], child
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
                     background: linear-gradient(180deg, #2d3748, #1a202c);
                 }
-                img {
-                    max-width: 100%;
-                    height: auto;
-                }
-                address {
-                    word-wrap: break-word;
-                }
-                `}
-            </style>
+            `}</style>
         </div>
     );
 };

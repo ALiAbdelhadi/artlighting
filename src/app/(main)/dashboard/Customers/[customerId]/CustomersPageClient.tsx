@@ -1,22 +1,18 @@
 'use client';
-import React from 'react'
-import { User, Order, ShippingAddress, Product } from '@prisma/client'
-import { format } from 'date-fns'
-import { Edit2, Package, MapPin, CreditCard, FilePenIcon, MoveHorizontalIcon } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import CustomersImage from '../CustomersImage'
-import Container from '@/app/components/Container'
+import Container from '@/app/components/Container';
+import UserAvatar from '@/app/components/UserAvatar';
 import DiscountPrice from '@/app/helpers/DiscountPrice';
 import NormalPrice from '@/app/helpers/NormalPrice';
-import StatusDropdown from '../../StatusDropdown';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPrice } from '@/lib/utils';
+import { Order, Product, ShippingAddress, User } from '@prisma/client';
+import { format } from 'date-fns';
+import { Edit2, FilePenIcon } from 'lucide-react';
+import Link from 'next/link';
+import StatusDropdown from '../../StatusDropdown';
 
 interface UserClientProps {
     user: User & {
@@ -65,7 +61,7 @@ const CustomersPageClient = ({ user }: UserClientProps) => {
                         </CardHeader>
                         <CardContent>
                             <div className="flex items-center space-x-4 mb-4">
-                                <CustomersImage width={30} height={30} className='w-16 h-16' />
+                            <UserAvatar email={user.email} className="mr-1.5"/>
                                 <div>
                                     <h2 className="text-xl font-semibold">{user.email}</h2>
                                     <p className="text-sm text-muted-foreground">Member since {format(new Date(user.createdAt), 'MMMM yyyy')}</p>
@@ -73,7 +69,7 @@ const CustomersPageClient = ({ user }: UserClientProps) => {
                             </div>
                             <div className="space-y-2">
                                 <p><strong>Email:</strong> {user.email}</p>
-                                <p><strong>Phone:</strong> {user.phoneNumber || 'Not provided'}</p>
+                                <p><strong>Phone:</strong> {user.shippingAddress?.phoneNumber || 'Not provided'}</p>
                             </div>
                         </CardContent>
                     </Card>

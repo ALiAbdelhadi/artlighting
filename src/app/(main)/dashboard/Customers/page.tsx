@@ -2,7 +2,6 @@ import { db } from "@/db";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
 import CustomersClient from "./CustomersClient";
-import CustomersImage from "./CustomersImage";
 
 const Customers = async () => {
     const { userId } = auth();
@@ -24,9 +23,7 @@ const Customers = async () => {
     });
     return (
         <div>
-            <CustomersClient users={users} >
-                <CustomersImage width={30} height={30} className="mr-1.5"/>
-            </CustomersClient>
+            <CustomersClient users={users} />
         </div>
     );
 };
