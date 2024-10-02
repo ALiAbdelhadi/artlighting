@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 const ParamsSchema = z.object({
-  ProductId: z.string()
+    ProductId: z.string()
 })
 
 export async function GET(
