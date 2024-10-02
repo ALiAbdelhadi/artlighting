@@ -43,7 +43,7 @@ export default function ContactContent() {
                                     Sales Team
                                 </h2>
                                 <div className="space-y-2">
-                                    <div className="flex items-center gap-4">
+                                <div className="flex items-center sm:flex-row text-center sm:text-left flex-col gap-4 ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -73,7 +73,7 @@ export default function ContactContent() {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center md:flex-row flex-col gap-4">
+                                    <div className="flex items-center sm:flex-row flex-col gap-4 ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -95,7 +95,7 @@ export default function ContactContent() {
                                             +2 (011) 54466259
                                         </Link>
                                         <Link
-                                            className="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#25D366] hover:bg-[#25D366]/90 h-10 px-4 py-2 text-sm text-white"
+                                            className="flex items-center justify-center whitespace-nowrap rounded-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-[#25D366] hover:bg-[#25D366]/90 h-10 px-4 py-2 text-sm text-white"
                                             href="https://wa.me/201154466259"
                                             target="_blank"
                                             rel="noopener noreferrer"
