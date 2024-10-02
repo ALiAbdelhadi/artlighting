@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Roboto } from "next/font/google";
 import { constructMetadata } from '../lib/utils';
+import { Analytics } from "@vercel/analytics/react"
 import Providers from "./components/Providers";
 import "./globals.css";
 const roboto = Roboto({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                         <Providers>
                             {children}
+                            <Analytics />
                         </Providers>
                     </ThemeProvider>
                     <Toaster />

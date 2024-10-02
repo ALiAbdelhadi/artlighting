@@ -23,7 +23,7 @@ const page = async ({ searchParams }: CompleteProps) => {
         return notFound()
     }
     return (
-        <CompletePage discount={order.configuration?.discount || 0} Brand={order.product.Brand} />
+        <CompletePage discount={order.configuration?.discount || 0} Brand={order.product.Brand} ChandelierLightingType={order.product.ChandelierLightingType} />
     )
 }
 export const metadata = constructMetadata({title: "Order Confirmed!", description: "Please Review you order before completed"})

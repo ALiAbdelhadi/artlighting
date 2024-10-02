@@ -46,7 +46,7 @@ export default function Header() {
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger className="bg-transparent hover:bg-accent hover:text-accent-foreground">Projects</NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <div className="grid w-[800px] grid-cols-3 gap-x-2 p-4">
+                                    <div className="grid w-[800px] grid-cols-3 gap-x-2 p-4 dark:bg-[#1c1a17]" >
                                         <div className="projectCard relative overflow-hidden">
                                             <div className="figureCard relative">
                                                 <Link
@@ -168,7 +168,7 @@ export default function Header() {
                             <NavigationMenuItem>
                                 <NavigationMenuTrigger className="bg-transparent hover:bg-accent hover:text-accent-foreground">Products</NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <div className="grid w-[600px] grid-cols-3 gap-2 p-4 justify-items-center">
+                                    <div className="grid w-[700px] grid-cols-3 gap-2 p-4 justify-items-center dark:bg-[#1c1a17]">
                                         <ul className="md:space-y-4 capitalize">
                                             <h4 className="font-bold my-2 text-primary text-xl">
                                                 <Link
