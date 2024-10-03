@@ -1,12 +1,17 @@
 import { MetadataRoute } from 'next';
 
-export default function robots() : MetadataRoute.Robots {
+export default function robots(): MetadataRoute.Robots {
     return {
         rules: {
-            userAgent : '*',
+            userAgent: '*',
             allow: "/",
-            disallow : "/private/",
+            disallow: [
+                '/api/',
+                '/dashboard/',
+                '/preview/'
+            ]
         },
-        sitemap :"https://eg-artlighting.vercel.app/"
+        sitemap: 'https://eg-artlighting.vercel.app/sitemap.xml',
+        host: 'https://eg-artlighting.vercel.app'
     }
 }
