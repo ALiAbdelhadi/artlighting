@@ -130,8 +130,8 @@ export default function OrderPage({ order }: OrderPageProps) {
                                     <div className="space-y-4">
                                         <div className="flex items-center space-x-2">
                                             <Avatar className="h-7 w-7 mr-1.5">
-                                                <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${user.email}`} alt={user.email} />
-                                                <AvatarFallback>{user.email?.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)}</AvatarFallback>
+                                                <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${order.user.email}`} alt={order.user.email} />
+                                                <AvatarFallback>{order.user.email?.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)}</AvatarFallback>
                                             </Avatar>
                                             <div>
                                                 <p className="font-semibold">{order.shippingAddress.fullName}</p>
