@@ -1,12 +1,10 @@
 import { MetadataRoute } from 'next'
-import { PrismaClient } from '@prisma/client'
 import fs from 'fs/promises'
 import path from 'path'
-
-const prisma = new PrismaClient()
+import { db } from '@/db'
 
 async function fetchAllProducts() {
-    return await prisma.product.findMany({
+    return await db.product.findMany({
         select: {
             id: true,
             Brand: true,
@@ -27,7 +25,7 @@ async function fetchAllProducts() {
 }
 
 async function fetchAllCategories() {
-    return await prisma.category.findMany({
+    return await db.category.findMany({
         select: {
             id: true,
             name: true,
@@ -36,7 +34,7 @@ async function fetchAllCategories() {
 }
 
 async function fetchAllLightingTypes() {
-    return await prisma.lightingType.findMany({
+    return await db.lightingType.findMany({
         select: {
             id: true,
             name: true,
