@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import Container from '@/app/components/Container'
 
 const data = [
   { year: "2010", sales: 12 },
@@ -62,7 +63,7 @@ export default function Achievements() {
       <h2 className="text-center text-4xl md:text-5xl font-medium tracking-wide text-gray-800 dark:text-gray-100 mb-8">
         Our achievements
       </h2>
-      <div className="container mx-auto px-4">
+      <Container >
         <div className="flex justify-center items-center flex-wrap gap-8 mb-12">
           {[1, 2, 3].map((_, index) => (
             <div key={index} className="text-center">
@@ -93,7 +94,7 @@ export default function Achievements() {
           ))}
         </div>
         <SalesChart />
-      </div>
+      </Container>
     </div>
   )
 }

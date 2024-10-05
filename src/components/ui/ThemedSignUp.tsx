@@ -6,6 +6,7 @@ import { dark } from '@clerk/themes'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import "../../styles/clerk.css"
+
 export function ThemedSignUp() {
     const { theme } = useTheme()
     const [mountedComponent, setMountedComponent] = useState(false)
@@ -21,7 +22,7 @@ export function ThemedSignUp() {
     return (
         <div className='max-h-[90vh] col-span-full lg:col-span-1 overflow-auto'>
             <ScrollArea>
-                <div className='ml-6'>
+                <div>
                     <SignUp
                         appearance={{
                             baseTheme: theme === 'dark' ? dark : undefined,
@@ -57,11 +58,15 @@ export function ThemedSignUp() {
                                     color: 'hsl(var(--foreground))',
                                 },
                                 formFieldInput: {
-                                    backgroundColor: 'hsl(var(--background))',
+                                    backgroundColor: theme === 'dark' ? 'hsl(var(--primary) / 0.3)' : 'hsl(var(--primary) / 0.2)',
                                     borderColor: 'hsl(var(--input))',
                                     color: 'hsl(var(--foreground))',
                                     '&::placeholder': {
                                         color: 'hsl(var(--muted-foreground))',
+                                    },
+                                    '&:focus': {
+                                        backgroundColor: theme === 'dark' ? 'hsl(var(--primary) / 0.4)' : 'hsl(var(--primary) / 0.3)',
+                                        borderColor: 'hsl(var(--primary))',
                                     },
                                 },
                                 footerActionLink: {

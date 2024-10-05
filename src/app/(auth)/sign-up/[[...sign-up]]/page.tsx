@@ -17,7 +17,7 @@ const SignUpPage = () => {
                     Back to Home
                 </span>
             </Link>
-            <div className="w-full max-w-4xl flex shadow-2xl rounded-xl overflow-hidden">
+            <div className="w-full max-w-4xl flex xl:shadow-2xl shadow-none  rounded-xl overflow-hidden">
                 <div className="flex-1 hidden lg:block relative">
                     <Image
                         src="/NewCollection/new-collection-1.jpg"
@@ -30,7 +30,7 @@ const SignUpPage = () => {
                         <p className="text-sm">Create your account and start illuminating your space</p>
                     </div>
                 </div>
-                <div className="flex-1 bg-card text-card-foreground flex pt-6 flex-col justify-center">
+                <div className="flex-1 lg:bg-card bg-transparent text-card-foreground flex items-center pt-6 flex-col justify-center">
                     <div className="text-center">
                         <h1 className="text-3xl font-bold text-primary mb-2">Sign Up</h1>
                     </div>

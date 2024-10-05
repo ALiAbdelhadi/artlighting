@@ -12,7 +12,7 @@ const SignInPage = () => {
                     Back to Home
                 </span>
             </Link>
-            <div className="w-full max-w-4xl flex shadow-2xl rounded-xl overflow-hidden">
+            <div className="w-full max-w-4xl flex xl:shadow-2xl shadow-none rounded-xl overflow-hidden">
                 <div className="flex-1 hidden lg:block relative">
                     <Image
                         src="/NewCollection/new-collection-2.jpg"
@@ -26,7 +26,7 @@ const SignInPage = () => {
                         <p className="text-sm">Illuminate your space with our exquisite collection</p>
                     </div>
                 </div>
-                <div className="flex-1 bg-card text-card-foreground p-8 flex flex-col justify-center">
+                <div className="flex-1 lg:bg-card bg-transparent text-card-foreground sm:p-8 p-4 flex items-center sm:items-start flex-col justify-center">
                     <ThemedSignIn />
                 </div>
             </div>

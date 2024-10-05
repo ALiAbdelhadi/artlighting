@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { ScrollArea } from "@/components/ui/scroll-area";
 import "../../styles/clerk.css"
+
 export function ThemedSignIn() {
     const { theme } = useTheme()
     const [mountedComponent, setMountedComponent] = useState(false)
@@ -53,11 +54,15 @@ export function ThemedSignIn() {
                                 color: 'hsl(var(--foreground))',
                             },
                             formFieldInput: {
-                                backgroundColor: 'hsl(var(--background))',
+                                backgroundColor: theme === 'dark' ? 'hsl(var(--primary) / 0.3)' : 'hsl(var(--primary) / 0.2)',
                                 borderColor: 'hsl(var(--input))',
                                 color: 'hsl(var(--foreground))',
                                 '&::placeholder': {
                                     color: 'hsl(var(--muted-foreground))',
+                                },
+                                '&:focus': {
+                                    backgroundColor: theme === 'dark' ? 'hsl(var(--primary) / 0.4)' : 'hsl(var(--primary) / 0.3)',
+                                    borderColor: 'hsl(var(--primary))',
                                 },
                             },
                             footerActionLink: {
