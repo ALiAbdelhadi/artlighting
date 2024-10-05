@@ -5,7 +5,6 @@ import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useAuth } from "@clerk/nextjs";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from 'react';
@@ -53,6 +52,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         title: "Sign in required",
         description: "Please sign in to add items to your cart.",
         variant: "destructive",
+        className: "rounded-lg"
       })
       return
     }
@@ -61,14 +61,22 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       try {
         await addToCart(product.productId)
         toast({
-          title: "Added to cart",
-          description: `${product.productName} has been added to your cart.`,
+          title: (
+            <span className='text-base text-primary'>Added to cart</span>
+          ),
+          description: (
+            <span className='text-sm text-muted-foreground'>
+              {product.productName} has been added to your cart.
+            </span>
+          ),
+          className: "rounded-lg"
         })
       } catch (error) {
         toast({
           title: "Error",
           description: "Failed to add item to cart. Please try again.",
           variant: "destructive",
+                    className: "rounded-lg"
         })
       }
     })
@@ -167,8 +175,8 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </h2>
           <p className={`${styles.textParagraph} text-muted-foreground  font-medium capitalize`}>
             {`${product.Brand} spotlight with Maximum wattage of ${product.productName
-                ? getProductWattage(product.productName)
-                : "Not Available"
+              ? getProductWattage(product.productName)
+              : "Not Available"
               }...`}
           </p>
           <div>

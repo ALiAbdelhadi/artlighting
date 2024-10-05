@@ -109,6 +109,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                 description:
                     "There was an error on our order. please refresh the page and try again.",
                 variant: "destructive",
+                className: "rounded-lg"
             });
         },
         onSuccess: () => {
@@ -175,8 +176,15 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
         } else {
             await addToCart(ProductId);
             toast({
-                title: "Product Add To Card",
-                description: `${productName} has been added to your card`,
+                title: (
+                    <span className="text-primary text-base">
+                        Product Add To Card
+                    </span>
+                ),
+                description: (
+                    <span className="text-sm text-muted-foreground">{productName} has been added to your card</span>
+                ),
+                className: "rounded-lg"
             });
         }
     };

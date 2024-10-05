@@ -113,6 +113,8 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                     description:
                         "There was an issue completing your order. Please try again or contact support.",
                     variant: "destructive",
+                    action: <ToastAction altText="try again">try again</ToastAction>,
+                    className: "rounded-lg"
                 });
             }
         },
@@ -124,6 +126,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                     "There was an error completing your order. Please try again.",
                 variant: "destructive",
                 action: <ToastAction altText="try again">try again</ToastAction>,
+                className: "rounded-lg"
             });
         },
     });
@@ -156,7 +159,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
     function isProductChandLamp(value: string): value is ProductChandLamp {
         return value === 'lamp9w' || value === 'lamp12w';
     }
-    const isCairo = order.shippingAddress.city.toLowerCase().replace(/\s/g, '').match(/cairo|القاهرة/) !== null ;
+    const isCairo = order.shippingAddress.city.toLowerCase().replace(/\s/g, '').match(/cairo|القاهرة/) !== null;
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}

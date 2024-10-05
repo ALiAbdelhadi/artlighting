@@ -34,7 +34,7 @@ const fetchProduct = async (productId: string) => {
 };
 
 const PreviewPage: React.FC<PreviewPageProps> = ({
-    configuration :initialConfiguration ,
+    configuration: initialConfiguration,
     discount,
 }) => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
@@ -86,6 +86,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                 description:
                     "There was an error creating your order. Please try again.",
                 variant: "destructive",
+                className: "rounded-lg"
             });
             console.error("Error creating order:", error);
         },
@@ -100,7 +101,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                 }
             }
         };
-    
+
         fetchLatestConfiguration();
     }, [ProductId]);
     const handleConfirm = async () => {

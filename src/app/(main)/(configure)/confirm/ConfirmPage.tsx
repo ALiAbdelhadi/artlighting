@@ -97,6 +97,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                         (error as Error).message ||
                         "You are not authorized to view this order.",
                     variant: "destructive",
+                    className: "rounded-lg"
                 });
                 router.push("/");
             }
@@ -142,9 +143,17 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
             }
             const data = await response.json();
             toast({
-                title: "Your order has been confirmed",
-                description:
-                    "Please check shipping details and product details to continue ordering the product.",
+                title: (
+                    <span className="text-primary text-base">
+                        Your order has been confirmed
+                    </span>
+                ),
+                description: (
+                    <span className="text-sm text-muted-foreground">
+                        Please check shipping details and product details to continue ordering the product.
+                    </span>
+                ),
+                className: "rounded-lg"
             });
             router.push(`/complete/?orderId=${data.id}`);
         } catch (error) {
@@ -154,6 +163,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                     (error as Error).message ||
                     "There was an error confirming your order. Please try again.",
                 variant: "destructive",
+                className: "rounded-lg"
             });
         } finally {
             setIsSubmitting(false);

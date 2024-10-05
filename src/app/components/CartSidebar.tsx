@@ -60,8 +60,13 @@ export function CartSidebar() {
             if (response.ok) {
                 setCartItems(prevItems => prevItems.filter(item => item.id !== itemId))
                 toast({
-                    title: "Item removed",
-                    description: "The item has been removed from your cart.",
+                    title: (
+                        <span className="text-primary text-base">Item removed</span>
+                    ),
+                    description: (
+                        <span className="text-sm">The item has been removed from your cart.</span>
+                    ),
+                    className: "rounded-lg"
                 })
             } else {
                 throw new Error('Failed to remove item')
@@ -72,6 +77,7 @@ export function CartSidebar() {
                 title: "Error",
                 description: "Failed to remove item. Please try again.",
                 variant: "destructive",
+                className: "rounded-lg"
             })
         }
     }
