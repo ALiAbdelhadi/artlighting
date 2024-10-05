@@ -1915,7 +1915,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": 0,
+                        "Maximum wattage": 27,
                         "Main Material": "Aluminum Shade + Glass",
                         "Finished": "Brushed Nickel",
                         "Color Temperature": "3000K / 4000K / 6500K",
@@ -1943,7 +1943,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": 0,
+                        "Maximum wattage": 27,
                         "Main Material": "Aluminum Shade + Glass",
                         "Finished": "Brushed Nickel",
                         "Color Temperature": "3000K / 4000K / 6500K",
@@ -2039,10 +2039,11 @@
                      },
                      "spotlightType": "MC15E",
                      "Brand": "MisterLed",
-                     "ChandelierLightingType": "LED",
+                     "ChandelierLightingType": "lamp",
                      "price": 7099,
                      "sectionType": "Chandelier",
                      "quantity": 10,
+                     "Hnumber": 1,
                      "discount": 0.20
                   }
                }
@@ -2506,7 +2507,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": "",
+                        "Maximum wattage": 50,
                         "Main Material": "Aluminum Shade + Glass",
                         "Finished": "Brushed Nickel",
                         "Color Temperature": "3000K / 4000K / 6500K",
@@ -2530,7 +2531,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": "",
+                        "Maximum wattage": 50,
                         "Main Material": "Aluminum Shade + Glass",
                         "Finished": "Brushed Nickel",
                         "Color Temperature": "3000K / 4000K / 6500K",
@@ -2554,7 +2555,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": "",
+                        "Maximum wattage": 50,
                         "Main Material": "Aluminum Shade + Glass",
                         "Finished": "Brushed Nickel",
                         "Color Temperature": "3000K / 4000K / 6500K",
@@ -2578,7 +2579,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "AC 85-265v ~ 50/60 Hz",
-                        "Maximum wattage": "",
+                        "Maximum wattage": 8.5,
                         "Main Material": "Aluminum Shade + Glass",
                         "Finished": "Brushed Nickel",
                         "Color Temperature": "3000K / 4000K / 6500K",
