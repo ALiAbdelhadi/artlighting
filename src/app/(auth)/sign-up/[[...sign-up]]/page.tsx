@@ -1,11 +1,11 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import Link from 'next/link'
 import { Suspense } from 'react'
 
 const DynamicThemedSignUp = dynamic(() => import('@/components/ui/ThemedSignUp').then(mod => mod.ThemedSignUp), {
-  ssr: false,
+    ssr: false,
 })
 
 const SignUpPage = () => {
@@ -13,7 +13,7 @@ const SignUpPage = () => {
         <main className="flex items-center justify-center bg-gradient-to-br from-primary/20 via-background to-secondary/20 py-28">
             <Link href="/" className='absolute top-4 left-4 text-foreground hover:text-primary transition-colors'>
                 <span className='flex items-center'>
-                    <ArrowLeft className='mr-2 w-5 h-5'/>
+                    <ArrowLeft className='mr-2 w-5 h-5' />
                     Back to Home
                 </span>
             </Link>
