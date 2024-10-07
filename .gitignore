@@ -29,6 +29,7 @@ yarn-error.log*
 .env*.local
 .env
 .env.local
+.env.sentry-build-plugin
 # vercel
 .vercel
 
@@ -37,3 +38,5 @@ yarn-error.log*
 next-env.d.ts
 # ignore json files contains products and project info
 json\productDetails.json
+# Sentry Config File
+.env.sentry-build-plugin
