@@ -9,10 +9,10 @@ export default function JetraArriving() {
             <div className="container px-4 md:px-6 mx-auto max-w-6xl">
                 <div className="flex flex-col items-center space-y-4 text-center">
                     <div className="space-y-2">
-                        <h2 className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl text-gray-900">
+                        <h2 className="text-3xl font-light tracking-tight sm:text-4xl md:text-5xl text-primary">
                             Introducing Jetra
                         </h2>
-                        <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                        <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                             A new category designed to enhance your experience
                         </p>
                     </div>

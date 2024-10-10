@@ -107,6 +107,11 @@
     --box-shadow-box: rgba(156, 165, 175, 0.5) 0px 12px 30px;
 }
 
+.widget__actor {
+    background-color: var(--primary) !important;
+    color: var(--muted-foreground) !important;
+}
+
 html {
     line-height: 1.15;
     padding: 0;
