@@ -2,7 +2,9 @@
 
 import Container from "@/app/components/Container"
 import { Card, CardContent } from "@/components/ui/card"
+import { ArrowRight } from "lucide-react"
 import Image from 'next/image'
+import Link from "next/link"
 import { useEffect, useState } from 'react'
 
 interface EventProps {
@@ -60,6 +62,10 @@ export default function EventOfTheYear({ targetDate, eventName, eventDescription
                                             <div className="text-sm md:text-base font-medium text-muted-foreground capitalize">{unit}</div>
                                         </div>
                                     ))}
+                                </div>
+                                <div className="mt-5 text-primary text-lg flex items-center">
+                                    <Link href="Blog/Ramdan">Explore More About Ramadan Program</Link>
+                                    <ArrowRight className="h-[18px] w-[18px] ml-1.5 inline" />
                                 </div>
                             </div>
                         </div>

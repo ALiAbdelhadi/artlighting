@@ -24,7 +24,7 @@ export default function ContactContent() {
             <Breadcrumb />
             <section className="w-full px-4 md:px-6 py-12 md:py-16 lg:py-20 bg-background text-foreground">
                 <div className="container mx-auto max-w-6xl space-y-12 md:space-y-16 lg:space-y-20">
-                    <h1 className="text-4xl md:text-5xl font-bold  text-primary">
+                    <h1 className="text-4xl md:text-5xl font-bold text-primary">
                         Contact Us
                     </h1>
                     <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16">

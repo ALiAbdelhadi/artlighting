@@ -22,7 +22,7 @@ export default function FAQs() {
             variants={variants}
         >
             <Breadcrumb />
-            <div className="w-full max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16">
+            <div className="w-full max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16 lg:py-20 bg-background text-foreground">
                 <div className="grid gap-12">
                     <div>
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
@@ -102,7 +102,7 @@ export default function FAQs() {
                                         We stand behind the quality of our products and want you to
                                         be completely satisfied with your purchase. If for any
                                         reason you&apos;re not happy with your order, you can return
-                                        it within 30 days for a full refund. We&apos;ll even cover
+                                        it within 14 days for a full refund. We&apos;ll even cover
                                         the cost of return shipping, so you can shop with
                                         confidence.
                                     </p>
@@ -162,10 +162,10 @@ export default function FAQs() {
                                         assist you with any questions or concerns you may have. You
                                         can reach us by phone at{" "}
                                         <Link
-                                            href="tel:01102131731"
+                                            href="tel:01154466259"
                                             className="font-medium hover:text-[#ff8800] transition-colors"
                                         >
-                                            +2 (011) 02131731
+                                            +2 (011) 54466259
                                         </Link>
                                         , or by email at
                                         <Link
@@ -177,7 +177,7 @@ export default function FAQs() {
                                             {" "}
                                             artlightingofficial@gamil.com{" "}
                                         </Link>
-                                        We&apos;re available Monday through Friday, 9am to 5pm, and
+                                        We&apos;re available Saturday - Thursday, 9.30am to 5.30pm, and
                                         we&apos;ll do our best to respond to your inquiry as quickly
                                         as possible.
                                     </p>
@@ -192,7 +192,7 @@ export default function FAQs() {
                                         What is your company&apos;s mission and values?
                                     </h3>
                                     <p className="mt-2 text-muted-foreground ">
-                                        At Art Lighting Co., our mission is to provide high-quality,
+                                        At Art Lighting, our mission is to provide high-quality,
                                         energy-efficient lighting solutions that enhance the beauty
                                         and functionality of any space. We&apos;re passionate about
                                         design, innovation, and sustainability, and we&apos;re
@@ -231,10 +231,10 @@ export default function FAQs() {
                                         have any questions, comments, or feedback, please don&apos;t
                                         hesitate to reach out. You can contact us by phone at{" "}
                                         <Link
-                                            href="tel:01102131731"
+                                            href="tel:01154466259"
                                             className="font-medium hover:text-[#ff8800] transition-colors"
                                         >
-                                            +2 (011) 02131731
+                                            +2 (011) 54466259
                                         </Link>
                                         , or by email at
                                         <Link
