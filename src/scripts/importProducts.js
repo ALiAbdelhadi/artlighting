@@ -37,7 +37,7 @@ function determineProductIp(productData) {
 }
 
 async function main() {
-    const data = JSON.parse(readFileSync("json/productDetails.json", "utf8"));
+    const data = JSON.parse(readFileSync("data/productDetails.json", "utf8"));
     for (const brand of Object.keys(data.categories)) {
         for (const category of Object.keys(data.categories[brand])) {
             for (const lightingType of Object.keys(data.categories[brand][category])) {

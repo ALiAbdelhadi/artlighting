@@ -4,7 +4,7 @@ import ProjectExample from "@/app/components/ProjectExample";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
-import projectsData from "../../../../../json/project.json";
+import projectsData from "../../../../../data/project.json";
 interface ProjectProps {
     ProjectId: string;
     ProjectName: string;
