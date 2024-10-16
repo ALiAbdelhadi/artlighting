@@ -20,9 +20,9 @@ export default function Footer() {
                             ].map((item) => (
                                 <li key={item} className="hover:text-primary transition-colors">
                                     <Link
-                                        href={`/category/Balcom/Indoor/${item.toLowerCase()}`}
+                                        href={`/category/Balcom/Indoor/${item}`}
                                     >
-                                        {item}
+                                        {item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()}
                                     </Link>
                                 </li>
                             ))}
