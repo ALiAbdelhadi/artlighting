@@ -451,7 +451,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                         </Card>
                         <Card className="overflow-hidden">
                             <CardHeader>
-                                <CardTitle>Why Choose Our Products?</CardTitle>
+                                <CardTitle className="text-lg sm:text-xl">Why Choose Our Products?</CardTitle>
                             </CardHeader>
                             <CardContent className="p-0">
                                 <div className="overflow-x-auto custom-scrollbar">
