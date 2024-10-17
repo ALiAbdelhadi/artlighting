@@ -420,7 +420,6 @@ export default function Header() {
                     <div className="flex">
                         <ContainerAuthInDesktop>
                             <AuthInDesktop />
-                            <CartSidebar />
                         </ContainerAuthInDesktop>
                     </div>
                 </nav>
