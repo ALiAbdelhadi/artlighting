@@ -130,7 +130,7 @@ const Projects = () => {
                                     "bg-accent text-accent-foreground dark:bg-accent dark:text-accent-foreground": isClicked
                                 }
                             )}
-                            href="/category"
+                            href="/All-Projects"
                             onClick={HandleClickedButtons}
                         >
                             Explore All Projects
