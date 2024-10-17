@@ -306,13 +306,13 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                     </div>
                                 </CardContent>
                             </Card>
-                            <div className="flex items-center justify-end py-5">
+                            {/* <div className="flex items-center justify-end py-5">
                                 <Button
                                     onClick={handleAddMoreProducts}
                                 >
                                     Add More Products
                                 </Button>
-                            </div>
+                            </div> */}
                             <Card className="overflow-hidden">
                                 <CardHeader>
                                     <CardTitle className="md:text-xl sm:text-lg text-base -mb-3 text-card-foreground">Shipping Information : </CardTitle>
