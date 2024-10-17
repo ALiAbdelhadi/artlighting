@@ -27,9 +27,6 @@ export default async function AuthInMobile() {
                             </Button>
                         </Link>
                     ) : null}
-                    <div className="order-1">
-                        
-                    </div>
                 </Fragment>
             ) : (
                 <Fragment>

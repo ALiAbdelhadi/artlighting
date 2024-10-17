@@ -101,7 +101,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                     <div className="pt-6 pb-12 px-0">
                         <div className='max-w-2xl'>
                             <p className='text-base font-medium text-primary'>Thank you!</p>
-                            <h1 className='mt-2 text-4xl font-bold tracking-tight sm:text-5xl'>
+                            <h1 className='mt-2 text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight lg:text-5xl'>
                                 Your product is on the way!
                             </h1>
                             <p className='mb-6 text-lg text-muted-foreground'>

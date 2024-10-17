@@ -173,7 +173,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
             className="py-8"
         >
             <Container>
-                {order && <CurrentOrderHeader order={order} />}
+                {/* {order && <CurrentOrderHeader order={order} />} */}
                 <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
                     <div className="lg:col-span-2">
                         <div className="grid gap-8">

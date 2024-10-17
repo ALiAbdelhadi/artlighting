@@ -192,7 +192,6 @@ const Dashboard = ({ discount }: { discount: number }) => {
                             totalSales={totalSalesAfterCancellation}
                             totalCustomers={totalCustomers}
                             totalOrders={totalOrdersThatOrdered}
-
                         />
                         <Tabs defaultValue="all" className="mt-4">
                             <TabsList className="space-x-0 md:space-x-2 ">
@@ -225,7 +224,7 @@ const Dashboard = ({ discount }: { discount: number }) => {
                                     Processing shipment
                                 </TabsTrigger>
                                 <TabsTrigger
-                                    className="text-[10px] md:text-sm"
+                                    className="text-[10px] md:text-sm text-wrap"
                                     value="cancelled"
                                     onClick={() => setFilter("cancelled")}
                                 >
@@ -235,7 +234,7 @@ const Dashboard = ({ discount }: { discount: number }) => {
                         </Tabs>
                         <section className="pt-5 space-y-6">
                             <Card className="shadow-lg">
-                                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                <CardHeader className="flex md:flex-row flex-col items-center justify-between space-y-0 pb-2">
                                     <CardTitle className="text-lg sm:text-xl font-semibold">
                                         Recent Orders
                                     </CardTitle>

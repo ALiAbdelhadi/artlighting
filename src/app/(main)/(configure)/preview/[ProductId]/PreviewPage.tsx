@@ -339,7 +339,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                     isLoading={isPending}
                                     disabled={isPending || !isLoaded}
                                     loadingText="Confirming your order"
-                                    className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6 bg-primary text-primary-foreground md:text-lg text-base"
+                                    className="h-[52px] px-10 bg-primary text-primary-foreground text-lg"
                                 >
                                     Confirm your order
                                     <ArrowRight className="h-[18px] w-[18px] ml-1.5 inline" />

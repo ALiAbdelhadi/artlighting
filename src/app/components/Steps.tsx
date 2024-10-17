@@ -46,7 +46,7 @@ const Steps = () => {
     };
 
     return (
-        <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-[#1c1a17] dark:to-[#1d1d1d] rounded-lg shadow-md px-4 sm:px-6 py-8 my-8">
+        <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-[#1c1a17] dark:to-[#1d1d1d] rounded-lg shadow-md px-4 sm:px-6 pb-8 pt-10 mb-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
                 {STEPS.map((step, i) => {
                     const currentStepIndex = getCurrentStepIndex();

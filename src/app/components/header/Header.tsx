@@ -23,6 +23,7 @@ import AuthInMobile from "./AuthInMobile";
 import ContainerAuthInDesktop from "./ContainerAuthInDesktop";
 import ContainerAuthInMobile from "./ContainerAuthInMobile";
 import { UserButton } from "@clerk/nextjs";
+import { CartSidebar } from "../CartSidebar";
 
 export default function Header() {
     return (
@@ -419,6 +420,7 @@ export default function Header() {
                     <div className="flex">
                         <ContainerAuthInDesktop>
                             <AuthInDesktop />
+                            <CartSidebar />
                         </ContainerAuthInDesktop>
                     </div>
                 </nav>
@@ -478,12 +480,7 @@ export default function Header() {
                                 <ContainerAuthInMobile>
                                     <AuthInMobile />
                                 </ContainerAuthInMobile>
-                                <Button variant="outline" size="icon" className="relative">
-                                    <ShoppingCartIcon className="h-5 w-5" />
-                                    <span className="absolute -top-2 -right-2 inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-medium text-primary-foreground">
-                                        0
-                                    </span>
-                                </Button>
+                                <CartSidebar />
                             </nav>
                         </SheetContent>
                     </Sheet>
