@@ -37,5 +37,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 # ignore json files contains products and project info
+data\productDetails.json
 # Sentry Config File
 .env.sentry-build-plugin
