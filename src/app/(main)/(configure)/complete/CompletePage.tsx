@@ -1,5 +1,6 @@
 "use client";
 import Container from "@/app/components/Container";
+import CurrentOrderHeader from "@/app/components/CurrentOrderHeader";
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { useToast } from "@/components/hooks/use-toast";
@@ -136,7 +137,6 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                 try {
                     const response = await fetch(`/api/orders/${orderId}`);
                     const orderData = await response.json();
-
                     if (orderData.isCompleted) {
                         // If the order is already completed, redirect to the product page
                         router.push(`/category/${orderData.product.Brand}/${orderData.product.sectionType}/${orderData.product.spotlightType}/${orderData.product.productId}`);
@@ -151,7 +151,12 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
     }, [orderId, router]);
     if (isLoading) return <div>Loading order details...</div>;
     if (error) return <div>Error loading order details</div>;
-    if (!order) return <div>No order found</div>;
+    if (!order) return <div>No order found</div>
+    const handleAddMoreProducts = () => {
+        if (order) {
+            localStorage.setItem("currentOrderId", order.id.toString())
+        } router.push(`/category?orderingmoreproducts?orderId${order.id}`)
+    }
     const PRODUCT_LAMP_LABEL: Record<ProductChandLamp, string> = {
         lamp9w: "Lamp 9w",
         lamp12w: "Lamp 12"
@@ -168,6 +173,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
             className="py-8"
         >
             <Container>
+                {order && <CurrentOrderHeader order={order} />}
                 <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
                     <div className="lg:col-span-2">
                         <div className="grid gap-8">
@@ -300,6 +306,13 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                     </div>
                                 </CardContent>
                             </Card>
+                            <div className="flex items-center justify-end py-5">
+                                <Button
+                                    onClick={handleAddMoreProducts}
+                                >
+                                    Add More Products
+                                </Button>
+                            </div>
                             <Card className="overflow-hidden">
                                 <CardHeader>
                                     <CardTitle className="md:text-xl sm:text-lg text-base -mb-3 text-card-foreground">Shipping Information : </CardTitle>

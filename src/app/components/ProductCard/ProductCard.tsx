@@ -23,6 +23,12 @@ interface Product {
   spotlightType: string;
   discount: number;
   ProductId: string
+  ChandelierLightingType: string
+  hNumber: number
+  maximumWattage: string
+  lampBase: string
+  mainMaterial: string
+  beamAngle: string
 }
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
@@ -76,12 +82,22 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           title: "Error",
           description: "Failed to add item to cart. Please try again.",
           variant: "destructive",
-                    className: "rounded-lg"
+          className: "rounded-lg"
         })
       }
     })
   }
-
+  function createProductDescription() {
+    if (product.Brand === "MisterLed" && product.ChandelierLightingType === "lamp") {
+      return `${product.mainMaterial} LED chandelier with with ${product.lampBase} base & ${product.hNumber * 12}W. Adjustable color temperature for versatile lighting.`;
+    } else if (product.Brand === "Balcom" && product.sectionType === "Indoor") {
+      return `Sleek ${product.mainMaterial} LED spotlight for indoor use. ${product.beamAngle} beam angle with adjustable color temperature.`;
+    } else if (product.Brand === "Balcom" && product.sectionType === "Outdoor") {
+      return `Durable ${product.spotlightType} for outdoor spaces. Bright, energy-efficient LEDs with weatherproof design.`;
+    } else if (product.Brand === "MisterLed" && product.ChandelierLightingType === "LED") {
+      return `Elegant ${product.mainMaterial} LED chandelier with wattage of ${product.maximumWattage} . Brushed nickel finish for a modern look.`;
+    }
+  }
   return (
     <div className={`${styles.productItem} select-none `}>
       <div className="absolute top-[5%] left-[0] z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0] bg-[#676769] dark:bg-[#dad4d4]">
@@ -174,10 +190,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             {product.productId || product.ProductId}
           </h2>
           <p className={`${styles.textParagraph} text-muted-foreground  font-medium capitalize`}>
-            {`${product.Brand} spotlight with Maximum wattage of ${product.productName
-              ? getProductWattage(product.productName)
-              : "Not Available"
-              }...`}
+            {createProductDescription()}
           </p>
           <div>
             <div className="font-medium text-lg mt-[5] mx-[0] mb-[0] ">

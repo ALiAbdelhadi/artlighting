@@ -2,11 +2,27 @@
 
 import Breadcrumb from '@/app/components/Breadcrumb/Breadcrumb';
 import Container from '@/app/components/Container';
+import { Button } from '@/components/ui/button';
 import { constructMetadata } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 const CategoryContent = () => {
+    const [currentOrderId, setCurrentOrderId] = useState<string | null>(null);
+    const router = useRouter();
+    useEffect(() => {
+        const orderId = localStorage.getItem('currentOrderId');
+        if (orderId) {
+            setCurrentOrderId(orderId);
+        }
+    }, []);
+    const handleContinueOrder = () => {
+        if (currentOrderId) {
+            router.push(`/complete?orderId=${currentOrderId}`);
+        }
+    };
     const variants = {
         hidden: { opacity: 0, y: 15 },
         visible: {
@@ -28,6 +44,13 @@ const CategoryContent = () => {
             <section className="Indoor-lighting py-11 md:py-15 lg:py-19">
                 <Container>
                     <h1>Category</h1>
+                    {currentOrderId && (
+                        <div className="mb-4">
+                            <Button onClick={handleContinueOrder}>
+                                Continue with Current Order
+                            </Button>
+                        </div>
+                    )}
                     <div
                         className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
                         <div className="text-center ">
@@ -57,7 +80,7 @@ const CategoryContent = () => {
 }
 export const metadata = constructMetadata({
     title: "Explore All lighting Brands that give a solution of every lighting situation (Balcom | Mister Led | Jetra  )",
-        description: "Elevate your space with Art Lighting. Our curated collection of lighting solutions caters to every style and need. Whether you're looking to create a cozy ambiance or illuminate a large area, we have the perfect lighting fixture for you. Shop now and discover the difference quality lighting can make."
+    description: "Elevate your space with Art Lighting. Our curated collection of lighting solutions caters to every style and need. Whether you're looking to create a cozy ambiance or illuminate a large area, we have the perfect lighting fixture for you. Shop now and discover the difference quality lighting can make."
 })
 
 export default CategoryContent;

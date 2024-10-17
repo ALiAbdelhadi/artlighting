@@ -18,13 +18,13 @@ import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Minus, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { updateProductIP } from "../(main)/actions/productIP";
 import DiscountPrice from "../helpers/DiscountPrice";
 import NormalPrice from "../helpers/NormalPrice";
 import AddToCardIcon from "./AddToCardIcon";
 import ProductChandLampButtons from "./ProductChandLampButtons";
 import ProductColorTempStatus from "./ProductColorTempButtons";
 import ProductIPButtons from "./ProductIPButtons";
-import { updateProductIP } from "../(main)/actions/productIP";
 
 type ProductDetailsProps = {
     productName: string;
@@ -81,6 +81,14 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
         useState<ProductChandLamp>(
             (order?.productChandLamp as ProductChandLamp) || ProductChandLamp.lamp9w
         );
+    const [currentOrderId, setCurrentOrderId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const orderId = localStorage.getItem('currentOrderId');
+        if (orderId) {
+            setCurrentOrderId(orderId);
+        }
+    }, []);
     const { toast } = useToast();
     const router = useRouter();
     useEffect(() => {
@@ -165,6 +173,42 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
             totalPrice
         });
         setIsClicked(true);
+    };
+    const handleAddToOrder = async () => {
+        if (currentOrderId) {
+            try {
+                const response = await fetch('/api/AddMoreProducts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        orderId: currentOrderId,
+                        productId: ProductId,
+                        quantity: currentQuantity,
+                        configPrice: totalPrice,
+                        configId: configId,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to add product to order');
+                }
+
+                const updatedOrder = await response.json();
+                router.push(`/complete?orderId=${updatedOrder.id}`);
+            } catch (error) {
+                console.error('Error adding product to order:', error);
+                toast({
+                    title: "Error",
+                    description: "Failed to add product to order. Please try again.",
+                    variant: "destructive",
+                });
+            }
+        } else {
+            // Proceed with normal order creation
+            handleClick();
+        }
     };
     const handleColorTempChange = (newColorTemp: ProductColorTemp) => {
         setSelectedColorTemp(newColorTemp);
@@ -325,7 +369,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                 </div>
                 <div className="flex items-center justify-center gap-4 mt-4 max-w-full">
                     <button
-                        onClick={handleClick}
+                        onClick={handleAddToOrder}
                         className={cn(
                             "border-gray-950 dark:border-gray-50 transition-colors duration-300 bg-gray-50 dark:bg-transparent border-[1.5px] font-medium md:px-4 md:py-3 px-3 py-3 md:text-lg text-sm w-full rounded",
                             {
@@ -337,7 +381,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                             }
                         )}
                     >
-                        Order Now
+                        {currentOrderId ? 'Add to Current Order' : 'Order Now'}
                     </button>
                 </div>
             </div>

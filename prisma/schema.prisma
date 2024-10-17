@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Configuration {
-  id                String     @id @default(cuid())
+  id                String      @id @default(cuid())
   ProductId         String
   configPrice       Float
   priceIncrease     Float
@@ -18,9 +18,10 @@ model Configuration {
   lampPriceIncrease Float?
   totalPrice        Float
   productIp         ProductIP?
-  updatedAt DateTime @updatedAt
-  orders            Order[]    @relation("ConfigurationToOrder")
-  users             User[]     @relation("ConfigurationToUser")
+  updatedAt         DateTime    @updatedAt
+  orders            Order[]     @relation("ConfigurationToOrder")
+  users             User[]      @relation("ConfigurationToUser")
+  orderItems        OrderItem[]
 }
 
 model User {
@@ -39,6 +40,18 @@ model User {
   cart              Cart?
 }
 
+model OrderItem {
+  id              String        @id @default(cuid())
+  orderId         Int
+  productId       String
+  quantity        Int
+  configPrice     Float
+  configurationId String
+  order           Order         @relation(fields: [orderId], references: [id])
+  product         Product       @relation(fields: [productId], references: [id])
+  configuration   Configuration @relation(fields: [configurationId], references: [id])
+}
+
 model Order {
   id                     Int              @id @default(autoincrement())
   userId                 String
@@ -48,6 +61,7 @@ model Order {
   productColorTemp       String
   productIp              String
   productChandLamp       String
+  orderItems             OrderItem[]
   quantity               Int
   isCompleted            Boolean          @default(false)
   status                 OrderStatus      @default(awaiting_shipment)
@@ -139,6 +153,7 @@ model Product {
   Brand                  String
   cartItems              CartItem[]
   orders                 Order[]
+  orderItems             OrderItem[]
   users                  User[]
   discount               Float
   finish                 String?
