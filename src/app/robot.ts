@@ -11,7 +11,6 @@ export default function robots(): MetadataRoute.Robots {
                 '/preview/'
             ]
         },
-        sitemap: 'https://eg-artlighting.vercel.app/sitemap.xml',
         host: 'https://eg-artlighting.vercel.app'
     }
 }
