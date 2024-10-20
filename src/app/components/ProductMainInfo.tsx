@@ -25,6 +25,17 @@ import ProductChandLampButtons from "./ProductChandLampButtons";
 import ProductColorTempStatus from "./ProductColorTempButtons";
 import ProductIPButtons from "./ProductIPButtons";
 import { updateProductIP } from "../(main)/actions/productIP";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter,
+    DialogClose
+} from "@/components/ui/dialog";
+import Link from "next/link";
 
 type ProductDetailsProps = {
     productName: string;
@@ -65,9 +76,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     ip,
     maxIP,
     sectionTypes
-
 }) => {
-    const [showPopup, setShowPopup] = useState(false);
+    const [showDialog, setShowDialog] = useState(false);
     const [currentQuantity, setCurrentQuantity] = useState(quantity);
     const [isClicked, setIsClicked] = useState(false);
     const [selectedColorTemp, setSelectedColorTemp] = useState<ProductColorTemp>(
@@ -171,17 +181,17 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
 
     const handleAddToBag = async () => {
         if (currentQuantity >= 10) {
-            setShowPopup(true);
+            setShowDialog(true);
         } else {
             await addToCart(ProductId);
             toast({
                 title: (
                     <span className="text-primary text-base">
-                        Product Add To Card
+                        Product Added To Cart
                     </span>
                 ),
                 description: (
-                    <span className="text-sm text-muted-foreground">{productName} has been added to your card</span>
+                    <span className="text-sm text-muted-foreground">{productName} has been added to your cart</span>
                 ),
                 className: "rounded-lg"
             });
@@ -312,7 +322,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                         onClick={handleAddToBag}
                         className="bg-primary text-white font-medium md:px-4 md:py-3 px-3 py-3 md:text-lg text-sm w-full rounded uppercase flex items-center justify-center"
                     >
-                        Add to Card
+                        Add to Cart
                         <AddToCardIcon
                             Fill="#fff"
                             width={23}
@@ -355,20 +365,30 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                     {specificationsTable["Color Temperature"]}.
                 </p>
             </div>
-            {showPopup && (
-                <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 shadow-lg z-[100000000]">
-                    <p>
-                        We noticed that you ordered 10 or more of this product. Please call
-                        a sales person to get the best offer.
-                    </p>
-                    <button
-                        onClick={() => setShowPopup(false)}
-                        className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-                    >
-                        Close
-                    </button>
-                </div>
-            )}
+            <Dialog open={showDialog} onOpenChange={setShowDialog}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Bulk Order Notification</DialogTitle>
+                        <DialogDescription>
+                            We noticed that you're ordering 10 or more of this product. For the best offer, please contact our sales team.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <DialogClose asChild>
+                            <Button variant="secondary">Close</Button>
+                        </DialogClose>
+                        <Link href={"tel:+1154466259"} onClick={() => {
+                            // Here you can add logic to contact sales team
+                            // For example, you could open a contact form or provide a phone number
+                            console.log("Contacting sales team");
+                            setShowDialog(false);
+
+                        }} className="bg-primary rounded-md flex items-center px-5">
+                            Contact Sales Team
+                        </Link>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 };

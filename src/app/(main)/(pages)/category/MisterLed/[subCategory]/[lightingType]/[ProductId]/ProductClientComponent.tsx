@@ -1,5 +1,4 @@
 "use client";
-
 import ColorTemperatureSection from "@/app/components/ColorTemperatureSection";
 import Container from "@/app/components/Container";
 import ProductFeatures from "@/app/components/ProductFeatures";
@@ -9,7 +8,6 @@ import ProductSpecifications from "@/app/components/ProductSpecifications";
 import { Order, OrderStatus, Product, Configuration } from '@prisma/client';
 import { motion } from "framer-motion";
 import { useState } from "react";
-
 interface ProductClientComponentProps {
     children: React.ReactNode;
     product: Product &  {
@@ -21,7 +19,6 @@ interface ProductClientComponentProps {
 
 const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ children, product }) => {
     const [quantity, setQuantity] = useState(1);
-
     const variants = {
         hidden: { opacity: 0, y: 15 },
         visible: {
@@ -33,15 +30,12 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
             }
         }
     };
-
     const increaseQuantity = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
     };
-
     const decreaseQuantity = () => {
         setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
     };
-
     const order: Order = {
         id: 0,
         userId: "",
@@ -67,10 +61,9 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
         priceIncrease: product.priceIncrease ?? null,
         Brand: product.Brand ?? null,
         ChandelierLightingType: product.ChandelierLightingType ?? null,
-        configPrice: product.price, // You need to calculate this or get it from somewhere
+        configPrice: product.price,
         OrderTimeReceived: null
     };
-
     const specificationsTable: { [key: string]: string } = {
         Input: product.input || "",
         "Maximum wattage": product.maximumWattage?.toString() || "",
@@ -83,7 +76,6 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
         hNumber: product.hNumber?.toString() || "",
         ChandelierLightingType: product.ChandelierLightingType ?? ""
     };
-
     return (
         <motion.div
             initial="hidden"

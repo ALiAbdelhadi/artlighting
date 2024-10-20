@@ -5,7 +5,6 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import ProductClientComponent from "./ProductClientComponent";
-
 export async function generateStaticParams() {
     const products = await db.product.findMany({
         select: {
