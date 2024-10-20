@@ -35,7 +35,7 @@ const BalcomSection: React.FC<BalcomSectionProps> = ({ children, categories }) =
             >
                 <Container>
                     <h1 className="text-center text-3xl">Balcom</h1>
-                    <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
+                    <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-4 justify-center items-center">
                         {categories.map((category) => (
                             <motion.div
                                 key={category.sectionType}

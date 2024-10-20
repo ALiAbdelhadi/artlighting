@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import styles from "./Landing.module.css";
+import Image from "next/image";
 
 export type LandingProps = {
     images: string[],
@@ -32,7 +33,7 @@ const Landing: React.FC<LandingProps> = ({ images }) => {
                 >
                     {images.map((src, index) => (
                         <div key={index}>
-                            <img src={src} alt={`Slide ${index + 1}`} className={styles.img} />
+                            <Image src={src} alt={`Slide ${index + 1}`} className={styles.img} width={500} height={500} quality={100} />
                         </div>
                     ))}
                 </Carousel>
