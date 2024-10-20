@@ -423,7 +423,7 @@ export default function Header() {
                         </ContainerAuthInDesktop>
                     </div>
                 </nav>
-                <div className="flex items-center gap-2 lg:hidden">
+                <div className="flex items-center gap-2 lg:hidden ">
                     <Sheet>
                         <div className="order-1 flex items-center">
                             <UserButton afterSignOutUrl="/" />
@@ -434,7 +434,7 @@ export default function Header() {
                                 <span className="sr-only">Toggle navigation menu</span>
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                        <SheetContent side="left" className="w-[300px] sm:w-[400px] pt-12">
                             <nav className="grid gap-6 text-lg font-medium">
                                 <Link
                                     href="/AboutUs"
