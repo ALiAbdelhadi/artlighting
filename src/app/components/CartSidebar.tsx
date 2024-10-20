@@ -94,7 +94,7 @@ export function CartSidebar() {
                     <span className="sr-only">Open Cart</span>
                 </Button>
             </SheetTrigger>
-            <SheetContent className="flex flex-col w-full sm:max-w-lg z-50">
+            <SheetContent className="flex flex-col w-full sm:max-w-lg z-50 custom-scrollbar">
                 <SheetHeader className="border-b pb-4 -mb-4 ">
                     <SheetTitle className="sm:text-2xl text-xl font-bold">Your Cart</SheetTitle>
                 </SheetHeader>
@@ -105,11 +105,11 @@ export function CartSidebar() {
                                 <div key={item.id} className="flex justify-between items-start py-4 border-b">
                                     <div className="flex items-start space-x-4">
                                         {item.productImages && item.productImages[0] && (
-                                            <Image src={item.productImages[0]} alt={item.productName} width={70} height={70} className="object-cover rounded" />
+                                            <img src={item.productImages[0]} alt={item.productName} className="object-cover rounded md::w-20 md:h-20 w-16 h-16" />
                                         )}
                                         <div className="space-y-1">
-                                            <p className="font-medium text-lg ">{item.productName}</p>
-                                            <div className="mb-0.5">
+                                            <p className="font-medium lg:text-lg md:text-base sm:text-sm">{item.productName}</p>
+                                            <div className="sm:mb-0.5">
                                                 {item.discount > 0 ? (
                                                     <div className="flex items-center">
                                                         <span className="text-sm text-destructive font-semibold">
@@ -137,7 +137,7 @@ export function CartSidebar() {
                                         >
                                             <Trash2 className="h-4 w-4" />
                                         </Button>
-                                        <Link href={`/category/${item.Brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`} className={`sm:pt-0 pt-10 -mb-2`}>
+                                        <Link href={`/category/${item.Brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`} className={`sm:pt-0 pt-6 -mb-2`}>
                                             <Button variant="link" size="sm">
                                                 View Product
                                             </Button>
@@ -167,6 +167,30 @@ export function CartSidebar() {
                     }
                 </div>
             </SheetContent>
+            <style jsx global>
+                {`
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #a0aec0 #edf2f7;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #edf2f7;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4a5568, #2d3748);
+            border-radius: 10px;
+            border: 2px solid #edf2f7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2d3748, #1a202c);
+        }
+        `}
+            </style>
         </Sheet>
     )
 }
