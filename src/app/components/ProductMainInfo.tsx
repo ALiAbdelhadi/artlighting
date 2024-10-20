@@ -378,11 +378,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                             <Button variant="secondary">Close</Button>
                         </DialogClose>
                         <Link href={"tel:+1154466259"} onClick={() => {
-                            // Here you can add logic to contact sales team
-                            // For example, you could open a contact form or provide a phone number
                             console.log("Contacting sales team");
                             setShowDialog(false);
-
                         }} className="bg-primary rounded-md flex items-center px-5">
                             Contact Sales Team
                         </Link>
