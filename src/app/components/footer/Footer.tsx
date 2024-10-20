@@ -97,7 +97,7 @@ export default function Footer() {
                                 { name: "About Us", href: "/AboutUs" },
                                 { name: "Contact", href: "/ContactUs" },
                                 { name: "FAQs", href: "/FAQs" },
-                                { name: "Privacy Policy", href: "#" },
+                                { name: "Privacy Policy", href: "/Privacy" },
                             ].map((item) => (
                                 <li
                                     key={item.name}
