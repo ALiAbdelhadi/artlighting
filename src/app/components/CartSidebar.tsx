@@ -129,7 +129,7 @@ export function CartSidebar() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex flex-col items-end space-y-2">
+                                    <div className="flex flex-col items-end sm:space-y-2">
                                         <Button
                                             variant="ghost"
                                             size="icon"
@@ -137,7 +137,7 @@ export function CartSidebar() {
                                         >
                                             <Trash2 className="h-4 w-4" />
                                         </Button>
-                                        <Link href={`/category/${item.Brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`}>
+                                        <Link href={`/category/${item.Brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`} className={`sm:pt-0 pt-10 -mb-2`}>
                                             <Button variant="link" size="sm">
                                                 View Product
                                             </Button>
