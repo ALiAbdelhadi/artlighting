@@ -64,7 +64,7 @@ function About() {
                             </p>
                         </div>
                         <div className="grid md:grid-cols-2 gap-4">
-                        <div className="bg-gray-100 dark:bg-neutral-900 rounded-lg p-6 animate-element">
+                            <div className="bg-gray-100 dark:bg-neutral-900 rounded-lg p-6 animate-element">
                                 <h3 className="text-lg font-semibold text-primary">Our Mission</h3>
                                 <p className="text-muted-foreground mt-2">
                                     To revolutionize the tech industry and empower people with innovative solutions.

@@ -11,11 +11,9 @@ import {
 import { currentUser } from "@clerk/nextjs/server"
 import Link from "next/link"
 import { CartSidebar } from "../CartSidebar"
-
 const AuthInDesktop = async () => {
     const user = await currentUser()
     const isAdmin = user?.emailAddresses[0]?.emailAddress === process.env.ADMIN_EMAIL
-
     return (
         <div className="flex flex-col md:flex-row md:space-x-4 md:ml-1 mr-2 space-y-4 md:space-y-0 px-2 md:p-0">
             <SignedIn>
@@ -51,5 +49,4 @@ const AuthInDesktop = async () => {
         </div>
     )
 }
-
 export default AuthInDesktop

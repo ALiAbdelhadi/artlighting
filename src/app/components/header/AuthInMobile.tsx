@@ -3,8 +3,7 @@ import { Button } from "@/components/ui/button"
 import {
     SignedOut,
     SignInButton,
-    SignUpButton,
-    UserButton
+    SignUpButton
 } from '@clerk/nextjs'
 import { currentUser } from "@clerk/nextjs/server"
 import Link from "next/link"

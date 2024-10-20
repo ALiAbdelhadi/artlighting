@@ -39,11 +39,11 @@ export default function ContactContent() {
                                 </p>
                             </div>
                             <div className="space-y-4">
-                                <h2 className="text-xl font-semibold ">
+                                <h2 className="md:text-xl text-lg font-semibold">
                                     Sales Team
                                 </h2>
                                 <div className="space-y-2">
-                                <div className="flex items-center sm:flex-row text-center sm:text-left flex-col gap-4 ">
+                                    <div className="flex flex-row items-center gap-4 ">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -73,7 +73,7 @@ export default function ContactContent() {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="flex items-center sm:flex-row flex-col gap-4 ">
+                                    <div className="flex flex-row items-center gap-4 flex-wrap">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="24"
@@ -90,7 +90,7 @@ export default function ContactContent() {
                                         </svg>
                                         <Link
                                             className="font-medium hover:text-primary transition-colors"
-                                            href={"tel:+1154466259"}
+                                            href={"tel:+201154466259"}
                                         >
                                             +2 (011) 54466259
                                         </Link>
@@ -120,27 +120,29 @@ export default function ContactContent() {
                                 </div>
                             </div>
                             <div className="space-y-4">
-                                <h2 className="text-xl font-semibold">Location</h2>
+                                <h2 className="md:text-xl text-lg font-semibold">Location</h2>
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-4">
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="24"
-                                            height="24"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            strokeWidth="2"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            className="w-6 h-6 text-primary"
-                                        >
-                                            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
-                                            <circle cx="12" cy="10" r="3"></circle>
-                                        </svg>
+                                        <div>
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                className="sm:w-8 sm:h-8 h-6 w-6 text-primary"
+                                            >
+                                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                                <circle cx="12" cy="10" r="3"></circle>
+                                            </svg>
+                                        </div>
                                         <div>
                                             <Link
-                                                className="font-medium tracking-wide leading-5 hover:text-primary transition-colors"
+                                                className="font-medium tracking-wide leading-5 hover:text-primary transition-colors text-wrap"
                                                 href="https://maps.google.com/?q=49+%D8%A7%D9%84%D8%B4%D9%87%D9%8A%D8%AF+%D8%B3%D9%8A%D8%AF+%D8%B2%D9%83%D8%B1%D9%8A%D8%A7%D8%8C+%D8%B4%D9%8A%D8%B1%D8%A7%D8%AA%D9%88%D9%86+%D8%A7%D9%84%D9%85%D8%B7%D8%A7%D8%B1%D8%8C+%D9%82%D8%B3%D9%85+%D8%A7%D9%84%D9%86%D8%B2%D9%87%D8%A9%D8%8C+%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%E2%80%AC+4471331%D8%8C+%D9%85%D8%B5%D8%B1&ftid=0x145816155fc17dbd:0x7b7d8db456fc7dd2"
                                                 target="_blank"
                                             >
@@ -155,7 +157,7 @@ export default function ContactContent() {
                                 </div>
                             </div>
                             <div className="space-y-4">
-                                <h2 className="text-xl font-semibold ">Social</h2>
+                                <h2 className="md:text-xl text-lg font-semibold">Social</h2>
                                 <div className="flex items-center gap-4">
                                     <Link
                                         className="text-muted-foreground hover:text-primary transition-colors"
@@ -186,7 +188,7 @@ export default function ContactContent() {
                         </div>
                         <div className="space-y-6">
                             <div className="space-y-4">
-                                <h2 className="text-xl font-semibold ">
+                                <h2 className="md:text-xl text-lg font-semibold">
                                     About Us
                                 </h2>
                                 <p className="text-muted-foreground tracking-wide leading-5">
@@ -197,7 +199,7 @@ export default function ContactContent() {
                                 </p>
                             </div>
                             <div className="space-y-4">
-                                <h2 className="text-xl font-semibold ">
+                                <h2 className="md:text-xl text-lg font-semibold">
                                     Our Values
                                 </h2>
                                 <ul className="space-y-2 text-muted-foreground">
@@ -224,7 +226,7 @@ export default function ContactContent() {
                                 </ul>
                             </div>
                             <div className="space-y-4">
-                                <h2 className="text-xl font-semibold">
+                                <h2 className="md:text-xl text-lg font-semibold">
                                     Features
                                 </h2>
                                 <ul className="space-y-2 text-muted-foreground">

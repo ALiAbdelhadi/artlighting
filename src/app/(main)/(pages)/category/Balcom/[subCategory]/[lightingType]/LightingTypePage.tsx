@@ -29,9 +29,9 @@ const LightingTypePage: React.FC<LightingTypePageProps> = ({ children, products,
             variants={variants}
         >
             {children}
-            <h1 className="capitalize text-center md:text-3xl sm:text-2xl text-xl">Balcom {subCategory} - {lightingType}</h1>
             <div className="py-11 md:py-15 lg:py-19">
-                <Container className="flex">
+                <Container>
+                <h1 className="capitalize font-bold md:text-3xl sm:text-2xl text-xl">Balcom {subCategory} - {lightingType}</h1>
                     <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[8px] justify-center items-center">
                         {products.map(product => (
                             <ProductCard
