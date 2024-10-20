@@ -6,18 +6,22 @@ import ProductFeatures from "@/app/components/ProductFeatures";
 import ProductImagesForCh from "@/app/components/ProductImagesForCh";
 import ProductMainInfo from "@/app/components/ProductMainInfo";
 import ProductSpecifications from "@/app/components/ProductSpecifications";
-import { Order, OrderStatus, Product } from "@prisma/client";
+import { Order, OrderStatus, Product, Configuration } from '@prisma/client';
 import { motion } from "framer-motion";
 import { useState } from "react";
+
 interface ProductClientComponentProps {
     children: React.ReactNode;
-    product: Product & {
+    product: Product &  {
         category: { name: string };
         lightingtype: { name: string };
+        configuration: Configuration
     };
 }
+
 const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ children, product }) => {
     const [quantity, setQuantity] = useState(1);
+
     const variants = {
         hidden: { opacity: 0, y: 15 },
         visible: {
@@ -29,6 +33,7 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
             }
         }
     };
+
     const increaseQuantity = () => {
         setQuantity((prevQuantity) => prevQuantity + 1);
     };
@@ -59,10 +64,16 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
         totalPrice: product.price * quantity,
         shippingPrice: 69,
         shippingAddressId: null,
+        priceIncrease: product.priceIncrease ?? null,
+        Brand: product.Brand ?? null,
+        ChandelierLightingType: product.ChandelierLightingType ?? null,
+        configPrice: product.price, // You need to calculate this or get it from somewhere
+        OrderTimeReceived: null
     };
+
     const specificationsTable: { [key: string]: string } = {
         Input: product.input || "",
-        "Maximum wattage": "",
+        "Maximum wattage": product.maximumWattage?.toString() || "",
         "Main Material": product.mainMaterial || "",
         "Color Temperature": product.colorTemperature || "",
         "Life Time": product.lifeTime || "",
@@ -72,6 +83,7 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
         hNumber: product.hNumber?.toString() || "",
         ChandelierLightingType: product.ChandelierLightingType ?? ""
     };
+
     return (
         <motion.div
             initial="hidden"
@@ -98,10 +110,8 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                                 colorTemperature={"Color Temperature"}
                                 Brand={product.Brand}
                                 ChandelierLightingType={product.ChandelierLightingType ?? ""}
-                                hNumber={product.hNumber || null}
-                                configuration={configuration}
-                                sectionTypes={product.sectionType}
-                            />
+                                hNumber={product.hNumber ?? 0}
+                                sectionTypes={[product.sectionType]} ip={0} maxIP={0} configuration={product.configuration}                            />
                         </div>
                         <ProductSpecifications
                             specificationsTable={specificationsTable}
@@ -109,7 +119,6 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                             Brand={product.Brand}
                             ChandelierLightingType={product.ChandelierLightingType ?? ""}
                             hNumber={product.hNumber ?? 0}
-                            maximumWattage={product.maximumWattage ?? 0}
                         />
                         <ProductFeatures
                             specificationsTable={specificationsTable}
@@ -120,7 +129,6 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                                 "Color Temperature": specificationsTable["Color Temperature"] || ""
                             }}
                         />
-
                     </div>
                 </Container>
             </div>
