@@ -42,9 +42,9 @@ const AllProjectPage = ({ children }: { children: ReactNode }) => {
         >
             {children}
             <Container>
-                <h1 className="font-medium text-4xl">Last Project</h1>
+                <h1 className="font-medium lg:text-4xl text-3xl">Last Project</h1>
                 <ProjectExample />
-                <h2 className="text-3xl font-medium mb-4">Completed Projects</h2>
+                <h2 className="lg:text-3xl text-2xl font-medium mb-4">Completed Projects</h2>
                 <div
                     className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1   gap-x-4 gap-y-8 pb-16">
                     {Object.keys(projectsDataTyped.projects).map((projectKey) => {
