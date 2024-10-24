@@ -7,7 +7,7 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
     BoxIcon,
     BriefcaseIcon,
@@ -436,46 +436,56 @@ export default function Header() {
                         </SheetTrigger>
                         <SheetContent side="left" className="w-[300px] sm:w-[400px] pt-12">
                             <nav className="grid gap-6 text-lg font-medium">
-                                <Link
-                                    href="/AboutUs"
-                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                    prefetch={false}
-                                >
-                                    <UserIcon className="h-5 w-5" />
-                                    About Us
-                                </Link>
-                                <Link
-                                    href="/All-Projects"
-                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                    prefetch={false}
-                                >
-                                    <BriefcaseIcon className="h-5 w-5" />
-                                    Projects
-                                </Link>
-                                <Link
-                                    href="/category"
-                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                    prefetch={false}
-                                >
-                                    <BoxIcon className="h-5 w-5" />
-                                    Products
-                                </Link>
-                                <Link
-                                    href="/Blog"
-                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                    prefetch={false}
-                                >
-                                    <NewspaperIcon className="h-5 w-5" />
-                                    Blog
-                                </Link>
-                                <Link
-                                    href="/ContactUs"
-                                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-                                    prefetch={false}
-                                >
-                                    <MailIcon className="h-5 w-5" />
-                                    Contact
-                                </Link>
+                                <SheetClose asChild>
+                                    <Link
+                                        href="/AboutUs"
+                                        className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                        prefetch={false}
+                                    >
+                                        <UserIcon className="h-5 w-5" />
+                                        About Us
+                                    </Link>
+                                </SheetClose>
+                                <SheetClose asChild>
+                                    <Link
+                                        href="/All-Projects"
+                                        className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                        prefetch={false}
+                                    >
+                                        <BriefcaseIcon className="h-5 w-5" />
+                                        Projects
+                                    </Link>
+                                </SheetClose>
+                                <SheetClose asChild>
+                                    <Link
+                                        href="/category"
+                                        className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                        prefetch={false}
+                                    >
+                                        <BoxIcon className="h-5 w-5" />
+                                        Products
+                                    </Link>
+                                </SheetClose>
+                                <SheetClose asChild>
+                                    <Link
+                                        href="/Blog"
+                                        className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                        prefetch={false}
+                                    >
+                                        <NewspaperIcon className="h-5 w-5" />
+                                        Blog
+                                    </Link>
+                                </SheetClose>
+                                <SheetClose>
+                                    <Link
+                                        href="/ContactUs"
+                                        className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                                        prefetch={false}
+                                    >
+                                        <MailIcon className="h-5 w-5" />
+                                        Contact
+                                    </Link>
+                                </SheetClose>
                                 <ContainerAuthInMobile>
                                     <AuthInMobile />
                                 </ContainerAuthInMobile>
