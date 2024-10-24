@@ -43,7 +43,7 @@ const CollectionPage = () => {
                             className="w-full h-auto rounded-lg shadow-lg mb-6"
                         />
                         <h1 className="text-3xl font-bold mb-4">{collection.name}</h1>
-                        <p className="text-gray-600">
+                        <p className="text-muted-foreground">
                             This is the {collection.name} collection. Add more details about the collection here.
                         </p>
                     </Container>
