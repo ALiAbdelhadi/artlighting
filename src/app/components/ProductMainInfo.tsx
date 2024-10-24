@@ -56,6 +56,18 @@ type ProductDetailsProps = {
     hNumber: number
     configuration: Configuration
     sectionTypes: string[];
+    sectionType: string
+    maximumWattage: number
+    lampBase: string
+    mainMaterial: string
+    beamAngle: string
+    spotlightType: string
+    luminousFlux: string
+    lifeTime: string
+    energySaving: string
+    cri: string
+    brandOfLed: string
+    electrical: string
 };
 
 const ProductMainInfo: React.FC<ProductDetailsProps> = ({
@@ -75,7 +87,19 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     configuration: initialConfiguration,
     ip,
     maxIP,
-    sectionTypes
+    sectionTypes,
+    sectionType,
+    maximumWattage,
+    mainMaterial,
+    beamAngle,
+    spotlightType,
+    luminousFlux,
+    colorTemperature,
+    lifeTime,
+    energySaving,
+    brandOfLed,
+    cri,
+    electrical
 }) => {
     const [showDialog, setShowDialog] = useState(false);
     const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -201,15 +225,27 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     console.log('Price:', price, 'Price Increase:', priceIncrease, 'Lamp Price Increase:', lampPriceIncrease, 'Total Price:', totalPrice);
     const productsWithIP20Text = ['product-jy-810-10w', 'product-jy-810-12w', "product-jy-810-18w", "product-jy-810-30w"];
     const productsWithMaxIpText = ['product-jy-913-5w', 'product-jy-913-8w', "product-jy-913-12w", "product-jy-913-18w"];
+    function createProductDescription() {
+        if (Brand === "Balcom" && sectionType === "Indoor") {
+            return `Elevate your indoor space with the ${Brand} ${maximumWattage}W LED luminaire. Crafted with premium ${mainMaterial}, this high-performance light offers ${luminousFlux} luminous output, ${beamAngle} beam angle.`;
+        } else if (Brand === "Balcom" && sectionType === "Outdoor") {
+            return `Illuminate your outdoor area with the ${Brand} ${maximumWattage}W ${spotlightType} lighting fixture. Built to withstand the elements with its IP${ip} weatherproof rating and durable ${mainMaterial} construction, this fixture delivers ${luminousFlux} luminous output and ${beamAngle} beam spread. Experience ${colorTemperature}`;
+        }
+    }
+    function createProductDescriptionFull() {
+        if (Brand === "Balcom" && sectionType === "Indoor") {
+            return `Elevate your indoor space with the ${Brand} ${maximumWattage}W LED luminaire. Crafted with premium ${mainMaterial}, this high-performance light offers ${luminousFlux} lumens of brightness, a ${beamAngle} degree beam angle, and adjustable ${colorTemperature}K color temperature. Enjoy up to ${lifeTime} hours of reliable performance, save ${energySaving}% on your energy bills, and experience exceptional color rendering with a CRI of ${cri}. Designed for IP${ip} rated environments, this luminaire features ${brandOfLed} LEDs and ${electrical} for optimal efficiency.`;
+        } else if (Brand === "Balcom" && sectionType === "Outdoor") {
+            return `Illuminate your outdoor area with the ${Brand} ${maximumWattage}W ${spotlightType} lighting fixture. Built to withstand the elements with its IP${ip} weatherproof rating and durable ${mainMaterial} construction, this fixture delivers ${luminousFlux} lumens of brightness and a ${beamAngle} degree beam spread. Experience ${colorTemperature}K color temperature, ${lifeTime} hours of long-lasting performance, and ${energySaving}% energy efficiency. Equipped with ${brandOfLed} LEDs and ${electrical}, this fixture provides reliable lighting for any outdoor setting.`;
+        }
+    }
     return (
         <div className="md:ml-16">
             <h1 className="md:text-4xl sm:text-3xl text-2xl mt-5 mb-2 font-bold uppercase">
                 {productName}
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl mb-3 ">
-                Elevate your Indoor ambiance with the {productName}, a sleek,
-                energy-efficient downlight that offers adjustable color temperature,
-                wide beam angle, and long-lasting performance.
+                {createProductDescription()}
             </p>
             <div className="flex flex-col mb-1 ">
                 <div
@@ -353,22 +389,13 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
             <div className="mt-6">
                 <h2 className="sm:text-2xl text-xl font-semibold">Description:</h2>
                 <p className="text-muted-foreground text-base sm:text-lg md:text-xl mt-2">
-                    Infuse your Indoor spaces with the {productName}, a downlight that
-                    seamlessly blends contemporary design with exceptional functionality.
-                    This versatile fixture boasts a sleek,{" "}
-                    {specificationsTable["Main Material"]} construction that exudes
-                    elegance while ensuring long-lasting durability. Experience the
-                    perfect balance of style and energy efficiency, with the {productName}{" "}
-                    effortlessly illuminating your living environment with a luminous flux
-                    of {specificationsTable["Luminous Flux"]} and a choice of color
-                    temperatures ranging from warm{" "}
-                    {specificationsTable["Color Temperature"]}.
+                    {createProductDescriptionFull()}
                 </p>
             </div>
             <Dialog open={showDialog} onOpenChange={setShowDialog}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Bulk Order Notification</DialogTitle>
+                        <DialogTitle className="text">Bulk Order Notification</DialogTitle>
                         <DialogDescription>
                             We noticed that you're ordering 10 or more of this product. For the best offer, please contact our sales team.
                         </DialogDescription>

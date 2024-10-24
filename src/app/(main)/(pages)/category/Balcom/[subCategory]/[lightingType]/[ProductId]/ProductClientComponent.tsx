@@ -121,6 +121,16 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                                 hNumber={product.hNumber || null}
                                 configuration={configuration}
                                 sectionTypes={product.sectionType}
+                                sectionType={product.sectionType}
+                                maximumWattage={product.maximumWattage}
+                                mainMaterial={product.mainMaterial}
+                                beamAngle={product.beamAngle}
+                                luminousFlux={product.luminousFlux}
+                                lifeTime={product.lifeTime}
+                                energySaving={product.energySaving}
+                                cri={product.cri}
+                                brandOfLed={product.brandOfLed}
+                                electrical={product.electrical}
                             />
                         </div>
                         <ProductSpecifications

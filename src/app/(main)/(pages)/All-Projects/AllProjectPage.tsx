@@ -42,7 +42,7 @@ const AllProjectPage = ({ children }: { children: ReactNode }) => {
         >
             {children}
             <Container>
-                <h1 className="font-medium lg:text-4xl text-3xl">Last Project</h1>
+                <h1 className="font-medium lg:text-4xl md:text-3xl text-2xl">Last Project</h1>
                 <ProjectExample />
                 <h2 className="lg:text-3xl text-2xl font-medium mb-4">Completed Projects</h2>
                 <div
