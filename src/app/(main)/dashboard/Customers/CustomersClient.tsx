@@ -84,10 +84,10 @@ const CustomersClient = ({ users }: { users: UserWithShipping[] }) => {
                                         <TableRow><TableCell colSpan={8} className="text-center">No Orders Found</TableCell></TableRow>
                                     )}
                                     {!loading && !error && filteredUsers.map((user) => (
-                                        <TableRow key={user.id.slice(0, 18)}>
+                                        <TableRow key={user.id}>
                                             <TableCell>
                                                 <Link href={`/dashboard/Customers/${user.id}`}>
-                                                    {user.id.slice(0, 18)}
+                                                    {user.id}
                                                 </Link>
                                             </TableCell>
                                             <TableCell className="flex items-center text-nowrap">
