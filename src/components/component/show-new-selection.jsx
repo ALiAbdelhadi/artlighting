@@ -71,80 +71,74 @@ export function ShowNewSelection() {
             <Container>
                 <div className='flex md:flex-row flex-col  items-start'>
                     <div className='w-full flex justify-between flex-col md:mb-0 mb-20'>
-                        <Link scroll={true} className="block mt-2 text-sm sm:text-base md:text-lg" href="Collection/spot">
-                            <div className="animate-box">
-                                <div className="relative">
-                                    <img
-                                        alt="Line Up/Down LED Suspended Lamp"
-                                        className="object-cover w-full h-54  md:h-[500px] rounded-lg animate-image"
-                                        src="/NewCollection/new-collection-3.jpg"
-                                    />
-                                    <div
-                                        className={`${styles.animateButton} select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary dark:text-secondary-foreground absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
-                                        <p className='overflow-hidden'>
-                                            NEW
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="my-4 animate-text">
-                                    <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
-                                        Halo — LED Ring Suspended Lamp
-                                    </h2>
-                                    <p className="block mt-2 text-sm sm:text-base md:text-lg" href="Collection/spot">
-                                        Discover more
-                                    </p>
-                                </div>
-                            </div>
-                        </Link>
-                        <Link scroll={true} className="block mt-2 text-sm sm:text-base md:text-lg" href="Collection/hallo">
-                            <div className="animate-box ">
-                                <div className="relative">
-                                    <img
-                                        alt="Line Up/Down LED Suspended Lamp"
-                                        className="object-cover w-full h-55 md:h-[500px] rounded-lg animate-image"
-                                        src="/NewCollection/new-collection-2.jpg"
-                                    />
-                                    <div
-                                        className={`${styles.animateButton} select-none backdrop-filter backdrop-saturate-[0.8]  !bg-[radial-gradient(rgba(0,_0,_0,_.12)_0,_rgba(255,_255,_255,_.12)_100%)] inline-flex text-[#fff] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[12px] overflow-hidden  `}>
-                                        <p className='overflow-hidden'>
-                                            NEW
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="mt-4 animate-text absolute">
-                                    <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
-                                        Halo — LED Ring Suspended Lamp
-                                    </h2>
-                                    <p className="block mt-2 text-sm sm:text-base md:text-lg">
-                                        Discover more
-                                    </p>
-                                </div>
-                            </div>
-                        </Link>
-                    </div>
-                    <Link scroll={true} className="block mt-2 text-sm sm:text-base md:text-lg" href="Collection/track">
-                        <div className="w-full animate-box  md:mt-0 md:ml-10">
+                        <Link className="animate-box" href="Collection/spot">
                             <div className="relative">
                                 <img
                                     alt="Line Up/Down LED Suspended Lamp"
-                                    className="object-cover w-full h-auto md:h-[500px] lg:h-[750px] rounded-lg animate-image"
-                                    src="/NewCollection/new-collection-1.jpg"
+                                    className="object-cover w-full h-54  md:h-[500px] rounded-lg animate-image"
+                                    src="/NewCollection/new-collection-3.jpg"
                                 />
                                 <div
-                                    className={`${styles.animateButton}  select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex text-[#FFF] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
+                                    className={`${styles.animateButton} select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary dark:text-secondary-foreground absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
                                     <p className='overflow-hidden'>
                                         NEW
                                     </p>
                                 </div>
                             </div>
-                            <div className="mt-4 animate-text">
+                            <div className="my-4 animate-text">
                                 <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
-                                    Line — Up/Down LED Suspended Lamp
+                                    Halo — LED Ring Suspended Lamp
                                 </h2>
                                 <p className="block mt-2 text-sm sm:text-base md:text-lg">
                                     Discover more
                                 </p>
                             </div>
+                        </Link>
+                        <Link className="animate-box" href="Collection/hallo">
+                            <div className="relative">
+                                <img
+                                    alt="Line Up/Down LED Suspended Lamp"
+                                    className="object-cover w-full h-55 md:h-[500px] rounded-lg animate-image"
+                                    src="/NewCollection/new-collection-2.jpg"
+                                />
+                                <div
+                                    className={`${styles.animateButton} select-none backdrop-filter backdrop-saturate-[0.8]  !bg-[radial-gradient(rgba(0,_0,_0,_.12)_0,_rgba(255,_255,_255,_.12)_100%)] inline-flex text-[#fff] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[12px] overflow-hidden  `}>
+                                    <p className='overflow-hidden'>
+                                        NEW
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="mt-4 animate-text absolute">
+                                <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
+                                    Halo — LED Ring Suspended Lamp
+                                </h2>
+                                <p className="block mt-2 text-sm sm:text-base md:text-lg" >
+                                    Discover more
+                                </p>
+                            </div>
+                        </Link>
+                    </div>
+                    <Link className="w-full animate-box  md:mt-0 md:ml-10" href="Collection/track">
+                        <div className="relative">
+                            <img
+                                alt="Line Up/Down LED Suspended Lamp"
+                                className="object-cover w-full h-auto md:h-[500px] lg:h-[750px] rounded-lg animate-image"
+                                src="/NewCollection/new-collection-1.jpg"
+                            />
+                            <div
+                                className={`${styles.animateButton}  select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex text-[#FFF] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
+                                <p className='overflow-hidden'>
+                                    NEW
+                                </p>
+                            </div>
+                        </div>
+                        <div className="mt-4 animate-text">
+                            <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
+                                Line — Up/Down LED Suspended Lamp
+                            </h2>
+                            <p className="block mt-2 text-sm sm:text-base md:text-lg" >
+                                Discover more
+                            </p>
                         </div>
                     </Link>
                 </div>
