@@ -49,7 +49,7 @@ const CustomersClient = ({ users }: { users: UserWithShipping[] }) => {
                                 value={searchItem}
                                 onChange={handleInputChange}
                                 type="text"
-                                placeholder="Search on orders."
+                                placeholder="Search on Customers."
                                 className="pl-8 w-full sm:w-[300px] md:w-[200px] lg:w-[300px]"
                             />
                         </div>
@@ -90,7 +90,7 @@ const CustomersClient = ({ users }: { users: UserWithShipping[] }) => {
                                                     {user.id.slice(0, 18)}
                                                 </Link>
                                             </TableCell>
-                                            <TableCell className="flex items-center">
+                                            <TableCell className="flex items-center text-nowrap">
                                                 <UserAvatar email={user.email} className="mr-1.5"/>
                                                 {user.shippingAddress?.fullName}
                                             </TableCell>

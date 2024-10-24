@@ -14,15 +14,15 @@ import { Edit2, FilePenIcon } from 'lucide-react';
 import Link from 'next/link';
 import StatusDropdown from '../../StatusDropdown';
 
-interface UserClientProps {
-    user: User & {
-        shippingAddress: ShippingAddress | null
-        product: Product | null
-        orders: Order[]
-    }
+interface UserWithDetails extends User {
+    shippingAddress: ShippingAddress | null
+    product: Product | null
+    orders: Order[]
 }
-
-const CustomersPageClient = ({ user }: UserClientProps) => {
+interface CustomersPageClientProps {
+    user: UserWithDetails
+}
+const CustomersPageClient = ({ user }: CustomersPageClientProps) => {
     const getStatusBadgeClassName = (status: string) => {
         switch (status) {
             case "cancelled":
@@ -61,7 +61,7 @@ const CustomersPageClient = ({ user }: UserClientProps) => {
                         </CardHeader>
                         <CardContent>
                             <div className="flex items-center space-x-4 mb-4">
-                            <UserAvatar email={user.email} className="mr-1.5"/>
+                                <UserAvatar email={user.email} className="mr-1.5" />
                                 <div>
                                     <h2 className="text-xl font-semibold">{user.email}</h2>
                                     <p className="text-sm text-muted-foreground">Member since {format(new Date(user.createdAt), 'MMMM yyyy')}</p>
