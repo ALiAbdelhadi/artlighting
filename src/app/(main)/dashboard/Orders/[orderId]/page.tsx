@@ -3,7 +3,6 @@ import { db } from '../../../../../db/index';
 import dynamic from 'next/dynamic';
 const OrderPage = dynamic(() => import('./OrderPage'), { ssr: false })
 const OrderIdPage = async ({ params }: { params: { orderId: string } }) => {
-
   const order = await db.order.findFirst({
     where: {
       isCompleted : true
