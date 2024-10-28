@@ -139,7 +139,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                                     # {order.id}
                                                 </Link>
                                             </TableCell>
-                                            <TableCell className="px-4 py-2">
+                                            <TableCell className="px-4 py-2 text-nowrap">
                                                 {order.shippingAddress?.fullName}
                                             </TableCell>
                                             <TableCell className="flex w-[250px] items-center">
