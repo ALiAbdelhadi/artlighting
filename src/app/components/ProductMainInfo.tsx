@@ -68,6 +68,9 @@ type ProductDetailsProps = {
     cri: string
     brandOfLed: string
     electrical: string
+    finish?: string
+    input?: string
+    lampBase?: string
 };
 
 const ProductMainInfo: React.FC<ProductDetailsProps> = ({
@@ -99,7 +102,10 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
     energySaving,
     brandOfLed,
     cri,
-    electrical
+    electrical,
+    finish,
+    input,
+    lampBase
 }) => {
     const [showDialog, setShowDialog] = useState(false);
     const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -230,13 +236,22 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
             return `Elevate your indoor space with the ${Brand} ${maximumWattage}W LED luminaire. Crafted with premium ${mainMaterial}, this high-performance light offers ${luminousFlux} luminous output, ${beamAngle} beam angle.`;
         } else if (Brand === "Balcom" && sectionType === "Outdoor") {
             return `Illuminate your outdoor area with the ${Brand} ${maximumWattage}W ${spotlightType} lighting fixture. Built to withstand the elements with its IP${ip} weatherproof rating and durable ${mainMaterial} construction, this fixture delivers ${luminousFlux} luminous output and ${beamAngle} beam spread. Experience ${colorTemperature}`;
+        } else if (Brand === "MisterLed" && sectionType === "Chandelier" && ChandelierLightingType === "LED") {
+            return `Transform your space with this elegant ${Brand} ${maximumWattage}W LED chandelier. Featuring a sophisticated ${finish} finish and crafted from ${mainMaterial}, this modern fixture combines style with energy-efficient LED technology.`;
+        } else if (Brand === "MisterLed" && sectionType === "Chandelier" && ChandelierLightingType === "lamp") {
+            return `Enhance your interior with this stunning ${Brand} chandelier, designed with ${hNumber * 12}w elegant Lamp counted: ${hNumber} with 12W lamp holders. Beautifully crafted from ${mainMaterial} with a refined ${finish} finish, this versatile fixture allows you to customize your lighting experience with ${lampBase} bulbs.`;
         }
     }
+
     function createProductDescriptionFull() {
         if (Brand === "Balcom" && sectionType === "Indoor") {
             return `Elevate your indoor space with the ${Brand} ${maximumWattage}W LED luminaire. Crafted with premium ${mainMaterial}, this high-performance light offers ${luminousFlux} lumens of brightness, a ${beamAngle} degree beam angle, and adjustable ${colorTemperature}K color temperature. Enjoy up to ${lifeTime} hours of reliable performance, save ${energySaving}% on your energy bills, and experience exceptional color rendering with a CRI of ${cri}. Designed for IP${ip} rated environments, this luminaire features ${brandOfLed} LEDs and ${electrical} for optimal efficiency.`;
         } else if (Brand === "Balcom" && sectionType === "Outdoor") {
-            return `Illuminate your outdoor area with the ${Brand} ${maximumWattage}W ${spotlightType} lighting fixture. Built to withstand the elements with its IP${ip} weatherproof rating and durable ${mainMaterial} construction, this fixture delivers ${luminousFlux} lumens of brightness and a ${beamAngle} degree beam spread. Experience ${colorTemperature}K color temperature, ${lifeTime} hours of long-lasting performance, and ${energySaving}% energy efficiency. Equipped with ${brandOfLed} LEDs and ${electrical}, this fixture provides reliable lighting for any outdoor setting.`;
+            return `Illuminate your outdoor area with the ${Brand} ${maximumWattage}W ${spotlightType} lighting fixture. Built to withstand the elements with its IP${ip} weatherproof rating and durable ${mainMaterial} construction, this fixture delivers ${luminousFlux} lumens of brightness and a ${beamAngle} degree beam spread. Experience ${colorTemperature} color temperature, ${lifeTime} hours of long-lasting performance, and ${energySaving}% energy efficiency. Equipped with ${brandOfLed} LEDs and ${electrical}, this fixture provides reliable lighting for any outdoor setting.`;
+        } else if (Brand === "MisterLed" && sectionType === "Chandelier" && ChandelierLightingType === "LED") {
+            return `Transform your space with this elegant ${Brand} ${maximumWattage}W LED chandelier. Featuring a sophisticated ${finish} finish and masterfully crafted from ${mainMaterial}, this modern fixture combines timeless style with cutting-edge LED technology. Operating at ${input}, it offers flexible lighting options with adjustable color temperatures of ${colorTemperature}. With an impressive lifespan of ${colorTemperature} hours, this chandelier provides long-lasting, maintenance-free illumination while adding a touch of luxury to your space.`;
+        } else if (Brand === "MisterLed" && sectionType === "Chandelier" && ChandelierLightingType === "lamp") {
+            return `Enhance your interior with this stunning ${Brand} chandelier, thoughtfully designed with ${hNumber * 12}w Lamp counted: ${hNumber} with 12W lamp elegant lamp holders. Beautifully crafted from ${mainMaterial} with a refined ${finish} finish, this versatile fixture allows you to customize your lighting experience with ${lampBase} bulbs. Operating at ${input}, it supports various color temperatures (${colorTemperature}) to suit your mood and decor. The chandelier's durable construction and timeless design make it a perfect centerpiece for your living space, dining room, or entryway. Design flexibility allows you to choose your preferred bulbs (not included) for personalized illumination.`;
         }
     }
     return (
