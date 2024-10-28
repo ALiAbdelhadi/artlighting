@@ -6,18 +6,15 @@ import CustomersClient from "./CustomersClient";
 const Customers = async () => {
     const { userId } = auth();
     const user = await currentUser();
-
     if (!userId || !user) {
         console.log("User Not Found");
         return notFound();
     }
-
     const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
     if (user.emailAddresses[0].emailAddress !== ADMIN_EMAIL) {
         console.log("User Not Authorized, redirecting to 404");
         return notFound();
     }
-
     try {
         const users = await db.user.findMany({
             select: {
@@ -30,18 +27,21 @@ const Customers = async () => {
                         phoneNumber: true,
                         address: true
                     }
+                },
+                orders: {
+                    select: {
+                        isCompleted: true
+                    }
                 }
             },
             orderBy: {
                 createdAt: "desc"
             }
         });
-
         console.log("Found users:", users.map(u => ({
             id: u.id,
             email: u.email
         })));
-
         return (
             <div>
                 <CustomersClient users={users} />

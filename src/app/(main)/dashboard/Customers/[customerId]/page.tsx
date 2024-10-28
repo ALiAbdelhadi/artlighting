@@ -18,7 +18,7 @@ const CustomerPage = async ({ params }: { params: { customerId: string } }) => {
                 shippingAddress: true,
                 product: true,
                 orders: {
-                    where: {
+                    select: {
                         isCompleted: true
                     },
                     include: {
