@@ -33,6 +33,7 @@ import { MoveHorizontalIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { fetchDashboardData } from "./fetchDashboardData";
+import Link from "next/link";
 interface Order {
     id: number;
     user: User;
@@ -111,7 +112,9 @@ const Dashboard = ({ discount }: { discount: number }) => {
         () =>
             filteredOrder.map((order) => (
                 <TableRow key={order.id}>
-                    <TableCell className="px-4 py-2"># {order.id}</TableCell>
+                    <TableCell className="px-4 py-2">
+                        <Link href={`dashboard/Orders/${order.id}`}># {order.id}a</Link>
+                    </TableCell>
                     <TableCell className="px-4 py-2">
                         {order.shippingAddress.fullName}
                     </TableCell>

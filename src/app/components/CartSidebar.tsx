@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { useToast } from "@/components/ui/use-toast"
 import { SignUpButton, useAuth } from "@clerk/nextjs"
 import { ShoppingCartIcon, Trash2 } from 'lucide-react'
@@ -102,48 +102,50 @@ export function CartSidebar() {
                     {isSignedIn ? (
                         cartItems.length > 0 ? (
                             cartItems.map((item) => (
-                                <div key={item.id} className="flex justify-between items-start py-4 border-b">
-                                    <div className="flex items-start space-x-4">
-                                        {item.productImages && item.productImages[0] && (
-                                            <img src={item.productImages[0]} alt={item.productName} className="object-cover rounded md::w-20 md:h-20 w-16 h-16" />
-                                        )}
-                                        <div className="space-y-1">
-                                            <p className="font-medium lg:text-lg md:text-base sm:text-sm">{item.productName}</p>
-                                            <div className="sm:mb-0.5">
-                                                {item.discount > 0 ? (
-                                                    <div className="flex items-center">
-                                                        <span className="text-sm text-destructive font-semibold">
-                                                            <DiscountPrice price={item.price} discount={item.discount} />
-                                                        </span>
-                                                        <s className="text-gray-500 font-semibold ml-1.5 text-xs">
-                                                            <NormalPrice price={item.price} />
-                                                        </s>
-                                                    </div>
-                                                ) : (
-                                                    <div className="flex items-center">
-                                                        <span className="font-semibold text-sm">
-                                                            <NormalPrice price={item.price} />
-                                                        </span>
-                                                    </div>
-                                                )}
+                                <SheetClose key={item.id}>
+                                    <div className="flex justify-between items-start py-4 border-b">
+                                        <div className="flex items-start space-x-4">
+                                            {item.productImages && item.productImages[0] && (
+                                                <img src={item.productImages[0]} alt={item.productName} className="object-cover rounded md::w-20 md:h-20 w-16 h-16" />
+                                            )}
+                                            <div className="space-y-1">
+                                                <p className="font-medium lg:text-lg md:text-base sm:text-sm">{item.productName}</p>
+                                                <div className="sm:mb-0.5">
+                                                    {item.discount > 0 ? (
+                                                        <div className="flex items-center">
+                                                            <span className="text-sm text-destructive font-semibold">
+                                                                <DiscountPrice price={item.price} discount={item.discount} />
+                                                            </span>
+                                                            <s className="text-gray-500 font-semibold ml-1.5 text-xs">
+                                                                <NormalPrice price={item.price} />
+                                                            </s>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="flex items-center">
+                                                            <span className="font-semibold text-sm">
+                                                                <NormalPrice price={item.price} />
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="flex flex-col items-end sm:space-y-2">
-                                        <Button
-                                            variant="ghost"
-                                            size="icon"
-                                            onClick={() => removeItem(item.id)}
-                                        >
-                                            <Trash2 className="h-4 w-4" />
-                                        </Button>
-                                        <Link href={`/category/${item.Brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`} className={`sm:pt-0 pt-6 -mb-2`}>
-                                            <Button variant="link" size="sm">
-                                                View Product
+                                        <div className="flex flex-col items-end sm:space-y-2">
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                onClick={() => removeItem(item.id)}
+                                            >
+                                                <Trash2 className="h-4 w-4" />
                                             </Button>
-                                        </Link>
+                                            <Link href={`/category/${item.Brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`} className={`sm:pt-0 pt-6 -mb-2`}>
+                                                <Button variant="link" size="sm">
+                                                    View Product
+                                                </Button>
+                                            </Link>
+                                        </div>
                                     </div>
-                                </div>
+                                </SheetClose>
                             ))
                         ) : (
                             <div className="flex flex-col items-center justify-center h-full">
