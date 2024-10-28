@@ -134,11 +134,11 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                     !error &&
                                     filteredOrders.map((order) => (
                                         <TableRow key={order.id}>
-                                            <TableCell className="hover:text-primary hover:underline">
-                                                <Link href={`/dashboard/Orders/${order.id}`}>
+                                            <Link href={`dashboard/Orders/${order.id}`} className="hover:text-primary hover:underline">
+                                                <TableCell className="px-4 py-2">
                                                     # {order.id}
-                                                </Link>
-                                            </TableCell>
+                                                </TableCell>
+                                            </Link>
                                             <TableCell className="px-4 py-2 text-nowrap">
                                                 {order.shippingAddress?.fullName}
                                             </TableCell>
