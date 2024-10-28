@@ -104,7 +104,6 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
                                 ChandelierLightingType={product.ChandelierLightingType ?? ""}
                                 hNumber={product.hNumber ?? 0}
                                 sectionTypes={[product.sectionType]} ip={0} maxIP={0} configuration={product.configuration}
-                                ChandelierLightingType={product.ChandelierLightingType ?? ""}
                                 sectionType={product.sectionType}
                                 maximumWattage={product.maximumWattage}
                                 mainMaterial={product.mainMaterial}
