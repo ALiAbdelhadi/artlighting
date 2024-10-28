@@ -112,9 +112,11 @@ const Dashboard = ({ discount }: { discount: number }) => {
         () =>
             filteredOrder.map((order) => (
                 <TableRow key={order.id}>
-                    <TableCell className="px-4 py-2">
-                        <Link href={`dashboard/Orders/${order.id}`}># {order.id}a</Link>
-                    </TableCell>
+                    <Link href={`dashboard/Orders/${order.id}`}>
+                        <TableCell className="px-4 py-2">
+                            # {order.id}
+                        </TableCell>
+                    </Link>
                     <TableCell className="px-4 py-2">
                         {order.shippingAddress.fullName}
                     </TableCell>
