@@ -138,6 +138,9 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                                     # {order.id}
                                                 </Link>
                                             </TableCell>
+                                            <TableCell className="px-4 py-2">
+                                                {order.shippingAddress?.fullName}
+                                            </TableCell>
                                             <TableCell className="flex w-[250px] items-center">
                                                 {order.productImages && order.productImages.length > 0 && (
                                                     <img
