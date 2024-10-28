@@ -90,6 +90,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead className="text-nowrap">Order #</TableHead>
+                                    <TableHead className="text-nowrap">Customer Name</TableHead>
                                     <TableHead>Product</TableHead>
                                     <TableHead className="text-nowrap pl-4">Product Color Temp</TableHead>
                                     <TableHead className="text-nowrap ">IP Rating</TableHead>
