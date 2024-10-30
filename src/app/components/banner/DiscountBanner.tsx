@@ -2,46 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { Clock, X, Zap } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Container from "../Container"
-
-const END_DATE = new Date('2024-11-30T23:59:59').getTime()
-function CountdownTimer() {
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
-    function calculateTimeLeft() {
-        const difference = END_DATE - new Date().getTime()
-        let timeLeft = {}
-        if (difference > 0) {
-            timeLeft = {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60)
-            }
-        }
-
-        return timeLeft
-    }
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft())
-        }, 1000)
-
-        return () => clearInterval(timer)
-    }, [])
-
-    return (
-        <div className="flex justify-center items-center space-x-2 text-primary">
-            {Object.entries(timeLeft).map(([unit, value]) => (
-                <div key={unit} className="flex flex-col items-center">
-                    <span className="text-lg font-bold">{value}</span>
-                    <span className="text-xs uppercase">{unit}</span>
-                </div>
-            ))}
-        </div>
-    )
-}
 
 export default function WhiteFridayBanner() {
     const [isBannerVisible, setIsBannerVisible] = useState(true)
@@ -57,17 +19,16 @@ export default function WhiteFridayBanner() {
             <Container>
                 <div className="flex flex-col sm:flex-row justify-between items-center py-4 px-4 sm:px-0">
                     <div className="flex items-center space-x-3 mb-2 sm:mb-0">
-                        <Zap className="w-6 h-6 text-primary animate-pulse" />
+                        <Zap className="w-6 h-6 text-yellow-400 animate-pulse" />
                         <h2 className="text-base sm:text-lg md:text-xl font-bold">White Friday Illumination!</h2>
                     </div>
                     <div className="flex flex-col items-center sm:items-end space-y-2">
                         <p className="font-bold flex items-center flex-wrap justify-center sm:justify-end">
-                            <span className="mr-2 inline-block animate-bounce text-base sm:text-lg md:text-xl lg:text-2xl text-primary">Up to 50% OFF</span>
+                            <span className="mr-2 inline-block animate-bounce text-base sm:text-lg md:text-xl lg:text-2xl text-yellow-400">Up to 50% OFF</span>
                             <span className="text-sm sm:text-base md:text-lg font-semibold">All Lighting Products</span>
                         </p>
-                        <CountdownTimer />
                         <div className="flex items-center space-x-2 text-xs sm:text-sm">
-                            <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                            <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
                             <span>Limited Time Offer | Online & In-Store</span>
                         </div>
                     </div>
