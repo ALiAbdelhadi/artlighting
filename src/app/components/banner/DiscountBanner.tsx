@@ -1,11 +1,53 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Clock, X } from "lucide-react"
-import { useState } from "react"
+import { Clock, X, Zap } from "lucide-react"
+import { useState, useEffect } from "react"
 import Container from "../Container"
 
-export default function ResponsiveDiscountBanner() {
+const END_DATE = new Date('2024-11-30T23:59:59').getTime()
+
+
+
+const CountdownTimer = () => {
+    const [timeLeft, setTimeLeft] = useState()
+
+    function calcTimeLeftToEndDiscount() {
+        const difference = END_DATE - new Date().getTime()
+        let timeLeft = {}
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor(difference * (1000 * 60 * 60) % 24),
+                minutes: Math.floor(difference * (1000 * 60) % 60),
+                seconds: Math.floor(difference * (100 * 60) % 60)
+            }
+        }
+        return timeLeft
+    }
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft(calcTimeLeftToEndDiscount())
+        }, 1000)
+
+        return () => clearInterval(timer)
+    }, [])
+
+    return (
+        <div className="flex justify-center items-center space-x-2 text-yellow-400">
+            {Object.entries(timeLeft).map(([unit, value]) => (
+                <div key={unit} className="flex flex-col items-center">
+                    <span className="text-lg font-bold">{value}</span>
+                    <span className="text-xs uppercase">{unit}</span>
+                </div>
+            ))}
+        </div>
+    )
+}
+}
+
+
+export default function WhiteFridayBanner() {
     const [isBannerVisible, setIsBannerVisible] = useState(true)
 
     const handleClose = () => {
@@ -15,20 +57,22 @@ export default function ResponsiveDiscountBanner() {
     if (!isBannerVisible) return null
 
     return (
-        <div className="bg-gradient-to-r from-amber-100 via-amber-200 to-primary text-amber-900 shadow-md relative">
+        <div className="bg-gradient-to-r from-gray-800 via-gray-900 to-black text-white shadow-md relative">
             <Container>
                 <div className="flex flex-col sm:flex-row justify-between items-center py-4 px-4 sm:px-0">
                     <div className="flex items-center space-x-3 mb-2 sm:mb-0">
-                        <h2 className="text-base sm:text-lg md:text-xl font-bold">Chandelier Sale!</h2>
+                        <Zap className="w-6 h-6 text-yellow-400 animate-pulse" />
+                        <h2 className="text-base sm:text-lg md:text-xl font-bold">White Friday Illumination!</h2>
                     </div>
                     <div className="flex flex-col items-center sm:items-end space-y-2">
                         <p className="font-bold flex items-center flex-wrap justify-center sm:justify-end">
-                            <span className="mr-2 inline-block animate-bounce text-base sm:text-lg md:text-xl lg:text-2xl">20% OFF</span>
-                            <span className="text-sm sm:text-base md:text-lg font-semibold">All Chandeliers</span>
+                            <span className="mr-2 inline-block animate-bounce text-base sm:text-lg md:text-xl lg:text-2xl text-yellow-400">Up to 50% OFF</span>
+                            <span className="text-sm sm:text-base md:text-lg font-semibold">All Lighting Products</span>
                         </p>
+                        <CountdownTimer />
                         <div className="flex items-center space-x-2 text-xs sm:text-sm">
-                            <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-amber-700" />
-                            <span>Online & In-Store</span>
+                            <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+                            <span>Limited Time Offer | Online & In-Store</span>
                         </div>
                     </div>
                 </div>
@@ -37,7 +81,7 @@ export default function ResponsiveDiscountBanner() {
                 onClick={handleClose}
                 variant="ghost"
                 size="icon"
-                className="absolute top-1 right-1 sm:top-2 sm:right-2 text-amber-700 dark:text-amber-300 hover:text-amber-900 dark:hover:text-amber-100 transition-colors duration-300"
+                className="absolute top-1 right-1 sm:top-2 sm:right-2 text-gray-300 hover:text-white transition-colors duration-300"
                 aria-label="Close banner"
             >
                 <X className="w-4 h-4 sm:w-5 sm:h-5" />

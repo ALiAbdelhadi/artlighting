@@ -146,8 +146,14 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
             }
             const responseData = await response.json();
             toast({
-                title: "Order Confirmed",
-                description: "Your order has been confirmed. Please check shipping details and product details.",
+                title: (
+                    <span className="text-primary text-base">Order Confirmed</span>
+                ),
+                description: (
+                    <span className="text-sm text-muted-foreground">
+                        Your order has been confirmed. Please check shipping details and product details.
+                    </span>
+                ),
                 className: "rounded-lg"
             });
             router.push(`/complete/?orderId=${responseData.id}`);
