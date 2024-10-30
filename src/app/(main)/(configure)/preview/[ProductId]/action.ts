@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { auth, clerkClient } from "@clerk/nextjs/server";
+
 export async function createOrder({ configId, quantity }: { configId: string, quantity: number }) {
     console.log("Starting createOrder function");
     try {
@@ -10,6 +11,7 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
             console.error("User not authenticated");
             throw new Error("You need to be logged in");
         }
+
         const configuration = await db.configuration.findUnique({
             where: { id: configId },
         });
@@ -17,6 +19,7 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
             console.error("Configuration not found");
             throw new Error("Configuration not found");
         }
+
         const product = await db.product.findUnique({
             where: { productId: configuration.ProductId },
         });
@@ -24,6 +27,7 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
             console.error("Product not found");
             throw new Error("Product not found");
         }
+
         let dbUser = await db.user.findUnique({ where: { id: userId } });
         if (!dbUser) {
             const clerkUser = await clerkClient.users.getUser(userId);
@@ -35,6 +39,7 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
                 },
             });
         }
+
         let shippingAddress = await db.shippingAddress.findFirst({
             where: { userId: userId },
         });
@@ -53,9 +58,11 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
                 },
             });
         }
+
         const discountedPrice = configuration.totalPrice - (configuration.totalPrice * configuration.discount);
         const shippingPrice = configuration.shippingPrice;
         const finalPrice = discountedPrice * quantity + shippingPrice;
+
         const order = await db.order.create({
             data: {
                 userId: userId,
@@ -85,6 +92,7 @@ export async function createOrder({ configId, quantity }: { configId: string, qu
             orderId: order.id,
             productId: product.id,
         });
+
         return { userId: userId, orderId: order.id, productId: product.id };
     } catch (error) {
         console.error("Error in createOrder:", error);

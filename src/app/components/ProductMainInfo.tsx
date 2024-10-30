@@ -58,7 +58,6 @@ type ProductDetailsProps = {
     sectionTypes: string[];
     sectionType: string
     maximumWattage: number
-    lampBase: string
     mainMaterial: string
     beamAngle: string
     spotlightType: string

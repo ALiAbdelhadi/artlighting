@@ -47,7 +47,7 @@ const Steps = () => {
 
     return (
         <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-[#1c1a17] dark:to-[#1d1d1d] rounded-lg shadow-md px-4 sm:px-6 pb-8 pt-10 mb-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8 gap-4 relative">
                 {STEPS.map((step, i) => {
                     const currentStepIndex = getCurrentStepIndex();
                     const isCurrent = i === currentStepIndex;
@@ -62,7 +62,7 @@ const Steps = () => {
                             >
                                 <div
                                     className={cn(
-                                        "flex items-center justify-center w-16 h-16 rounded-full font-medium text-xl transition-colors duration-300",
+                                        "flex items-center justify-center md:w-16 md:h-16 w-12 h-12 rounded-full font-medium md:text-xl text-lg transition-colors duration-300",
                                         {
                                             "bg-primary text-primary-foreground shadow-lg": isCurrent,
                                             "bg-white dark:bg-gray-950 text-primary border-2 border-green-500": isCompleted,
@@ -71,14 +71,14 @@ const Steps = () => {
                                     )}
                                 >
                                     {isCompleted ? (
-                                        <CheckCircle className="w-8 h-8 text-green-500 dark:text-green-400" />
+                                        <CheckCircle className="md:w-8 md:h-8 w-6 h-6 text-green-500 dark:text-green-400" />
                                     ) : (
-                                        <Circle className="w-8 h-8" />
+                                        <Circle className="md:w-8 md:h-8 w-6 h-6" />
                                     )}
                                 </div>
                                 <div className="mt-4 text-center">
                                     <span
-                                        className={cn("block text-lg font-semibold", {
+                                        className={cn("block md:text-lg text-base font-semibold", {
                                             "text-primary dark:text-primary": isCurrent,
                                             "text-gray-900 dark:text-gray-200": !isCurrent,
                                         })}

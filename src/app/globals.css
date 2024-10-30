@@ -78,6 +78,22 @@
         @apply font-bold text-4xl md:text-5xl text-center;
     }
 
+    .input-class {
+        @apply text-[16px] placeholder:text-[16px] border border-gray-300 text-gray-900 placeholder:text-gray-500;
+    }
+
+    .form-message {
+        @apply text-[12px] text-destructive;
+    }
+
+    .form-item {
+        @apply flex flex-col gap-1.5;
+    }
+
+    .form-label {
+        @apply text-[16px] w-full max-w-[280px] font-medium text-gray-700;
+    }
+
     .black-gradient {
         background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
     }
