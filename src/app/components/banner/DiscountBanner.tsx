@@ -7,13 +7,10 @@ import Container from "../Container"
 
 export default function ResponsiveDiscountBanner() {
     const [isBannerVisible, setIsBannerVisible] = useState(true)
-
     const handleClose = () => {
         setIsBannerVisible(false)
     }
-
     if (!isBannerVisible) return null
-
     return (
         <div className="bg-gradient-to-r from-amber-100 via-amber-200 to-primary text-amber-900 shadow-md relative">
             <Container>
