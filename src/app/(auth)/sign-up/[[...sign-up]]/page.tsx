@@ -1,12 +1,8 @@
+import { ThemedSignUp } from '@/components/ui/ThemedSignUp'
 import { ArrowLeft } from 'lucide-react'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
-
-const DynamicThemedSignUp = dynamic(() => import('@/components/ui/ThemedSignUp').then(mod => mod.ThemedSignUp), {
-    ssr: false,
-})
 
 const SignUpPage = () => {
     return (
@@ -35,7 +31,7 @@ const SignUpPage = () => {
                         <h1 className="text-3xl font-bold text-primary mb-2">Sign Up</h1>
                     </div>
                     <Suspense fallback={<div>Loading...</div>}>
-                        <DynamicThemedSignUp />
+                        <ThemedSignUp />
                     </Suspense>
                 </div>
             </div>

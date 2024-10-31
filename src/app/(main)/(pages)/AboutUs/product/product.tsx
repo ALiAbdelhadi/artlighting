@@ -1,10 +1,5 @@
-import React from 'react';
 import Container from "@/app/components/Container";
-import dynamic from 'next/dynamic';
-import Image from "next/legacy/image";
-
-const Button = dynamic(() => import("../../../../components/Button/button"), { ssr: false });
-
+import Button from '../../../../components/Button/button';
 function Product() {
     return (
         <div className="pt-16 pb-16">

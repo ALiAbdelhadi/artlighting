@@ -1,9 +1,6 @@
-import React from 'react'
-import dynamic from 'next/dynamic'
-import { db } from '../../../../../db/index'
 import { notFound } from 'next/navigation'
-
-const CustomersPageClient = dynamic(() => import('./CustomersPageClient'), { ssr: false })
+import { db } from '../../../../../db/index'
+import CustomersPageClient from './CustomersPageClient'
 
 const CustomerPage = async ({ params }: { params: { customerId: string } }) => {
     console.log("Received params:", params);
