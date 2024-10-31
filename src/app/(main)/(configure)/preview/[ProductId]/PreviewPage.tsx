@@ -220,31 +220,31 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                         <div className="sm:col-span-12 md:col-span-9 text-base mb-6">
                                             <div className="grid grid-cols-1 border-b border-gray-200 py-4 sm:py-2 md:py-4">
                                                 <div>
-                                                    <p className="font-bold text-xl -ml-4">Highlights</p>
+                                                    <p className="font-bold md:text-xl text-lg -ml-4">Highlights</p>
                                                     <ol className="mt-3 list-disc space-y-1">
-                                                        <li className="text-lg">
-                                                            <p className={"inline tracking-wide"}>
+                                                        <li className="md:text-lg text-base">
+                                                            <p className={"inline tracking-wide "}>
                                                                 <strong>Bright and long-lasting LEDs:</strong>{" "}
                                                                 Epistar LEDs deliver high luminous flux{" "}
                                                                 {product.luminousFlux} for excellent Indoor
                                                                 lighting.
                                                             </p>
                                                         </li>
-                                                        <li className="text-lg">
+                                                        <li className="md:text-lg text-base">
                                                             <p className={"inline tracking-wide"}>
                                                                 <strong>Durable build: </strong> The{" "}
                                                                 {product.mainMaterial} housing ensures longevity
                                                                 in various Indoor environments.
                                                             </p>
                                                         </li>
-                                                        <li className="text-lg">
+                                                        <li className="md:text-lg text-base">
                                                             <p className={"inline tracking-wide"}>
                                                                 <strong>Adaptable lighting:</strong> With a
                                                                 choice of color temperatures and wide beam
                                                                 angle, this product suits various Indoor spaces.
                                                             </p>
                                                         </li>
-                                                        <li className="text-lg">
+                                                        <li className="md:text-lg text-base">
                                                             <p className={"inline tracking-wide"}>
                                                                 <strong>Dimmable:</strong> While the product
                                                                 itself is not dimmable, it comes with an
@@ -257,9 +257,9 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                             </div>
                                             <div className="grid grid-cols-1 border-b border-gray-200 py-4 sm:py-2 md:py-4">
                                                 <div>
-                                                    <p className="font-bold text-xl -ml-4">Features</p>
+                                                    <p className="font-bold md:text-xl text-lg -ml-4">Features</p>
                                                     <ol className="mt-3 list-disc space-y-1">
-                                                        <li className="text-lg">
+                                                    <li className="md:text-lg text-base">
                                                             <p className={"inline tracking-wide"}>
                                                                 <strong>
                                                                     3-year warranty: Ensures long-lasting quality
@@ -277,27 +277,27 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                     {discount > 0 ? (
                                                         <>
                                                             <div className="flex items-center justify-between py-1 mt-2">
-                                                                <p>Price Per item</p>
-                                                                <s className="text-gray-500">
+                                                                <p className="md:text-lg text-base">Price Per item</p>
+                                                                <s className="text-gray-500 md:text-lg text-base">
                                                                     <NormalPrice price={configuration.totalPrice} />
                                                                 </s>
                                                             </div>
                                                             {/* products quantity */}
                                                             <div className="flex items-center justify-between py-1 mt-2">
-                                                                <p>Quantity</p>
-                                                                <p>{quantity}</p>
+                                                                <p className="md:text-lg text-base">Quantity</p>
+                                                                <p className="md:text-lg text-base">{quantity}</p>
                                                             </div>
                                                             {/* discount value */}
                                                             <div className="flex items-center justify-between py-1 mt-2">
-                                                                <p>Discount amount</p>
-                                                                <span className="text-green-600 font-semibold text-lg ml-5 ">
+                                                                <p className="md:text-lg text-base">Discount amount</p>
+                                                                <span className="text-green-600 font-semibold md:text-lg text-base ml-5 ">
                                                                     {`${product.discount * 100}%`}
                                                                 </span>
                                                             </div>
                                                             {/* price after discount */}
                                                             <div className="flex items-center justify-between py-1 mt-2">
-                                                                <p>Price after Discount</p>
-                                                                <span className="text-lg text-destructive font-semibold">
+                                                                <p className="md:text-lg text-base">Price after Discount</p>
+                                                                <span className="md:text-lg text-base text-destructive font-semibold">
                                                                     <DiscountPrice
                                                                         price={configuration.totalPrice}
                                                                         discount={product.discount}
@@ -333,16 +333,16 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                     </div>
                                 </ScrollArea>
                             </div>
-                            <div className="mt-8 flex justify-end pb-12">
+                            <div className="mt-8 flex md:justify-end justify-center pb-12">
                                 <Button
                                     onClick={handleConfirm}
                                     isLoading={isPending}
                                     disabled={isPending || !isLoaded}
                                     loadingText="Confirming your order"
-                                    className="h-[52px] px-10 bg-primary text-primary-foreground text-lg"
+                                    className="sm:h-[52px] h-[40px] sm:px-10 px-8 bg-primary text-primary-foreground sm:text-lg text-base"
                                 >
                                     Confirm your order
-                                    <ArrowRight className="h-[18px] w-[18px] ml-1.5 inline" />
+                                    <ArrowRight className="sm:h-[18px] sm:w-[18px] h-[16px] w-[16px] ml-1.5 inline" />
                                 </Button>
                             </div>
                         </div>

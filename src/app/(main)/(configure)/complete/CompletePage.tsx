@@ -524,7 +524,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                         isLoading={isPending}
                         disabled={isPending}
                         loadingText="Completing your order"
-                        className="inline-flex h-[52px] items-center justify-center rounded-md bg-primary px-10 text-lg font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+                        className="inline-flex sm:h-[52px] h-[40px] items-center justify-center rounded-md bg-primary sm:px-10 px-8 sm:text-lg text-base font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                     >
                         Complete Your Order
                     </Button>

@@ -329,7 +329,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                     <Button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="h-[52px] px-10 bg-primary text-primary-foreground text-lg"
+                                        className="sm:h-[52px] h-[40px] sm:px-10 px-8 bg-primary text-primary-foreground sm:text-lg text-base"
                                     >
                                         {isSubmitting ? "Sending your data..." : "Send Your Order"}
                                     </Button>
