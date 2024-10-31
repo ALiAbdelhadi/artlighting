@@ -11,7 +11,10 @@ export async function GET(
     { params }: { params: { ProductId: string } }
 ) {
     try {
-        const { ProductId } = ParamsSchema.parse(params)
+        // Await the params before using them
+        const validatedParams = await ParamsSchema.parse(await params)
+        const { ProductId } = validatedParams
+
         console.log(`Fetching product with ID: ${ProductId}`)
         const product = await db.product.findUnique({
             where: {
@@ -39,7 +42,8 @@ export async function GET(
         return NextResponse.json(product)
     } catch (error) {
         if (error instanceof z.ZodError) {
-            console.error('Invalid ProductId:', params.ProductId)
+            // Use string interpolation instead of direct access
+            console.error('Invalid ProductId:', error.message)
             return NextResponse.json({ error: 'Invalid ProductId' }, { status: 400 })
         }
         console.error('Failed to fetch product:', error)

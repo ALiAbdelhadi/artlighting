@@ -55,9 +55,12 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const handleAddToCart = () => {
     if (!isSignedIn) {
       toast({
-        title: "Sign in required",
-        description: "Please sign in to add items to your cart.",
-        variant: "destructive",
+        title: (
+          <span className='text-base text-primary'>Sign in required</span>
+        ),
+        description: (
+          <span className='text-sm text-muted-foreground'>Please sign in to add items to your cart.</span>
+        ),
         className: "rounded-lg"
       })
       return
