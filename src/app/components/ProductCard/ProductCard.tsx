@@ -6,12 +6,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState, useTransition } from 'react';
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import AddToCardIcon from "../AddToCardIcon";
 import styles from "./ProductCard.module.css";
+import Image from 'next/image';
+import { Badge } from '@/components/ui/badge';
 
 interface Product {
   productId: string;
@@ -34,16 +35,7 @@ interface Product {
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isPending, startTransition] = useTransition()
   const { toast } = useToast()
-  const getProductWattage = (productName: string): string => {
-    const lastIndex = productName.lastIndexOf("-");
-    if (lastIndex !== -1) {
-      const match = productName.substring(lastIndex + 1).match(/^\d+/);
-      return match ? `${match[0]}W` : "Not Available";
-    }
-    return "Not Available";
-  };
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const router = useRouter
   const handleSlideChange = (index: number) => {
     setCurrentIndex(index);
   };
@@ -103,17 +95,24 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   }
   return (
     <div className={`${styles.productItem} select-none `}>
-      <div className="absolute top-[5%] left-[0] z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0] bg-[#676769] dark:bg-[#dad4d4]">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          viewBox="0 0 640 512"
-        >
-          <path d="M112 0C85.5 0 64 21.5 64 48V96H16c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 272c8.8 0 16 7.2 16 16s-7.2 16-16 16H64 48c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 240c8.8 0 16 7.2 16 16s-7.2 16-16 16H64 16c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 208c8.8 0 16 7.2 16 16s-7.2 16-16 16H64V416c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H112zM544 237.3V256H416V160h50.7L544 237.3zM160 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm272 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z" />
-        </svg>
-        <span className="ml-1.5">Fast shipping</span>
+      <div>
+        <div className="absolute top-[5%] left-0 z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0] bg-[#676769] dark:bg-[#dad4d4]">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            viewBox="0 0 640 512"
+          >
+            <path d="M112 0C85.5 0 64 21.5 64 48V96H16c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 272c8.8 0 16 7.2 16 16s-7.2 16-16 16H64 48c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 240c8.8 0 16 7.2 16 16s-7.2 16-16 16H64 16c-8.8 0-16 7.2-16 16s7.2 16 16 16H64 208c8.8 0 16 7.2 16 16s-7.2 16-16 16H64V416c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H112zM544 237.3V256H416V160h50.7L544 237.3zM160 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96zm272 48a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z" />
+          </svg>
+          <span className="ml-1.5">Fast shipping</span>
+        </div>
+        <div className="absolute top-[3px] right-[5px] z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs">
+          <Badge className='rounded-none' variant={"destructive"}>{product.discount * 100}%</Badge>
+        </div>
+        <div>
+        </div>
       </div>
       <div className={styles.productContent}>
         <div className={styles.imageContainer}>
@@ -178,10 +177,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             >
               {product.productImages.map((image, index) => (
                 <div key={index}>
-                  <img
-                    className={`w-full overflow-x-hidden `}
+                  <Image
+                    className={`w-full overflow-x-hidden`}
                     src={image}
                     alt={product.productId}
+                    width={500}
+                    height={400}
+                    quality={100}
                   />
                 </div>
               ))}
