@@ -109,7 +109,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           <span className="ml-1.5">Fast shipping</span>
         </div>
         <div className="absolute top-[3px] right-[5px] z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs">
-          <Badge className='rounded-none' variant={"destructive"}>{product.discount * 100}%</Badge>
+          <Badge className='rounded-none text-sm' variant={"destructive"}>{product.discount * 100}%</Badge>
         </div>
         <div>
         </div>

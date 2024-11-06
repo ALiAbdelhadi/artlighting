@@ -102,7 +102,7 @@
                      "price": 469,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.35
+                     "discount": 0.50
                   },
                   "product-jy-540-7w": {
                      "ProductId": "product-jy-540-7w",
@@ -166,7 +166,7 @@
                      "price": 1625,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.37
+                     "discount": 0.40
                   },
                   "product-jy-595-48w": {
                      "ProductId": "product-jy-595-48w",
@@ -362,7 +362,7 @@
                      "price": 1075,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.32
+                     "discount": 0.50
                   },
                   "product-jy-812-12w": {
                      "ProductId": "product-jy-812-12w",
@@ -490,7 +490,7 @@
                      "price": 1075,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.32
+                     "discount": 0.37
                   },
                   "product-jy-813-40w": {
                      "ProductId": "product-jy-813-40w",
@@ -522,7 +522,7 @@
                      "price": 1319,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.32
+                     "discount": 0.50
                   }
                }
             ],
@@ -3293,7 +3293,7 @@
                      "sectionType": "Chandelier",
                      "Brand": "MisterLed",
                      "quantity": 10,
-                     "discount": 0.35
+                     "discount": 0.50
                   },
                   "product-OH1209-H9": {
                      "ProductId": "product-OH1209-H9",
