@@ -7,9 +7,10 @@ type ProductPrices = {
     shippingPrice?: number
 };
 
-const NormalPrice: React.FC<ProductPrices> = ({ price, quantity = 1,shippingPrice = 0 }) => {
-    let normalPrice = Math.ceil(price);
-    const PriceAfterTimesQuantity =  normalPrice * quantity + shippingPrice
+const NormalPrice: React.FC<ProductPrices> = ({ price, quantity = 1, shippingPrice = 0 }) => {
+    const priceIncreasing = price * (1 + 0.25)
+    let normalPrice = Math.ceil(priceIncreasing);
+    const PriceAfterTimesQuantity = normalPrice * quantity + shippingPrice
     const formattedTotalPrice = formatPrice(PriceAfterTimesQuantity);
     return (
         <div>

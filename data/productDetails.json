@@ -34,7 +34,7 @@
                      "price": 729,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   }
                }
             ],
@@ -70,7 +70,7 @@
                      "price": 295,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-539-7w": {
                      "ProductId": "product-jy-539-7w",
@@ -102,7 +102,7 @@
                      "price": 469,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-540-7w": {
                      "ProductId": "product-jy-540-7w",
@@ -134,7 +134,7 @@
                      "price": 469,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-595-44w": {
                      "ProductId": "product-jy-595-44w",
@@ -166,7 +166,7 @@
                      "price": 1625,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   },
                   "product-jy-595-48w": {
                      "ProductId": "product-jy-595-48w",
@@ -198,7 +198,7 @@
                      "price": 1299,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   }
                }
             ],
@@ -234,7 +234,7 @@
                      "price": 359,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-810-10w": {
                      "ProductId": "product-jy-810-10w",
@@ -266,7 +266,7 @@
                      "price": 529,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-810-12w": {
                      "ProductId": "product-jy-810-12w",
@@ -298,7 +298,7 @@
                      "price": 440,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-810-18w": {
                      "ProductId": "product-jy-810-18w",
@@ -330,7 +330,7 @@
                      "price": 939,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-810-30w": {
                      "ProductId": "product-jy-810-30w",
@@ -362,7 +362,7 @@
                      "price": 1075,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-812-12w": {
                      "ProductId": "product-jy-812-12w",
@@ -394,7 +394,7 @@
                      "price": 585,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-813-7w": {
                      "ProductId": "product-jy-813-7w",
@@ -426,7 +426,7 @@
                      "price": 549,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-813-20w": {
                      "ProductId": "product-jy-813-20w",
@@ -458,7 +458,7 @@
                      "price": 889,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-813-30w": {
                      "ProductId": "product-jy-813-30w",
@@ -490,7 +490,7 @@
                      "price": 1075,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-813-40w": {
                      "ProductId": "product-jy-813-40w",
@@ -522,7 +522,7 @@
                      "price": 1319,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   }
                }
             ],
@@ -558,7 +558,7 @@
                      "price": 439,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-903-10w": {
                      "ProductId": "product-jy-903-10w",
@@ -590,7 +590,7 @@
                      "price": 529,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-903-18w": {
                      "ProductId": "product-jy-903-18w",
@@ -622,7 +622,7 @@
                      "price": 685,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-903-30w": {
                      "ProductId": "product-jy-903-30w",
@@ -654,7 +654,7 @@
                      "price": 1049,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.50
                   },
                   "product-jy-904-8w": {
                      "ProductId": "product-jy-904-8w",
@@ -686,7 +686,7 @@
                      "price": 499,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.32
                   },
                   "product-jy-904-10w": {
                      "ProductId": "product-jy-904-10w",
@@ -718,7 +718,7 @@
                      "price": 555,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   },
                   "product-jy-904-18w": {
                      "ProductId": "product-jy-904-18w",
@@ -750,7 +750,7 @@
                      "price": 819,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.50
                   },
                   "product-jy-913-5w": {
                      "ProductId": "product-jy-913-5w",
@@ -782,7 +782,7 @@
                      "price": 259,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.30
                   },
                   "product-jy-913-8w": {
                      "ProductId": "product-jy-913-8w",
@@ -814,7 +814,7 @@
                      "price": 279,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   },
                   "product-jy-913-12w": {
                      "ProductId": "product-jy-913-12w",
@@ -846,7 +846,7 @@
                      "price": 294,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   },
                   "product-jy-913-18w": {
                      "ProductId": "product-jy-913-18w",
@@ -878,7 +878,7 @@
                      "price": 525,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.39
                   },
                   "product-jy-922-8w": {
                      "ProductId": "product-jy-922-8w",
@@ -910,7 +910,7 @@
                      "price": 349,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-922-12w": {
                      "ProductId": "product-jy-922-12w",
@@ -942,7 +942,7 @@
                      "price": 499,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-922-18w": {
                      "ProductId": "product-jy-922-18w",
@@ -974,7 +974,7 @@
                      "price": 745,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-922-30w": {
                      "ProductId": "product-jy-922-30w",
@@ -1006,7 +1006,7 @@
                      "price": 1099,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-923-8w": {
                      "ProductId": "product-jy-923-8w",
@@ -1038,7 +1038,7 @@
                      "price": 399,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-923-12w": {
                      "ProductId": "product-jy-923-12w",
@@ -1070,7 +1070,7 @@
                      "price": 529,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-923-18w": {
                      "ProductId": "product-jy-923-18w",
@@ -1102,7 +1102,7 @@
                      "price": 749,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   }
                }
             ],
@@ -1138,7 +1138,7 @@
                      "price": 779,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-dw-0124gls-42w": {
                      "ProductId": "product-jy-dw-0124gls-42w",
@@ -1170,7 +1170,7 @@
                      "price": 1169,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   }
                }
             ],
@@ -1206,7 +1206,7 @@
                      "price": 845,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.38
                   },
                   "product-jy-5050-60-12v-6500k": {
                      "ProductId": "product-jy-5050-60-12v-6500k",
@@ -1238,7 +1238,7 @@
                      "price": 845,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.38
                   }
                }
             ],
@@ -1274,7 +1274,7 @@
                      "price": 1235,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-pdt-0140030ln30-30w": {
                      "ProductId": "product-jy-pdt-0140030ln30-30w",
@@ -1306,7 +1306,7 @@
                      "price": 1429,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-lnrd-001b-32w": {
                      "ProductId": "product-jy-lnrd-001b-32w",
@@ -1338,7 +1338,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   },
                   "product-jy-lnrd-001s-32w": {
                      "ProductId": "product-jy-lnrd-001s-32w",
@@ -1370,7 +1370,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   },
                   "product-jy-lnsd-005b-32w": {
                      "ProductId": "product-jy-lnsd-005b-32w",
@@ -1402,7 +1402,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.37
                   },
                   "product-jy-lnsd-005s-32w": {
                      "ProductId": "product-jy-lnsd-005s-32w",
@@ -1434,7 +1434,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-lnsd-007-32w": {
                      "ProductId": "product-jy-lnsd-007-32w",
@@ -1466,7 +1466,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-lnsd-008-32w": {
                      "ProductId": "product-jy-lnsd-008-32w",
@@ -1498,7 +1498,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.38
                   },
                   "product-jy-lnsd-009-32w": {
                      "ProductId": "product-jy-lnsd-009-32w",
@@ -1530,7 +1530,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.38
                   },
                   "product-jy-lnsd-011-32w": {
                      "ProductId": "product-jy-lnsd-011-32w",
@@ -1562,7 +1562,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.38
                   },
                   "product-jy-lnsd-012-32w": {
                      "ProductId": "product-jy-lnsd-012-32w",
@@ -1594,7 +1594,7 @@
                      "price": 3999,
                      "sectionType": "Indoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.50
                   }
                }
             ]
@@ -1632,7 +1632,7 @@
                      "price": 3599,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.30
                   },
                   "product-jy-un-001-7w": {
                      "ProductId": "product-jy-un-001-7w",
@@ -1664,7 +1664,7 @@
                      "price": 1999,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-un-007-3w": {
                      "ProductId": "product-jy-un-007-3w",
@@ -1696,7 +1696,7 @@
                      "price": 1299,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-un-008-3w": {
                      "ProductId": "product-jy-un-008-3w",
@@ -1728,7 +1728,7 @@
                      "price": 1299,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   },
                   "product-jy-un-009-3w": {
                      "ProductId": "product-jy-un-009-3w",
@@ -1760,7 +1760,7 @@
                      "price": 1299,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.40
                   }
                }
             ],
@@ -1797,7 +1797,7 @@
                      "price": 2635,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.35
                   },
                   "product-jy-5053-150w": {
                      "ProductId": "product-jy-5053-150w",
@@ -1829,7 +1829,7 @@
                      "price": 4099,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.38
                   },
                   "product-jy-5053-200w": {
                      "ProductId": "product-jy-5053-200w",
@@ -1861,7 +1861,7 @@
                      "price": 4874,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.42
                   }
                }
             ],
@@ -1897,7 +1897,7 @@
                      "price": 3699,
                      "sectionType": "Outdoor",
                      "quantity": 10,
-                     "discount": 0.10
+                     "discount": 0.45
                   }
                }
             ]
