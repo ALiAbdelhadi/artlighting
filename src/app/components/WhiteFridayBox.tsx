@@ -17,7 +17,6 @@ export default function WhiteFridayBox() {
             localStorage.setItem('hasSeenWhiteFridayDialog', 'true')
         }
     }, [])
-
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogContent className="sm:max-w-[525px] p-0 border-none">
@@ -29,11 +28,11 @@ export default function WhiteFridayBox() {
                         height={525}
                         className="w-full h-auto"
                     />
-                    <Badge className="absolute top-4 left-4 bg-red-500 text-white text-lg font-bold px-3 py-1 rounded-full">
+                    <Badge className="absolute top-4 left-4 bg-red-500 text-white sm:text-lg text-sm font-bold sm:px-3 px-2 py-1 rounded-full">
                         50% OFF
                     </Badge>
                     <DialogClose className="absolute right-4 top-4 rounded-full bg-white/90 p-2 backdrop-blur-sm transition-colors hover:bg-white/80" style={{ color: 'white' }}>
-                        <Cross2Icon className="h-6 w-6 text-gray-950" />
+                        <Cross2Icon className="sm:h-6 sm:w-6 w-4 h-4 text-gray-950" />
                         <span className="sr-only">Close</span>
                     </DialogClose>
                 </div>
