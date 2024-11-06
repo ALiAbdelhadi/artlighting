@@ -13,6 +13,10 @@ const nextConfig = {
     compiler: {
         styledComponents: true,
     },
+    experimental: {
+        serverActions: true,
+    },
+    serverExternalPackages: ['@prisma/client', 'bcrypt'],
 }
 
 const sentryConfig = {
