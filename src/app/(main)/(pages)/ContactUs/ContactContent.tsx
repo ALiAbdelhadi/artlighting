@@ -143,7 +143,7 @@ export default function ContactContent() {
                                         <div>
                                             <Link
                                                 className="font-medium tracking-wide leading-5 hover:text-primary transition-colors text-wrap"
-                                                href="https://maps.google.com/?q=49+%D8%A7%D9%84%D8%B4%D9%87%D9%8A%D8%AF+%D8%B3%D9%8A%D8%AF+%D8%B2%D9%83%D8%B1%D9%8A%D8%A7%D8%8C+%D8%B4%D9%8A%D8%B1%D8%A7%D8%AA%D9%88%D9%86+%D8%A7%D9%84%D9%85%D8%B7%D8%A7%D8%B1%D8%8C+%D9%82%D8%B3%D9%85+%D8%A7%D9%84%D9%86%D8%B2%D9%87%D8%A9%D8%8C+%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9+%D8%A7%D9%84%D9%82%D8%A7%D9%87%D8%B1%D8%A9%E2%80%AC+4471331%D8%8C+%D9%85%D8%B5%D8%B1&ftid=0x145816155fc17dbd:0x7b7d8db456fc7dd2"
+                                                href="https://maps.app.goo.gl/dPppgdkCGUycMwJH6?g_st=aw"
                                                 target="_blank"
                                             >
                                                 49 El Shaheed Sayed Zakaria, Sheraton Al Matar, El
