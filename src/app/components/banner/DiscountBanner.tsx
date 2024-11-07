@@ -56,7 +56,7 @@ export default function WhiteFridayBanner() {
     if (!isBannerVisible) return null
 
     return (
-        <div className="bg-gradient-to-r from-gray-950 via-gray-900 to-black text-white shadow-lg relative overflow-hidden">
+        <div className="bg-gradient-to-r from-gray-950 via-gray-900 to-black text-white shadow-lg relative overflow-hidden" aria-hidden="true" role="banner">
             <Container>
                 <div className="flex flex-col md:flex-row justify-between items-center py-6 px-4 md:px-0">
                     <div className="flex items-center space-x-3 mb-4 md:mb-0">
@@ -76,8 +76,8 @@ export default function WhiteFridayBanner() {
                 </div>
             </Container>
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-                <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-primary rounded-full opacity-10 animate-ping"/>
-                <div className="absolute bottom-1/4 right-1/3 w-8 h-8 bg-primary rounded-full opacity-10 animate-ping animation-delay-1000"/>
+                <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-primary rounded-full opacity-10 animate-ping" />
+                <div className="absolute bottom-1/4 right-1/3 w-8 h-8 bg-primary rounded-full opacity-10 animate-ping animation-delay-1000" />
             </div>
             <Button
                 onClick={handleClose}

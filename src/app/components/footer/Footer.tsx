@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="bg-background text-foreground py-12 shadow-lg">
+        <footer className="bg-background text-foreground py-12 shadow-lg" >
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
-                    <div className="space-y-4">
+                    <div className="space-y-4" role="indoorcategories">
                         <h3 className="text-xl font-bold text-primary">Indoor Lighting</h3>
                         <ul className="space-y-2">
                             {[
@@ -28,7 +28,7 @@ export default function Footer() {
                             ))}
                         </ul>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-4" role="outdoorcategories">
                         <h3 className="text-xl font-bold text-primary">Outdoor Lighting</h3>
                         <ul className="space-y-2">
                             {["Spikes", "Bollard", "uplight", "Floodlight"].map(
@@ -49,7 +49,7 @@ export default function Footer() {
                             )}
                         </ul>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-4" role="Chandelierscategories">
                         <h3 className="text-xl font-bold text-primary">Chandeliers</h3>
                         <ul className="space-y-2 grid grid-cols-2 gap-x-4">
                             {[
@@ -90,7 +90,7 @@ export default function Footer() {
                             ))}
                         </ul>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-4" role="contentinfo">
                         <h3 className="text-xl font-bold text-primary">Company</h3>
                         <ul className="space-y-2">
                             {[
@@ -107,7 +107,7 @@ export default function Footer() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="pt-4">
+                        <div className="pt-4" role="socialmedia accounts">
                             <h4 className="text-lg font-semibold text-primary mb-2">
                                 Follow Us
                             </h4>

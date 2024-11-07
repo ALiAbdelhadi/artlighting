@@ -56,7 +56,7 @@ export default function NotFound() {
 
     return (
         <div className="flex flex-col min-h-screen bg-background">
-            <main className="flex-grow flex flex-col items-center justify-start pt-16 px-4 md:px-6">
+            <div className="flex-grow flex flex-col items-center justify-start pt-16 px-4 md:px-6">
                 <div className="w-full space-y-8">
                     <h1 className="text-4xl font-extrabold tracking-tight text-center lg:text-5xl">404 - Page Not Found</h1>
                     <p className="text-xl text-center text-muted-foreground">Oops! The page you're looking for doesn't exist.</p>
@@ -120,7 +120,7 @@ export default function NotFound() {
                         </CardContent>
                     </Card>
                 </div>
-            </main>
+            </div>
         </div>
     )
 }

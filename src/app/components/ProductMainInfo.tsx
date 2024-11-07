@@ -353,8 +353,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                         <Button
                             size="icon"
                             onClick={handleDecreaseQuantity}
-                            variant={"secondary"}
-                            className="sm:w-[3.3rem] sm:h-[3.3rem] w-[2.8rem] h-[2.8rem] shadow-md hover:shadow-lg transition-shadow  "
+                            className="sm:w-[3.3rem] sm:h-[3.3rem] w-[2.8rem] h-[2.8rem] shadow-md hover:shadow-lg transition-shadow bg-gray-950 hover:bg-black dark:bg-gray-100 dark:hover:bg-gray-50"
                         >
                             <Minus className="md:w-6 md:h-6 h-4 w-4 " />
                         </Button>
@@ -362,8 +361,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                         <Button
                             size="icon"
                             onClick={handleIncreaseQuantity}
-                            variant={"secondary"}
-                            className="sm:w-[3.3rem] sm:h-[3.3rem] w-[2.8rem] h-[2.8rem] shadow-md hover:shadow-lg  transition-shadow  "
+                            className="sm:w-[3.3rem] sm:h-[3.3rem] w-[2.8rem] h-[2.8rem] shadow-md hover:shadow-lg  transition-shadow  bg-gray-950 hover:bg-black dark:bg-gray-100 dark:hover:bg-gray-50"
                         >
                             <Plus className="md:w-6 md:h-6 h-4 w-4 " />
                         </Button>
