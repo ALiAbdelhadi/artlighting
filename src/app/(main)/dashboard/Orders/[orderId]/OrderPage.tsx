@@ -40,7 +40,7 @@ export default function OrderPage({ order }: OrderPageProps) {
                     </CardHeader>
                     <CardContent className="overflow-x-auto custom-scrollbar">
                         <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
-                            <span>Last updated: {format(order.updatedAt, 'PPp')}</span>
+                            <span>Last updated: {format(order.updatedAt, 'PPP')}</span>
                         </div>
                         <Progress value={orderProgress} className="w-full h-3 mb-2" />
                         <div className="flex justify-between text-xs sm:text-sm font-medium">
