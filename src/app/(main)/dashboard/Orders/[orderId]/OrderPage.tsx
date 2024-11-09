@@ -1,6 +1,5 @@
+"use client"
 import Container from "@/app/components/Container"
-import DiscountPrice from '@/app/helpers/DiscountPrice'
-import NormalPrice from '@/app/helpers/NormalPrice'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -28,49 +27,48 @@ export default function OrderPage({ order }: OrderPageProps) {
         <div className="py-8">
             <Container>
                 <Card className="mb-8 overflow-hidden">
-                    <CardHeader className="bg-primary text-primary-foreground p-6">
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <CardHeader className="p-6 bg-primary text-primary-foreground ">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
-                                <CardTitle className="text-3xl mb-2">Order #{order.id}</CardTitle>
-                                <CardDescription className="text-primary-foreground/80">
-                                    Placed on {format(new Date(order.createdAt), 'PPP')}
+                                <CardTitle className="text-2xl sm:text-3xl mb-2">Order #{order.id}</CardTitle>
+                                <CardDescription className="text-primary-foreground/803 mt-5">
+                                    Placed on {format(order.createdAt, 'PPP')}
                                 </CardDescription>
                             </div>
                             <StatusDropdown id={order.id} orderStatus={order.status} />
                         </div>
                     </CardHeader>
-                    <CardContent className="p-6">
+                    <CardContent className="overflow-x-auto custom-scrollbar">
                         <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-4">
-                            <span>Last updated: {format(new Date(order.updatedAt), 'PPp')}</span>
+                            <span>Last updated: {format(order.updatedAt, 'PPp')}</span>
                         </div>
                         <Progress value={orderProgress} className="w-full h-3 mb-2" />
-                        <div className="flex justify-between text-sm font-medium">
+                        <div className="flex justify-between text-xs sm:text-sm font-medium">
                             <span>Ordered</span>
                             <span>Processing</span>
                             <span>Fulfilled</span>
                         </div>
                     </CardContent>
                 </Card>
-
-                <div className="grid gap-8 md:grid-cols-3">
+                <div className="grid gap-8 md:grid-cols-3 grid-cols-1">
                     <Card className="md:col-span-2">
                         <CardHeader>
-                            <CardTitle className="flex items-center text-2xl">
+                            <CardTitle className="flex items-center text-xl sm:text-2xl">
                                 <Box className="mr-2" /> Product Information
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <div className="flex flex-col md:flex-row md:items-start md:space-x-6">
+                        <CardContent className="overflow-x-auto custom-scrollbar">
+                            <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-6">
                                 {order.productImages?.[0] && (
                                     <img
                                         src={order.productImages[0]}
                                         alt={order.productName}
-                                        className="w-full md:w-48 h-48 object-cover rounded-md shadow-md mb-4 md:mb-0"
+                                        className="w-full sm:w-48 sm:h-48 object-cover rounded-md shadow-md mb-4 sm:mb-0"
                                     />
                                 )}
                                 <div className="flex-1 space-y-4">
-                                    <h3 className="text-xl font-semibold">{order.productName}</h3>
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <h3 className="text-lg sm:text-xl font-semibold">{order.productName}</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <ProductDetail label="Quantity" value={order.quantity} />
                                         <ProductDetail label="Color Temperature" value={order.productColorTemp} />
                                         <ProductDetail label="IP Rating" value={order.productIp} />
@@ -84,16 +82,15 @@ export default function OrderPage({ order }: OrderPageProps) {
                             </div>
                         </CardContent>
                     </Card>
-
-                    <Card>
+                    <Card className="overflow-hidden">
                         <CardHeader>
-                            <CardTitle className="flex items-center text-2xl">
+                            <CardTitle className="flex items-center text-xl sm:text-2xl">
                                 Price Breakdown
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="overflow-x-auto custom-scrollbar">
                             <div className="space-y-4">
-                                <PriceDetail label="Product Price" value={<NormalPrice price={order.configPrice} sectionType={order.product.sectionType} />} />
+                                <PriceDetail label="Product Price" value={formatPrice(order.configPrice)} />
                                 {order.discountRate > 0 && (
                                     <PriceDetail
                                         label={`Discount (${((order.discountRate) * 100).toFixed(0)}%)`}
@@ -108,11 +105,7 @@ export default function OrderPage({ order }: OrderPageProps) {
                                 <Separator className="my-2" />
                                 <PriceDetail
                                     label="Total"
-                                    value={
-                                        order.discountRate > 0
-                                            ? <DiscountPrice price={order.configPrice} shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} sectionType={order.product.sectionType}/>
-                                            : <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice}  sectionType={order.product.sectionType} />
-                                    }
+                                    value={formatPrice(order.totalPrice)}
                                     className="font-bold text-lg"
                                 />
                             </div>
@@ -120,13 +113,13 @@ export default function OrderPage({ order }: OrderPageProps) {
                     </Card>
                     <Card className="md:col-span-3">
                         <CardHeader>
-                            <CardTitle className="flex items-center text-2xl">
+                            <CardTitle className="flex items-center text-xl sm:text-2xl">
                                 <Truck className="mr-2" /> Shipping Information
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="overflow-x-auto custom-scrollbar">
                             {order.shippingAddress ? (
-                                <div className="grid md:grid-cols-2 gap-6">
+                                <div className="grid sm:grid-cols-2 gap-6">
                                     <div className="space-y-4">
                                         <div className="flex items-center space-x-2">
                                             <Avatar className="h-7 w-7 mr-1.5">
@@ -149,7 +142,7 @@ export default function OrderPage({ order }: OrderPageProps) {
                                         {order.OrderTimeReceived && (
                                             <ShippingDetail
                                                 icon={Calendar}
-                                                value={`Estimated Delivery: ${format(new Date(order.OrderTimeReceived), 'PPP')}`}
+                                                value={`Estimated Delivery: ${format(order.OrderTimeReceived, 'PPP')}`}
                                             />
                                         )}
                                     </div>
@@ -161,6 +154,30 @@ export default function OrderPage({ order }: OrderPageProps) {
                     </Card>
                 </div>
             </Container>
+            <style jsx global>
+                {`
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #a0aec0 #edf2f7;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #edf2f7;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #4a5568, #2d3748);
+            border-radius: 10px;
+            border: 2px solid #edf2f7;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #2d3748, #1a202c);
+        }
+        `}
+            </style>
         </div>
     )
 }
