@@ -93,7 +93,7 @@ export default function OrderPage({ order }: OrderPageProps) {
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-4">
-                                <PriceDetail label="Product Price" value={<NormalPrice price={order.configPrice} />} />
+                                <PriceDetail label="Product Price" value={<NormalPrice price={order.configPrice} sectionType={order.product.sectionType} />} />
                                 {order.discountRate > 0 && (
                                     <PriceDetail
                                         label={`Discount (${((order.discountRate) * 100).toFixed(0)}%)`}
@@ -110,8 +110,8 @@ export default function OrderPage({ order }: OrderPageProps) {
                                     label="Total"
                                     value={
                                         order.discountRate > 0
-                                            ? <DiscountPrice price={order.configPrice} shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} />
-                                            : <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} />
+                                            ? <DiscountPrice price={order.configPrice} shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} sectionType={order.product.sectionType}/>
+                                            : <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice}  sectionType={order.product.sectionType} />
                                     }
                                     className="font-bold text-lg"
                                 />

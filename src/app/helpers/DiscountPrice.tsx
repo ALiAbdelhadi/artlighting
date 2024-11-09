@@ -7,9 +7,15 @@ interface DiscountPriceProps {
     discount: number,
     quantity?: number,
     shippingPrice?: number
+    sectionType: string
 }
-const DiscountPrice: React.FC<DiscountPriceProps> = ({ price, discount, quantity = 1, shippingPrice = 0 }) => {
-    let priceIncreasing = price * (1.46)
+const DiscountPrice: React.FC<DiscountPriceProps> = ({ price, discount, quantity = 1, shippingPrice = 0, sectionType }) => {
+    let priceIncreasing
+    if (sectionType === "Chandelier") {
+        priceIncreasing = price * (1.46)
+    } else {
+        priceIncreasing = price
+    }
     Math.ceil(priceIncreasing)
     const discountedPrice = Math.ceil(priceIncreasing * (1 - discount));
     const formattedPrice = formatPrice(discountedPrice * quantity + shippingPrice);

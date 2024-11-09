@@ -27,7 +27,7 @@ const Page = async ({ searchParams }: ThankYouProps) => {
     }
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <ThankYouPage discount={order.configuration.discount} />
+            <ThankYouPage discount={order.configuration.discount}/>
         </Suspense>
     )
 }

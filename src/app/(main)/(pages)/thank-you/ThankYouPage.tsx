@@ -31,6 +31,7 @@ interface Order {
     discount: number;
     configPrice: number
     OrderTimeReceived: string
+    sectionType:string
 }
 
 const calculateEstimatedDeliveryDate = () => {
@@ -183,7 +184,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                                 </div>
                                                             </TableCell>
                                                             <TableCell className="text-sm md:text-base pl-20 sm:pl-0 font-medium">{order.quantity}</TableCell>
-                                                            <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.configPrice} /></TableCell>
+                                                            <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.configPrice} sectionType={order.product?.sectionType}  /></TableCell>
                                                             {discount > 0 ?
                                                                 <TableCell className='text-sm md:text-base text-destructive font-medium'>{order.product?.discount * 100}%</TableCell>
                                                                 :
@@ -191,11 +192,11 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             }
                                                             {discount > 0 ?
                                                                 (
-                                                                    <TableCell className="text-sm md:text-base font-medium"><DiscountPrice price={order.configPrice} discount={order.product?.discount} /></TableCell>
+                                                                    <TableCell className="text-sm md:text-base font-medium"><DiscountPrice price={order.configPrice} discount={order.product?.discount} sectionType={order.product?.sectionType} /></TableCell>
                                                                 )
                                                                 :
                                                                 (
-                                                                    <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.configPrice} quantity={order.quantity} /></TableCell>
+                                                                    <TableCell className="text-sm md:text-base font-medium"><NormalPrice price={order.configPrice} quantity={order.quantity}  sectionType={order.product?.sectionType}/></TableCell>
                                                                 )
                                                             }
                                                         </TableRow>
@@ -209,7 +210,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                         <>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">Subtotal:</div>
-                                                                <s className="text-right text-base font-semibold text-gray-500"><NormalPrice price={order.configPrice} quantity={order.quantity} /></s>
+                                                                <s className="text-right text-base font-semibold text-gray-500"><NormalPrice price={order.configPrice} quantity={order.quantity} sectionType={order.product?.sectionType} /></s>
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium  text-muted-foreground">Shipping Fee:</div>
@@ -232,7 +233,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium ">Total:</div>
                                                                 <div className="text-right text-base font-semibold text-destructive">
-                                                                    <DiscountPrice price={order.configPrice} shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity} />
+                                                                    <DiscountPrice price={order.configPrice} shippingPrice={order.shippingPrice} discount={order.product?.discount} quantity={order.quantity}  sectionType={order.product?.sectionType}/>
                                                                 </div>
                                                             </div>
                                                         </>
@@ -241,7 +242,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                         <>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">Subtotal:</div>
-                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} /></span>
+                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} sectionType={order.product?.sectionType} /></span>
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium  text-muted-foreground">Shipping Fee:</div>
@@ -249,7 +250,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                                             </div>
                                                             <div className="grid grid-cols-2 items-center">
                                                                 <div className="font-medium text-muted-foreground">total:</div>
-                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} /></span>
+                                                                <span className="text-right text-base font-semibold"><NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} sectionType={order.product?.sectionType} /></span>
                                                             </div>
                                                         </>
                                                     )

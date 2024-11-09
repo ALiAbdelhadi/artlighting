@@ -112,11 +112,11 @@ const Dashboard = ({ discount }: { discount: number }) => {
         () =>
             filteredOrder.map((order) => (
                 <TableRow key={order.id}>
-                    <Link href={`dashboard/Orders/${order.id}`} className="hover:text-primary hover:underline">
-                        <TableCell className="px-4 py-2">
+                    <TableCell className="px-4 py-2">
+                        <Link href={`/dashboard/Orders/${order.id}`} className="hover:text-primary hover:underline">
                             # {order.id}
-                        </TableCell>
-                    </Link>
+                        </Link>
+                    </TableCell>
                     <TableCell className="px-4 py-2">
                         {order.shippingAddress.fullName}
                     </TableCell>
@@ -127,10 +127,10 @@ const Dashboard = ({ discount }: { discount: number }) => {
                         {order.discountRate > 0 ? (
                             <DiscountPrice
                                 price={order.configPrice}
-                                discount={order.discountRate}
+                                discount={order.discountRate} sectionType={order.product.sectionType}
                             />
                         ) : (
-                            <NormalPrice price={order.configPrice} />
+                            <NormalPrice price={order.configPrice} sectionType={order.product.sectionType} />
                         )}
                     </TableCell>
                     <TableCell className="px-4 py-2">
@@ -147,9 +147,10 @@ const Dashboard = ({ discount }: { discount: number }) => {
                                 discount={order.discountRate}
                                 quantity={order.quantity}
                                 shippingPrice={order.shippingPrice}
+                                sectionType={order.product.sectionType}
                             />
                         ) : (
-                            <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} />
+                            <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} sectionType={order.product.sectionType} />
                         )}
                     </TableCell>
                     <TableCell className="px-4 py-2">

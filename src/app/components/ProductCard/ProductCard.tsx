@@ -2,17 +2,17 @@ import { addToCart } from '@/app/(main)/actions/cart';
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { useToast } from "@/components/hooks/use-toast";
+import { Badge } from '@/components/ui/badge';
 import { Button } from "@/components/ui/button";
 import { cn } from '@/lib/utils';
 import { useAuth } from "@clerk/nextjs";
+import Image from 'next/image';
 import Link from "next/link";
 import { useState, useTransition } from 'react';
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import AddToCardIcon from "../AddToCardIcon";
 import styles from "./ProductCard.module.css";
-import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
 
 interface Product {
   productId: string;
@@ -202,16 +202,16 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               {product.discount > 0 ? (
                 <div className="flex items-center">
                   <span className="text-lg text-destructive font-semibold">
-                    <DiscountPrice price={product.price} discount={product.discount} />
+                    <DiscountPrice price={product.price} discount={product.discount} sectionType={product.sectionType} />
                   </span>
                   <s className="text-gray-500 font-semibold ml-1.5 text-base">
-                    <NormalPrice price={product.price} />
+                    <NormalPrice price={product.price} sectionType={product.sectionType}  />
                   </s>
                 </div>
               ) : (
                 <div className="flex items-center">
                   <span className="font-semibold text-base  ">
-                    <NormalPrice price={product.price} />
+                    <NormalPrice price={product.price} sectionType={product.sectionType}  />
                   </span>
                 </div>
               )}

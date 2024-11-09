@@ -21,11 +21,15 @@ const Page = async ({ params, searchParams }: PageProps) => {
     if (ProductId) {
         configuration = await db.configuration.findFirst({
             where: { ProductId },
+
         });
     }
     if (!configuration && id && typeof id === 'string') {
         configuration = await db.configuration.findUnique({
             where: { id },
+            include: {
+                product: true,
+            }
         });
     }
     if (!configuration) {
