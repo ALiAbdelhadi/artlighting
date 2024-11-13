@@ -22,7 +22,7 @@ export default function WhiteFridayBox() {
             <DialogContent className="sm:max-w-[525px] p-0 border-none">
                 <div className="relative w-full">
                     <Image
-                        src="/friday/white-friday-2.png"
+                        src="/friday/white-friday.jpeg"
                         alt="White Friday sale"
                         width={525}
                         height={525}
