@@ -1,7 +1,7 @@
 'use server'
 
 import { auth } from '@clerk/nextjs/server'
-import { prisma } from '../../../lib/prisma'
+import { db } from '@/db'
 
 export async function addToCart(productId: string, quantity: number = 1) {
     const { userId } = auth()
@@ -9,29 +9,29 @@ export async function addToCart(productId: string, quantity: number = 1) {
         throw new Error('User not authenticated')
     }
     try {
-        let user = await prisma.user.findUnique({
+        let user = await db.user.findUnique({
             where: { id: userId },
         })
         if (!user) {
-            user = await prisma.user.create({
+            user = await db.user.create({
                 data: { id: userId },
             })
         }
-        const product = await prisma.product.findUnique({
+        const product = await db.product.findUnique({
             where: { productId },
         })
         if (!product) {
             throw new Error('Product not found')
         }
-        let cart = await prisma.cart.findUnique({
+        let cart = await db.cart.findUnique({
             where: { userId },
         })
         if (!cart) {
-            cart = await prisma.cart.create({
+            cart = await db.cart.create({
                 data: { userId },
             })
         }
-        const existingCartItem = await prisma.cartItem.findUnique({
+        const existingCartItem = await db.cartItem.findUnique({
             where: {
                 cartId_productId: {
                     cartId: cart.id,
@@ -40,12 +40,12 @@ export async function addToCart(productId: string, quantity: number = 1) {
             },
         })
         if (existingCartItem) {
-            await prisma.cartItem.update({
+            await db.cartItem.update({
                 where: { id: existingCartItem.id },
                 data: { quantity: existingCartItem.quantity + quantity },
             })
         } else {
-            await prisma.cartItem.create({
+            await db.cartItem.create({
                 data: {
                     cartId: cart.id,
                     productId: product.id,

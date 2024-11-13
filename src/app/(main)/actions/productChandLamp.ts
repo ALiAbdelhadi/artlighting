@@ -1,6 +1,6 @@
 "use server"
 import { ProductChandLamp } from "@prisma/client"
-import { db } from "../../../db"
+import { db } from "@/db"
 export const changeProductChandLamp = async ({ productId, newProductLamp }: {
     productId: string,
     newProductLamp: ProductChandLamp

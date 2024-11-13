@@ -1,7 +1,7 @@
 'use server'
 
 import { ProductIP } from "@prisma/client"
-import { db } from "../../../db"
+import { db } from "@/db"
 
 export const updateProductIP = async ({
     productId,
