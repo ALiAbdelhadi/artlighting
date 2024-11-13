@@ -130,7 +130,7 @@ export default function OrderPage({ order }: OrderPageProps) {
                                                 <p className="font-semibold">{order.shippingAddress.fullName}</p>
                                                 <p className="text-sm text-muted-foreground">{order.shippingAddress.phoneNumber}</p>
                                                 <p className="text-sm text-muted-foreground">{order.user.email}</p>
-                                                <Link href={`/dashboard/Customers/${order.user.id}`} className="font-semibold">{order.user.id}</Link>
+                                                <Link href={`/dashboard/Users/${order.user.id}`} className="font-semibold">{order.user.id}</Link>
                                             </div>
                                         </div>
                                         <ShippingDetail

@@ -73,7 +73,7 @@ export const DASHBOARDS = [
     {
         name: "Customers",
         icon: <UsersIcon className="h-5 w-5" />,
-        url: "/dashboard/Customers",
+        url: "/dashboard/Users",
     },
     {
         name: "Notification",

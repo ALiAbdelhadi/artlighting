@@ -1,27 +1,24 @@
 import { notFound } from 'next/navigation'
-import { db } from '../../../../../db/index'
-import CustomersPageClient from './CustomersPageClient'
+import { db } from '@/db';
+import UserPageClient from './UserPageClient'
 
-const CustomerPage = async ({ params }: { params: { customerId: string } }) => {
+const UserPage = async ({ params }: { params: { userId: string } }) => {
     console.log("Received params:", params);
-    console.log("Searching for user with ID:", params.customerId);
+    console.log("Searching for user with ID:", params.userId);
 
     try {
         const user = await db.user.findUnique({
             where: {
-                id: params.customerId
+                id: params.userId
             },
             include: {
                 shippingAddress: true,
                 product: true,
                 orders: {
-                    select: {
-                        isCompleted: true
-                    },
                     include: {
-                        shippingAddress: true,
                         product: true,
-                        user: true
+                        configuration: true,
+                        shippingAddress: true
                     },
                     orderBy: {
                         createdAt: "desc"
@@ -39,11 +36,11 @@ const CustomerPage = async ({ params }: { params: { customerId: string } }) => {
             email: user.email,
             shippingAddress: user.shippingAddress
         });
-        return <CustomersPageClient user={user} />
+        return <UserPageClient user={user} />
     } catch (error) {
         console.error("Error fetching user:", error);
         return <div className="container mx-auto px-4 py-8 text-center">Error loading customer data.</div>
     }
 }
 
-export default CustomerPage
+export default UserPage

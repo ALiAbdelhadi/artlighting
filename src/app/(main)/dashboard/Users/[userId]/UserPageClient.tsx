@@ -19,32 +19,10 @@ interface UserWithDetails extends User {
     product: Product | null
     orders: Order[]
 }
-interface CustomersPageClientProps {
+interface UserPageClientProps {
     user: UserWithDetails
 }
-const CustomersPageClient = ({ user }: CustomersPageClientProps) => {
-    const getStatusBadgeClassName = (status: string) => {
-        switch (status) {
-            case "cancelled":
-                return "bg-[#ef4444] text-white hover:bg-red-600";
-            case "processing":
-                return "bg-[#f5a623] text-white hover:bg-[#f5a623]";
-            case "fulfilled":
-                return "bg-teal-400 text-white hover:bg-teal-400";
-            case "awaiting_shipment":
-                return "bg-[#0070f3] text-white hover:bg-[#0070f3]";
-            default:
-                return "bg-[#f3f4f6] text-black hover:bg-[#f0f0f0]";
-        }
-    };
-
-    const LABEL_MAP_COLOR: Record<string, string> = {
-        awaiting_shipment: "Awaiting Shipment",
-        processing: "Processing Shipment",
-        cancelled: "Cancelled",
-        fulfilled: "Fulfilled",
-    };
-
+const UserPageClient = ({ user }: UserPageClientProps) => {
     return (
         <div className="py-8">
             <Container>
@@ -169,7 +147,7 @@ const CustomersPageClient = ({ user }: CustomersPageClientProps) => {
                                                                 : "No Lamp"}
                                                         </TableCell>
                                                         <TableCell className="px-4 py-2 font-medium">
-                                                            <NormalPrice price={order.configPrice} />
+                                                            <NormalPrice price={order.configPrice} sectionType={order.product?.sectionType} />
                                                         </TableCell>
                                                         <TableCell className="text-nowrap px-4 py-2">
                                                             {order.discountRate && order.discountRate > 0 ? (
@@ -180,7 +158,7 @@ const CustomersPageClient = ({ user }: CustomersPageClientProps) => {
                                                         </TableCell>
                                                         <TableCell>
                                                             {order.discountRate && order.discountRate > 0 ? (
-                                                                <DiscountPrice price={order.configPrice} discount={order.discountRate} />
+                                                                <DiscountPrice price={order.configPrice} discount={order.discountRate} sectionType={order.product?.sectionType}  />
                                                             ) : (
                                                                 <span>No Discount On This Product</span>
                                                             )}
@@ -195,12 +173,13 @@ const CustomersPageClient = ({ user }: CustomersPageClientProps) => {
                                                                         discount={order.discountRate}
                                                                         quantity={order.quantity}
                                                                         shippingPrice={order.shippingPrice}
+                                                                        sectionType={order.product?.sectionType} 
                                                                     />
                                                                 ) : (
-                                                                    <NormalPrice price={order.configPrice} shippingPrice={order.shippingPrice} quantity={order.quantity} />
+                                                                    <NormalPrice price={order.configPrice} shippingPrice={order.shippingPrice} quantity={order.quantity} sectionType={order.product?.sectionType}  />
                                                                 )}
                                                         </TableCell>
-                                                        <TableCell>{order.createdAt.toLocaleDateString()}</TableCell>
+                                                        <TableCell>{order.createdAt?.toLocaleDateString()}</TableCell>
                                                         <TableCell className="text-nowrap">{order.OrderTimeReceived?.toLocaleDateString()}</TableCell>
                                                         <TableCell>
                                                             <StatusDropdown id={order.id} orderStatus={order.status} />
@@ -241,4 +220,4 @@ const CustomersPageClient = ({ user }: CustomersPageClientProps) => {
     )
 }
 
-export default CustomersPageClient
+export default UserPageClient

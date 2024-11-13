@@ -1,9 +1,9 @@
 import { db } from "@/db";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { notFound } from "next/navigation";
-import CustomersClient from "./CustomersClient";
+import UsersClient from "./UsersClient";
 
-const Customers = async () => {
+const Users = async () => {
     const { userId } = auth();
     const user = await currentUser();
     if (!userId || !user) {
@@ -44,7 +44,7 @@ const Customers = async () => {
         })));
         return (
             <div>
-                <CustomersClient users={users} />
+                <UsersClient users={users} />
             </div>
         );
     } catch (error) {
@@ -53,4 +53,4 @@ const Customers = async () => {
     }
 };
 
-export default Customers;
+export default Users;

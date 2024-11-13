@@ -12,7 +12,7 @@ import { useState } from "react";
 
 type UserWithShipping = User & { shippingAddress: ShippingAddress | null };
 
-const CustomersClient = ({ users }: { users: UserWithShipping[] }) => {
+const UsersClient = ({ users }: { users: UserWithShipping[] }) => {
     const [searchItem, setSearchItem] = useState<string>("");
     const [filteredUsers, setFilteredUsers] = useState<UserWithShipping[]>(users);
     const [loading, setLoading] = useState<boolean>(false);
@@ -86,7 +86,7 @@ const CustomersClient = ({ users }: { users: UserWithShipping[] }) => {
                                     {!loading && !error && filteredUsers.map((user) => (
                                         <TableRow key={user.id}>
                                             <TableCell>
-                                                <Link href={`/dashboard/Customers/${user.id}`}>
+                                                <Link href={`/dashboard/Users/${user.id}`}>
                                                     {user.id}
                                                 </Link>
                                             </TableCell>
@@ -134,4 +134,4 @@ const CustomersClient = ({ users }: { users: UserWithShipping[] }) => {
     );
 };
 
-export default CustomersClient;
+export default UsersClient;
