@@ -65,7 +65,7 @@ export default function WhiteFridayBanner() {
                     <div className="flex flex-col items-center md:items-end space-y-4">
                         <p className="font-bold flex items-center flex-wrap justify-center md:justify-end">
                             <span className="mr-2 inline-block animate-bounce text-lg md:text-xl lg:text-2xl text-primary">Up to 50% OFF</span>
-                            <span className="text-base md:text-lg font-semibold">All Lighting Products</span>
+                            <span className="text-base md:text-lg font-semibold">Chandelier Products</span>
                         </p>
                         <CountdownTimer />
                         <div className="flex items-center space-x-2 text-sm md:text-base">
