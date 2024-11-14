@@ -30,10 +30,9 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPrice } from "@/lib/utils";
 import { OrderStatus, Product, ShippingAddress, User } from "@prisma/client";
 import { MoveHorizontalIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { fetchDashboardData } from "./fetchDashboardData";
-import Link from "next/link";
 interface Order {
     id: number;
     user: User;
@@ -81,12 +80,9 @@ const LABEL_MAP_COLOR: Record<OrderStatus, string> = {
     cancelled: "Cancelled",
     fulfilled: "Fulfilled",
 };
-const Dashboard = ({ discount }: { discount: number }) => {
+const Dashboard = () => {
     const [data, setData] = useState<DashboardData | null>(null);
     const [filter, setFilter] = useState("all");
-    const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
-    const [isOrderDetailsModalOpen, setIsOrderDetailsModalOpen] = useState(false);
-    const router = useRouter();
     useEffect(() => {
         const loadData = async () => {
             const dashboardData = await fetchDashboardData();
@@ -187,7 +183,7 @@ const Dashboard = ({ discount }: { discount: number }) => {
                 Loading...
             </div>
         );
-    const { totalCustomers, totalOrdersThatOrdered, TotalSales, user } = data;
+    const { totalCustomers, totalOrdersThatOrdered, user } = data;
     return (
         <div className=" min-h-screen">
             <div className="flex flex-col">
@@ -299,33 +295,33 @@ const Dashboard = ({ discount }: { discount: number }) => {
             </div>
             <style jsx global>
                 {`
-          .custom-scrollbar {
+        .custom-scrollbar {
             scrollbar-width: thin;
             scrollbar-color: #a0aec0 #edf2f7;
-          }
-          .custom-scrollbar::-webkit-scrollbar {
+        }
+        .custom-scrollbar::-webkit-scrollbar {
             height: 8px;
             width: 8px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-track {
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
             background: #edf2f7;
             border-radius: 10px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb {
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, #4a5568, #2d3748);
             border-radius: 10px;
             border: 2px solid #edf2f7;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, #2d3748, #1a202c);
-          }
-          img {
+        }
+        img {
             max-width: 100%;
             height: auto;
-          }
-          address {
+        }
+        address {
             word-wrap: break-word;
-          }
+        }
         `}
             </style>
         </div>
