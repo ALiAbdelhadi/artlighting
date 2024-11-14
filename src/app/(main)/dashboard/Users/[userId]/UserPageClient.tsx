@@ -46,6 +46,7 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
                                 </div>
                             </div>
                             <div className="space-y-2">
+                                <p><strong>Full Name:</strong> {user.shippingAddress?.fullName}</p>
                                 <p><strong>Email:</strong> {user.email}</p>
                                 <p><strong>Phone:</strong> {user.shippingAddress?.phoneNumber || 'Not provided'}</p>
                             </div>
@@ -158,7 +159,7 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
                                                         </TableCell>
                                                         <TableCell>
                                                             {order.discountRate && order.discountRate > 0 ? (
-                                                                <DiscountPrice price={order.configPrice} discount={order.discountRate} sectionType={order.product?.sectionType}  />
+                                                                <DiscountPrice price={order.configPrice} discount={order.discountRate} sectionType={order.product?.sectionType} />
                                                             ) : (
                                                                 <span>No Discount On This Product</span>
                                                             )}
@@ -173,10 +174,10 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
                                                                         discount={order.discountRate}
                                                                         quantity={order.quantity}
                                                                         shippingPrice={order.shippingPrice}
-                                                                        sectionType={order.product?.sectionType} 
+                                                                        sectionType={order.product?.sectionType}
                                                                     />
                                                                 ) : (
-                                                                    <NormalPrice price={order.configPrice} shippingPrice={order.shippingPrice} quantity={order.quantity} sectionType={order.product?.sectionType}  />
+                                                                    <NormalPrice price={order.configPrice} shippingPrice={order.shippingPrice} quantity={order.quantity} sectionType={order.product?.sectionType} />
                                                                 )}
                                                         </TableCell>
                                                         <TableCell>{order.createdAt?.toLocaleDateString()}</TableCell>

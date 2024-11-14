@@ -15,15 +15,18 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
                 shippingAddress: true,
                 product: true,
                 orders: {
+                    where: {
+                        isCompleted: true
+                    },
                     include: {
                         product: true,
                         configuration: true,
-                        shippingAddress: true
+                        shippingAddress: true,
                     },
                     orderBy: {
                         createdAt: "desc"
                     }
-                }
+                },
             }
         });
         console.log("Database query result:", user);
