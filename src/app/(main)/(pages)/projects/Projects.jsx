@@ -15,27 +15,27 @@ const Projects = () => {
 
     useEffect(() => {
         const data = {
-            "Project-four": {
-                "ProjectId": "dar-misr",
-                "ProjectName": "Dar-Misr",
-                "ProjectDate": "10 / May / 2018",
+            "dar-misr": {
+                ProjectId: "dar-misr",
+                ProjectName: "Dar-Misr",
+                ProjectDate: "10 / May / 2018",
                 ProjectImages: ["/projects/DAR-MISR/DAR-MISR-0.jpg"],
                 ProjectDescription:
                     "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
             },
-            "Project-one": {
-                ProjectId: "Project-one",
-                ProjectName: "Project one",
+            "tolip": {
+                ProjectId: "tolip",
+                ProjectName: "Tolip Hotel",
                 ProjectDate: "10 / June / 22",
-                ProjectImages: ["/projects/projectTest2.jpg"],
+                ProjectImages: ["/projects/tolip/tolip-1.jpg"],
                 ProjectDescription:
                     "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
             },
-            "Project-six": {
-                ProjectId: "Project-six",
-                ProjectName: "Project six",
+            "al-majd": {
+                ProjectId: "al-majd",
+                ProjectName: " Al-Majd Conference Center In Alexandria",
                 ProjectDate: "10 / Dec / 24",
-                ProjectImages: ["/projects/prjecttest3.jpg"],
+                ProjectImages: ["/projects/al-majd/prjecttest3.jpg"],
                 ProjectDescription:
                     "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
             }
