@@ -16,9 +16,9 @@ const Projects = () => {
     useEffect(() => {
         const data = {
             "Project-four": {
-                ProjectId: "Project-four",
-                ProjectName: "Project four",
-                ProjectDate: "10 / May / 23",
+                "ProjectId": "dar-misr",
+                "ProjectName": "Dar-Misr",
+                "ProjectDate": "10 / May / 2018",
                 ProjectImages: ["/projects/DAR-MISR/DAR-MISR-0.jpg"],
                 ProjectDescription:
                     "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
