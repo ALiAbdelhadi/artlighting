@@ -38,8 +38,8 @@ const ProductSpecifications: React.FC<ProductSpecificationsProps> = ({
             <Table className="w-full mt-4 border-collapse border border-gray-300">
                 <TableHeader>
                     <TableRow className="text-left">
-                        <TableHead className="pr-4 py-2 border border-gray-300 text-base md:text-[1.2]">Specifications</TableHead>
-                        <TableHead className="pr-4 py-2 border border-gray-300 text-base md:text-[1.5]">Value</TableHead>
+                        <TableHead className="pr-4 py-2 border border-gray-300 text-base md:text-lg font-medium ">Specifications</TableHead>
+                        <TableHead className="pr-4 py-2 border border-gray-300 text-base md:text-lg font-medium">Value</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>

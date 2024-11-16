@@ -73,8 +73,6 @@ const ProductClientComponent: React.FC<ProductClientComponentProps> = ({ childre
         Finished: product.finish || "",
         "Lamp Base": product.lampBase || "",
         BULB: product.bulb || "",
-        hNumber: product.hNumber?.toString() || "",
-        ChandelierLightingType: product.ChandelierLightingType ?? ""
     };
     return (
         <motion.div

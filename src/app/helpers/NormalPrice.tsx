@@ -12,7 +12,7 @@ type ProductPrices = {
 const NormalPrice: React.FC<ProductPrices> = ({ price, quantity = 1, shippingPrice = 0, sectionType }) => {
     let priceIncreasing
     if (sectionType === "Chandelier") {
-        priceIncreasing = price * (1 + 0.46)
+        priceIncreasing = price * (1.56)
     } else {
         priceIncreasing = price
     }

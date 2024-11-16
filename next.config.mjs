@@ -7,15 +7,11 @@ const nextConfig = {
     },
     reactStrictMode: true,
     images: {
-        domains: ['localhost', 'eg-artlighting.vercel.app'],
+        domains: ['localhost', 'https://eg-artlighting.vercel.app'],
         unoptimized: true
     },
     compiler: {
         styledComponents: true,
-    },
-    experimental: {
-        serverActions: true,
-        turbo: true
     },
     serverExternalPackages: ['@prisma/client', 'bcrypt'],
 }
