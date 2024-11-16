@@ -34,7 +34,7 @@ const Projects = () => {
             "al-majd": {
                 ProjectId: "al-majd",
                 ProjectName: " Al-Majd Conference Center In Alexandria",
-                ProjectDate: "10 / Dec / 24",
+                ProjectDate: "10 / Dec / 23",
                 ProjectImages: ["/projects/al-majd/al-majd-1.jpg"],
                 ProjectDescription:
                     "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
