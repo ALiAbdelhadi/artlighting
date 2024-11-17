@@ -256,7 +256,7 @@ const Dashboard = () => {
                                                         <TableHead className="px-4 py-2 text-sm text-nowrap">
                                                             Customer
                                                         </TableHead>
-                                                        <TableHead>Product Id</TableHead>
+                                                        <TableHead className="text-nowrap">Product Id</TableHead>
                                                         <TableHead className="px-4 py-2 text-sm text-nowrap">
                                                             Product Price
                                                         </TableHead>
