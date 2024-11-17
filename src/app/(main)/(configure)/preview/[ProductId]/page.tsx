@@ -11,6 +11,7 @@ interface PageProps {
         [key: string]: string | string[] | undefined;
     };
 }
+
 const Page = async ({ params, searchParams }: PageProps) => {
     const { ProductId } = params;
     const { id } = searchParams;
@@ -18,48 +19,71 @@ const Page = async ({ params, searchParams }: PageProps) => {
         return notFound();
     }
     let configuration = null;
+    let product = null;
+
     if (ProductId) {
         configuration = await db.configuration.findFirst({
             where: { ProductId },
-
+        });
+        product = await db.product.findUnique({
+            where: { productId: ProductId },
         });
     }
+
     if (!configuration && id && typeof id === 'string') {
         configuration = await db.configuration.findUnique({
             where: { id },
-            include: {
-                product: true,
-            }
         });
+        if (configuration) {
+            product = await db.product.findUnique({
+                where: { productId: configuration.ProductId },
+            });
+        }
     }
-    if (!configuration) {
+
+    if (!configuration || !product) {
         return notFound();
     }
+
     return (
-        <PreviewPage configuration={configuration} discount={configuration.discount} />
+        <PreviewPage configuration={configuration} discount={configuration.discount}  productId={configuration.ProductId} />
     );
 };
+
 export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
     const product = await db.product.findFirst({
         where: { productId: params.ProductId }
     });
-    let typeOfSpotlight
-    let titleToSectionType;
-    if (product?.sectionType === "IndoorLighting") {
-        titleToSectionType = "Indoor lighting";
-        typeOfSpotlight = "Ideal for homes and offices"
-    } else if (product?.sectionType === "OutdoorLighting") {
-        titleToSectionType = "Outdoor lighting";
-        typeOfSpotlight = "Create the perfect ambiance for outdoor entertaining"
-    } else if (product?.sectionType === "Chandelier") {
-        titleToSectionType = "Chandelier";
-        typeOfSpotlight = "A chandelier is a branched, decorative lighting fixture designed to be hung from the ceiling."
+
+    if (!product) {
+        return {
+            title: 'Unknown Product',
+            description: 'Product not found',
+        };
     }
+
+    let titleToSectionType = product.sectionType;
+    let typeOfSpotlight = '';
+
+    switch (product.sectionType) {
+        case "IndoorLighting":
+            titleToSectionType = "Indoor lighting";
+            typeOfSpotlight = "Ideal for homes and offices";
+            break;
+        case "OutdoorLighting":
+            titleToSectionType = "Outdoor lighting";
+            typeOfSpotlight = "Create the perfect ambiance for outdoor entertaining";
+            break;
+        case "Chandelier":
+            titleToSectionType = "Chandelier";
+            typeOfSpotlight = "A chandelier is a branched, decorative lighting fixture designed to be hung from the ceiling.";
+            break;
+    }
+
     return {
-        title: `Preview ${product?.productName || 'Unknown Product'} LED Spotlight | ${product?.Brand} | Energy Efficient ${titleToSectionType}`,
-        description: `Preview of ${product?.productName || 'Unknown'} With a high CRI ${product?.cri} , and high beam angle of ${product?.beamAngle} this spotlight provides bright, ${typeOfSpotlight}`
+        title: `Preview ${product.productName} LED Spotlight | ${product.Brand} | Energy Efficient ${titleToSectionType}`,
+        description: `Preview of ${product.productName} With a high CRI ${product.cri}, and high beam angle of ${product.beamAngle} this spotlight provides bright, ${typeOfSpotlight}`
     };
 };
-
 
 export default Page;

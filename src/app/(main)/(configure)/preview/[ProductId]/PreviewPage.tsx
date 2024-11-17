@@ -23,10 +23,10 @@ import { createOrder } from "./action";
 type PreviewPageProps = {
     configuration: Configuration;
     discount: number;
-    product: Product
+    productId: string;
 };
 
-const fetchProduct = async (productId: string) => {
+const fetchProduct = async (productId: string): Promise<Product> => {
     const response = await fetch(`/api/products/${productId}`);
     if (!response.ok) {
         throw new Error("Failed to fetch product");
@@ -37,6 +37,7 @@ const fetchProduct = async (productId: string) => {
 const PreviewPage: React.FC<PreviewPageProps> = ({
     configuration: initialConfiguration,
     discount,
+    productId
 }) => {
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const handleSlideChange = (index: number) => {
@@ -49,11 +50,10 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
     const { toast } = useToast();
     const { isLoaded, isSignedIn, user } = useUser();
     const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
-
-    const { data: product, isLoading, isError } = useQuery({
-        queryKey: ['product', ProductId],
-        queryFn: () => fetchProduct(ProductId as string),
-        enabled: !!ProductId,
+    const { data: product, isLoading, isError } = useQuery<Product>({
+        queryKey: ['product', productId],
+        queryFn: () => fetchProduct(productId),
+        enabled: !!productId,
     });
 
     useEffect(() => {
@@ -136,8 +136,12 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
             </div>
         );
     }
+    if (isError || !product) {
+        return <div>Error loading product</div>;
+    }
 
     if (!product) return null;
+    console.log(product.sectionType)
     return (
         <div className=" min-h-screen">
             <Container>
@@ -312,6 +316,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                         <>
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p>Price Per item</p>
+
                                                                 <p><NormalPrice price={configuration.configPrice} sectionType={product.sectionType} /></p>
                                                             </div>
                                                             <div className="flex items-center justify-between py-1 mt-2">

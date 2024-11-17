@@ -1,3 +1,4 @@
+"use server"
 import { db } from '@/db'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
@@ -29,7 +30,8 @@ export async function GET(
                 luminousFlux: true,
                 mainMaterial: true,
                 cri: true,
-                beamAngle: true
+                beamAngle: true,
+                sectionType: true, 
             }
         })
 

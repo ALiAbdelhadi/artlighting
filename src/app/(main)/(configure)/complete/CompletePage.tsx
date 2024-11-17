@@ -440,7 +440,8 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                 </p>
                                                 <p className="tracking-wide leading-6 font-semibold">
                                                     {isCairo ? (
-                                                        <NormalPrice price={order.shippingPrice} sectionType={order.product?.sectionType} />
+
+                                                        <NormalPrice price={order.shippingPrice} />
                                                     ) : (
                                                         "We will contact you with the shipping price."
                                                     )}
