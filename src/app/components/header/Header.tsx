@@ -24,6 +24,7 @@ import ContainerAuthInDesktop from "./ContainerAuthInDesktop";
 import ContainerAuthInMobile from "./ContainerAuthInMobile";
 import { UserButton } from "@clerk/nextjs";
 import { CartSidebar } from "../CartSidebar";
+import Image from "next/image";
 
 export default function Header() {
     return (
@@ -52,18 +53,20 @@ export default function Header() {
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href=" /All-Projects/Project-one"
+                                                    href=" /All-Projects/dar-misr"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
-                                                    <img
-                                                        src="/projects/projectTest2.jpg"
-                                                        alt="Project one"
-                                                        className="w-72 "
+                                                    <Image
+                                                        src="/projects/DAR-MISR/DAR-MISR-0.jpg"
+                                                        alt="Dar-Misr Project"
+                                                        width={300}
+                                                        height={300}
+                                                        className="h-44"
                                                     />
                                                 </Link>
                                                 <div className="textContainer flex flex-col justify-center items-center">
                                                     <h3 className="ProjectDescription  mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Project: The ideal lighting{" "}
+                                                        Dar-Misr Project{" "}
                                                     </h3>
                                                     <h4 className="projectDate text-sm font-light text-muted-foreground mb-3">
                                                         More Details
@@ -75,18 +78,20 @@ export default function Header() {
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href=" /All-Projects/Project-six"
+                                                    href=" /All-Projects/tolip"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
-                                                    <img
-                                                        src="/projects/prjecttest3.jpg"
-                                                        alt="Project six"
-                                                        className="w-72"
+                                                    <Image
+                                                        src="/projects/tolip/tolip-1.jpg"
+                                                        alt="Tolip Project"
+                                                        width={300}
+                                                        height={300}
+                                                        className="h-44"
                                                     />
                                                 </Link>
                                                 <div className="textContainer flex flex-col justify-center items-center">
                                                     <h3 className="ProjectDescription mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Project: The ideal lighting{" "}
+                                                        Tolip Project{" "}
                                                     </h3>
                                                     <h4 className="projectDate text-sm font-light text-muted-foreground mb-3">
                                                         More Details
@@ -98,18 +103,20 @@ export default function Header() {
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href=" /All-Projects/Project-five"
+                                                    href="/All-Projects/al-majd"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
-                                                    <img
-                                                        src="/projects/projectImage 5.webp"
-                                                        alt="Project five"
-                                                        className="w-72 h-[10.4rem]"
+                                                    <Image
+                                                        src="/projects/al-majd/al-majd-1.jpg"
+                                                        alt="Al-Majd Project"
+                                                        width={300}
+                                                        height={300}
+                                                        className="h-44"
                                                     />
                                                 </Link>
                                                 <div className="textContainer flex flex-col justify-center items-center">
                                                     <h3 className="ProjectDescription mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Project: The ideal lighting{" "}
+                                                        Al-Majd Project{" "}
                                                     </h3>
                                                     <h4 className="projectDate text-sm font-light text-muted-foreground mb-3">
                                                         More Details
@@ -124,10 +131,12 @@ export default function Header() {
                                                     href=" /All-Projects/Project-two"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
-                                                    <img
+                                                    <Image
                                                         src="/projects/projectIamge 2.webp"
                                                         alt="Project two"
-                                                        className="w-72"
+                                                        width={300}
+                                                        height={300}
+                                                        className="h-44"
                                                     />
                                                 </Link>
                                                 <div className="textContainer flex flex-col justify-center items-center">
@@ -150,7 +159,9 @@ export default function Header() {
                                                     <img
                                                         src="/projects/projectIamge 3.webp"
                                                         alt="Project three"
-                                                        className="w-[290px]"
+                                                        width={300}
+                                                        height={300}
+                                                        className="h-44"
                                                     />
                                                 </Link>
                                                 <div className="textContainer flex flex-col justify-center items-center">

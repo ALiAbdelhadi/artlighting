@@ -63,7 +63,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         await addToCart(product.productId)
         toast({
           title: (
-            <span className='text-base text-primary'>added to cart</span>
+            <span className='text-base text-primary'>Added to cart</span>
           ),
           description: (
             <span className='text-sm text-muted-foreground'>

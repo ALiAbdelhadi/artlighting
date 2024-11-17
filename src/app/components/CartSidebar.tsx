@@ -22,6 +22,7 @@ interface CartItem {
     sectionType: string
     spotlightType: string
     totalPrice: number
+
 }
 
 export function CartSidebar() {
@@ -106,7 +107,7 @@ export function CartSidebar() {
                                     <div className="flex justify-between items-start py-4 border-b">
                                         <div className="flex items-start space-x-4">
                                             {item.productImages && item.productImages[0] && (
-                                                <img src={item.productImages[0]} alt={item.productName} className="object-cover rounded md::w-20 md:h-20 w-16 h-16" />
+                                                <Image src={item.productImages[0]} alt={item.productName} className="object-cover rounded md::w-20 md:h-20 w-16 h-16" width={100} height={100} />
                                             )}
                                             <div className="space-y-1">
                                                 <p className="font-medium lg:text-lg md:text-base sm:text-sm">{item.productName}</p>
@@ -114,16 +115,16 @@ export function CartSidebar() {
                                                     {item.discount > 0 ? (
                                                         <div className="flex items-center">
                                                             <span className="text-sm text-destructive font-semibold">
-                                                                <DiscountPrice price={item.price} discount={item.discount} />
+                                                                <DiscountPrice price={item.price} discount={item.discount} sectionType={item.sectionType} />
                                                             </span>
                                                             <s className="text-gray-500 font-semibold ml-1.5 text-xs">
-                                                                <NormalPrice price={item.price} />
+                                                                <NormalPrice price={item.price} sectionType={item.sectionType} />
                                                             </s>
                                                         </div>
                                                     ) : (
                                                         <div className="flex items-center">
                                                             <span className="font-semibold text-sm">
-                                                                <NormalPrice price={item.price} />
+                                                                <NormalPrice price={item.price} sectionType={item.sectionType} />
                                                             </span>
                                                         </div>
                                                     )}
