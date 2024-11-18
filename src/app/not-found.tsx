@@ -1,27 +1,25 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Contact, Home, Search, ShoppingBag, Star } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import { useDebounce } from 'use-debounce'
 import { searchProducts } from "@/app/(main)/actions/search"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Contact, Home, Search, ShoppingBag } from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useDebounce } from 'use-debounce'
 import ProductCard from "./components/ProductCard/ProductCard"
 
 type Product = {
     id: string;
     productId: string;
-    ProductId: string; // Added this field
+    ProductId: string;
     productName: string;
     price: number;
     Brand: string;
     sectionType: string;
     spotlightType: string | null;
     productImages: string[];
-    discount: number; // Added this field
+    discount: number;
 }
 
 export default function NotFound() {
