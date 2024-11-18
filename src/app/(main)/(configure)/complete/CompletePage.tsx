@@ -328,7 +328,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                         Shipping Address :
                                                     </h3>
                                                     <address className="not-italic text-muted-foreground tracking-wide md:text-base sm:text-sm text-xs leading-5 ">
-                                                        <p>{order.shippingAddress.fullName}</p>
+                                                        <p className="md:text-base text-sm">{order.shippingAddress.fullName}</p>
                                                         <p>{order.shippingAddress.address}</p>
                                                         <p>
                                                             {order.shippingAddress.city},{" "}
