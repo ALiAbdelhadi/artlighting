@@ -148,13 +148,13 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
 
         checkOrderStatus();
     }, [orderId, router]);
-    if (isLoading) return <div>Loading order details...</div>;
-    if (error) return <div>Error loading order details</div>;
-    if (!order) return <div>No order found</div>
+    if (isLoading) return <div className="flex justify-center items-center h-screen">Loading order details...</div>;
+    if (error) return <div className="flex justify-center items-center h-screen">Error loading order details</div>;
+    if (!order) return <div className="flex justify-center items-center h-screen">No order found</div>
     const handleAddMoreProducts = () => {
         if (order) {
             localStorage.setItem("currentOrderId", order.id.toString())
-        } router.push(`/category?orderingmoreproducts?orderId${order.id}`)
+        } router.push(`/category?orderingMoreProducts?orderId${order.id}`)
     }
     const PRODUCT_LAMP_LABEL: Record<ProductChandLamp, string> = {
         lamp9w: "Lamp 9w",
