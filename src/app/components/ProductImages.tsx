@@ -99,7 +99,7 @@ const ProductImages: React.FC<ProductImagesProps> = ({ productImages }) => {
                             height={1300}
                             priority
                             quality={100}
-                            className="object-cover rounded-lg"
+                            className="object-cover rounded-lg w-[30rem]"
                         />
                     </div>
                 ))}

@@ -6,7 +6,7 @@ export default function Footer() {
         <footer className="bg-background text-foreground py-12 shadow-lg" >
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
-                    <div className="space-y-4" role="indoorcategories">
+                    <div className="space-y-4" role="indoorCategories">
                         <h3 className="text-xl font-bold text-primary">Indoor Lighting</h3>
                         <ul className="space-y-2">
                             {[
@@ -16,7 +16,7 @@ export default function Footer() {
                                 "family500",
                                 "family800",
                                 "family900",
-                                "DoubleSpotlight",
+                                "double-spotlight",
                             ].map((item) => (
                                 <li key={item} className="hover:text-primary transition-colors">
                                     <Link
@@ -28,10 +28,10 @@ export default function Footer() {
                             ))}
                         </ul>
                     </div>
-                    <div className="space-y-4" role="outdoorcategories">
+                    <div className="space-y-4" role="outdoorCategories">
                         <h3 className="text-xl font-bold text-primary">Outdoor Lighting</h3>
                         <ul className="space-y-2">
-                            {["Spikes", "Bollard", "uplight", "Floodlight"].map(
+                            {["spikes", "Bollard", "uplight", "Flood-light","Wall-Washer"].map(
                                 (item) => (
                                     <li
                                         key={item}
@@ -49,7 +49,7 @@ export default function Footer() {
                             )}
                         </ul>
                     </div>
-                    <div className="space-y-4" role="Chandelierscategories">
+                    <div className="space-y-4" role="ChandeliersCategories">
                         <h3 className="text-xl font-bold text-primary">Chandeliers</h3>
                         <ul className="space-y-2 grid grid-cols-2 gap-x-4">
                             {[

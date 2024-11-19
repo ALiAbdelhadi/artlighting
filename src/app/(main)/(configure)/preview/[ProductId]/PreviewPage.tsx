@@ -102,7 +102,6 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                 }
             }
         };
-
         fetchLatestConfiguration();
     }, [ProductId]);
     const handleConfirm = async () => {
@@ -114,7 +113,6 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
             setIsLoginModalOpen(true);
         }
     };
-
     if (isLoading)
         return (
             <div className="w-full mt-24 flex justify-center pb-24">
@@ -125,7 +123,6 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                 </div>
             </div>
         );
-
     if (isError) {
         return (
             <div className="w-full mt-24 flex justify-center pb-24">

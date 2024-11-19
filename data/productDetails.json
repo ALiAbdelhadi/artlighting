@@ -1106,7 +1106,7 @@
                   }
                }
             ],
-            "DoubleSpotlight": [
+            "double-spotlight": [
                {
                   "product-jy-dw-0124gls-28w": {
                      "ProductId": "product-jy-dw-0124gls-28w",
@@ -1764,8 +1764,73 @@
                   }
                }
             ],
-            "spikes": [],
-            "Floodlight": [
+            "spikes": [
+               {
+                  "product-jy-316-5w": {
+                     "ProductId": "product-jy-316-5w",
+                     "productName": "Product-JY-316-5W",
+                     "productImages": [
+                        "/outdoor/spikes/JY-316-5W/JY-316-5W.jpg"
+                     ],
+                     "specificationsTable": {
+                        "Input": "AC 85-265v ~ 50/60 Hz",
+                        "Maximum wattage": 5,
+                        "Brand Of Led": "Epistar",
+                        "Luminous Flux": "330LM",
+                        "Main Material": "Die-Casting Aluminum",
+                        "CRI": "≥ 80",
+                        "Beam Angle": "53°",
+                        "Working Temperature": "-10° to 45° C",
+                        "Fixture Dimmable": "No",
+                        "Electrical": "Balcom internal Driver",
+                        "Power Factor": "≥0.5",
+                        "Color Temperature": "3000K / 4000K / 6500K",
+                        "IP": 65,
+                        "Energy Saving": "90%",
+                        "Life Time": "50,000"
+                     },
+                     "MaxIP": 68,
+                     "spotlightType": "spikes",
+                     "Brand": "Balcom",
+                     "price": 715,
+                     "sectionType": "Outdoor",
+                     "quantity": 10,
+                     "discount": 0.10
+                  },
+                  "product-jy-317-5w": {
+                     "ProductId": "product-jy-317-5w",
+                     "productName": "Product-JY-317-5W",
+                     "productImages": [
+                        "/outdoor/spikes/JY-317-5W/JY-317-5W.jpg"
+                     ],
+                     "specificationsTable": {
+                        "Input": "AC 85-265v ~ 50/60 Hz",
+                        "Maximum wattage": 5,
+                        "Brand Of Led": "Epistar",
+                        "Luminous Flux": "330LM",
+                        "Main Material": "Die-Casting Aluminum",
+                        "CRI": "≥ 80",
+                        "Beam Angle": "53°",
+                        "Working Temperature": "-10° to 45° C",
+                        "Fixture Dimmable": "No",
+                        "Electrical": "Balcom internal Driver",
+                        "Power Factor": "≥0.5",
+                        "Color Temperature": "3000K / 4000K / 6500K",
+                        "IP": 65,
+                        "Energy Saving": "90%",
+                        "Life Time": "50,000"
+                     },
+                     "MaxIP": 68,
+                     "spotlightType": "spikes",
+                     "Brand": "Balcom",
+                     "price": 715,
+                     "sectionType": "Outdoor",
+                     "quantity": 10,
+                     "discount": 0.10
+                  }
+               }
+            ],
+            "flood-light": [
                {
                   "product-jy-5053-100w": {
                      "ProductId": "product-jy-5053-100w",
@@ -1781,7 +1846,7 @@
                         "Luminous Flux": "9000LM (3000k / 4000k / 6500k)",
                         "Main Material": "Die-Casting Aluminum",
                         "CRI": "≥ 80",
-                        "Beam Angle": "53°",
+                        "Beam Angle": "90°",
                         "Working Temperature": "-10° to 45° C",
                         "Fixture Dimmable": "No",
                         "Electrical": "Balcom internal Driver",
@@ -1813,7 +1878,7 @@
                         "Luminous Flux": "14600LM (3000k / 4000k / 6500k)",
                         "Main Material": "Die-Casting Aluminum",
                         "CRI": "≥ 80",
-                        "Beam Angle": "53°",
+                        "Beam Angle": "90°",
                         "Working Temperature": "-10° to 45° C",
                         "Fixture Dimmable": "No",
                         "Electrical": "Balcom internal Driver",
@@ -1845,7 +1910,7 @@
                         "Luminous Flux": "14600LM (3000k / 4000k / 6500k)",
                         "Main Material": "Die-Casting Aluminum",
                         "CRI": "≥ 80",
-                        "Beam Angle": "53°",
+                        "Beam Angle": "90°",
                         "Working Temperature": "-10° to 45° C",
                         "Fixture Dimmable": "No",
                         "Electrical": "Balcom internal Driver",
@@ -1865,7 +1930,7 @@
                   }
                }
             ],
-            "Bollard": [
+            "bollard": [
                {
                   "product-jy-bo-001-650mm-8w": {
                      "ProductId": "product-jy-bo-001-650mm-8w",
@@ -1895,6 +1960,41 @@
                      "spotlightType": "Bollard",
                      "Brand": "Balcom",
                      "price": 3699,
+                     "sectionType": "Outdoor",
+                     "quantity": 10,
+                     "discount": 0.10
+                  }
+               }
+            ],
+            "wall-washer": [
+               {
+                  "product-jy-309-36w": {
+                     "ProductId": "product-jy-309-36w",
+                     "productName": "Product-JY-309-36W",
+                     "productImages": [
+                        "/outdoor/wall-washer/JY-309-36W.png"
+                     ],
+                     "specificationsTable": {
+                        "Input": "(Optional) DC24V",
+                        "Maximum Wattage": 36,
+                        "Brand Of Led": "Epistar",
+                        "Luminous Flux": "3600 LM",
+                        "Main Material": "Die-Casting Aluminum",
+                        "CRI": "≥ 80",
+                        "Beam Angle": "20°",
+                        "Working Temperature": "-10° to 45° C",
+                        "Fixture Dimmable": "No",
+                        "Electrical": "Balcom External Driver",
+                        "Power Factor": "≥0.5",
+                        "Color Temperature": "3000K",
+                        "IP": 65,
+                        "Energy Saving": "90%",
+                        "Life Time": "50,000"
+                     },
+                     "MaxIP": 68,
+                     "spotlightType": "Wall-Washer",
+                     "Brand": "Balcom",
+                     "price": 4745,
                      "sectionType": "Outdoor",
                      "quantity": 10,
                      "discount": 0.10
