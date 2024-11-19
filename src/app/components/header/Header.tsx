@@ -8,23 +8,22 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { UserButton } from "@clerk/nextjs";
 import {
     BoxIcon,
     BriefcaseIcon,
     MailIcon,
     MenuIcon,
     NewspaperIcon,
-    ShoppingCartIcon,
-    UserIcon,
+    UserIcon
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { CartSidebar } from "../CartSidebar";
 import AuthInDesktop from "./AuthInDesktop";
 import AuthInMobile from "./AuthInMobile";
 import ContainerAuthInDesktop from "./ContainerAuthInDesktop";
 import ContainerAuthInMobile from "./ContainerAuthInMobile";
-import { UserButton } from "@clerk/nextjs";
-import { CartSidebar } from "../CartSidebar";
-import Image from "next/image";
 
 export default function Header() {
     return (

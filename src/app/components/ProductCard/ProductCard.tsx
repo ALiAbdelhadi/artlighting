@@ -201,7 +201,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             <div className="font-medium text-lg mt-[5] mx-[0] mb-[0] ">
               {product.discount > 0 ? (
                 <div className="flex items-center">
-                  <span className="text-lg text-destructive font-semibold">
+                  <span className="text-lg text-destructive font-semibold">z
                     <DiscountPrice price={product.price} discount={product.discount} sectionType={product.sectionType} />
                   </span>
                   <s className="text-gray-500 font-semibold ml-1.5 text-base">

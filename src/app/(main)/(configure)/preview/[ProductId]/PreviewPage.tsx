@@ -316,7 +316,6 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                         <>
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p>Price Per item</p>
-
                                                                 <p><NormalPrice price={configuration.configPrice} sectionType={product.sectionType} /></p>
                                                             </div>
                                                             <div className="flex items-center justify-between py-1 mt-2">
