@@ -1976,7 +1976,7 @@
                      ],
                      "specificationsTable": {
                         "Input": "(Optional) DC24V",
-                        "Maximum Wattage": 36,
+                        "Maximum wattage": 36,
                         "Brand Of Led": "Epistar",
                         "Luminous Flux": "3600 LM",
                         "Main Material": "Die-Casting Aluminum",
