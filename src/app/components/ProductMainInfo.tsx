@@ -308,14 +308,12 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                                 price={totalPrice}
                                 discount={discount}
                                 quantity={currentQuantity}
-                                sectionType={sectionType}
                             />
                         </span>
                         <s className="text-gray-500 font-semibold ml-1.5 text-base">
                             <NormalPrice
                                 price={totalPrice}
                                 quantity={currentQuantity}
-                                sectionType={sectionType}
                             />
                         </s>
                         <span className="text-green-500 font-semibold">
@@ -327,7 +325,6 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                         <NormalPrice
                             price={totalPrice}
                             quantity={currentQuantity}
-                            sectionType={sectionType}
                         />
                     </span>
                 )}

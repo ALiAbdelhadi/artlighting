@@ -97,15 +97,15 @@ function About() {
                             className="after:absolute after:inset-y-0 after:w-px after:bg-gray-500/20 relative pl-6 after:left-0 grid gap-10">
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
-                                <div className="font-medium mt-[-1px]">2009 - Founding of Art Lighting Inc.</div>
+                                <div className="font-medium mt-[-1px]">2010 - Founding of Art Lighting Inc.</div>
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
-                                <div className="font-medium mt-[-1px]">2009 - Launch of First Product</div>
+                                <div className="font-medium mt-[-1px]">2010 - Launch of First Product</div>
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
-                                <div className="font-medium mt-[-1px]">2010 - Expansion into New Markets</div>
+                                <div className="font-medium mt-[-1px]">2012 - Expansion into New Markets</div>
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
@@ -117,11 +117,15 @@ function About() {
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
-                                <div className="font-medium mt-[-1px]">2010 - Sustainability Initiatives</div>
+                                <div className="font-medium mt-[-1px]">2015 - Sustainability Initiatives</div>
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
-                                <div className="font-medium mt-[-1px]">2015 - Art Lighting Inc. Goes Public</div>
+                                <div className="font-medium mt-[-1px]">2016 - Art Lighting Inc. Goes Public</div>
+                            </div>
+                            <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
+                                <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
+                                <div className="font-medium mt-[-1px]">2016 - Art. Military </div>
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />

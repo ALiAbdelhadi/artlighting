@@ -281,7 +281,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p className="md:text-lg text-base">Price Per item</p>
                                                                 <s className="text-gray-500 md:text-lg text-base">
-                                                                    <NormalPrice price={configuration.configPrice} sectionType={product.sectionType} />
+                                                                    <NormalPrice price={configuration.configPrice} />
                                                                 </s>
                                                             </div>
                                                             {/* products quantity */}
@@ -304,7 +304,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                                         price={configuration.configPrice}
                                                                         discount={product.discount}
                                                                         quantity={quantity}
-                                                                        sectionType={product.sectionType}
+
                                                                     />
                                                                 </span>
                                                             </div>
@@ -313,7 +313,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                         <>
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p>Price Per item</p>
-                                                                <p><NormalPrice price={configuration.configPrice} sectionType={product.sectionType} /></p>
+                                                                <p><NormalPrice price={configuration.configPrice} /></p>
                                                             </div>
                                                             <div className="flex items-center justify-between py-1 mt-2">
                                                                 <p>Quantity</p>
@@ -325,7 +325,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                                     <NormalPrice
                                                                         price={configuration.configPrice}
                                                                         quantity={quantity}
-                                                                        sectionType={product.sectionType}
+
                                                                     />
                                                                 </p>
                                                             </div>

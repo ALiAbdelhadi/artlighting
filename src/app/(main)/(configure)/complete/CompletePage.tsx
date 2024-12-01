@@ -277,11 +277,11 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                                     <DiscountPrice
                                                                         price={order.configPrice}
                                                                         discount={discount}
-                                                                        sectionType={order.product?.sectionType}
+
                                                                     />
                                                                 </TableCell>
                                                                 <TableCell>
-                                                                    <DiscountPrice price={order.configPrice} discount={discount} quantity={order?.quantity} sectionType={order.product?.sectionType} />
+                                                                    <DiscountPrice price={order.configPrice} discount={discount} quantity={order?.quantity} />
                                                                 </TableCell>
                                                             </Fragment>
                                                         ) : (
@@ -289,14 +289,14 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                                 <TableCell className="font-semibold">
                                                                     <NormalPrice
                                                                         price={order.configPrice}
-                                                                        sectionType={order.product?.sectionType}
+
                                                                     />
                                                                 </TableCell>
                                                                 <TableCell className="font-semibold">
                                                                     <NormalPrice
                                                                         price={order.configPrice}
                                                                         quantity={order?.quantity}
-                                                                        sectionType={order.product?.sectionType}
+
                                                                     />
                                                                 </TableCell>
                                                             </Fragment>

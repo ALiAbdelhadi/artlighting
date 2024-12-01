@@ -220,7 +220,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                             <div className="flex items-center lg:justify-between">
                                                 <span>Price Per Item:</span>{" "}
                                                 <s className="ml-1.5 text-gray-500">
-                                                    <NormalPrice price={order.configPrice} sectionType={order.product?.sectionType}/>
+                                                    <NormalPrice price={order.configPrice}/>
                                                 </s>
                                             </div>
                                             <div className="flex items-center lg:justify-between">
@@ -236,7 +236,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                                     <DiscountPrice
                                                         price={order.configPrice}
                                                         discount={order.product?.discount}
-                                                        quantity={quantity} sectionType={order.product?.sectionType} />
+                                                        quantity={quantity}  />
                                                 </span>
                                             </div>
                                         </div>
@@ -245,7 +245,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                             <div className="flex items-center lg:justify-between">
                                                 <span>Price Per Item: </span>{" "}
                                                 <span>
-                                                    <NormalPrice price={order.configPrice} sectionType={order.product?.sectionType} />
+                                                    <NormalPrice price={order.configPrice} />
                                                 </span>
                                             </div>
                                             <div className="flex items-center lg:justify-between">
@@ -257,7 +257,7 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                                                     <NormalPrice
                                                         price={order.configPrice}
                                                         quantity={quantity}
-                                                        sectionType={order.product?.sectionType}
+                                                        
                                                     />
                                                 </span>
                                             </div>
