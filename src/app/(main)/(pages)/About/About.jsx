@@ -125,7 +125,7 @@ function About() {
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />
-                                <div className="font-medium mt-[-1px]">2016 - Art. Military </div>
+                                <div className="font-medium mt-[-1px]">2016 - Art Working with Military </div>
                             </div>
                             <div className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline">
                                 <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10 " />

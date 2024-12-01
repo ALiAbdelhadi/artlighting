@@ -123,10 +123,10 @@ const Dashboard = () => {
                         {order.discountRate > 0 ? (
                             <DiscountPrice
                                 price={order.configPrice}
-                                discount={order.discountRate} sectionType={order.product.sectionType}
+                                discount={order.discountRate} 
                             />
                         ) : (
-                            <NormalPrice price={order.configPrice} sectionType={order.product.sectionType} />
+                            <NormalPrice price={order.configPrice} />
                         )}
                     </TableCell>
                     <TableCell className="px-4 py-2">
@@ -143,10 +143,10 @@ const Dashboard = () => {
                                 discount={order.discountRate}
                                 quantity={order.quantity}
                                 shippingPrice={order.shippingPrice}
-                                sectionType={order.product.sectionType}
+                               
                             />
                         ) : (
-                            <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} sectionType={order.product.sectionType} />
+                            <NormalPrice price={order.configPrice} quantity={order.quantity} shippingPrice={order.shippingPrice} />
                         )}
                     </TableCell>
                     <TableCell className="px-4 py-2">

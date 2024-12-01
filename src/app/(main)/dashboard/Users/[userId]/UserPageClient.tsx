@@ -87,7 +87,6 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
                 <TableCell className="px-4 py-2 font-medium">
                     <NormalPrice
                         price={order.configPrice}
-                        sectionType={order.product?.sectionType}
                     />
                 </TableCell>
                 <TableCell className="text-nowrap px-4 py-2">
@@ -102,7 +101,6 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
                         <DiscountPrice
                             price={order.configPrice}
                             discount={order.discountRate}
-                            sectionType={order.product?.sectionType}
                         />
                     ) : (
                         <span>No Discount On This Product</span>
@@ -119,14 +117,12 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
                             discount={order.discountRate}
                             quantity={order.quantity}
                             shippingPrice={order.shippingPrice}
-                            sectionType={order.product?.sectionType}
                         />
                     ) : (
                         <NormalPrice
                             price={order.configPrice}
                             shippingPrice={order.shippingPrice}
                             quantity={order.quantity}
-                            sectionType={order.product?.sectionType}
                         />
                     )}
                 </TableCell>
