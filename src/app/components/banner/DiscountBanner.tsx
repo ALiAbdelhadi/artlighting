@@ -20,7 +20,7 @@ export default function WhiteFridayBanner() {
             <Container>
                 <div className="flex flex-col sm:flex-row justify-between items-center py-6 px-4 sm:px-6 relative z-10">
                     <div className="flex items-center space-x-3 mb-4 sm:mb-0">
-                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-950">Chandelier decor!</h2>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Chandelier decor!</h2>
                     </div>
                     <div className="flex flex-col items-center sm:items-end space-y-2">
                         <p className="font-bold flex items-center flex-wrap justify-center sm:justify-end">
