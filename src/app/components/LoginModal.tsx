@@ -28,7 +28,7 @@ const LoginModal = ({ isOpen, setIsOpen }: {
                 </div>
                 <DialogFooter className="sm:justify-start  ">
                     <SignInButton >
-                        <button className={`${buttonVariants({ variant: "outline" })} w-full sm:w-auto mt-3 sm:mt-0`}>
+                        <button className={`${buttonVariants({ variant: "outline" })} w-full sm:w-auto mt-3 sm:mt-0 outline-none`}>
                             <LogIn className="mr-2 h-4 w-4" />
                             Proceed to Login
                         </button>

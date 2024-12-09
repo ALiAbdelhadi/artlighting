@@ -51,20 +51,6 @@ export function ShowNewSelection() {
                     duration: 1,
                 }, "-=0.5");
         });
-        buttons.forEach((button) => {
-            gsap.to(button, {
-                boxShadow: "0 0 10px 5px rgba(255, 184, 105, 0.2)",
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: "power1.inOut",
-                scrollTrigger: {
-                    trigger: button,
-                    start: 'top 80%',
-                    end: 'top 60%',
-                }
-            });
-        });
     }, []);
     return (
         <section ref={sectionRef} className="py-12 md:py-24 lg:py-32 ">
