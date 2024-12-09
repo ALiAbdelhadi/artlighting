@@ -155,8 +155,8 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                         isOpen={isLoginModalOpen}
                         setIsOpen={setIsLoginModalOpen}
                     />
-                    <div className="flex flex-col lg:flex-row sm:gap-12 gap-0 ">
-                        <div className="lg:w-1/2">
+                    <div className="flex flex-col lg:flex-row lg:gap-x-12 gap-x-0">
+                        <div className="lg:w-[40%] md:w-[50%] mb-0">
                             {product.productImages && product.productImages.length > 0 ? (
                                 <div>
                                     <Carousel
@@ -190,7 +190,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                     height={500}
                                                     priority
                                                     quality={100}
-                                                    className="object-cover rounded-lg"
+                                                    className="object-cover rounded-lg w-[550px]"
                                                 />
                                             </div>
                                         ))}
@@ -211,7 +211,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                     />
                                     <div className="p-[18px]">
                                         <div className="-ml-4">
-                                            <h2 className="md:text-2xl text-xl mt-6 font-bold uppercase">
+                                            <h2 className="md:text-2xl text-xl mt-6 font-bold text-primary">
                                                 {product.productName}
                                             </h2>
                                             <div className="mt-3 flex items-center gap-1.5 text-base">
@@ -325,7 +325,6 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                                                     <NormalPrice
                                                                         price={configuration.configPrice}
                                                                         quantity={quantity}
-
                                                                     />
                                                                 </p>
                                                             </div>

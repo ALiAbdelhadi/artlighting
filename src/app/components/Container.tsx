@@ -6,7 +6,7 @@ const Container = ({ children, className }: {
     children: React.ReactNode;
 }) => {
     return (
-        <div className={cn("container px-4 md:px-6 py-0", className)}>{children}</div>
+        <div className={cn("container px-0 md:px-6 py-0", className)}>{children}</div>
     )
 }
 

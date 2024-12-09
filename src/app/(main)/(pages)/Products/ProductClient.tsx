@@ -33,7 +33,7 @@ const ProductsClient: React.FC<ProductsClientProps> = ({ products }) => {
         <section className="py-12 md:py-14 lg:py-16">
             <Container>
                 <div className="mb-10 md:mb-12 text-center">
-                    <h2 className="font-bold text-xl md:text-2xl lg:text-3xl tracking-tight">
+                <h2 className="font-bold text-2xl md:text-3xl tracking-tight text-center mb-2">
                         Best-Selling Products
                     </h2>
                     <p className="text-muted-foreground">

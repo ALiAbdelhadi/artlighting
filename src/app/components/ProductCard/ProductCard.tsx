@@ -96,7 +96,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div className={`${styles.productItem} select-none `}>
       <div>
-        <div className="absolute top-[5%] left-0 z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0] bg-[#676769] dark:bg-[#dad4d4]">
+        <div className="absolute top-[5%] left-0 z-10 px-[5px] py-[7px] flex items-center justify-center text-background  text-xs rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0] bg-[#676769] dark:bg-[#dad4d4]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

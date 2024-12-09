@@ -88,7 +88,7 @@ export function ShowNewSelection() {
                                     src="/NewCollection/new-collection-2.jpg"
                                 />
                                 <div
-                                    className={`${styles.animateButton} select-none backdrop-filter backdrop-saturate-[0.8]  !bg-[radial-gradient(rgba(0,_0,_0,_.12)_0,_rgba(255,_255,_255,_.12)_100%)] inline-flex text-[#fff] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[12px] overflow-hidden  `}>
+                                    className={`${styles.animateButton} select-none backdrop-blur-sm inline-flex text-[#fff] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg overflow-hidden`}>
                                     <p className='overflow-hidden'>
                                         NEW
                                     </p>

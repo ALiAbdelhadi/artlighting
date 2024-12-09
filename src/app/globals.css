@@ -99,6 +99,40 @@
   }
 }
 
+
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .container {
+      max-width: 700px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+      max-width: 900px;
+  }
+}
+@media (min-width: 991px) {
+  .container {
+      max-width: 1000px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+      max-width: 1124px;
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+      max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+  .container {
+      max-width: 1536px;
+  }
+}
 :root {
   --main-color: #ff8800;
   --secound-color: #5f6368;
@@ -121,11 +155,6 @@
   --letter-spacing: 0.8px;
   --ac-ln-line: 0.8px;
   --box-shadow-box: rgba(156, 165, 175, 0.5) 0px 12px 30px;
-}
-
-.widget__actor {
-  background-color: var(--primary) !important;
-  color: var(--muted-foreground) !important;
 }
 
 html {

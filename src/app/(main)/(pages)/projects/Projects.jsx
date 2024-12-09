@@ -108,7 +108,7 @@ const Projects = () => {
     }
     return (
         <section className="py-12 md:py-14 lg:py-16">
-            <h2 className="text-center font-bold text-xl md:text-2xl lg:text-3xl">
+            <h2 className="font-bold text-2xl md:text-3xl tracking-tight text-center">
                 News <span>&</span> Projects
             </h2>
             <Container>

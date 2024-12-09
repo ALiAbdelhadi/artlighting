@@ -73,7 +73,7 @@
     width: 50%;
     display: inline-block;
     opacity: 0.35;
-    border-color: var(--main-color);
+    border-color: var(--primary);
 }
 
 .pLast {

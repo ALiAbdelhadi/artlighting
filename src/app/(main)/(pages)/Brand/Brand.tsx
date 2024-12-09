@@ -9,7 +9,7 @@ const Brand = () => {
     return (
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-[#1c1a17]">
             <Container>
-                <h2 className="font-bold text-xl md:text-2xl lg:text-3xl tracking-tight text-center mb-12">
+            <h2 className="font-bold text-2xl md:text-3xl tracking-tight text-center mb-12">
                     Our Featured Brands
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
