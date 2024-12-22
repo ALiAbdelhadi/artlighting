@@ -444,7 +444,7 @@ export default function Header() {
                                 <span className="sr-only">Toggle navigation menu</span>
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="left" className="w-[300px] sm:w-[400px] pt-12">
+                        <SheetContent side="right" className="w-[300px] sm:w-[400px] pt-12">
                             <nav className="grid gap-6 text-lg font-medium">
                                 <SheetClose asChild>
                                     <Link

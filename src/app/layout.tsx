@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
         >
             <html lang="en">
-                <body className={`${roboto.className} antialiased overflow-x-hidden`}>
+                <body className={`${roboto.className} antialiased overflow-x-hidden scroll-smooth`}>
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                         <Providers>
                             {children}

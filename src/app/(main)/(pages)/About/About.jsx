@@ -53,7 +53,7 @@ function About() {
                 <div className="grid gap-10 lg:grid-cols-[1fr_500px]">
                     <div className="grid gap-4">
                         <div className="space-y-4 animate-element">
-                            <h2 className="font-bold tracking-tighter text-2xl sm:text-3xl md:text-4xl">About Our Company</h2>
+                            <h2 className="font-bold tracking-tighter text-3xl sm:text-4xl md:text-5xl">About Our Company</h2>
                             <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                                 At Art Lighting Inc. we are a team of passionate innovators dedicated to pushing the
                                 boundaries of what&apos;s

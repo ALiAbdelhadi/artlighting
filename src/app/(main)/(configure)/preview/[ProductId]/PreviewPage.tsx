@@ -7,7 +7,6 @@ import NormalPrice from "@/app/helpers/NormalPrice";
 import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { formatPrice } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
 import { Configuration, Product } from "@prisma/client";
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -19,12 +18,6 @@ import React, { useEffect, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { createOrder } from "./action";
-
-type PreviewPageProps = {
-    configuration: Configuration;
-    discount: number;
-    productId: string;
-};
 
 const fetchProduct = async (productId: string): Promise<Product> => {
     const response = await fetch(`/api/products/${productId}`);
@@ -203,7 +196,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                             )}
                         </div>
                         <div>
-                            <div className="h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col ">
+                            <div className="h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col">
                                 <ScrollArea className="relative flex-1 overflow-auto">
                                     <div
                                         aria-hidden="true"
