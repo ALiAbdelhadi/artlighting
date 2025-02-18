@@ -136,7 +136,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                   >
                     <span className={styles.arrowPrev}>
                       <svg
-                        className="w-6 h-6 text-foreground"
+                        className="w-6 h-6 text-foreground "
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         width="26"
@@ -205,13 +205,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                     <DiscountPrice price={product.price} discount={product.discount} sectionType={product.sectionType} />
                   </span>
                   <s className="text-gray-500 font-semibold ml-1.5 text-base">
-                    <NormalPrice price={product.price} sectionType={product.sectionType}  />
+                    <NormalPrice price={product.price} sectionType={product.sectionType} />
                   </s>
                 </div>
               ) : (
                 <div className="flex items-center">
                   <span className="font-semibold text-base  ">
-                    <NormalPrice price={product.price} sectionType={product.sectionType}  />
+                    <NormalPrice price={product.price} sectionType={product.sectionType} />
                   </span>
                 </div>
               )}

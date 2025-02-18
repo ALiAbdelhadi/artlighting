@@ -16,7 +16,7 @@ function BlogContent() {
             }
         }
     };
-    const targetDate = new Date('2025-03-01T23:59:59');
+    const targetDate = new Date('2025-03-15T23:59:59');
     return (
         <motion.div
             initial="hidden"

@@ -18,14 +18,18 @@ export async function GET(request: Request, { params }: { params: { orderId: str
 }
 export async function POST(request: Request) {
     try {
-        const { orderId } = await request.json();
-        console.log('Order ID received:', orderId)
-        const order = await CompletingAllOrderInfo({ orderId: parseInt(orderId) });
+        const body = await request.json();
+        const orderId = parseInt(body.orderId, 10);
+        if (isNaN(orderId)) {
+            return NextResponse.json({ error: 'Invalid order ID' }, { status: 400 });
+        }
+        console.log('Order ID received:', orderId);
+        const order = await CompletingAllOrderInfo({ orderId });
         if (!order) {
-            throw new Error('Order not found or unauthorized');
+            return NextResponse.json({ error: 'Order not found or unauthorized' }, { status: 404 });
         }
         const updatedOrder = await db.order.update({
-            where: { id: parseInt(orderId,10 ) },
+            where: { id: orderId },
             data: { isCompleted: true },
             include: { user: true, shippingAddress: true },
         });
@@ -33,6 +37,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ success: true, order: updatedOrder }, { status: 200 });
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-        return NextResponse.json({ error: 'Failed to fetch order', details: errorMessage }, { status: 500 });
+        console.error("Error completing order:", errorMessage);
+        return NextResponse.json({ error: 'Failed to complete order', details: errorMessage }, { status: 500 });
     }
 }

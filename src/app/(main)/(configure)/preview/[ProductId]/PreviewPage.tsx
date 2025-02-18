@@ -200,7 +200,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
                                 <ScrollArea className="relative flex-1 overflow-auto">
                                     <div
                                         aria-hidden="true"
-                                        className="absolute z-10 inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent  dark:from-[#252525] dark:to-transparent pointer-events-none"
+                                        className="absolute z-10 inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent dark:from-[#252525] dark:to-transparent pointer-events-none"
                                     />
                                     <div className="p-[18px]">
                                         <div className="-ml-4">

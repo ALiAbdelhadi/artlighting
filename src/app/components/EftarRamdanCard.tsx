@@ -33,7 +33,7 @@ const EftarRamdanCard: React.FC<EftarRamdanCardProps> = ({ id, imgUrl, title, in
                 {title}
             </h3>
         ) : (
-            <div className="absolute bottom-0 p-4 sm:p-6 flex justify-start w-full flex-col bg-[rgba(46,46,46,0.7)] rounded-b-[20px] sm:rounded-b-[24px]">
+            <div className="absolute bottom-0 p-4 sm:p-6 flex justify-start w-full flex-col bg-black/70 backdrop-blur-[5px] rounded-b-[20px] sm:rounded-b-[24px]">
                 <div className="w-[50px] h-[30px] sm:w-[60px] sm:h-[50px] rounded-[20px] sm:rounded-[24px] mb-[12px] sm:mb-[16px]" />
                 <h2 className=" font-semibold text-[20px] sm:text-[28px] md:text-[32px] text-white">
                     {title}

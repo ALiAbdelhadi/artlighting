@@ -53,18 +53,27 @@ const fetchOrderDetails = async (orderId: string): Promise<Order> => {
 const updateOrderStatus = async (
     orderId: string
 ): Promise<UpdateOrderStatusResponse> => {
-    const response = await fetch("/api/webhooks/completeOrder", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ orderId }),
-    });
-    if (!response.ok) {
-        throw new Error("Failed to complete the order");
+    try {
+        const response = await fetch("/api/webhooks/completeOrder", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ orderId }),
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Failed to complete the order");
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error updating order status:", error);
+        throw error;
     }
-    return response.json();
 };
+
 type CompletePageProps = {
     discount: number;
     Brand: string,

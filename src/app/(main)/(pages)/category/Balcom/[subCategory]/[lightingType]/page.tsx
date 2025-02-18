@@ -28,8 +28,8 @@ export async function generateStaticParams() {
     }));
 }
 export async function generateMetadata({ params }: { params: { subCategory: string, lightingType: string } }): Promise<Metadata> {
-    const { subCategory, lightingType } = params;
 
+    const { subCategory, lightingType } = params;
     const products = await db.product.findMany({
         where: {
             Brand: 'Balcom',
@@ -58,8 +58,10 @@ export async function generateMetadata({ params }: { params: { subCategory: stri
     });
 }
 async function ProductPage({ params }: { params: { subCategory: string; lightingType: string } }) {
+    if (!params || !params.subCategory || !params.lightingType) {
+        return <div>Loading...</div>;
+    }
     const { subCategory, lightingType } = params;
-
     const products = await db.product.findMany({
         where: {
             Brand: 'Balcom',

@@ -38,7 +38,6 @@ async function Page({ params }: { params: { subCategory: string } }) {
         acc[group].push(product);
         return acc;
     }, {} as Record<string, typeof products>);
-
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <SubCategoryPage subCategory={subCategory} groupedProducts={groupedProducts}>
@@ -67,5 +66,4 @@ export async function generateMetadata({ params }: { params: { subCategory: stri
         icons: "/balcom.ico"
     });
 }
-
 export default Page;
