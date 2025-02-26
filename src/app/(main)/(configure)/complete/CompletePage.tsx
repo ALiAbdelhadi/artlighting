@@ -214,17 +214,17 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                         <TableHead className="font-semibold pl-32 ">Qty</TableHead>
                                                         {discount > 0 && <TableHead className="font-semibold">Discount</TableHead>}
                                                         {
-                                                            Brand === "Balcom" && (
+                                                            Brand === "balcom" && (
                                                                 <TableHead className="font-semibold text-nowrap">Color Temp</TableHead>
                                                             )
                                                         }
                                                         {
-                                                            Brand === "MisterLed" && order.product.ChandelierLightingType === "lamp" && (
+                                                            Brand === "mister-led" && order.product.ChandelierLightingType === "lamp" && (
                                                                 <TableHead className="font-semibold text-nowrap">Lamp</TableHead>
                                                             )
                                                         }
                                                         {
-                                                            Brand === "Balcom" && (
+                                                            Brand === "balcom" && (
                                                                 <TableHead className="font-semibold text-nowrap">IP Rating</TableHead>
                                                             )
                                                         }
@@ -262,17 +262,17 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand, }) => {
                                                             </TableCell>
                                                         ) : null}
                                                         {
-                                                            Brand === "Balcom" && (
+                                                            Brand === "balcom" && (
                                                                 <TableCell className="font-semibold capitalize" >{order.productColorTemp}</TableCell>
                                                             )
                                                         }
                                                         {
-                                                            Brand === "Balcom" && (
+                                                            Brand === "balcom" && (
                                                                 <TableCell className="font-semibold">{order.productIp}</TableCell>
                                                             )
                                                         }
                                                         {
-                                                            Brand === "MisterLed" && order.product.ChandelierLightingType === "lamp" && (
+                                                            Brand === "mister-led" && order.product.ChandelierLightingType === "lamp" && (
                                                                 <TableCell className="font-semibold capitalize">
                                                                     {isProductChandLamp(order.productChandLamp)
                                                                         ? PRODUCT_LAMP_LABEL[order.productChandLamp]

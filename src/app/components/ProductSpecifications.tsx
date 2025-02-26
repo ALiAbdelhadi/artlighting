@@ -23,7 +23,7 @@ const ProductSpecifications: React.FC<ProductSpecificationsProps> = ({
     console.log("Props received:", { productName, Brand, ChandelierLightingType, hNumber });
 
     const calculateWattage = (): string => {
-        if (Brand === "MisterLed" && ChandelierLightingType === "lamp" && hNumber) {
+        if (Brand === "mister-led" && ChandelierLightingType === "lamp" && hNumber) {
             return `${hNumber * 12}W  (12W lamp)`;
         }
         return specificationsTable["Maximum wattage"] || "15W/M";

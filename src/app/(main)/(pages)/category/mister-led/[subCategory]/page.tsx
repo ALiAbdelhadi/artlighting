@@ -21,7 +21,7 @@ async function Page({ params }: { params: { subCategory: string } }) {
     const { subCategory } = params
     const products = await db.product.findMany({
         where: {
-            Brand: "MisterLed",
+            Brand: "mister-led",
             sectionType: subCategory
         },
         include: {
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: { subCategory: stri
     const { subCategory } = params;
     const products = await db.product.findMany({
         where: {
-            Brand: 'MisterLed',
+            Brand: 'mister-led',
             sectionType: subCategory,
         },
     });

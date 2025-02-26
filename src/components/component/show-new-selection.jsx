@@ -1,19 +1,16 @@
 "use client"
-import { useEffect, useRef } from 'react';
+import Container from '@/app/components/Container';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from "next/link";
-import styles from "./show-new-selection.module.css"
-import Container from '@/app/components/Container';
+import { useEffect, useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function ShowNewSelection() {
     const sectionRef = useRef(null);
-
     useEffect(() => {
         const boxes = sectionRef.current.querySelectorAll('.animate-box');
-        const buttons = sectionRef.current.querySelectorAll('.animate-button');
         boxes.forEach((box) => {
             const button = box.querySelector('.animate-button');
             const image = box.querySelector('.animate-image');
@@ -61,21 +58,21 @@ export function ShowNewSelection() {
                             <div className="relative">
                                 <img
                                     alt="Line Up/Down LED Suspended Lamp"
-                                    className="object-cover w-full h-54  md:h-[500px] rounded-lg animate-image"
+                                    className="object-cover w-full h-54 md:h-[500px] rounded-lg animate-image"
                                     src="/NewCollection/new-collection-3.jpg"
                                 />
                                 <div
-                                    className={`${styles.animateButton} select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary dark:text-secondary-foreground absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
+                                    className={`py-2 px-4 select-none bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary dark:text-secondary-foreground absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
                                     <p className='overflow-hidden'>
                                         NEW
                                     </p>
                                 </div>
                             </div>
                             <div className="my-4 animate-text">
-                                <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
+                                <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-muted-foreground font-bold uppercase">
                                     Halo — LED Ring Suspended Lamp
                                 </h2>
-                                <p className="block mt-2 text-sm sm:text-base md:text-lg">
+                                <p className="block mt-2 text-sm sm:text-base md:text-lg hover:underline">
                                     Discover more
                                 </p>
                             </div>
@@ -88,7 +85,7 @@ export function ShowNewSelection() {
                                     src="/NewCollection/new-collection-2.jpg"
                                 />
                                 <div
-                                    className={`${styles.animateButton} select-none backdrop-blur-sm inline-flex text-[#fff] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg overflow-hidden`}>
+                                    className={`py-2 px-4 select-none backdrop-blur-sm inline-flex text-[#fff] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg overflow-hidden`}>
                                     <p className='overflow-hidden'>
                                         NEW
                                     </p>
@@ -98,7 +95,7 @@ export function ShowNewSelection() {
                                 <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
                                     Halo — LED Ring Suspended Lamp
                                 </h2>
-                                <p className="block mt-2 text-sm sm:text-base md:text-lg" >
+                                <p className="block mt-2 text-sm sm:text-base md:text-lg hover:underline" >
                                     Discover more
                                 </p>
                             </div>
@@ -112,7 +109,7 @@ export function ShowNewSelection() {
                                 src="/NewCollection/new-collection-1.jpg"
                             />
                             <div
-                                className={`${styles.animateButton}  select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex text-[#FFF] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
+                                className={`py-2 px-4 select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex text-[#FFF] dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}>
                                 <p className='overflow-hidden'>
                                     NEW
                                 </p>
@@ -122,7 +119,7 @@ export function ShowNewSelection() {
                             <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl  font-bold uppercase">
                                 Line — Up/Down LED Suspended Lamp
                             </h2>
-                            <p className="block mt-2 text-sm sm:text-base md:text-lg" >
+                            <p className="block mt-2 text-sm sm:text-base md:text-lg hover:underline" >
                                 Discover more
                             </p>
                         </div>

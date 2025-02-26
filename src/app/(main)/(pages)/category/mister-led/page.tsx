@@ -15,7 +15,7 @@ export async function generateStaticParams() {
     const categories = await db.product.groupBy({
         by: ["sectionType"],
         where: {
-            Brand: "MisterLed"
+            Brand: "mister-led"
         },
         orderBy: {
             sectionType: "desc"
@@ -31,7 +31,7 @@ async function Page() {
     const categories = await db.product.groupBy({
         by: ["sectionType"],
         where: {
-            Brand: "MisterLed"
+            Brand: "mister-led"
         },
         _count: {
             _all: true

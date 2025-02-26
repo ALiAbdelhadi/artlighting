@@ -3,7 +3,7 @@ function Mission() {
     return (
         <div className="py-16">
             <Container>
-                <div className={`flex items-center my-[0] flex-col md:max-w-screen-lg w-full`}>
+                <div className={`flex my-[0] flex-col md:max-w-screen-lg w-full`}>
                     <h2 className="md:text-3xl text-2xl font-medium">
                         Our mission is to recognize the world about the actual lighting
                     </h2>

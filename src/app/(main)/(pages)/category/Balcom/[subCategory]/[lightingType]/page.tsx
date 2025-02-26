@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { subCategory: stri
     const { subCategory, lightingType } = params;
     const products = await db.product.findMany({
         where: {
-            Brand: 'Balcom',
+            Brand: 'balcom',
             sectionType: subCategory,
             spotlightType: lightingType,
         },
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: { subCategory: stri
     }
     let title;
     let description;
-    if (subCategory === "Indoor") {
+    if (subCategory === "indoor") {
         title = `Discover Balcom's ${subCategory} lighting solutions by offering ${lightingType}`;
         description = `Illuminate your interior spaces with our stylish and functional ${subCategory} lights. Explore our collection of ${lightingType} fixtures designed to enhance your home or office ambiance.`;
     } else if (subCategory === "Outdoor") {
@@ -64,7 +64,7 @@ async function ProductPage({ params }: { params: { subCategory: string; lighting
     const { subCategory, lightingType } = params;
     const products = await db.product.findMany({
         where: {
-            Brand: 'Balcom',
+            Brand: 'balcom',
             sectionType: subCategory,
             spotlightType: lightingType,
         },

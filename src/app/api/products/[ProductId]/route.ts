@@ -15,7 +15,6 @@ export async function GET(
         // Await the params before using them
         const validatedParams = await ParamsSchema.parse(await params)
         const { ProductId } = validatedParams
-
         console.log(`Fetching product with ID: ${ProductId}`)
         const product = await db.product.findUnique({
             where: {
@@ -31,15 +30,13 @@ export async function GET(
                 mainMaterial: true,
                 cri: true,
                 beamAngle: true,
-                sectionType: true, 
+                sectionType: true,
             }
         })
-
         if (!product) {
             console.log(`Product not found: ${ProductId}`)
             return NextResponse.json({ error: 'Product not found' }, { status: 404 })
         }
-
         console.log(`Successfully fetched product: ${ProductId}`)
         return NextResponse.json(product)
     } catch (error) {

@@ -6,6 +6,7 @@ type ProductPrices = {
     price: number;
     quantity?: number;
     shippingPrice?: number
+    sectionType: string
 };
 
 const NormalPrice: React.FC<ProductPrices> = ({ price, quantity = 1, shippingPrice = 0 }) => {

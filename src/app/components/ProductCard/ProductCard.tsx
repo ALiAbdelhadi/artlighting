@@ -83,13 +83,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     })
   }
   function createProductDescription() {
-    if (product.Brand === "MisterLed" && product.ChandelierLightingType === "lamp") {
+    if (product.Brand === "mister-led" && product.ChandelierLightingType === "lamp") {
       return `${product.mainMaterial} LED chandelier with with ${product.lampBase} base & ${product.hNumber * 12}W. Adjustable color temperature for versatile lighting.`;
-    } else if (product.Brand === "Balcom" && product.sectionType === "Indoor") {
+    } else if (product.Brand === "balcom" && product.sectionType === "indoor") {
       return `Sleek ${product.mainMaterial} LED spotlight for indoor use. ${product.beamAngle} beam angle with adjustable color temperature.`;
-    } else if (product.Brand === "Balcom" && product.sectionType === "Outdoor") {
+    } else if (product.Brand === "balcom" && product.sectionType === "outdoor") {
       return `Durable ${product.spotlightType} for outdoor spaces. Bright, energy-efficient LEDs with weatherproof design.`;
-    } else if (product.Brand === "MisterLed" && product.ChandelierLightingType === "LED") {
+    } else if (product.Brand === "mister-led" && product.ChandelierLightingType === "LED") {
       return `Elegant ${product.mainMaterial} LED chandelier with wattage of ${product.maximumWattage} . Brushed nickel finish for a modern look.`;
     }
   }

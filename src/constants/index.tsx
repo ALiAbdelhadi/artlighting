@@ -37,13 +37,13 @@ export const brands = [
         name: "Balcom",
         description: "Premium home appliances for discerning customers",
         logo: "/brand/balcom.jpeg",
-        link: "/category/Balcom"
+        link: "/category/balcom"
     },
     {
         name: "Mister LED",
         description: "Innovative LED lighting solutions for every space",
         logo: "/brand/mrled.png",
-        link: "/category/MisterLed"
+        link: "/category/mister-led"
     },
     {
         name: "Jetra",
@@ -81,5 +81,3 @@ export const DASHBOARDS = [
         url: "/dashboard/Notification",
     },
 ];
-
-

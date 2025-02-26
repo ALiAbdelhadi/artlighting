@@ -80,9 +80,19 @@
     "src/app/api/orders/[orderId]/route.ts",
     "src/app/api/orders/route.ts",
     "src/app/(pages)/category/Balcom/BalcomSection.tsx",
-    "src/app/(pages)/category/MisterLed/[subCategory]/[lightingType]/[ProductId]/ProductClientComponent.jsx",
-    "src/app/(pages)/AboutUs/achievements/achievements.jsx"
-, "src/app/(configure)/complete/action.t.s", "src/scripts/seed.js", "src/app/api/getDiscount/route.ts", "src/app/(pages)/category/Balcom/[subCategory]/[lightingType]/[ProductId]/ProductClientComponent.tsx", "src/app/api/webhooks/completeOrder/route.ts", "src/app/loading.js", "src/app/utils/motion.js", "src/scripts/importProducts.js", "src/app/(main)/(pages)/About/About.jsx", "src/app/(main)/(pages)/AboutUs/AboutLanding/AboutLanding.jsx"  ],
+    "src/app/(pages)/category/mister-led/[subCategory]/[lightingType]/[ProductId]/ProductClientComponent.jsx",
+    "src/app/(pages)/AboutUs/achievements/achievements.jsx",
+    "src/app/(configure)/complete/action.t.s",
+    "src/scripts/seed.js",
+    "src/app/api/getDiscount/route.ts",
+    "src/app/(pages)/category/Balcom/[subCategory]/[lightingType]/[ProductId]/ProductClientComponent.tsx",
+    "src/app/api/webhooks/completeOrder/route.ts",
+    "src/app/loading.js",
+    "src/app/utils/motion.js",
+    "src/scripts/importProducts.js",
+    "src/app/(main)/(pages)/About/About.jsx",
+    "src/app/(main)/(pages)/AboutUs/AboutLanding/AboutLanding.jsx"
+  ],
   "exclude": [
     "node_modules"
   ],

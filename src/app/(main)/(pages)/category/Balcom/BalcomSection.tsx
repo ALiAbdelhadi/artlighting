@@ -44,7 +44,7 @@ const BalcomSection: React.FC<BalcomSectionProps> = ({ children, categories }) =
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1 }}
                             >
-                                <Link href={`/category/Balcom/${category.sectionType}`} scroll={true}>
+                                <Link href={`/category/balcom/${category.sectionType}`} scroll={true}>
                                     <div className="card">
                                         <Image
                                             src={category.image}

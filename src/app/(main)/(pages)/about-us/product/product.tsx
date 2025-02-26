@@ -20,7 +20,7 @@ function Product() {
                             feelings. Lighting can make a space feel brighter or warmer, more
                             formal or more relaxed.
                         </p>
-                        <Button destination="./category/Balcom/IndoorLighting" />
+                        <Button destination="./category/balcom/indoor" />
                     </div>
                 </div>
             </Container>
@@ -41,7 +41,7 @@ function Product() {
                             lighting can make a space feel more inviting, more secure, and
                             more enjoyable.
                         </p>
-                        <Button destination="./category/Balcom/OutdoorLighting" />
+                        <Button destination="./category/balcom/Outdoor" />
                     </div>
                 </div>
             </Container>
@@ -60,7 +60,7 @@ function Product() {
                             illumination. Chandeliers are typically suspended from the ceiling and feature multiple arms that support light bulbs
                             or candles. They can be crafted from a diverse range of materials, including crystal, glass, metal, and wood.
                         </p>
-                        <Button destination="./category/MisterLed/Chandelier" />
+                        <Button destination="./category/mister-led/chandelier" />
                     </div>
                 </div>
             </Container>

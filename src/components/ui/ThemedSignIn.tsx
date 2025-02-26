@@ -20,7 +20,7 @@ export function ThemedSignIn() {
     }
 
     return (
-        <div className='max-h-[90vh] w-full col-span-full lg:col-span-1 overflow-auto'>
+        <div className='max-h-[90vh] w-full col-span-full lg:col-span-1 overflow-auto hide-scrollbar'>
             <ScrollArea>
                 <SignIn
                     appearance={{

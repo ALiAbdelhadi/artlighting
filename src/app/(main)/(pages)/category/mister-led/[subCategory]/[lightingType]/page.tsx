@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { subCategory: stri
 
     const products = await db.product.findMany({
         where: {
-            Brand: 'MisterLed',
+            Brand: 'mister-led',
             sectionType: subCategory,
             spotlightType: lightingType,
         },
@@ -56,7 +56,7 @@ async function ProductPage({ params }: { params: { subCategory: string; lighting
 
     const products = await db.product.findMany({
         where: {
-            Brand: 'MisterLed',
+            Brand: 'mister-led',
             sectionType: subCategory,
             spotlightType: lightingType,
         },

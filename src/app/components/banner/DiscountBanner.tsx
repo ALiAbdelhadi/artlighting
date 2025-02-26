@@ -16,7 +16,7 @@ export default function WhiteFridayBanner() {
 
     return (
         <div className="bg-gradient-to-r to-primary via-accent from-secondary text-primary-foreground shadow-lg relative overflow-hidden">
-            <div className="absolute inset-0 bg-[url('/sparkles.svg')] opacity-10"></div>
+            <div className="absolute inset-0 opacity-10"></div>
             <Container>
                 <div className="flex flex-col sm:flex-row justify-between items-center py-6 px-4 sm:px-6 relative z-10">
                     <div className="flex items-center space-x-3 mb-4 sm:mb-0">

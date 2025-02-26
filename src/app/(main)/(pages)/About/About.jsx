@@ -57,7 +57,7 @@ function About() {
                             <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                                 At Art Lighting Inc. we are a team of passionate innovators dedicated to pushing the
                                 boundaries of what&apos;s
-                                possible. Since our founding in 2009, we&apos;ve been on a mission to create
+                                possible. Since our founding in 2010, we&apos;ve been on a mission to create
                                 cutting-edge products and
                                 services that transform the way people live and work.
                             </p>

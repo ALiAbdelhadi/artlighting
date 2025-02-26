@@ -20,6 +20,7 @@ const data = [
   { year: "2021", sales: 87 },
   { year: "2022", sales: 90 },
   { year: "2023", sales: 92 },
+  { year: "2024", sales: 88 },
 ]
 
 export default function Achievements() {

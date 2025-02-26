@@ -74,6 +74,14 @@
 }
 
 @layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
   .heading {
     @apply font-bold text-4xl md:text-5xl text-center;
   }
@@ -99,38 +107,37 @@
   }
 }
 
-
 .container {
   width: 100%;
 }
 @media (min-width: 640px) {
   .container {
-      max-width: 700px;
+    max-width: 700px;
   }
 }
 @media (min-width: 768px) {
   .container {
-      max-width: 900px;
+    max-width: 900px;
   }
 }
 @media (min-width: 991px) {
   .container {
-      max-width: 1000px;
+    max-width: 1000px;
   }
 }
 @media (min-width: 1024px) {
   .container {
-      max-width: 1124px;
+    max-width: 1124px;
   }
 }
 @media (min-width: 1280px) {
   .container {
-      max-width: 1280px;
+    max-width: 1280px;
   }
 }
 @media (min-width: 1536px) {
   .container {
-      max-width: 1536px;
+    max-width: 1536px;
   }
 }
 :root {

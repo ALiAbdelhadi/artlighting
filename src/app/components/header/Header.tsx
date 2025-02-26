@@ -39,20 +39,20 @@ export default function Header() {
                 <nav className="hidden lg:flex items-center space-x-6">
                     <NavigationMenu>
                         <NavigationMenuList>
-                            <Link href={"/AboutUs"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
+                            <Link href={"/about-us"} prefetch={false}>
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium ">
                                     About Us
                                 </NavigationMenuItem>
                             </Link>
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger className="bg-transparent hover:bg-accent hover:text-accent-foreground">Projects</NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent">Projects</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <div className="grid w-[800px] grid-cols-3 gap-x-2 p-4 dark:bg-[#1c1a17]" >
                                         <div className="projectCard relative overflow-hidden">
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href=" /All-Projects/dar-misr"
+                                                    href=" /all-projects/dar-misr"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
                                                     <Image
@@ -77,7 +77,7 @@ export default function Header() {
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href=" /All-Projects/tolip"
+                                                    href=" /all-projects/tolip"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
                                                     <Image
@@ -102,7 +102,7 @@ export default function Header() {
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href="/All-Projects/al-majd"
+                                                    href="/all-projects/al-majd"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
                                                     <Image
@@ -127,7 +127,7 @@ export default function Header() {
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href=" /All-Projects/Project-two"
+                                                    href=" /all-projects/Project-two"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
                                                     <Image
@@ -152,7 +152,7 @@ export default function Header() {
                                             <div className="figureCard relative">
                                                 <Link
                                                     scroll={true}
-                                                    href=" /All-Projects/Project-three"
+                                                    href=" /all-projects/Project-three"
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
                                                     <img
@@ -184,7 +184,7 @@ export default function Header() {
                                             <h4 className="font-bold my-2 text-primary text-xl">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Indoor"}
+                                                    href={"/category/balcom/indoor"}
                                                 >
                                                     Indoor
                                                 </Link>
@@ -192,7 +192,7 @@ export default function Header() {
                                             <li className="inline-flex items-center gap-1 font-medium hover:underline  text-[17px] ">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Indoor/strip"}
+                                                    href={"/category/balcom/indoor/strip"}
                                                 >
                                                     strip
                                                 </Link>
@@ -200,7 +200,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Indoor/linear"}
+                                                    href={"/category/balcom/indoor/linear"}
                                                 >
                                                     Linear
                                                 </Link>
@@ -208,7 +208,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Indoor/family202"}
+                                                    href={"/category/balcom/indoor/family202"}
                                                 >
                                                     family202
                                                 </Link>
@@ -216,7 +216,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Indoor/family500"}
+                                                    href={"/category/balcom/indoor/family500"}
                                                 >
                                                     family500
                                                 </Link>
@@ -224,7 +224,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Indoor/family800"}
+                                                    href={"/category/balcom/indoor/family800"}
                                                 >
                                                     family800
                                                 </Link>
@@ -232,7 +232,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Indoor/family900"}
+                                                    href={"/category/balcom/indoor/family900"}
                                                 >
                                                     family900
                                                 </Link>
@@ -241,7 +241,7 @@ export default function Header() {
                                                 <Link
                                                     scroll={true}
                                                     href={
-                                                        "/category/Balcom/Indoor/DoubleSpotlight"
+                                                        "/category/balcom/indoor/DoubleSpotlight"
                                                     }
                                                 >
                                                     double spotlight
@@ -252,7 +252,7 @@ export default function Header() {
                                             <h4 className="font-bold my-2 text-primary text-xl">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/Balcom/Outdoor"}
+                                                    href={" /category/balcom/Outdoor"}
                                                 >
                                                     Outdoor
                                                 </Link>
@@ -260,7 +260,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Outdoor/uplight"}
+                                                    href={"/category/balcom/Outdoor/uplight"}
                                                 >
                                                     uplight
                                                 </Link>
@@ -268,7 +268,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Outdoor/Floodlight"}
+                                                    href={"/category/balcom/Outdoor/Floodlight"}
                                                 >
                                                     flood light
                                                 </Link>
@@ -276,7 +276,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Outdoor/spikes"}
+                                                    href={"/category/balcom/Outdoor/spikes"}
                                                 >
                                                     spikes
                                                 </Link>
@@ -284,7 +284,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/Balcom/Outdoor/Bollard"}
+                                                    href={"/category/balcom/Outdoor/Bollard"}
                                                 >
                                                     Bollard
                                                 </Link>
@@ -294,7 +294,7 @@ export default function Header() {
                                             <h4 className="font-bold my-2 text-primary text-xl">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/MisterLed/Chandelier"}
+                                                    href={"/category/mister-led/chandelier"}
                                                 >
                                                     Chandelier
                                                 </Link>
@@ -302,7 +302,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px] ">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/MisterLed/Chandelier/MC15C"}
+                                                    href={"/category/mister-led/chandelier/MC15C"}
                                                 >
                                                     MC15C001
                                                 </Link>
@@ -310,7 +310,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/MisterLed/Chandelier/MC15CF"}
+                                                    href={"/category/mister-led/chandelier/MC15CF"}
                                                 >
                                                     MC15C001F
                                                 </Link>
@@ -318,7 +318,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/MisterLed/Chandelier/MC15G"}
+                                                    href={"/category/mister-led/chandelier/MC15G"}
                                                 >
                                                     MC15G
                                                 </Link>
@@ -326,7 +326,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/MisterLed/Chandelier/MC15P"}
+                                                    href={"/category/mister-led/chandelier/MC15P"}
                                                 >
                                                     MC15P
                                                 </Link>
@@ -334,7 +334,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/MisterLed/Chandelier/MC15E"}
+                                                    href={"/category/mister-led/chandelier/MC15E"}
                                                 >
                                                     MC15E
                                                 </Link>
@@ -342,7 +342,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/MisterLed/Chandelier/MC1608"}
+                                                    href={"/category/mister-led/chandelier/MC1608"}
                                                 >
                                                     MC1608
                                                 </Link>
@@ -350,7 +350,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6014"}
+                                                    href={" /category/mister-led/chandelier/MC6014"}
                                                 >
                                                     MC6014
                                                 </Link>
@@ -358,7 +358,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6015"}
+                                                    href={" /category/mister-led/chandelier/MC6015"}
                                                 >
                                                     MC6015
                                                 </Link>
@@ -366,7 +366,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6031"}
+                                                    href={" /category/mister-led/chandelier/MC6031"}
                                                 >
                                                     MC6031
                                                 </Link>
@@ -374,7 +374,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6038"}
+                                                    href={" /category/mister-led/chandelier/MC6038"}
                                                 >
                                                     MC6038
                                                 </Link>
@@ -382,7 +382,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6041"}
+                                                    href={" /category/mister-led/chandelier/MC6041"}
                                                 >
                                                     MC6041
                                                 </Link>
@@ -390,7 +390,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6051"}
+                                                    href={" /category/mister-led/chandelier/MC6051"}
                                                 >
                                                     MC6051
                                                 </Link>
@@ -398,7 +398,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6091"}
+                                                    href={" /category/mister-led/chandelier/MC6091"}
                                                 >
                                                     MC6091
                                                 </Link>
@@ -406,7 +406,7 @@ export default function Header() {
                                             <li className="items-center gap-1 font-medium hover:underline  text-[17px] ">
                                                 <Link
                                                     scroll={true}
-                                                    href={" /category/MisterLed/Chandelier/MC6094"}
+                                                    href={" /category/mister-led/chandelier/MC6094"}
                                                 >
                                                     MC6094
                                                 </Link>
@@ -415,13 +415,13 @@ export default function Header() {
                                     </div>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-                            <Link href={"/Blog"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
+                            <Link href={"/blog"} prefetch={false}>
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium ">
                                     Blog
                                 </NavigationMenuItem>
                             </Link>
                             <Link href={"/ContactUs"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium ">
                                     Contact
                                 </NavigationMenuItem>
                             </Link>
@@ -458,7 +458,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/All-Projects"
+                                        href="/all-projects"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -478,7 +478,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/Blog"
+                                        href="/blog"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >

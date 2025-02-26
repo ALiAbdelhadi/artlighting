@@ -6,6 +6,7 @@ interface DiscountPriceProps {
     discount: number,
     quantity?: number,
     shippingPrice?: number
+    sectionType: string
 }
 const DiscountPrice: React.FC<DiscountPriceProps> = ({ price, discount, quantity = 1, shippingPrice = 0 }) => {
     let priceIncreasing = Math.ceil(price)

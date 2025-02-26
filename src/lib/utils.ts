@@ -33,7 +33,7 @@ export function constructMetadata({
 } = {}): Metadata {
   return {
     title,
-  description,
+    description,
     openGraph: openGraph ?? {
       type: "website",
       locale: "ar_EG",
@@ -67,7 +67,7 @@ export function constructMetadata({
       "Spikes",
       "Balcom",
       "Jetra",
-      "MisterLed",
+      "mister-led",
       "Bollard",
       "Poles",
       "إضاءة عامة",

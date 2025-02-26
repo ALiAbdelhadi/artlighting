@@ -20,7 +20,7 @@ export default function Footer() {
                             ].map((item) => (
                                 <li key={item} className="hover:text-primary transition-colors">
                                     <Link
-                                        href={`/category/Balcom/Indoor/${item}`}
+                                        href={`/category/balcom/indoor/${item}`}
                                     >
                                         {item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()}
                                     </Link>
@@ -31,14 +31,14 @@ export default function Footer() {
                     <div className="space-y-4" role="outdoorCategories">
                         <h3 className="text-xl font-bold text-primary">Outdoor Lighting</h3>
                         <ul className="space-y-2">
-                            {["spikes", "Bollard", "uplight", "Flood-light","Wall-Washer"].map(
+                            {["spikes", "bollard", "uplight", "flood-light", "wall-washer"].map(
                                 (item) => (
                                     <li
                                         key={item}
                                         className="hover:text-primary transition-colors "
                                     >
                                         <Link
-                                            href={`/category/Balcom/Outdoor/${item}`}
+                                            href={`/category/balcom/outdoor/${item}`}
                                         >
                                             <span className="capitalize">
                                                 {item}
@@ -83,7 +83,7 @@ export default function Footer() {
                                 "MC15W",
                             ].map((item) => (
                                 <li key={item} className="hover:text-primary transition-colors">
-                                    <Link href={`/category/MisterLed/Chandelier/${item}`}>
+                                    <Link href={`/category/mister-led/chandelier/${item}`}>
                                         {item}
                                     </Link>
                                 </li>
@@ -94,10 +94,10 @@ export default function Footer() {
                         <h3 className="text-xl font-bold text-primary">Company</h3>
                         <ul className="space-y-2">
                             {[
-                                { name: "About Us", href: "/AboutUs" },
-                                { name: "Contact", href: "/ContactUs" },
-                                { name: "FAQs", href: "/FAQs" },
-                                { name: "Privacy Policy", href: "/Privacy" },
+                                { name: "About Us", href: "/about-us" },
+                                { name: "Contact", href: "/contact-us" },
+                                { name: "FAQs", href: "/faqs" },
+                                { name: "Privacy Policy", href: "/privacy" },
                             ].map((item) => (
                                 <li
                                     key={item.name}
@@ -107,7 +107,7 @@ export default function Footer() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="pt-4" role="socialmedia accounts">
+                        <div className="pt-4" role="socialMedia accounts">
                             <h4 className="text-lg font-semibold text-primary mb-2">
                                 Follow Us
                             </h4>

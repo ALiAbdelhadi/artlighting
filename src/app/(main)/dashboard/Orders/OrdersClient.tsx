@@ -156,10 +156,10 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                             </TableCell>
                                             <TableCell className="capitalize font-medium pl-6">{order.productColorTemp}</TableCell>
                                             <TableCell className="font-medium">
-                                                {order && order.Brand === "Balcom" ? order.productIp : "No IP"}
+                                                {order && order.Brand === "balcom" ? order.productIp : "No IP"}
                                             </TableCell>
                                             <TableCell>
-                                                {order && order.Brand === "MisterLed" && order.product?.ChandelierLightingType === "lamp"
+                                                {order && order.Brand === "mister-led" && order.product?.ChandelierLightingType === "lamp"
                                                     ? order.productChandLamp
                                                     : "No Lamp"}
                                             </TableCell>
@@ -192,7 +192,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders, }) => {
                                                             shippingPrice={order.shippingPrice}
                                                         />
                                                     ) : (
-                                                        <NormalPrice price={order.configPrice} shippingPrice={order.shippingPrice} quantity={order.quantity}/>
+                                                        <NormalPrice price={order.configPrice} shippingPrice={order.shippingPrice} quantity={order.quantity} />
                                                     )}
                                             </TableCell>
                                             <TableCell className="text-nowrap">

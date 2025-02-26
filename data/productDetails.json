@@ -1,7 +1,7 @@
 {
   "categories": {
-    "Balcom": {
-      "Indoor": {
+    "balcom": {
+      "indoor": {
         "family202": [
           {
             "product-jy-202-15w": {
@@ -30,9 +30,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family202",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 729,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -66,9 +66,9 @@
               },
               "MaxIP": 54,
               "spotlightType": "family500",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 295,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -98,9 +98,9 @@
               },
               "MaxIP": 54,
               "spotlightType": "family500",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 469,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -130,9 +130,9 @@
               },
               "MaxIP": 54,
               "spotlightType": "family500",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 469,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -162,9 +162,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family500",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1625,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -194,9 +194,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family500",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1299,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -230,9 +230,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 359,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -262,9 +262,9 @@
               },
               "MaxIP": 54,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 529,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -294,9 +294,9 @@
               },
               "MaxIP": 54,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 440,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -326,9 +326,9 @@
               },
               "MaxIP": 54,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 939,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -358,9 +358,9 @@
               },
               "MaxIP": 54,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1075,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -390,9 +390,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 585,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -422,9 +422,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 549,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -454,9 +454,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 889,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -486,9 +486,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1075,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -518,9 +518,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family800",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1319,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -554,9 +554,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 439,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -586,9 +586,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 529,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -618,9 +618,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 685,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -650,9 +650,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1049,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -682,9 +682,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 499,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -714,9 +714,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 555,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -746,9 +746,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 819,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -778,9 +778,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 259,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -810,9 +810,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 279,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -842,9 +842,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 294,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -874,9 +874,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 525,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -906,9 +906,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 349,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -938,9 +938,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 499,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -970,9 +970,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 745,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1002,9 +1002,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1099,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1034,9 +1034,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 399,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1066,9 +1066,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 529,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1098,9 +1098,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "family900",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 749,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1134,9 +1134,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "DoubleSpotlight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 779,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1166,9 +1166,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "DoubleSpotlight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1169,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1202,9 +1202,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "strip",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1300,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1234,9 +1234,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "strip",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1300,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1270,9 +1270,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1235,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1302,9 +1302,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1429,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1334,9 +1334,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1366,9 +1366,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1398,9 +1398,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1430,9 +1430,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1462,9 +1462,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1494,9 +1494,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1526,9 +1526,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1558,9 +1558,9 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1590,16 +1590,16 @@
               },
               "MaxIP": 65,
               "spotlightType": "linear",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3999,
-              "sectionType": "Indoor",
+              "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             }
           }
         ]
       },
-      "Outdoor": {
+      "outdoor": {
         "uplight": [
           {
             "product-jy-un-002-24w": {
@@ -1628,9 +1628,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "uplight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3599,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1660,9 +1660,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "uplight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1999,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1692,9 +1692,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "uplight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1299,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1724,9 +1724,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "uplight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1299,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1756,9 +1756,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "uplight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 1299,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1789,9 +1789,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "spikes",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 715,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1818,9 +1818,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "spikes",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 715,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1854,9 +1854,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "Floodlight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 2635,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1886,9 +1886,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "Floodlight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 4099,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             },
@@ -1918,9 +1918,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "Floodlight",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 4874,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1954,9 +1954,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "Bollard",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 3699,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1987,9 +1987,9 @@
               },
               "MaxIP": 68,
               "spotlightType": "Wall-Washer",
-              "Brand": "Balcom",
+              "Brand": "balcom",
               "price": 4745,
-              "sectionType": "Outdoor",
+              "sectionType": "outdoor",
               "quantity": 10,
               "discount": 0.1
             }
@@ -1997,8 +1997,8 @@
         ]
       }
     },
-    "MisterLed": {
-      "Chandelier": {
+    "mister-led": {
+      "chandelier": {
         "MC15C": [
           {
             "product-MC15C001": {
@@ -2016,10 +2016,10 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC15C",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "ChandelierLightingType": "LED",
               "price": 4649,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2042,10 +2042,10 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC15F",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "ChandelierLightingType": "LED",
               "price": 4734,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2068,11 +2068,11 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC15G",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "Hnumber": 1,
               "ChandelierLightingType": "lamp",
               "price": 3379,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2095,11 +2095,11 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC15P",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "Hnumber": 1,
               "ChandelierLightingType": "lamp",
               "price": 1305,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2122,10 +2122,10 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC15E",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "ChandelierLightingType": "lamp",
               "price": 7099,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "Hnumber": 1,
               "discount": 0.2
@@ -2149,11 +2149,11 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC1608",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "Hnumber": 6,
               "ChandelierLightingType": "lamp",
               "price": 5746,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2172,11 +2172,11 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC1608",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "Hnumber": 1,
               "ChandelierLightingType": "lamp",
               "price": 676,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2202,8 +2202,8 @@
               "Hnumber": 3,
               "ChandelierLightingType": "lamp",
               "price": 3549,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2225,8 +2225,8 @@
               "ChandelierLightingType": "lamp",
               "price": 5069,
               "Hnumber": 5,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2252,8 +2252,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 3,
               "price": 3219,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2275,8 +2275,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 4819,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2298,8 +2298,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 6,
               "price": 5915,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2321,8 +2321,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 845,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2348,8 +2348,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 3,
               "price": 2875,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2371,8 +2371,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 3,
               "price": 2875,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2394,8 +2394,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 4565,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2417,8 +2417,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 4565,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2440,8 +2440,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 2709,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2467,8 +2467,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 4479,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2494,8 +2494,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 1019,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2517,8 +2517,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 6,
               "price": 5409,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2540,8 +2540,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 8,
               "price": 6595,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2566,8 +2566,8 @@
               "spotlightType": "MC6051",
               "ChandelierLightingType": "LED",
               "price": 6425,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2588,8 +2588,8 @@
               "spotlightType": "MC6051",
               "ChandelierLightingType": "LED",
               "price": 7269,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2610,8 +2610,8 @@
               "spotlightType": "MC6051",
               "ChandelierLightingType": "LED",
               "price": 8789,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2632,8 +2632,8 @@
               "spotlightType": "MC6051",
               "ChandelierLightingType": "LED",
               "price": 3215,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2655,8 +2655,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 3,
               "price": 4395,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2678,8 +2678,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 4,
               "price": 5069,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2701,8 +2701,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 1525,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2724,8 +2724,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 1609,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2751,8 +2751,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 3,
               "price": 2705,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2774,8 +2774,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 3889,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2797,8 +2797,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 8,
               "price": 5409,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2820,8 +2820,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 845,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2847,8 +2847,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 1355,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2874,8 +2874,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 3,
               "price": 2535,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2897,8 +2897,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 679,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2924,8 +2924,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 4,
               "price": 3211,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -2947,8 +2947,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 8,
               "price": 6255,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -2974,8 +2974,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 5409,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3001,8 +3001,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 1690,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -3024,8 +3024,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 4,
               "price": 3379,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3051,8 +3051,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 4,
               "price": 4735,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -3073,8 +3073,8 @@
               "spotlightType": "MC7104",
               "ChandelierLightingType": "LED",
               "price": 5239,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3099,8 +3099,8 @@
               "spotlightType": "MC7105",
               "ChandelierLightingType": "LED",
               "price": 6679,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3126,8 +3126,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 4,
               "price": 3215,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3153,8 +3153,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 7605,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3180,8 +3180,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 3549,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -3203,8 +3203,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 845,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3230,8 +3230,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 1,
               "price": 1099,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -3253,8 +3253,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 2,
               "price": 1319,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3280,8 +3280,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 5,
               "price": 4989,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             },
@@ -3303,8 +3303,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 9,
               "price": 7775,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3330,8 +3330,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 6,
               "price": 3549,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3358,8 +3358,8 @@
               "ChandelierLightingType": "lamp",
               "Hnumber": 6,
               "price": 4989,
-              "sectionType": "Chandelier",
-              "Brand": "MisterLed",
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
               "quantity": 10,
               "discount": 0.2
             }
@@ -3382,10 +3382,10 @@
                 "Life Time": "50,000"
               },
               "spotlightType": "MC15W",
-              "Brand": "MisterLed",
+              "Brand": "mister-led",
               "ChandelierLightingType": "LED",
               "price": 1525,
-              "sectionType": "Chandelier",
+              "sectionType": "chandelier",
               "quantity": 10,
               "discount": 0.2
             }

@@ -39,7 +39,7 @@ const SubCategoryPage: React.FC<SubCategoryPageProps> = ({ children, groupedProd
                     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-3">
                         {Object.entries(groupedProducts).map(([spotlightType, products]) => (
                             <div key={spotlightType} className="text-center">
-                                <Link href={`/category/MisterLed/${subCategory}/${spotlightType}`}>
+                                <Link href={`/category/mister-led/${subCategory}/${spotlightType}`}>
                                     <div className="card">
                                         <Image
                                             src={products[0].productImages[0]}

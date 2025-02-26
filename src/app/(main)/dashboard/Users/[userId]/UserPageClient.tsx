@@ -73,13 +73,13 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
                     {order.productColorTemp}
                 </TableCell>
                 <TableCell className="font-medium">
-                    {order && order.Brand === "Balcom"
+                    {order && order.Brand === "balcom"
                         ? order.productIp
                         : "No IP"}
                 </TableCell>
                 <TableCell>
                     {order &&
-                        order.Brand === "MisterLed" &&
+                        order.Brand === "mister-led" &&
                         order.product?.ChandelierLightingType === "lamp"
                         ? order.productChandLamp
                         : "No Lamp"}

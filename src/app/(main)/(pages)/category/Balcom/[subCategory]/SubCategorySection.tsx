@@ -35,10 +35,10 @@ const SubCategoryPage: React.FC<SubCategoryPageProps> = ({ children, subCategory
                 <Container>
                     <h1 className="text-3xl font-bold mb-8 capitalize">
                         {subCategory} Lighting</h1>
-                        <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 ">
+                    <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 ">
                         {Object.entries(groupedProducts).map(([spotlightType, products]) => (
                             <div key={spotlightType} className="text-center">
-                                <Link href={`/category/Balcom/${subCategory}/${spotlightType}`}>
+                                <Link href={`/category/balcom/${subCategory}/${spotlightType}`}>
                                     <div className="card">
                                         <Image
                                             src={products[0].productImages[0]}

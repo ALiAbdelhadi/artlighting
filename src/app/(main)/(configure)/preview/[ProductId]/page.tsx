@@ -46,7 +46,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
     }
 
     return (
-        <PreviewPage configuration={configuration} discount={configuration.discount}  productId={configuration.ProductId} />
+        <PreviewPage configuration={configuration} discount={configuration.discount} productId={configuration.ProductId} />
     );
 };
 
@@ -66,15 +66,15 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
     let typeOfSpotlight = '';
 
     switch (product.sectionType) {
-        case "IndoorLighting":
+        case "indoor":
             titleToSectionType = "Indoor lighting";
             typeOfSpotlight = "Ideal for homes and offices";
             break;
-        case "OutdoorLighting":
+        case "outdoor":
             titleToSectionType = "Outdoor lighting";
             typeOfSpotlight = "Create the perfect ambiance for outdoor entertaining";
             break;
-        case "Chandelier":
+        case "chandelier":
             titleToSectionType = "Chandelier";
             typeOfSpotlight = "A chandelier is a branched, decorative lighting fixture designed to be hung from the ceiling.";
             break;

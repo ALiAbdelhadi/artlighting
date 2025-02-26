@@ -45,7 +45,7 @@ const MisterLedSection: React.FC<MisterLedSectionProps> = ({ children, categorie
                     <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
                         {categories.map((category) => (
                             <div key={category.sectionType} className="text-center">
-                                <Link href={`/category/MisterLed/${category.sectionType}`} scroll={true}>
+                                <Link href={`/category/mister-led/${category.sectionType}`} scroll={true}>
                                     <div className="card">
                                         <Image
                                             src={category.image}

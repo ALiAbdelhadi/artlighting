@@ -20,7 +20,7 @@ export function ThemedSignUp() {
     }
 
     return (
-        <div className='max-h-[90vh] col-span-full lg:col-span-1 overflow-auto'>
+        <div className='max-h-[90vh] col-span-full lg:col-span-1 overflow-auto hide-scrollbar'>
             <ScrollArea>
                 <div>
                     <SignUp

@@ -5,18 +5,18 @@ import { Suspense } from 'react';
 import BalcomLandingPage from "./BalcomLandingPage";
 import BalcomSection from "./BalcomSection";
 
-type SectionType = 'Indoor' | 'Outdoor';
+type SectionType = 'indoor' | 'outdoor';
 
 const sectionTypeImages: Record<SectionType, string> = {
-  "Indoor": "/indoor/linear/jy-lnrd-001b-32w/JY-LNRD-001B-32W (1).png",
-  "Outdoor": "/NewCollection/new-collection-2.jpg"
+  "indoor": "/indoor/linear/jy-lnrd-001b-32w/JY-LNRD-001B-32W (1).png",
+  "outdoor": "/NewCollection/new-collection-2.jpg"
 };
 
 export async function generateStaticParams() {
   const categories = await db.product.groupBy({
     by: ['sectionType'],
     where: {
-      Brand: 'Balcom'
+      Brand: 'balcom'
     },
     orderBy: {
       sectionType: "desc"
@@ -32,7 +32,7 @@ async function Page() {
   const categories = await db.product.groupBy({
     by: ['sectionType'],
     where: {
-      Brand: 'Balcom'
+      Brand: 'balcom'
     },
     _count: {
       _all: true

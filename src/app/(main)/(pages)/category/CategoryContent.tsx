@@ -54,7 +54,7 @@ const CategoryContent = () => {
                     <div
                         className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
                         <div className="text-center ">
-                            <Link href="/category/Balcom">
+                            <Link href="/category/balcom">
                                 <Image src={"/indoor/products500/jy-535-5w/JY-535-5W (1).png"}
                                     alt={'Indoor lighting products'} width={"475"}
                                     height={"475"} />
@@ -64,7 +64,7 @@ const CategoryContent = () => {
                             </Link>
                         </div>
                         <div className="text-center ">
-                            <Link href="/category/MisterLed">
+                            <Link href="/category/mister-led">
                                 <Image src={"/chandelier/MC7023/MC7023-P5.png"} alt={'Chandelier lighting'} width={"475"}
                                     height={"475"} />
                                 <div className="card ">
