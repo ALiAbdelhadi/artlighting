@@ -31,7 +31,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">
                     {project.ProjectDate}
                 </h3>
-                <h4 className="text-center text-sm text-muted-foreground max-w-[85%] lg:max-w-[90%] mx-auto">
+                <h4 className="text-center text-sm md:text-base text-muted-foreground max-w-[85%] lg:max-w-[90%] mx-auto font-medium">
                     {project.ProjectDescription}
                 </h4>
             </div>

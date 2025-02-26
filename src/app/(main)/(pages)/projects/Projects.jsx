@@ -21,7 +21,7 @@ const Projects = () => {
                 ProjectDate: "10 / May / 2018",
                 ProjectImages: ["/projects/dar-misr/dar-misr-1.jpg"],
                 ProjectDescription:
-                    "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
+                    "Dar-Misr is a real estate compound "
             },
             "tolip": {
                 ProjectId: "tolip",
@@ -29,7 +29,7 @@ const Projects = () => {
                 ProjectDate: "10 / June / 22",
                 ProjectImages: ["/projects/tolip/tolip-1.jpg"],
                 ProjectDescription:
-                    "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
+                    "Tolip Hotel El Galaa is a luxurious establishment located in Cairo, Egypt."
             },
             "al-majd": {
                 ProjectId: "al-majd",
@@ -37,7 +37,7 @@ const Projects = () => {
                 ProjectDate: "10 / Dec / 23",
                 ProjectImages: ["/projects/al-majd/al-majd-1.jpg"],
                 ProjectDescription:
-                    "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
+                    "Al-Majd Conference Center in Alexandria."
             }
         }
         setProjectData(data)
@@ -114,7 +114,7 @@ const Projects = () => {
             <Container>
                 <div className="flex items-center justify-center flex-col">
                     <div
-                        className="projectsContainer mt-12 flex flex-wrap lg:flex-nowrap justify-center items-center gap-4 overflow-hidden">
+                        className="projectsContainer mt-12 flex flex-wrap lg:flex-nowrap justify-center items-center gap-4 overflow-hidden w-full">
                         {projectData &&
                             projectKeys.map(key => (
                                 <ProjectCard key={key} project={projectData[key]} />
