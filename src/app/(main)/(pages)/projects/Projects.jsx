@@ -19,7 +19,7 @@ const Projects = () => {
                 ProjectId: "dar-misr",
                 ProjectName: "Dar-Misr",
                 ProjectDate: "10 / May / 2018",
-                ProjectImages: ["/projects/DAR-MISR/DAR-MISR-0.jpg"],
+                ProjectImages: ["/projects/dar-misr/dar-misr-1.jpg"],
                 ProjectDescription:
                     "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)"
             },
@@ -130,7 +130,7 @@ const Projects = () => {
                                     "bg-accent text-accent-foreground dark:bg-accent dark:text-accent-foreground border-gray-950": isClicked
                                 }
                             )}
-                            href="/All-Projects"
+                            href="/all-projects"
                             onClick={HandleClickedButtons}
                         >
                             Explore All Projects

@@ -5,11 +5,11 @@
       "ProjectName": "Dar-Misr",
       "ProjectDate": "10 / May / 2018",
       "ProjectImages": [
-        "/projects/DAR-MISR/DAR-MISR-0.jpg",
-        "/projects/DAR-MISR/DAR-MISR-1.webp",
-        "/projects/DAR-MISR/DAR-MISR-2.webp"
+        "/projects/dar-misr/dar-misr-1.jpg",
+        "/projects/dar-misr/dar-misr-2.webp",
+        "/projects/dar-misr/dar-misr-3.webp"
       ],
-      "ProjectDescription": "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)",
+      "ProjectDescription": "Dar-misr is compound for real estate ",
       "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
       "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",
       "usedProducts": "/category/balcom/indoor/family900"
@@ -29,56 +29,81 @@
       "ProjectName": " Al-Majd Conference Center In Alexandria",
       "ProjectDate": "10 / Dec / 23",
       "ProjectImages": ["/projects/al-majd/al-majd-1.jpg"],
-      "ProjectDescription": "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)",
+      "ProjectDescription": "Al-Majd Conference Center In Alexandria",
       "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
       "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",
-      "usedProducts": "/category/indoor/linear"
+      "usedProducts": "/category/balcom/indoor/family900"
     },
-    "Project-two": {
-      "ProjectId": "project-two",
-      "ProjectName": "Project two",
+    "mansoura-hospital": {
+      "ProjectId": "mansoura-hospital",
+      "ProjectName": "Mansoura Hospital",
       "ProjectDate": "10 / Oct / 20",
-      "ProjectImages": ["/projects/projectIamge 2.webp"],
+      "ProjectImages": [
+        "/projects/mansoura-hospital/mansoura-hospital-2.png",
+        "/projects/mansoura-hospital/mansoura-hospital-1.png",
+        "/projects/mansoura-hospital/mansoura-hospital-3.png",
+        "/projects/mansoura-hospital/mansoura-hospital-5.png"
+      ],
+      "ProjectDescription": "Mansoura Fever Hospital",
+      "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
+      "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "esna-hospital": {
+      "ProjectId": "esna-hospital",
+      "ProjectName": "Esna Hospital",
+      "ProjectDate": "10 / June / 22",
+      "ProjectImages": [
+        "/projects/esna-hospital/esna-hospital-1.jpg",
+        "/projects/esna-hospital/esna-hospital-4.jpg",
+        "/projects/esna-hospital/esna-hospital-2.webp",
+        "/projects/esna-hospital/esna-hospital-3.jpg"
+      ],
       "ProjectDescription": "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)",
       "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
       "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",
       "usedProducts": "/category/indoor/linear"
     },
-    "Project-three": {
-      "ProjectId": "project-three",
-      "ProjectName": "Project three",
+    "armant-hospital": {
+      "ProjectId": "armant-hospital",
+      "ProjectName": "Armant Hospital",
       "ProjectDate": "10 / June / 22",
-      "ProjectImages": ["/projects/projectIamge 3.webp"],
+      "ProjectImages": [
+        "/projects/armant-hospital/armant-hospital-1.webp",
+        "/projects/armant-hospital/armant-hospital-2.jpg",
+        "/projects/armant-hospital/armant-hospital-3.jpg",
+        "/projects/armant-hospital/armant-hospital-4.jpg"
+      ],
       "ProjectDescription": "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)",
       "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
       "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",
       "usedProducts": "/category/indoor/linear"
     },
-    "Project-five": {
-      "ProjectId": "project-five",
-      "ProjectName": "Project five",
+    "maadi-hospital": {
+      "ProjectId": "maadi-hospital",
+      "ProjectName": "Maadi Hospital",
       "ProjectDate": "10 / June / 22",
-      "ProjectImages": ["/projects/projectImage 5.webp"],
+      "ProjectImages": [
+        "/projects/maadi-hospital/maadi-hospital-1.jpg",
+        "/projects/maadi-hospital/maadi-hospital-2.webp",
+        "/projects/maadi-hospital/maadi-hospital-3.jpg",
+        "/projects/maadi-hospital/maadi-hospital-4.jpg"
+      ],
       "ProjectDescription": "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)",
       "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
       "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",
       "usedProducts": "/category/indoor/linear"
     },
-    "Project-seven": {
-      "ProjectId": "project-seven",
-      "ProjectName": "Project seven",
-      "ProjectDate": "10 / June / 22",
-      "ProjectImages": ["/projects/projectImage 7.webp"],
-      "ProjectDescription": "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)",
-      "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
-      "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",
-      "usedProducts": "/category/indoor/linear"
-    },
-    "Project-eight": {
-      "ProjectId": "project-eight",
-      "ProjectName": "Project eight",
-      "ProjectDate": "10 / June / 22",
-      "ProjectImages": ["/projects/projectImage 8.webp"],
+    "al-galala-resort": {
+      "ProjectId": "al-galala-resort",
+      "ProjectName": "Al-Galala Resort",
+      "ProjectDate": "10 / Nov / 19",
+      "ProjectImages": [
+        "/projects/al-galala-resort/al-galala-resort-1.jpg",
+        "/projects/al-galala-resort/al-galala-resort-2.jpg",
+        "/projects/al-galala-resort/al-galala-resort-3.jpg",
+        "/projects/al-galala-resort/al-galala-resort-4.jpg"
+      ],
       "ProjectDescription": "Project: The ideal lighting solution for a Japandi interior style, Renesse (The Netherlands)",
       "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
       "ProjectInfor2": "To create the perfect ambience, our bronze HALO ring lights were used in this project. The combination of different sizes and hanging at different heights ensures that the lighting matches the unique style and practical needs of the space. The bronze finish of the HALO lamps adds a warm touch to the overall look and blend perfectly with the colour palette of the interior.",

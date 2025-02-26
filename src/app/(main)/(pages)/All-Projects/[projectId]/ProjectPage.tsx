@@ -1,6 +1,7 @@
 "use client";
 import Container from "@/app/components/Container";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from 'next/navigation';
 import { ReactNode } from "react";
@@ -50,7 +51,7 @@ const ProjectPage: React.FC<{ children: ReactNode }> = ({ children }) => {
     return (
         <motion.div
             initial="hidden"
-        animate="visible"
+            animate="visible"
             variants={variants}
         >
             {children}
@@ -66,30 +67,39 @@ const ProjectPage: React.FC<{ children: ReactNode }> = ({ children }) => {
                             className="w-full lg:h-[43rem] h-auto rounded-md"
                         />
                         <p className="my-5 md:text-lg text-sm tracking-wide text-muted-foreground">{project.ProjectDescription}</p>
-                        <div className="space-y-2">
-                            <p className="text-lg text-gray-600 tracking-wide">Lighting: <span>Art Lighting</span></p>
-                            <p className="text-lg text-gray-600 tracking-wide">Project: <span>{project.ProjectName}</span>
+                        <div className="space-y-2 my-4 mb-6">
+                            <p className="text-lg text-gray-700 tracking-wide">Lighting: <span>Art Lighting</span></p>
+                            <p className="text-lg text-gray-700 tracking-wide">Project: <span>{project.ProjectName}</span>
                             </p>
                             <Link className="text-lg tracking-wide underline mt-5" href={project.usedProducts}>
                                 Products that we used in this project
                             </Link>
                         </div>
-                        <div
-                            className="flex lg:flex-row flex-col justify-between items-center mt-10 md:space-y-0 space-y-7">
-                            <img
-                                src={project.ProjectImages[1]}
-                                alt={project.ProjectName}
-                                className="rounded-md h-[38rem] w-[44rem]"
-                            />
-                            <img
-                                src={project.ProjectImages[2]}
-                                alt={project.ProjectName}
-                                className="rounded-md h-[38rem] w-[45rem]"
-                            />
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div className="relative overflow-hidden rounded-lg shadow-lg">
+                                <Image
+                                    src={project.ProjectImages[1]}
+                                    alt={project.ProjectName}
+                                    width={500}
+                                    height={250}
+                                    quality={100}
+                                    className="object-cover h-full w-full transition-transform duration-500 hover:scale-105"
+                                />
+                            </div>
+                            <div className="relative overflow-hidden rounded-lg shadow-lg">
+                                <Image
+                                    src={project.ProjectImages[2]}
+                                    alt={project.ProjectName}
+                                    width={500}
+                                    height={250}
+                                    quality={100}
+                                    className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+                                />
+                            </div>
                         </div>
                         <p className="my-5 md:text-lg text-sm tracking-wide text-muted-foreground">{project.ProjectInfor2}</p>
                         <img
-                            src={project.ProjectImages[1]}
+                            src={project.ProjectImages[3]}
                             alt={project.ProjectName}
                             className="w-full lg:h-[44rem] h-auto rounded-md"
                         />

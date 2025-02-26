@@ -56,7 +56,7 @@ export default function Header() {
                                                     className="imageContainer relative flex justify-center items-center z-10"
                                                 >
                                                     <Image
-                                                        src="/projects/DAR-MISR/DAR-MISR-0.jpg"
+                                                        src="/projects/dar-misr/dar-misr-1.jpg"
                                                         alt="Dar-Misr Project"
                                                         width={300}
                                                         height={300}

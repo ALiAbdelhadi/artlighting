@@ -21,11 +21,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 <div className="absolute top-0 left-0 py-2 px-3 bg-gray-50 text-gray-600 z-10 dark:bg-neutral-900 dark:text-gray-50 text-xs">
                     {project.ProjectDate}
                 </div>
-                <Image
+                <img
                     src={project.ProjectImages[0]}
                     alt={project.ProjectName}
                     className="w-full h-[200px] sm:h-[300px] lg:h-[280px] object-cover"
-                    width={450} height={450}
                 />
             </Link>
             <div className="flex flex-col items-center justify-center mt-4">

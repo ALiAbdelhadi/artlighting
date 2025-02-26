@@ -7,13 +7,10 @@ import Container from "../Container"
 
 export default function WhiteFridayBanner() {
     const [isBannerVisible, setIsBannerVisible] = useState(true)
-
     const handleClose = () => {
         setIsBannerVisible(false)
     }
-
     if (!isBannerVisible) return null
-
     return (
         <div className="bg-gradient-to-r to-primary via-accent from-secondary text-primary-foreground shadow-lg relative overflow-hidden">
             <div className="absolute inset-0 opacity-10"></div>
@@ -42,7 +39,7 @@ export default function WhiteFridayBanner() {
                 onClick={handleClose}
                 variant="ghost"
                 size="icon"
-                className="absolute top-2 right-2 sm:top-4 sm:right-4 text-primary-foreground hover:text-primary-foreground/80 transition-colors duration-300"
+                className="absolute z-50 cursor-pointer right-2 top-2 sm:right-4 text-primary-foreground hover:text-primary-foreground/80 transition-colors duration-300"
                 aria-label="Close banner"
             >
                 <X className="w-5 h-5 sm:w-6 sm:h-6" />
