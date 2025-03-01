@@ -1,9 +1,12 @@
 "use client"
 
+import Container from '@/app/components/Container'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { SquareArrowOutUpRight } from 'lucide-react'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import Container from '@/app/components/Container'
 
 const data = [
   { year: "2010", sales: 12 },
@@ -66,35 +69,127 @@ export default function Achievements() {
       </h2>
       <Container >
         <div className="flex justify-center items-center flex-wrap gap-8 mb-12">
-          {[1, 2, 3].map((_, index) => (
-            <div key={index} className="text-center">
-              <div className="flex justify-center items-center my-4 mx-4">
-                <div
-                  className="number text-4xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-400 to-indigo-300 transition-all duration-300 ease-in-out"
-                  data-goal="85"
-                >
-                  0
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="30" height="30">
-                  <path
-                    d="M374.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-320 320c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l320-320zM128 128A64 64 0 1 0 0 128a64 64 0 1 0 128 0zM384 384a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"
-                    fill="url(#gradient)"
-                  />
-                  <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%">
-                      <stop offset="40%" stopColor="#afbbff" />
-                      <stop offset="80%" stopColor="#d9a755" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+          <div className="text-center">
+            <div className="flex justify-center items-center my-4 mx-4">
+              <div
+                className="number text-4xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-400 to-indigo-300 transition-all duration-300 ease-in-out"
+                data-goal="87"
+              >
+                0
               </div>
-              <p className="text-xl text-muted-foreground uppercase -mt-2">
-                Happy and satisfied customers
-              </p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="30" height="30">
+                <path
+                  d="M374.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-320 320c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l320-320zM128 128A64 64 0 1 0 0 128a64 64 0 1 0 128 0zM384 384a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"
+                  fill="url(#gradient)"
+                />
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%">
+                    <stop offset="40%" stopColor="#afbbff" />
+                    <stop offset="80%" stopColor="#d9a755" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
-          ))}
+            <p className="text-xl text-muted-foreground uppercase -mt-2">
+              Happy and satisfied customers
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="flex justify-center items-center my-4 mx-4">
+              <div
+                className="number text-4xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-400 to-indigo-300 transition-all duration-300 ease-in-out"
+                data-goal="95"
+              >
+                0
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="30" height="30">
+                <path
+                  d="M374.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-320 320c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l320-320zM128 128A64 64 0 1 0 0 128a64 64 0 1 0 128 0zM384 384a64 64 0 1 0 -128 0 64 64 0 1 0 128 0z"
+                  fill="url(#gradient)"
+                />
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%">
+                    <stop offset="40%" stopColor="#afbbff" />
+                    <stop offset="80%" stopColor="#d9a755" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <p className="text-xl text-muted-foreground uppercase -mt-2">
+              Project Completed At the Time
+            </p>
+          </div>
         </div>
         <SalesChart />
+        {/* Approvals */}
+        <div className='my-10 md:my-12 lg:my-16'>
+          <div className='space-y-16'>
+            <div>
+              <h3 className='md:text-3xl text-2xl font-semibold text-primary mb-6'>
+                Some of our Approvals
+              </h3>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div className='shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden'>
+                  <img
+                    src="/approvals/approval-1.jpg"
+                    alt="Approval"
+                    className='w-full h-auto object-cover'
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className='md:text-3xl text-2xl font-semibold text-primary mb-6'>
+                Some of our quality certifications
+              </h3>
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                <div className='shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden'>
+                  <img
+                    src="/approvals/approval-2.jpg"
+                    alt="Approval"
+                    className='w-full h-auto object-cover'
+                  />
+                </div>
+                <div className='shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden'>
+                  <img
+                    src="/approvals/approval-3.jpg"
+                    alt="Approval"
+                    className='w-full h-auto object-cover'
+                  />
+                </div>
+                <div className='shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden'>
+                  <img
+                    src="/approvals/approval-4.jpg"
+                    alt="Approval"
+                    className='w-full h-auto object-cover'
+                  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="md:text-3xl text-2xl font-semibold text-primary mb-6">
+                Authorizing an exclusive agent
+              </h3>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div className='shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden'>
+                  <img
+                    src="/approvals/approval-5.png"
+                    alt="Approval"
+                    className='w-full h-auto object-cover'
+                  />
+                </div>
+              </div>
+            </div>
+            <div className='flex justify-center items-center'>
+              <Button size={"lg"} variant={"default"} className='text-lg'>
+                <div className='flex items-center gap-4'>
+                  <Link href="/portfolio/portfolio-artlighting.pdf" download="portfolio-artlighting.pdf" >Download company portfolio</Link>
+                  <SquareArrowOutUpRight className='w-5 h-5' />
+                </div>
+              </Button>
+            </div>
+          </div>
+        </div>
       </Container>
     </div>
   )
@@ -105,7 +200,7 @@ function SalesChart() {
     <Card>
       <CardHeader>
         <CardTitle>Selling Overview</CardTitle>
-        <CardDescription>Sales percentage from 2010 to 2023</CardDescription>
+        <CardDescription>Sales percentage from 2010 to 2024</CardDescription>
       </CardHeader>
       <CardContent className="pb-4">
         <div className="h-[400px]">
@@ -114,13 +209,13 @@ function SalesChart() {
               <XAxis
                 dataKey="year"
                 stroke="#888888"
-                fontSize={12}
+                fontSize={13}
                 tickLine={false}
                 axisLine={false}
               />
               <YAxis
                 stroke="#888888"
-                fontSize={12}
+                fontSize={13}
                 tickLine={false}
                 axisLine={false}
                 tickFormatter={(value) => `${value}%`}

@@ -8,6 +8,7 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ChandelierItems, IndoorItems, OutdoorItems } from "@/constants";
 import { UserButton } from "@clerk/nextjs";
 import {
     BoxIcon,
@@ -19,12 +20,25 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import projectsData from "../../../../data/project.json";
 import { CartSidebar } from "../CartSidebar";
 import AuthInDesktop from "./AuthInDesktop";
 import AuthInMobile from "./AuthInMobile";
 import ContainerAuthInDesktop from "./ContainerAuthInDesktop";
 import ContainerAuthInMobile from "./ContainerAuthInMobile";
-
+interface ProjectProps {
+    ProjectId: string;
+    ProjectName: string;
+    ProjectDate: string;
+    ProjectImages: string[];
+    ProjectDescription: string;
+}
+interface ProjectsData {
+    projects: {
+        [key: string]: ProjectProps;
+    };
+}
+const projectsDataTyped: ProjectsData = projectsData as ProjectsData;
 export default function Header() {
     return (
         <header className=" relative top-0 z-50 w-full bg-background shadow-sm">
@@ -40,213 +54,60 @@ export default function Header() {
                     <NavigationMenu>
                         <NavigationMenuList>
                             <Link href={"/about-us"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium ">
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-all hover:underline ">
                                     About Us
                                 </NavigationMenuItem>
                             </Link>
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger className="bg-transparent">Projects</NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">Projects</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <div className="grid w-[800px] grid-cols-3 gap-x-2 p-4 dark:bg-[#1c1a17]" >
-                                        <div className="projectCard relative overflow-hidden">
-                                            <div className="figureCard relative">
-                                                <Link
-                                                    scroll={true}
-                                                    href=" /all-projects/dar-misr"
-                                                    className="imageContainer relative flex justify-center items-center z-10"
-                                                >
-                                                    <Image
-                                                        src="/projects/dar-misr/dar-misr-1.jpg"
-                                                        alt="Dar-Misr Project"
-                                                        width={300}
-                                                        height={300}
-                                                        className="h-44"
-                                                    />
-                                                </Link>
-                                                <div className="textContainer flex flex-col justify-center items-center">
-                                                    <h3 className="ProjectDescription  mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Dar-Misr Project{" "}
-                                                    </h3>
-                                                    <h4 className="projectDate text-sm font-light text-muted-foreground mb-3">
-                                                        More Details
-                                                    </h4>
+                                        {Object.keys(projectsDataTyped.projects).slice(0, 6).map((projectKey) => {
+                                            const project = projectsDataTyped.projects[projectKey]
+                                            return (
+                                                <div className="projectCard relative overflow-hidden" key={project.ProjectId}>
+                                                    <div className="relative figureCard w-full h-full">
+                                                        <Link href={`/all-projects/${project.ProjectId}`} className="relative block">
+                                                            <Image width={300}
+                                                                height={300}
+                                                                className="h-44 rounded-md" src={project.ProjectImages[0]} alt={project.ProjectName} />
+                                                        </Link>
+                                                        <div className="flex flex-col items-center justify-center mt-4">
+                                                            <h3 className="ProjectDescription  mt-2 mb-2 text-center text-sm tracking-wider">{project.ProjectDescription.slice(0, 26)}...</h3>
+                                                            <Link href={`/all-projects/${project.ProjectId}`} className="projectDate text-sm font-light text-muted-foreground mb-3">
+                                                                More Details
+                                                            </Link>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div className="projectCard  relative overflow-hidden">
-                                            <div className="figureCard relative">
-                                                <Link
-                                                    scroll={true}
-                                                    href=" /all-projects/tolip"
-                                                    className="imageContainer relative flex justify-center items-center z-10"
-                                                >
-                                                    <Image
-                                                        src="/projects/tolip/tolip-1.jpg"
-                                                        alt="Tolip Project"
-                                                        width={300}
-                                                        height={300}
-                                                        className="h-44"
-                                                    />
-                                                </Link>
-                                                <div className="textContainer flex flex-col justify-center items-center">
-                                                    <h3 className="ProjectDescription mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Tolip Project{" "}
-                                                    </h3>
-                                                    <h4 className="projectDate text-sm font-light text-muted-foreground mb-3">
-                                                        More Details
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="projectCard  relative overflow-hidden">
-                                            <div className="figureCard relative">
-                                                <Link
-                                                    scroll={true}
-                                                    href="/all-projects/al-majd"
-                                                    className="imageContainer relative flex justify-center items-center z-10"
-                                                >
-                                                    <Image
-                                                        src="/projects/al-majd/al-majd-1.jpg"
-                                                        alt="Al-Majd Project"
-                                                        width={300}
-                                                        height={300}
-                                                        className="h-44"
-                                                    />
-                                                </Link>
-                                                <div className="textContainer flex flex-col justify-center items-center">
-                                                    <h3 className="ProjectDescription mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Al-Majd Project{" "}
-                                                    </h3>
-                                                    <h4 className="projectDate text-sm font-light text-muted-foreground mb-3">
-                                                        More Details
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="projectCard  relative overflow-hidden">
-                                            <div className="figureCard relative">
-                                                <Link
-                                                    scroll={true}
-                                                    href=" /all-projects/Project-two"
-                                                    className="imageContainer relative flex justify-center items-center z-10"
-                                                >
-                                                    <Image
-                                                        src="/projects/projectIamge 2.webp"
-                                                        alt="Project two"
-                                                        width={300}
-                                                        height={300}
-                                                        className="h-44"
-                                                    />
-                                                </Link>
-                                                <div className="textContainer flex flex-col justify-center items-center">
-                                                    <h3 className="ProjectDescription mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Project: The ideal lighting{" "}
-                                                    </h3>
-                                                    <h4 className="projectDate text-sm font-light text-muted-foreground  ">
-                                                        More Details
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="projectCard  relative overflow-hidden">
-                                            <div className="figureCard relative">
-                                                <Link
-                                                    scroll={true}
-                                                    href=" /all-projects/Project-three"
-                                                    className="imageContainer relative flex justify-center items-center z-10"
-                                                >
-                                                    <img
-                                                        src="/projects/projectIamge 3.webp"
-                                                        alt="Project three"
-                                                        width={300}
-                                                        height={300}
-                                                        className="h-44"
-                                                    />
-                                                </Link>
-                                                <div className="textContainer flex flex-col justify-center items-center">
-                                                    <h3 className="ProjectDescription mt-2 mb-2 text-center text-sm tracking-wider">
-                                                        Project: The ideal lighting{" "}
-                                                    </h3>
-                                                    <h4 className="projectDate text-sm font-light text-muted-foreground ">
-                                                        More Details
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            )
+                                        })}
                                     </div>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <NavigationMenuTrigger className="bg-transparent hover:bg-accent hover:text-accent-foreground">Products</NavigationMenuTrigger>
+                                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">Products</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <div className="grid w-[700px] grid-cols-3 gap-2 p-4 justify-items-center dark:bg-[#1c1a17]">
-                                        <ul className="md:space-y-4 capitalize">
+                                        <ul className="md:space-y-4  capitalize">
                                             <h4 className="font-bold my-2 text-primary text-xl">
                                                 <Link
                                                     scroll={true}
-                                                    href={"/category/balcom/indoor"}
+                                                    href={" /category/balcom/indoor"}
                                                 >
-                                                    Indoor
+                                                    indoor
                                                 </Link>
                                             </h4>
-                                            <li className="inline-flex items-center gap-1 font-medium hover:underline  text-[17px] ">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/indoor/strip"}
-                                                >
-                                                    strip
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/indoor/linear"}
-                                                >
-                                                    Linear
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/indoor/family202"}
-                                                >
-                                                    family202
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/indoor/family500"}
-                                                >
-                                                    family500
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/indoor/family800"}
-                                                >
-                                                    family800
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/indoor/family900"}
-                                                >
-                                                    family900
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={
-                                                        "/category/balcom/indoor/DoubleSpotlight"
-                                                    }
-                                                >
-                                                    double spotlight
-                                                </Link>
-                                            </li>
+                                            {IndoorItems.map((IndoorItem) => (
+                                                <li className="items-center gap-1 font-medium hover:underline  text-[17px]" key={IndoorItem.id}>
+                                                    <Link
+                                                        scroll={true}
+                                                        href={IndoorItem.href}
+                                                    >
+                                                        {IndoorItem.spotlightType}
+                                                    </Link>
+                                                </li>
+                                            ))}
                                         </ul>
                                         <ul className="md:space-y-4  capitalize">
                                             <h4 className="font-bold my-2 text-primary text-xl">
@@ -257,38 +118,16 @@ export default function Header() {
                                                     Outdoor
                                                 </Link>
                                             </h4>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/Outdoor/uplight"}
-                                                >
-                                                    uplight
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/Outdoor/Floodlight"}
-                                                >
-                                                    flood light
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/Outdoor/spikes"}
-                                                >
-                                                    spikes
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/balcom/Outdoor/Bollard"}
-                                                >
-                                                    Bollard
-                                                </Link>
-                                            </li>
+                                            {OutdoorItems.map((outdoorItem) => (
+                                                <li className="items-center gap-1 font-medium hover:underline  text-[17px]" key={outdoorItem.id}>
+                                                    <Link
+                                                        scroll={true}
+                                                        href={outdoorItem.href}
+                                                    >
+                                                        {outdoorItem.spotlightType}
+                                                    </Link>
+                                                </li>
+                                            ))}
                                         </ul>
                                         <ul className="md:space-y-4 capitalize ">
                                             <h4 className="font-bold my-2 text-primary text-xl">
@@ -299,129 +138,27 @@ export default function Header() {
                                                     Chandelier
                                                 </Link>
                                             </h4>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px] ">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/mister-led/chandelier/MC15C"}
-                                                >
-                                                    MC15C001
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/mister-led/chandelier/MC15CF"}
-                                                >
-                                                    MC15C001F
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/mister-led/chandelier/MC15G"}
-                                                >
-                                                    MC15G
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/mister-led/chandelier/MC15P"}
-                                                >
-                                                    MC15P
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/mister-led/chandelier/MC15E"}
-                                                >
-                                                    MC15E
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={"/category/mister-led/chandelier/MC1608"}
-                                                >
-                                                    MC1608
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6014"}
-                                                >
-                                                    MC6014
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6015"}
-                                                >
-                                                    MC6015
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6031"}
-                                                >
-                                                    MC6031
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6038"}
-                                                >
-                                                    MC6038
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6041"}
-                                                >
-                                                    MC6041
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6051"}
-                                                >
-                                                    MC6051
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px]">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6091"}
-                                                >
-                                                    MC6091
-                                                </Link>
-                                            </li>
-                                            <li className="items-center gap-1 font-medium hover:underline  text-[17px] ">
-                                                <Link
-                                                    scroll={true}
-                                                    href={" /category/mister-led/chandelier/MC6094"}
-                                                >
-                                                    MC6094
-                                                </Link>
-                                            </li>
+                                            {ChandelierItems.slice(0, 12).map((ChandelierItem) => (
+                                                <li className="items-center gap-1 font-medium hover:underline  text-[17px]" key={ChandelierItem.id}>
+                                                    <Link
+                                                        scroll={true}
+                                                        href={ChandelierItem.href}
+                                                    >
+                                                        {ChandelierItem.spotlightType}
+                                                    </Link>
+                                                </li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
                             <Link href={"/blog"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium ">
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-all  hover:underline">
                                     Blog
                                 </NavigationMenuItem>
                             </Link>
                             <Link href={"/ContactUs"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium ">
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-all  hover:underline ">
                                     Contact
                                 </NavigationMenuItem>
                             </Link>

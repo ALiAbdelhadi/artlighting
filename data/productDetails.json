@@ -1853,7 +1853,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "Floodlight",
+              "spotlightType": "flood-light",
               "Brand": "balcom",
               "price": 2635,
               "sectionType": "outdoor",
@@ -1885,7 +1885,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "Floodlight",
+              "spotlightType": "flood-light",
               "Brand": "balcom",
               "price": 4099,
               "sectionType": "outdoor",
@@ -1917,7 +1917,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "Floodlight",
+              "spotlightType": "flood-light",
               "Brand": "balcom",
               "price": 4874,
               "sectionType": "outdoor",
@@ -1953,7 +1953,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "Bollard",
+              "spotlightType": "bollard",
               "Brand": "balcom",
               "price": 3699,
               "sectionType": "outdoor",
@@ -1986,7 +1986,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "Wall-Washer",
+              "spotlightType": "wall-washer",
               "Brand": "balcom",
               "price": 4745,
               "sectionType": "outdoor",

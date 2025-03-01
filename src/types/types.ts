@@ -51,3 +51,8 @@ export interface IndoorCategoryProps {
     categories: string[];
     children?: React.ReactNode;
 }
+export type ItemsProps = {
+    id: string
+    spotlightType: string,
+    href: string
+}

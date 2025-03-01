@@ -1,3 +1,4 @@
+import { ChandelierItems, IndoorItems, OutdoorItems } from "@/constants";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import Link from "next/link";
 
@@ -9,20 +10,12 @@ export default function Footer() {
                     <div className="space-y-4" role="indoorCategories">
                         <h3 className="text-xl font-bold text-primary">Indoor Lighting</h3>
                         <ul className="space-y-2">
-                            {[
-                                "strip",
-                                "linear",
-                                "family202",
-                                "family500",
-                                "family800",
-                                "family900",
-                                "double-spotlight",
-                            ].map((item) => (
-                                <li key={item} className="hover:text-primary transition-colors">
+                            {IndoorItems.map((IndoorItem) => (
+                                <li key={IndoorItem.id} className="hover:text-primary transition-colors">
                                     <Link
-                                        href={`/category/balcom/indoor/${item}`}
+                                        href={`${IndoorItem.href}`}
                                     >
-                                        {item.charAt(0).toUpperCase() + item.slice(1).toLowerCase()}
+                                        {IndoorItem.spotlightType}
                                     </Link>
                                 </li>
                             ))}
@@ -31,17 +24,17 @@ export default function Footer() {
                     <div className="space-y-4" role="outdoorCategories">
                         <h3 className="text-xl font-bold text-primary">Outdoor Lighting</h3>
                         <ul className="space-y-2">
-                            {["spikes", "bollard", "uplight", "flood-light", "wall-washer"].map(
-                                (item) => (
+                            {OutdoorItems.map(
+                                (OutdoorItem) => (
                                     <li
-                                        key={item}
+                                        key={OutdoorItem.id}
                                         className="hover:text-primary transition-colors "
                                     >
                                         <Link
-                                            href={`/category/balcom/outdoor/${item}`}
+                                            href={`${OutdoorItem.href}`}
                                         >
                                             <span className="capitalize">
-                                                {item}
+                                                {OutdoorItem.id}
                                             </span>
                                         </Link>
                                     </li>
@@ -52,39 +45,10 @@ export default function Footer() {
                     <div className="space-y-4" role="ChandeliersCategories">
                         <h3 className="text-xl font-bold text-primary">Chandeliers</h3>
                         <ul className="space-y-2 grid grid-cols-2 gap-x-4">
-                            {[
-                                "MC15C",
-                                "MC15F",
-                                "MC15G",
-                                "MC15P",
-                                "MC15E",
-                                "MC1608",
-                                "MC6014",
-                                "MC6015",
-                                "MC6031",
-                                "MC6038",
-                                "MC6041",
-                                "MC6051",
-                                "MC6091",
-                                "MC6094",
-                                "MC6097",
-                                "MC7021",
-                                "MC7023",
-                                "MC7091",
-                                "MC7104",
-                                "MC7105",
-                                "OH0109",
-                                "OH1109",
-                                "OH1203",
-                                "OH1207",
-                                "OH1209",
-                                "OH1309",
-                                "OH1601",
-                                "MC15W",
-                            ].map((item) => (
-                                <li key={item} className="hover:text-primary transition-colors">
-                                    <Link href={`/category/mister-led/chandelier/${item}`}>
-                                        {item}
+                            {ChandelierItems.map((ChandelierItem) => (
+                                <li key={ChandelierItem.id} className="hover:text-primary transition-colors">
+                                    <Link href={`${ChandelierItem.href}`}>
+                                        {ChandelierItem.spotlightType}
                                     </Link>
                                 </li>
                             ))}

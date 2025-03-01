@@ -41,7 +41,7 @@ function Product() {
                             lighting can make a space feel more inviting, more secure, and
                             more enjoyable.
                         </p>
-                        <Button destination="./category/balcom/Outdoor" />
+                        <Button destination="./category/balcom/outdoor" />
                     </div>
                 </div>
             </Container>
