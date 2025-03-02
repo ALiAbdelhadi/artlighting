@@ -71,38 +71,48 @@ const ProjectPage: React.FC<{ children: ReactNode }> = ({ children }) => {
                             <p className="text-lg text-gray-700 tracking-wide">Lighting: <span>Art Lighting</span></p>
                             <p className="text-lg text-gray-700 tracking-wide">Project: <span>{project.ProjectName}</span>
                             </p>
-                            <Link className="text-lg tracking-wide underline mt-5" href={project.usedProducts}>
-                                Products that we used in this project
-                            </Link>
+                            {
+                                project.usedProducts && (
+                                    <Link className="text-lg tracking-wide underline mt-5" href={project.usedProducts}>
+                                        Products that we used in this project
+                                    </Link>
+                                )
+                            }
                         </div>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                            <div className="relative overflow-hidden rounded-lg shadow-lg">
-                                <Image
-                                    src={project.ProjectImages[1]}
-                                    alt={project.ProjectName}
-                                    width={500}
-                                    height={250}
-                                    quality={100}
-                                    className="object-cover h-full w-full transition-transform duration-500 hover:scale-105"
-                                />
-                            </div>
-                            <div className="relative overflow-hidden rounded-lg shadow-lg">
-                                <Image
-                                    src={project.ProjectImages[2]}
-                                    alt={project.ProjectName}
-                                    width={500}
-                                    height={250}
-                                    quality={100}
-                                    className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
-                                />
-                            </div>
+                            {project.ProjectImages[1] && (
+                                <div className="relative overflow-hidden rounded-lg shadow-lg">
+                                    <Image
+                                        src={project.ProjectImages[1]}
+                                        alt={project.ProjectName}
+                                        width={500}
+                                        height={250}
+                                        quality={100}
+                                        className="object-cover h-full w-full transition-transform duration-500 hover:scale-105"
+                                    />
+                                </div>
+                            )}
+                            {project.ProjectImages[2] && (
+                                <div className="relative overflow-hidden rounded-lg shadow-lg">
+                                    <Image
+                                        src={project.ProjectImages[2]}
+                                        alt={project.ProjectName}
+                                        width={500}
+                                        height={250}
+                                        quality={100}
+                                        className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+                                    />
+                                </div>
+                            )}
                         </div>
                         <p className="my-5 md:text-lg text-sm tracking-wide text-muted-foreground">{project.ProjectInfor2}</p>
-                        <img
-                            src={project.ProjectImages[3]}
-                            alt={project.ProjectName}
-                            className="w-full lg:h-[44rem] h-auto rounded-md"
-                        />
+                        {project.ProjectImages[3] && (
+                            <img
+                                src={project.ProjectImages[3]}
+                                alt={project.ProjectName}
+                                className="w-full lg:h-[44rem] h-auto rounded-md"
+                            />
+                        )}
                     </div>
                 </Container>
             </div>

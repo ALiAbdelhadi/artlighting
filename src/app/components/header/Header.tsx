@@ -185,7 +185,7 @@ export default function Header() {
                             <nav className="grid gap-6 text-lg font-medium">
                                 <SheetClose asChild>
                                     <Link
-                                        href="/AboutUs"
+                                        href="/about-us"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -225,7 +225,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/ContactUs"
+                                        href="/contact-us"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
