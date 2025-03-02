@@ -35,48 +35,45 @@ const CategoryContent = () => {
         }
     };
     return (
-        <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-        >
-            <Breadcrumb />
-            <section className="Indoor-lighting py-11 md:py-15 lg:py-19">
-                <Container>
-                    <h1>Category</h1>
-                    {currentOrderId && (
-                        <div className="mb-4">
-                            <Button onClick={handleContinueOrder}>
-                                Continue with Current Order
-                            </Button>
+        <motion.div initial="hidden" animate="visible" variants={variants}>
+            <div>
+                <Breadcrumb />
+                <section className="Indoor-lighting py-11 md:py-15 lg:py-19">
+                    <Container>
+                        <h1>Category</h1>
+                        {currentOrderId && (
+                            <div className="mb-4">
+                                <Button onClick={handleContinueOrder}>
+                                    Continue with Current Order
+                                </Button>
+                            </div>
+                        )}
+                        <div className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
+                            <div className="text-center">
+                                <Link href="/category/balcom">
+                                    <Image src={"/indoor/products500/jy-535-5w/JY-535-5W (1).png"}
+                                        alt={'Indoor lighting products'} width={475} height={475} />
+                                    <div className="card">
+                                        <h2 className="text-lg py-3 capitalize">Balcom</h2>
+                                    </div>
+                                </Link>
+                            </div>
+                            <div className="text-center">
+                                <Link href="/category/mister-led">
+                                    <Image src={"/chandelier/MC7023/MC7023-P5.png"}
+                                        alt={'Chandelier lighting'} width={475} height={475} />
+                                    <div className="card">
+                                        <h2 className="text-lg py-3 capitalize">Mister Led</h2>
+                                    </div>
+                                </Link>
+                            </div>
                         </div>
-                    )}
-                    <div
-                        className="grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] gap-4 justify-center items-center">
-                        <div className="text-center ">
-                            <Link href="/category/balcom">
-                                <Image src={"/indoor/products500/jy-535-5w/JY-535-5W (1).png"}
-                                    alt={'Indoor lighting products'} width={"475"}
-                                    height={"475"} />
-                                <div className="card ">
-                                    <h2 className="text-lg py-3 capitalize">Balcom</h2>
-                                </div>
-                            </Link>
-                        </div>
-                        <div className="text-center ">
-                            <Link href="/category/mister-led">
-                                <Image src={"/chandelier/MC7023/MC7023-P5.png"} alt={'Chandelier lighting'} width={"475"}
-                                    height={"475"} />
-                                <div className="card ">
-                                    <h2 className="text-lg py-3 capitalize">Mister Led</h2>
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
-                </Container>
-            </section>
+                    </Container>
+                </section>
+            </div>
         </motion.div>
-    )
+    );
+
 }
 export const metadata = constructMetadata({
     title: "Explore All lighting Brands that give a solution of every lighting situation (Balcom | Mister Led | Jetra  )",

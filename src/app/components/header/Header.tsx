@@ -8,7 +8,6 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ChandelierItems, IndoorItems, OutdoorItems } from "@/constants";
 import { UserButton } from "@clerk/nextjs";
 import {
     BoxIcon,
@@ -20,25 +19,13 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import projectsData from "../../../../data/project.json";
 import { CartSidebar } from "../CartSidebar";
 import AuthInDesktop from "./AuthInDesktop";
 import AuthInMobile from "./AuthInMobile";
 import ContainerAuthInDesktop from "./ContainerAuthInDesktop";
 import ContainerAuthInMobile from "./ContainerAuthInMobile";
-interface ProjectProps {
-    ProjectId: string;
-    ProjectName: string;
-    ProjectDate: string;
-    ProjectImages: string[];
-    ProjectDescription: string;
-}
-interface ProjectsData {
-    projects: {
-        [key: string]: ProjectProps;
-    };
-}
-const projectsDataTyped: ProjectsData = projectsData as ProjectsData;
+import { ChandelierItems, IndoorItems, OutdoorItems, projectDataForHeader } from "@/constants";
+
 export default function Header() {
     return (
         <header className=" relative top-0 z-50 w-full bg-background shadow-sm">
@@ -53,8 +40,8 @@ export default function Header() {
                 <nav className="hidden lg:flex items-center space-x-6">
                     <NavigationMenu>
                         <NavigationMenuList>
-                            <Link href={"/about-us"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-all hover:underline ">
+                            <Link href={"/AboutUs"} prefetch={false}>
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
                                     About Us
                                 </NavigationMenuItem>
                             </Link>
@@ -62,8 +49,7 @@ export default function Header() {
                                 <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">Projects</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <div className="grid w-[800px] grid-cols-3 gap-x-2 p-4 dark:bg-[#1c1a17]" >
-                                        {Object.keys(projectsDataTyped.projects).slice(0, 6).map((projectKey) => {
-                                            const project = projectsDataTyped.projects[projectKey]
+                                        {projectDataForHeader.map((project) => {
                                             return (
                                                 <div className="projectCard relative overflow-hidden" key={project.ProjectId}>
                                                     <div className="relative figureCard w-full h-full">
@@ -73,7 +59,7 @@ export default function Header() {
                                                                 className="h-44 rounded-md" src={project.ProjectImages[0]} alt={project.ProjectName} />
                                                         </Link>
                                                         <div className="flex flex-col items-center justify-center mt-4">
-                                                            <h3 className="ProjectDescription  mt-2 mb-2 text-center text-sm tracking-wider">{project.ProjectDescription.slice(0, 26)}...</h3>
+                                                            <h3 className="ProjectDescription  mt-2 mb-2 text-center text-sm tracking-wider">{project.ProjectDescription.slice(0, 24)}...</h3>
                                                             <Link href={`/all-projects/${project.ProjectId}`} className="projectDate text-sm font-light text-muted-foreground mb-3">
                                                                 More Details
                                                             </Link>
@@ -152,13 +138,13 @@ export default function Header() {
                                     </div>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-                            <Link href={"/blog"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-all  hover:underline">
+                            <Link href={"/Blog"} prefetch={false}>
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
                                     Blog
                                 </NavigationMenuItem>
                             </Link>
                             <Link href={"/ContactUs"} prefetch={false}>
-                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-all  hover:underline ">
+                                <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
                                     Contact
                                 </NavigationMenuItem>
                             </Link>
@@ -185,7 +171,7 @@ export default function Header() {
                             <nav className="grid gap-6 text-lg font-medium">
                                 <SheetClose asChild>
                                     <Link
-                                        href="/about-us"
+                                        href="/AboutUs"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -195,7 +181,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/all-projects"
+                                        href="/All-Projects"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -215,7 +201,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/blog"
+                                        href="/Blog"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -225,7 +211,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/contact-us"
+                                        href="/ContactUs"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >

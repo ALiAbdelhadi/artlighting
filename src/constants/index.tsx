@@ -280,3 +280,50 @@ export const ChandelierItems: ItemsProps[] = [
         href: "/category/mister-led/chandelier/OH1601"
     },
 ]
+// project data for header
+export const projectDataForHeader = [
+    {
+        "ProjectId": "dar-misr",
+        "ProjectName": "Dar-Misr",
+        "ProjectImages": [
+            "/projects/dar-misr/dar-misr-1.png",
+        ],
+        "ProjectDescription": "Dar-Misr is a real estate compound.",
+    },
+    {
+        "ProjectId": "tolip",
+        "ProjectName": "Tolip Hotel",
+        "ProjectImages": ["/projects/tolip/tolip-1.jpg"],
+        "ProjectDescription": "Tolip Hotel El Galaa is a luxurious establishment located in Cairo, Egypt.",
+    },
+    {
+        "ProjectId": "al-majd",
+        "ProjectName": "Al-Majd Conference Center in Alexandria",
+        "ProjectImages": ["/projects/al-majd/al-majd-1.jpg"],
+        "ProjectDescription": "Al-Majd Conference Center in Alexandria.",
+    },
+    {
+        "ProjectId": "mansoura-hospital",
+        "ProjectName": "Mansoura Fever Hospital",
+        "ProjectImages": [
+            "/projects/mansoura-hospital/mansoura-hospital-2.png",
+        ],
+        "ProjectDescription": "Mansoura Fever Hospital.",
+    },
+    {
+        "ProjectId": "esna-hospital",
+        "ProjectName": "Esna Hospital",
+        "ProjectImages": [
+            "/projects/esna-hospital/esna-hospital-1.jpg",
+        ],
+        "ProjectDescription": "Esna Hospital serves the community of Esna by offering a wide range of medical services.",
+    },
+    {
+        "ProjectId": "armant-hospital",
+        "ProjectName": "Armant Hospital",
+        "ProjectImages": [
+            "/projects/armant-hospital/armant-hospital-1.webp",
+        ],
+        "ProjectDescription": "Armant Hospital is a healthcare institution committed to delivering comprehensive medical services to its community.",
+    },
+]

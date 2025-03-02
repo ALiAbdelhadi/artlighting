@@ -26,9 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 },
             }}
         >
-            <html lang="en">
+            <html lang="en" suppressHydrationWarning>
                 <body className={`${roboto.className} antialiased overflow-x-hidden scroll-smooth`}>
-                    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                    <ThemeProvider attribute="class" defaultTheme="system" enableSystem
+                        disableTransitionOnChange
+                        enableColorScheme>
                         <Providers>
                             {children}
                             <Analytics />
