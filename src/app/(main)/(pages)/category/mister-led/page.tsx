@@ -45,7 +45,7 @@ async function Page() {
         const sectionType = category.sectionType as SectionType;
         return {
             ...category,
-            image: sectionTypeImages[sectionType] || '/path/to/default-image.jpg'
+            image: sectionTypeImages[sectionType] || '/chandelier/MC6031/MC6031-H3.png'
         };
     });
 

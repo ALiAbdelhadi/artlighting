@@ -46,7 +46,7 @@ async function Page() {
     const sectionType = category.sectionType as SectionType;
     return {
       ...category,
-      image: sectionTypeImages[sectionType] || '/path/to/default-image.jpg'
+      image: sectionTypeImages[sectionType] || "/brand/balcom.jpeg"
     };
   });
 
