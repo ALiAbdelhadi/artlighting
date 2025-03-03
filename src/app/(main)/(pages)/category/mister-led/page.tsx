@@ -5,10 +5,10 @@ import { Suspense } from 'react';
 import MisterLedLandingPage from "./MisterLedLandingPage";
 import MisterLedSection from "./MisterLedSection";
 
-type SectionType = 'Chandelier';
+type SectionType = 'chandelier';
 
 const sectionTypeImages: Record<SectionType, string> = {
-    "Chandelier": "/chandelier/MC6031/MC6031-H3.png",
+    "chandelier": "/chandelier/MC6031/MC6031-H3.png",
 };
 
 export async function generateStaticParams() {

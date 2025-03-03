@@ -108,7 +108,7 @@ export default function NotFound() {
                                     All Products
                                 </Link>
                                 <Link
-                                    href="/ContactUs"
+                                    href="/contact-us"
                                     className="flex items-center justify-center p-4 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
                                 >
                                     <Contact className="mr-2 h-5 w-5" />

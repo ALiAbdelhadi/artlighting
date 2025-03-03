@@ -38,7 +38,7 @@ async function Page() {
       _all: true
     },
     orderBy: {
-      sectionType: 'desc'
+      sectionType: "desc"
     }
   });
 

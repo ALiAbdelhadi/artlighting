@@ -1203,7 +1203,7 @@
               "MaxIP": 65,
               "spotlightType": "strip",
               "Brand": "balcom",
-              "price": 1300,
+              "price": 845,
               "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
@@ -1235,7 +1235,7 @@
               "MaxIP": 65,
               "spotlightType": "strip",
               "Brand": "balcom",
-              "price": 1300,
+              "price": 845,
               "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
@@ -1853,7 +1853,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "flood-light",
+              "spotlightType": "Floodlight",
               "Brand": "balcom",
               "price": 2635,
               "sectionType": "outdoor",
@@ -1885,7 +1885,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "flood-light",
+              "spotlightType": "Floodlight",
               "Brand": "balcom",
               "price": 4099,
               "sectionType": "outdoor",
@@ -1917,7 +1917,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "flood-light",
+              "spotlightType": "Floodlight",
               "Brand": "balcom",
               "price": 4874,
               "sectionType": "outdoor",
@@ -1953,7 +1953,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "bollard",
+              "spotlightType": "Bollard",
               "Brand": "balcom",
               "price": 3699,
               "sectionType": "outdoor",
@@ -1986,7 +1986,7 @@
                 "Life Time": "50,000"
               },
               "MaxIP": 68,
-              "spotlightType": "wall-washer",
+              "spotlightType": "Wall-Washer",
               "Brand": "balcom",
               "price": 4745,
               "sectionType": "outdoor",
@@ -2041,7 +2041,7 @@
                 "BULB": "No",
                 "Life Time": "50,000"
               },
-              "spotlightType": "MC15F",
+              "spotlightType": "MC15CF",
               "Brand": "mister-led",
               "ChandelierLightingType": "LED",
               "price": 4734,

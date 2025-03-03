@@ -237,14 +237,12 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             <Button
               onClick={handleAddToCart}
               disabled={isPending}
-              className="flex rounded-[3px] justify-center items-center px-[6px] h-10 mx-0 bg-gray-950 hover:bg-gray-950 text-gray-50 dark:bg-gray-50 dark:text-gray-950 dark:hover:bg-gary-50/90"
+              className="flex rounded-[3px] justify-center items-center px-[9px] h-10 mx-0 bg-gray-950 hover:bg-gray-950 text-gray-50 dark:bg-gray-50 dark:text-gray-950 dark:hover:bg-gary-50/90"
             >
               <AddToCardIcon
                 Fill="currentColor"
-                width={24}
-                height={24}
-                className={undefined}
-                style={undefined}
+                width={20}
+                height={20}
               />
             </Button>
           </span>

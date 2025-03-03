@@ -40,7 +40,7 @@ export default function Header() {
                 <nav className="hidden lg:flex items-center space-x-6">
                     <NavigationMenu>
                         <NavigationMenuList>
-                            <Link href={"/AboutUs"} prefetch={false}>
+                            <Link href={"/about-us"} prefetch={false}>
                                 <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
                                     About Us
                                 </NavigationMenuItem>
@@ -138,12 +138,12 @@ export default function Header() {
                                     </div>
                                 </NavigationMenuContent>
                             </NavigationMenuItem>
-                            <Link href={"/Blog"} prefetch={false}>
+                            <Link href={"/blog"} prefetch={false}>
                                 <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
                                     Blog
                                 </NavigationMenuItem>
                             </Link>
-                            <Link href={"/ContactUs"} prefetch={false}>
+                            <Link href={"/contact-us"} prefetch={false}>
                                 <NavigationMenuItem className="group inline-flex h-12 w-max items-center justify-center rounded-md px-5 py-3 text-[16px] font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50">
                                     Contact
                                 </NavigationMenuItem>
@@ -171,7 +171,7 @@ export default function Header() {
                             <nav className="grid gap-6 text-lg font-medium">
                                 <SheetClose asChild>
                                     <Link
-                                        href="/AboutUs"
+                                        href="/about-us"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -181,7 +181,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/All-Projects"
+                                        href="/all-projects"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -201,7 +201,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/Blog"
+                                        href="/blog"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >
@@ -211,7 +211,7 @@ export default function Header() {
                                 </SheetClose>
                                 <SheetClose asChild>
                                     <Link
-                                        href="/ContactUs"
+                                        href="/contact-us"
                                         className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                                         prefetch={false}
                                     >

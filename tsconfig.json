@@ -56,7 +56,7 @@
     "src/app/(pages)/category/IndoorLighting/[lightingType]/[ProductId]/page.jsx",
     "src/app/(pages)/category/OutdoorLighting/[lightingType]/[ProductId]/page.jsx",
     "src/app/(pages)/projects/Projects.jsx",
-    "src/app/components/AddToCardIcon.jsx",
+    "src/app/components/AddToCardIcon.tsx",
     "src/app/components/header/Header.tsx",
     "src/app/components/header/RightNav.tsx",
     "src/app/components/ProductCard/ProductCard.jsx",

@@ -376,7 +376,6 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                             width={23}
                             height={23}
                             className="md:block hidden ml-1"
-                            style={undefined}
                         />
                     </button>
                 </div>

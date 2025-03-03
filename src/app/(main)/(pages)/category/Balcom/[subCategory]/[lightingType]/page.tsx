@@ -64,7 +64,7 @@ async function ProductPage({ params }: { params: { subCategory: string; lighting
     const { subCategory, lightingType } = params;
     const products = await db.product.findMany({
         where: {
-            Brand: 'balcom',
+            Brand: "balcom",
             sectionType: subCategory,
             spotlightType: lightingType,
         },
