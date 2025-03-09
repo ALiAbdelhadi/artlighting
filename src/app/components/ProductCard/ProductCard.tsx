@@ -184,7 +184,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               }
             >
               {product.productImages.map((image, index) => (
-                <div key={index}>
+                <div key={index} className="w-full h-full">
                   <Image
                     className={`w-full overflow-x-hidden`}
                     src={image}
