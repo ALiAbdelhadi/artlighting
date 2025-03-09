@@ -59,12 +59,12 @@ export default function ContactContent() {
                       </p>
                       <Link
                         className="font-medium hover:text-primary transition-colors"
-                        href={"tel:+20110213173"}
+                        href={"tel:+201102131731"}
                       >
                         +2 (011) 02131731
                       </Link>
                       <p className="text-sm text-muted-foreground">
-                        Saturday - Thursday, 9.5am - 5.5pm
+                          Saturday - Thursday, 9.30am - 5.30pm
                       </p>
                     </div>
                   </div>
@@ -145,7 +145,7 @@ export default function ContactContent() {
                         Nozha, Cairo Governorate, EG
                       </Link>
                       <p className="text-sm text-muted-foreground">
-                        Saturday - Thursday, 9.5am - 5.5pm
+                        Saturday - Thursday, 9.30am - 5.30pm
                       </p>
                     </div>
                   </div>

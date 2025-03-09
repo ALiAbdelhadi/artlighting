@@ -369,7 +369,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
                 quantity={currentQuantity}
               />
             </span>
-            <s className="text-gray-500 font-semibold ml-1.5 text-base">
+            <s className="text-gray-500 italic ml-1.5 text-base">
               <NormalPrice price={totalPrice} quantity={currentQuantity} />
             </s>
             <span className="text-green-500 font-semibold">

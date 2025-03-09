@@ -18,6 +18,7 @@ type ProductSpecificationsProps = {
   Brand: string;
   ChandelierLightingType: string;
   hNumber?: number;
+  sectionType: string;
 };
 
 const ProductSpecifications: React.FC<ProductSpecificationsProps> = ({
@@ -26,6 +27,7 @@ const ProductSpecifications: React.FC<ProductSpecificationsProps> = ({
   Brand,
   ChandelierLightingType,
   hNumber,
+  sectionType,
 }) => {
   console.log("Props received:", {
     productName,
@@ -68,10 +70,14 @@ const ProductSpecifications: React.FC<ProductSpecificationsProps> = ({
           {Object.entries(specificationsTable).map(([key, value]) => {
             let displayValue = value;
             if (key === "Maximum wattage") {
-              displayValue = wattage;
+              if (sectionType === "chandelier") {
+                displayValue = hNumber ? `${hNumber * 12}W  (12W lamp)` : "15W/M";
+              } else {
+                displayValue = wattage;
+              }
             } else if (key === "Life Time") {
               displayValue = `${value} Hour`;
-            } else if (key.toLowerCase() === "hnumber" && hNumber) {
+            } else if (key.toLowerCase() === "hNumber" && hNumber) {
               displayValue = hNumber.toString();
             }
             console.log(`Displaying: ${key} - ${displayValue}`);
@@ -91,7 +97,7 @@ const ProductSpecifications: React.FC<ProductSpecificationsProps> = ({
             hNumber && (
               <TableRow>
                 <TableCell className="border border-gray-300 p-2 md:text-[16px] text-sm font-medium">
-                  hNumber
+                  Number of arms
                 </TableCell>
                 <TableCell className="border border-gray-300 p-2 md:text-[16px] text-sm font-medium">
                   {hNumber}

@@ -245,7 +245,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
               href={`/category/${product.Brand}/${product.sectionType}/${product.spotlightType}/${product.productId || product.ProductId}`}
               aria-label="More details"
               className={cn(
-                `px-[25px] py-[10px] rounded-[3px] flex justify-center border border-black dark:border-gray-50 text-gray-950 dark:hover:text-gray-950 dark:text-gray-50  w-full hover:bg-gray-950 hover:text-gray-50 dark:hover:bg-gray-50 transition-colors`,
+                `px-[25px] py-[10px] rounded-[3px] cursor-pointer flex justify-center border border-black dark:border-gray-50 text-gray-950 dark:hover:text-gray-950 dark:text-gray-50  w-full hover:bg-gray-950 hover:text-gray-50 dark:hover:bg-gray-50 transition-colors`,
                 {
                   "dark:bg-gray-50 dark:text-primary-foreground bg-black text-gray-50":
                     isClicked,
