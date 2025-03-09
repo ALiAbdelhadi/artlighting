@@ -72,7 +72,7 @@ const ProjectPage: React.FC<{ children: ReactNode }> = ({ children }) => {
               <p className="text-lg text-gray-700 tracking-wide">
                 Project: <span>{project.ProjectName}</span>
               </p>
-              {project.usedProducts && (
+              {project.usedProducts && project.usedProducts && (
                 <Link
                   className="text-lg tracking-wide underline mt-5"
                   href={project.usedProducts}
@@ -107,12 +107,21 @@ const ProjectPage: React.FC<{ children: ReactNode }> = ({ children }) => {
                 </div>
               )}
             </div>
-            <p className="my-5 md:text-lg text-sm tracking-wide text-muted-foreground">
-              {project.ProjectInfor2}
-            </p>
+            {project.ProjectInfor2 && (
+              <p className="my-5 md:text-lg text-sm tracking-wide text-muted-foreground">
+                {project.ProjectInfor2}
+              </p>
+            )}
             {project.ProjectImages[3] && (
               <img
                 src={project.ProjectImages[3]}
+                alt={project.ProjectName}
+                className="w-full lg:h-[44rem] h-auto rounded-md"
+              />
+            )}
+            {project.ProjectImages[4] && (
+              <img
+                src={project.ProjectImages[4]}
                 alt={project.ProjectName}
                 className="w-full lg:h-[44rem] h-auto rounded-md"
               />

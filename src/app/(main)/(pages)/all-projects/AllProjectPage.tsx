@@ -65,8 +65,8 @@ const AllProjectPage = ({ children }: { children: ReactNode }) => {
                   />
                 </Link>
                 <div className="flex flex-col items-center justify-center mt-4">
-                  <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
-                    {project.ProjectDate}
+                  <h3 className="text-sm font-medium text-primary mb-2">
+                    {project.ProjectName}
                   </h3>
                   <h4 className="text-center text-muted-foreground ">
                     {project.ProjectDescription}
