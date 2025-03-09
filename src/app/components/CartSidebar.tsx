@@ -113,33 +113,33 @@ export function CartSidebar() {
           {isSignedIn ? (
             cartItems.length > 0 ? (
               cartItems.map((item) => (
-                <SheetClose key={item.id}>
+                <SheetClose key={item.id} className="w-full">
                   <div className="flex justify-between items-start py-4 border-b">
                     <div className="flex items-start space-x-4">
                       {item.productImages && item.productImages[0] && (
                         <Image
                           src={item.productImages[0]}
                           alt={item.productName}
-                          className="object-cover rounded md::w-20 md:h-20 w-16 h-16"
-                          width={100}
+                          className="object-cover rounded md:w-20 md:h-20 w-16 h-16"
+                          width={200}
                           height={100}
                         />
                       )}
                       <div className="space-y-1">
-                        <p className="font-medium lg:text-lg md:text-base sm:text-sm">
+                        <p className="font-medium uppercase lg:text-lg md:text-base sm:text-sm">
                           {item.productName}
                         </p>
                         <div className="sm:mb-0.5">
                           {item.discount > 0 ? (
                             <div className="flex items-center">
-                              <span className="text-sm text-destructive font-semibold">
+                              <span className="text-base text-destructive font-semibold">
                                 <DiscountPrice
                                   price={item.price}
                                   discount={item.discount}
                                   sectionType={item.sectionType}
                                 />
                               </span>
-                              <s className="text-gray-500 font-semibold ml-1.5 text-xs">
+                              <s className="text-gray-500 italic ml-1.5 text-sm">
                                 <NormalPrice
                                   price={item.price}
                                   sectionType={item.sectionType}

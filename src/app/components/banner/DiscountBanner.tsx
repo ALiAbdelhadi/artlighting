@@ -41,7 +41,7 @@ export default function WhiteFridayBanner() {
         onClick={handleClose}
         variant="ghost"
         size="icon"
-        className="absolute z-50 cursor-pointer right-2 top-2 sm:right-4 text-primary-foreground hover:text-primary-foreground/80 transition-colors duration-300"
+        className="absolute z-50 cursor-pointer right-2 top-2 sm:right-4 text-primary-foreground hover:text-black transition-colors duration-300"
         aria-label="Close banner"
       >
         <X className="w-5 h-5 sm:w-6 sm:h-6" />

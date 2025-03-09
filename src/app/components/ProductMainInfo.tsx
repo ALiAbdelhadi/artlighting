@@ -6,6 +6,15 @@ import {
 } from "@/app/components/action";
 import { useToast } from "@/components/hooks/use-toast";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import {
   Configuration,
@@ -16,26 +25,17 @@ import {
 } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import { ArrowRight, Minus, Plus } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
+import { updateProductIP } from "../(main)/actions/productIP";
 import DiscountPrice from "../helpers/DiscountPrice";
 import NormalPrice from "../helpers/NormalPrice";
 import AddToCardIcon from "./AddToCardIcon";
 import ProductChandLampButtons from "./ProductChandLampButtons";
 import ProductColorTempStatus from "./ProductColorTempButtons";
 import ProductIPButtons from "./ProductIPButtons";
-import { updateProductIP } from "../(main)/actions/productIP";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-  DialogClose,
-} from "@/components/ui/dialog";
-import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
 
 type ProductDetailsProps = {
   productName: string;
@@ -106,6 +106,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
   input,
   lampBase,
 }) => {
+  const [isPending, startTransition] = useTransition();
   const [showDialog, setShowDialog] = useState(false);
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
   const [isClicked, setIsClicked] = useState(false);
@@ -180,18 +181,14 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
         priceIncrease: newPriceIncrease,
       });
       if (result.success) {
-        console.log("Configuration updated successfully");
-        // Update the local state with the new configuration
         if (result.updatedConfig) {
           setConfiguration(result.updatedConfig);
         }
       } else {
-        console.error("Failed to update configuration:", result.error);
-        // Handle the error, maybe show a toast to the user
+          console.error("Failed to update configuration:", result.error);
       }
     } else {
       console.error("Configuration ID is missing");
-      // Handle the error, maybe show a toast to the user
     }
   };
   const totalPrice = price + priceIncrease + lampPriceIncrease;
@@ -211,24 +208,47 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
   const handleColorTempChange = (newColorTemp: ProductColorTemp) => {
     setSelectedColorTemp(newColorTemp);
   };
-
-  const handleAddToBag = async () => {
-    if (currentQuantity >= 10) {
-      setShowDialog(true);
-    } else {
-      await addToCart(ProductId);
+  const { isSignedIn } = useAuth();
+  const handleAddToBag = () => {
+    if (!isSignedIn) {
       toast({
-        title: (
-          <span className="text-primary text-base">Product Added To Cart</span>
-        ),
+        title: <span className="text-base text-primary">Sign in required</span>,
         description: (
           <span className="text-sm text-muted-foreground">
-            {productName} has been added to your cart
+            Please sign in to add items to your cart.
           </span>
         ),
         className: "rounded-lg",
       });
+      return;
     }
+    startTransition(async () => {
+      if (currentQuantity >= 10) {
+        setShowDialog(true);
+      } else {
+        try {
+          await addToCart(ProductId);
+          toast({
+            title: (
+              <span className="text-primary text-base">Product Added To Cart</span>
+            ),
+            description: (
+              <span className="text-sm text-muted-foreground">
+                {productName} has been added to your cart
+              </span>
+            ),
+            className: "rounded-lg",
+          });
+        } catch (error) {
+          toast({
+            title: "Error",
+            description: "Failed to add item to cart. Please try again.",
+            variant: "destructive",
+            className: "rounded-lg",
+          });
+        }
+      }
+    })
   };
 
   console.log(
