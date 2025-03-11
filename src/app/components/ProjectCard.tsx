@@ -18,7 +18,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className="projectCard w-full md:w-[48%] lg:w-[30%] mb-6 md:mb-8">
       <Link
-        href={`/all-project/${project.ProjectId}`}
+        href={`/all-projects/${project.ProjectId}`}
         className="relative block rounded overflow-hidden"
       >
         <div className="absolute top-0 left-0 py-2 px-3 bg-gray-50 text-gray-600 z-10 dark:bg-neutral-900 dark:text-gray-50 text-xs">
