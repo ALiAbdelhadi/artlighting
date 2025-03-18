@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const ProjectExample = () => {
@@ -5,7 +6,9 @@ const ProjectExample = () => {
     <section className="flex flex-col md:flex-row items-start md:items-center pb-16 md:pb-20">
       <div className="w-full md:w-1/2 mt-5">
         <div className="text-sm  mb-5">19 / July / 23</div>
-        <img
+        <Image
+          width={720}
+          height={480}
           src="/projects/almaza-park/almaza-park-1.jpg"
           alt="almaza park"
           className="rounded-md w-[45rem] h-[30rem]"

@@ -18,6 +18,7 @@ import { Box, Calendar, MapPin, Truck } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import StatusDropdown from "../../StatusDropdown";
+import Image from "next/image";
 interface OrderPageProps {
   order: Order & {
     shippingAddress: ShippingAddress | null;
@@ -68,7 +69,9 @@ export default function OrderPage({ order }: OrderPageProps) {
             <CardContent className="overflow-x-auto custom-scrollbar">
               <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-6">
                 {order.productImages?.[0] && (
-                  <img
+                  <Image
+                    width={192}
+                    height={192}
                     src={order.productImages[0]}
                     alt={order.productName}
                     className="w-full sm:w-48 sm:h-48 object-cover rounded-md shadow-md mb-4 sm:mb-0"

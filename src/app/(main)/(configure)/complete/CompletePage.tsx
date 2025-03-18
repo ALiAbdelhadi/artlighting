@@ -207,6 +207,11 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
       .toLowerCase()
       .replace(/\s/g, "")
       .match(/cairo|القاهرة/) !== null;
+  const shippingPriceValue = () => {
+    return (
+      <span className="text-primary font-semibold">{order.shippingPrice}</span>
+    )
+  }
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -270,7 +275,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             )}
                             {Brand === "mister-led" &&
                               order.product.ChandelierLightingType ===
-                                "lamp" && (
+                              "lamp" && (
                                 <TableHead className="font-semibold text-nowrap">
                                   Lamp
                                 </TableHead>
@@ -329,7 +334,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             )}
                             {Brand === "mister-led" &&
                               order.product.ChandelierLightingType ===
-                                "lamp" && (
+                              "lamp" && (
                                 <TableCell className="font-semibold capitalize">
                                   {isProductChandLamp(order.productChandLamp)
                                     ? PRODUCT_LAMP_LABEL[order.productChandLamp]
@@ -349,6 +354,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                                     price={order.configPrice}
                                     discount={discount}
                                     quantity={order?.quantity}
+                                    shippingPrice={order?.shippingPrice}
                                   />
                                 </TableCell>
                               </Fragment>
@@ -361,6 +367,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                                   <NormalPrice
                                     price={order.configPrice}
                                     quantity={order?.quantity}
+                                    shippingPrice={order?.shippingPrice}
                                   />
                                 </TableCell>
                               </Fragment>
@@ -475,7 +482,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                         </p>
                         <p className="tracking-wide leading-6">
                           {isCairo
-                            ? `Your order will be delivered to Cairo. The shipping price is ${order.shippingPrice} EGP.`
+                            ? `Your order will be delivered to Cairo. The shipping price is ${shippingPriceValue} EGP.`
                             : "We will contact you within 48 hours to provide the shipping price for your location."}
                         </p>
                       </div>

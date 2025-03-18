@@ -1,4 +1,4 @@
-import { addToCart } from "@/app/(main)/actions/cart";
+
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
 import { useToast } from "@/components/hooks/use-toast";
@@ -13,6 +13,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import AddToCardIcon from "../AddToCardIcon";
 import styles from "./ProductCard.module.css";
+import { addToCart } from "@/app/(main)/actions/cart";
 
 interface Product {
   productId: string;

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
 import projectsData from "../../../../../data/project.json";
+import Image from "next/image";
 interface ProjectProps {
   ProjectId: string;
   ProjectName: string;
@@ -58,10 +59,11 @@ const AllProjectPage = ({ children }: { children: ReactNode }) => {
                   <div className="absolute top-0 left-0 py-2 px-3 bg-gray-50 text-gray-600 z-10 dark:bg-neutral-900 dark:text-gray-50 text-xs">
                     {project.ProjectDate}
                   </div>
-                  <img
+                  <Image
                     src={project.ProjectImages[0]}
                     alt={project.ProjectName}
                     className="w-full md:h-[225px] h-[200px] rounded-md"
+                    width={350} height={225}
                   />
                 </Link>
                 <div className="flex flex-col items-center justify-center mt-4">

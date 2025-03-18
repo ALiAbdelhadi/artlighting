@@ -2,13 +2,6 @@
 import DashboardHeader from "@/app/components/DashboardHeader";
 import DiscountPrice from "@/app/helpers/DiscountPrice";
 import NormalPrice from "@/app/helpers/NormalPrice";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -20,7 +13,8 @@ import {
 } from "@/components/ui/table";
 import { formatPrice } from "@/lib/utils";
 import { Prisma, ProductChandLamp } from "@prisma/client";
-import { MoveHorizontalIcon, SearchIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import StatusDropdown from "../StatusDropdown";
@@ -158,7 +152,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
                       <TableCell className="flex w-[250px] items-center">
                         {order.productImages &&
                           order.productImages.length > 0 && (
-                            <img
+                            <Image
                               src={order.productImages[0]}
                               alt="Product Image"
                               width={40}
@@ -180,8 +174,8 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
                       </TableCell>
                       <TableCell>
                         {order &&
-                        order.Brand === "mister-led" &&
-                        order.product?.ChandelierLightingType === "lamp"
+                          order.Brand === "mister-led" &&
+                          order.product?.ChandelierLightingType === "lamp"
                           ? order.productChandLamp
                           : "No Lamp"}
                       </TableCell>

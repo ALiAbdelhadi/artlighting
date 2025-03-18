@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { fadeIn } from "../utils/motion";
 import { cn } from "../utils/utils";
+import Image from "next/image";
 
 interface EftarRamdanCardProps {
   id: string;
@@ -30,7 +31,8 @@ const EftarRamdanCard: React.FC<EftarRamdanCardProps> = ({
     initial="hidden"
     transition={{ duration: 0.5, ease: "easeOut" }}
   >
-    <img
+    <Image
+      fill
       src={imgUrl}
       alt={title}
       className="absolute h-full object-cover rounded-[20px] sm:rounded-[24px]"

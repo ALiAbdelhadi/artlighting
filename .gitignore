@@ -41,3 +41,5 @@ data\productDetails.json
 data\project.json
 # Sentry Config File
 .env.sentry-build-plugin
+
+.vscode

@@ -1,12 +1,12 @@
 "use client";
 
-import { searchProducts } from "@/app/(main)/actions/search";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Contact, Home, Search, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
+import { searchProducts } from "./(main)/actions/search";
 import ProductCard from "./components/ProductCard/ProductCard";
 
 type Product = {
@@ -67,7 +67,7 @@ export default function NotFound() {
             <Input
               type="search"
               placeholder="Search for products..."
-              className="pl-10 pr-4 py-4 h-12 w-full text-lg  shadow-md focus:ring-2 focus:ring-primary"
+              className="pl-10 pr-4 py-4 h-12 w-full text-lg shadow-md rounded-xl border-none outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -80,7 +80,7 @@ export default function NotFound() {
           {filteredProducts.length > 0 && (
             <Card className="w-full">
               <CardHeader>
-                <CardTitle>Search Results</CardTitle>
+                <CardTitle className="text-xl text-primary">Search Results</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-6">

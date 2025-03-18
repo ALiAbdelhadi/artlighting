@@ -1,14 +1,17 @@
-"use client";
-import gsap from "gsap";
-import React, { useEffect, useRef } from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import styles from "./Landing.module.css";
-import Image from "next/image";
+"use client"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import Image from "next/image"
+import type React from "react"
+import { useEffect, useRef } from "react"
+import { Carousel } from "react-responsive-carousel"
+import "react-responsive-carousel/lib/styles/carousel.min.css"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export type LandingProps = {
-  images: string[];
-};
+  images: string[]
+}
 
 const Landing: React.FC<LandingProps> = ({ images }) => {
   const textRef = useRef(null);
@@ -26,35 +29,35 @@ const Landing: React.FC<LandingProps> = ({ images }) => {
       "-=0.5",
     );
   }, []);
-
   return (
-    <section className={`${styles.landing} relative `}>
-      <div className={styles.carouselContainer} ref={carouselRef}>
+    <section className="relative">
+      <div className="relative w-full">
         <Carousel
           showThumbs={false}
           showStatus={false}
           infiniteLoop
           autoPlay
           interval={5000}
-          transitionTime={1000}
+          transitionTime={700}
           stopOnHover={false}
         >
           {images.map((src, index) => (
             <div key={index}>
               <Image
-                src={src}
-                alt={`Slide ${index + 1}`}
-                className={styles.img}
-                width={500}
-                height={500}
+                width={1450}
+                height={850}
                 quality={100}
+                src={src || "/placeholder.svg"}
+                alt={`Slide ${index + 1}`}
+                className="image object-fill h-[280px] sm:h-[500px] md:h-[600px] lg:h-[850px] w-full"
+                loading="lazy"
               />
             </div>
           ))}
         </Carousel>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Landing;
+export default Landing

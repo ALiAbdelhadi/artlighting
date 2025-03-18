@@ -2,9 +2,11 @@ import Landing from "@/app/components/Landing/Landing";
 
 function LandingPage() {
   const images = [
-    "/mainLanding/landing1.png",
-    "/mainLanding/landing2.jpg",
-    "/mainLanding/landing3.jpg",
+    "/main-landing/landing-4.png",
+    "/main-landing/landing-5.jpg",
+    "/main-landing/landing-1.png",
+    "/main-landing/landing-2.png",
+    "/main-landing/landing-3.png",
   ];
   return (
     <div>

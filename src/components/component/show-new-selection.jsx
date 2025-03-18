@@ -2,6 +2,7 @@
 import Container from "@/app/components/Container";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -68,9 +69,12 @@ export function ShowNewSelection() {
       <Container>
         <div className="flex md:flex-row flex-col  items-start">
           <div className="w-full flex justify-between flex-col md:mb-0 mb-20">
-            <Link className="animate-box" href="Collection/spot">
+            <Link className="animate-box" href="/collection/spot">
               <div className="relative">
-                <img
+                <Image
+                  width={500}
+                  height={500}
+                  quality={100}
                   alt="Line Up/Down LED Suspended Lamp"
                   className="object-cover w-full h-54 md:h-[500px] rounded-lg animate-image"
                   src="/NewCollection/new-collection-3.jpg"
@@ -90,9 +94,12 @@ export function ShowNewSelection() {
                 </p>
               </div>
             </Link>
-            <Link className="animate-box" href="Collection/hallo">
+            <Link className="animate-box" href="/collection/hallo">
               <div className="relative">
-                <img
+                <Image
+                  width={500}
+                  height={500}
+                  quality={100}
                   alt="Line Up/Down LED Suspended Lamp"
                   className="object-cover w-full h-55 md:h-[500px] rounded-lg animate-image"
                   src="/NewCollection/new-collection-2.jpg"
@@ -115,10 +122,13 @@ export function ShowNewSelection() {
           </div>
           <Link
             className="w-full animate-box  md:mt-0 md:ml-10"
-            href="Collection/track"
+            href="/collection/track"
           >
             <div className="relative">
-              <img
+              <Image
+                width={750}
+                height={750}
+                quality={100}
                 alt="Line Up/Down LED Suspended Lamp"
                 className="object-cover w-full h-auto md:h-[500px] lg:h-[750px] rounded-lg animate-image"
                 src="/NewCollection/new-collection-1.jpg"

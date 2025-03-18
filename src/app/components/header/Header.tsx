@@ -40,7 +40,10 @@ export default function Header() {
     <header className=" relative top-0 z-50 w-full bg-background shadow-sm">
       <div className=" container flex h-16 md:h-20 items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
-          <img
+          <Image
+            quality={100}
+            width={80}
+            height={80}
             src={"/Logo.png"}
             className="md:w-20 md:h-20 w-16 h-16"
             alt="Art Lighting  Logo"
@@ -55,7 +58,7 @@ export default function Header() {
                 </NavigationMenuItem>
               </Link>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent dark:hover:text-gray-100">
                   Projects
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -98,7 +101,7 @@ export default function Header() {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent dark:hover:text-gray-100">
                   Products
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>

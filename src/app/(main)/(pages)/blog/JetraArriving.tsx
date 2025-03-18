@@ -1,6 +1,6 @@
 import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
+import Image from "next/image";
 import { Fragment } from "react";
-
 export default function JetraArriving() {
   return (
     <Fragment>
@@ -20,7 +20,8 @@ export default function JetraArriving() {
               <div className="rounded-lg border border-gray-200 bg-white p-8 shadow-sm">
                 <div className="flex justify-center">
                   <div className="w-32 h-32 rounded-full bg-gray-100 flex items-center justify-center">
-                    <img src="/brand/jetra.png" alt="jetra brand" />
+                    <Image width={500}
+                      height={500} src="/brand/jetra.png" alt="jetra brand" />
                   </div>
                 </div>
                 <h3 className="mt-6 text-xl font-medium text-destructive">

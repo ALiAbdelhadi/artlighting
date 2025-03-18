@@ -1,5 +1,6 @@
 import Container from "@/app/components/Container";
 import Button from "../../../../components/Button/button";
+import Image from "next/image";
 function Product() {
   return (
     <div className="pt-16 pb-16">
@@ -9,9 +10,11 @@ function Product() {
       <Container>
         <div className="flex flex-col lg:flex-row items-start mt-24 pb-16 border-b border-gray-300 border-opacity-35">
           <div className="lg:w-1/4">
-            <img
+            <Image
               src="/indoor/products500/jy-535-5w/JY-535-5W (1).png"
               alt="indoor product jy-539-5w"
+              width={500}
+              height={500}
             />
           </div>
           <div className="lg:w-2/3 lg:ml-12 mt-2 lg:mt-0">
@@ -31,9 +34,11 @@ function Product() {
       <Container>
         <div className="flex flex-col lg:flex-row items-start mt-24 pb-16 border-b border-gray-300 border-opacity-35">
           <div className="lg:w-1/4">
-            <img
+            <Image
               src="/outdoor/Bollard/JY-BO-001-650MM-8W/JY-BO-001-650MM-8W (1).png"
               alt="outdoor product jy-bo-001-650mm-8w"
+              width={500}
+              height={500}
             />
           </div>
           <div className="lg:w-2/3 lg:ml-12 mt-2  lg:mt-0">
@@ -54,9 +59,11 @@ function Product() {
       <Container>
         <div className="flex flex-col lg:flex-row items-start mt-24">
           <div className="lg:w-1/4">
-            <img
+            <Image
               src="/chandelier/MC6091/MC6091-H3.png"
               alt="chandelier product MC6091-H3"
+              width={500}
+              height={500}
             />
           </div>
           <div className="lg:w-2/3 lg:ml-12 mt-2 lg:mt-0">

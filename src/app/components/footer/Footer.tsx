@@ -13,7 +13,7 @@ export default function Footer() {
               {IndoorItems.map((IndoorItem) => (
                 <li
                   key={IndoorItem.id}
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors "
                 >
                   <Link href={`${IndoorItem.href}`}>
                     {IndoorItem.spotlightType}
@@ -28,7 +28,7 @@ export default function Footer() {
               {OutdoorItems.map((OutdoorItem) => (
                 <li
                   key={OutdoorItem.id}
-                  className="hover:text-primary transition-colors "
+                  className="hover:text-primary transition-colors  "
                 >
                   <Link href={`${OutdoorItem.href}`}>
                     <span className="capitalize">{OutdoorItem.id}</span>
@@ -43,7 +43,7 @@ export default function Footer() {
               {ChandelierItems.map((ChandelierItem) => (
                 <li
                   key={ChandelierItem.id}
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors "
                 >
                   <Link href={`${ChandelierItem.href}`}>
                     {ChandelierItem.spotlightType}
@@ -63,7 +63,7 @@ export default function Footer() {
               ].map((item) => (
                 <li
                   key={item.name}
-                  className="hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors "
                 >
                   <Link href={item.href}>{item.name}</Link>
                 </li>
@@ -75,7 +75,7 @@ export default function Footer() {
               </h4>
               <div className="flex space-x-4">
                 <Link
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-black hover:text-primary p-2 rounded-full hover:bg-black transition-colors dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-primary"
                   href="https://www.instagram.com/artlightingofficial"
                   target="_blank"
                 >
@@ -83,7 +83,7 @@ export default function Footer() {
                   <span className="sr-only">Instagram</span>
                 </Link>
                 <Link
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-black hover:text-primary p-2 rounded-full hover:bg-black transition-colors dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-primary"
                   href="https://www.facebook.com/ArtLightingOfficial/"
                   target="_blank"
                 >
@@ -91,7 +91,7 @@ export default function Footer() {
                   <span className="sr-only">Facebook</span>
                 </Link>
                 <Link
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-black hover:text-primary p-2 rounded-full hover:bg-black transition-colors dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-primary"
                   href="https://www.youtube.com/channel/UC__8-8U4dAIgK1JYWvqv5cQ"
                   target="_blank"
                 >

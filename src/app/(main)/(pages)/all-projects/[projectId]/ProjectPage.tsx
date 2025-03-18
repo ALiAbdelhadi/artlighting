@@ -57,10 +57,12 @@ const ProjectPage: React.FC<{ children: ReactNode }> = ({ children }) => {
             <p className="mb-5 -mt-1 md:text-lg text-sm tracking-wide text-muted-foreground">
               {project.ProjectInfor}
             </p>
-            <img
+            <Image
               src={project.ProjectImages[0]}
               alt={project.ProjectName}
               className="w-full lg:h-[43rem] h-auto rounded-md"
+              height={688}
+              width={1450}
             />
             <p className="my-5 md:text-lg text-sm tracking-wide text-muted-foreground">
               {project.ProjectDescription}
@@ -113,17 +115,21 @@ const ProjectPage: React.FC<{ children: ReactNode }> = ({ children }) => {
               </p>
             )}
             {project.ProjectImages[3] && (
-              <img
+              <Image
                 src={project.ProjectImages[3]}
                 alt={project.ProjectName}
-                className="w-full lg:h-[44rem] h-auto rounded-md"
+                className="w-full lg:h-[43rem] h-auto rounded-md"
+                height={688}
+                width={1450}
               />
             )}
             {project.ProjectImages[4] && (
-              <img
+              <Image
                 src={project.ProjectImages[4]}
                 alt={project.ProjectName}
-                className="w-full lg:h-[44rem] h-auto rounded-md"
+                className="w-full lg:h-[43rem] h-auto rounded-md"
+                height={688}
+                width={1450}
               />
             )}
           </div>

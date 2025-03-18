@@ -1,4 +1,5 @@
 import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
+import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -21,7 +22,7 @@ const PastEvents = () => {
               <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View Event</span>
               </Link>
-              <img
+              <Image
                 src="/placeholder.svg"
                 alt="Event Image"
                 width={400}
@@ -45,7 +46,7 @@ const PastEvents = () => {
               <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View Event</span>
               </Link>
-              <img
+              <Image
                 src="/placeholder.svg"
                 alt="Event Image"
                 width={400}
@@ -69,7 +70,7 @@ const PastEvents = () => {
               <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View Event</span>
               </Link>
-              <img
+              <Image
                 src="/placeholder.svg"
                 alt="Event Image"
                 width={400}
@@ -93,7 +94,7 @@ const PastEvents = () => {
               <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                 <span className="sr-only">View Event</span>
               </Link>
-              <img
+              <Image
                 src="/placeholder.svg"
                 alt="Event Image"
                 width={400}

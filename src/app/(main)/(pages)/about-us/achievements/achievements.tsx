@@ -20,7 +20,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
+import Image from "next/image";
 const data = [
   { year: "2010", sales: 12 },
   { year: "2011", sales: 22 },
@@ -153,10 +153,12 @@ export default function Achievements() {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src="/approvals/approval-1.jpg"
                     alt="Approval"
                     className="w-full h-auto object-cover"
+                    width={500}
+                    height={500}
                   />
                 </div>
               </div>
@@ -167,24 +169,30 @@ export default function Achievements() {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src="/approvals/approval-2.jpg"
                     alt="Approval"
                     className="w-full h-auto object-cover"
+                    width={500}
+                    height={500}
                   />
                 </div>
                 <div className="shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src="/approvals/approval-3.jpg"
                     alt="Approval"
                     className="w-full h-auto object-cover"
+                    width={500}
+                    height={500}
                   />
                 </div>
                 <div className="shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src="/approvals/approval-4.jpg"
                     alt="Approval"
                     className="w-full h-auto object-cover"
+                    width={500}
+                    height={500}
                   />
                 </div>
               </div>
@@ -195,10 +203,12 @@ export default function Achievements() {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg overflow-hidden">
-                  <img
+                  <Image
                     src="/approvals/approval-5.png"
                     alt="Approval"
                     className="w-full h-auto object-cover"
+                    width={500}
+                    height={500}
                   />
                 </div>
               </div>
