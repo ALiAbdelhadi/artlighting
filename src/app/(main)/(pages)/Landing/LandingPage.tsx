@@ -6,7 +6,7 @@ function LandingPage() {
     "/main-landing/landing-5.jpg",
     "/main-landing/landing-1.png",
     "/main-landing/landing-2.png",
-    "/main-landing/landing-3.png"
+    "/main-landing/landing-3.png",
   ];
   return (
     <div>

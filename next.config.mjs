@@ -6,11 +6,16 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   reactStrictMode: true,
-  images: {
-    domains: ["localhost", "eg-artlighting.vercel.app"],
-  },
   compiler: {
     styledComponents: true,
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'eg-artlighting.vercel.app', 
+      },
+    ],
   },
 };
 
