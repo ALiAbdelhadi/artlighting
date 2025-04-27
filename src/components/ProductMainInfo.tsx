@@ -185,7 +185,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
           setConfiguration(result.updatedConfig);
         }
       } else {
-          console.error("Failed to update configuration:", result.error);
+        console.error("Failed to update configuration:", result.error);
       }
     } else {
       console.error("Configuration ID is missing");
@@ -315,8 +315,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
           className={cn(
             "grid gap-x-12 gap-y-4",
             ChandelierLightingType === "lamp" &&
-              Brand === "mister-led" &&
-              "sm:grid-cols-2",
+            Brand === "mister-led" &&
+            "sm:grid-cols-2",
             Brand === "balcom" && "sm:grid-cols-2",
           )}
         >
@@ -445,7 +445,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
               },
             )}
           >
-            Order Now
+            {isClicked ? "Order Now" : "Processing order"
+            }
           </button>
         </div>
       </div>

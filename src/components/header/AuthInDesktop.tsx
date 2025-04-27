@@ -19,7 +19,7 @@ const AuthInDesktop = async () => {
       <div className="flex flex-col md:flex-row md:space-x-4 md:ml-1 mr-2 space-y-4 md:space-y-0 px-2 md:p-0">
         <SignedIn>
           {isAdmin && (
-            <Link href="/admin/dashboard">
+            <Link href="/admin">
               <Button variant="outline">Dashboard</Button>
             </Link>
           )}

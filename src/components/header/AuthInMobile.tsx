@@ -14,7 +14,7 @@ export default async function AuthInMobile() {
         {user ? (
           <Fragment>
             {isAdmin ? (
-              <Link scroll={true} href="/admin/dashboard">
+              <Link scroll={true} href="/admin">
                 <Button variant="default" className="w-full">
                   Dashboard
                 </Button>

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": " next dev",
+    "dev": " next dev ",
     "build": "next build ",
     "start": "next start",
     "lint": "next lint",
@@ -33,6 +33,8 @@
     "@radix-ui/react-tooltip": "^1.1.8",
     "@sentry/nextjs": "^9.3.0",
     "@tanstack/react-query": "^5.66.7",
+    "@upstash/ratelimit": "^2.0.5",
+    "@upstash/redis": "^1.34.8",
     "@vercel/analytics": "^1.5.0",
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
@@ -43,12 +45,12 @@
     "gsap": "^3.12.7",
     "lucide-react": "^0.379.0",
     "mini-svg-data-uri": "^1.4.4",
-    "next": "14.2.24",
+    "next": "15.3.1",
     "next-intl": "^4.0.2",
     "next-themes": "^0.3.0",
-    "react": "^18",
+    "react": "^19.1.0",
     "react-day-picker": "^8.10.1",
-    "react-dom": "^18",
+    "react-dom": "^19.1.0",
     "react-hook-form": "^7.54.2",
     "react-query": "^3.39.3",
     "react-responsive-carousel": "^3.2.23",
@@ -69,13 +71,13 @@
     "@types/recharts": "^1.8.29",
     "depcheck": "^1.4.7",
     "eslint": "^8",
-    "eslint-config-next": "14.2.24",
+    "eslint-config-next": "15.3.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.3",
     "postcss": "^8",
     "prisma": "^6.4.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5.8.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -84,7 +86,8 @@
       "@prisma/engines",
       "@sentry/cli",
       "esbuild",
-      "prisma"
+      "prisma",
+      "sharp"
     ]
   }
 }

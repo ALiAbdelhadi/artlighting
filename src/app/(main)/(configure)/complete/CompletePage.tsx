@@ -545,13 +545,13 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             ? "Fixed rate for Cairo"
                             : "To be determined"}
                         </p>
-                        <p className="tracking-wide leading-6 font-semibold text-primary">
+                        <div className="tracking-wide leading-6 font-semibold text-primary">
                           {isCairo ? (
                             <NormalPrice price={order.shippingPrice} />
                           ) : (
                             "We will contact you with the shipping price."
                           )}
-                        </p>
+                        </div>
                       </div>
                       <div>
                         <h3 className="font-medium text-base sm:text-lg">

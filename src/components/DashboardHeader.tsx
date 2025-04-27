@@ -11,12 +11,11 @@ interface DashboardHeaderProps {
 
 const DashboardHeader = ({ user, Route, children }: DashboardHeaderProps) => (
   <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b  shadow-sm px-4 lg:px-6">
-    <Link href="#" className="lg:hidden" prefetch={false}>
+    <Link href="/">
       <Package2Icon className="h-6 w-6" />
-      <span className="sr-only">Home</span>
     </Link>
     <div className="flex-1">
-      <h1 className="font-semibold text-xl ">{Route}</h1>
+      <h1 className="font-semibold text-xl">{Route}</h1>
     </div>
     {children}
   </header>

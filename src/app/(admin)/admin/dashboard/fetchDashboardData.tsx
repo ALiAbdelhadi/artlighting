@@ -4,19 +4,13 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export const fetchDashboardData = async () => {
-  const { userId } = auth();
   const user = await currentUser();
+  const { userId } = auth();
 
   if (!userId || !user) {
     return redirect("/404");
   }
-
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-  if (user.emailAddresses[0].emailAddress !== ADMIN_EMAIL) {
-    console.log("User not authorized, redirecting to 404");
-    return redirect("/404");
-  }
-
+  
   const orders = await db.order.findMany({
     where: {
       isCompleted: true,
