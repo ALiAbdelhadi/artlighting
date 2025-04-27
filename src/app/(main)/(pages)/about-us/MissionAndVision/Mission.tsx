@@ -1,4 +1,4 @@
-import Container from "@/app/components/Container";
+import Container from "@/components/Container";
 function Mission() {
   return (
     <div className="py-16">

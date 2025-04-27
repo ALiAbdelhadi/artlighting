@@ -1,5 +1,5 @@
-import Container from "@/app/components/Container";
-import Button from "../../../../components/Button/button";
+import Button from "@/components/Button/button";
+import Container from "@/components/Container";
 import Image from "next/image";
 function Product() {
   return (

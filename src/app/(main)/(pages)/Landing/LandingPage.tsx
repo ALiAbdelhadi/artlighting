@@ -1,4 +1,4 @@
-import Landing from "@/app/components/Landing/Landing";
+import Landing from "@/components/Landing/Landing";
 
 function LandingPage() {
   const images = [

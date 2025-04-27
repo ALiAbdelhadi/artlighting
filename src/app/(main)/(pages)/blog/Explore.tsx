@@ -1,6 +1,6 @@
 "use client";
-import Container from "@/app/components/Container";
-import EftarRamdanCard from "@/app/components/EftarRamdanCard";
+import Container from "@/components/Container";
+import EftarRamdanCard from "@/components/EftarRamdanCard";
 import { exploreEftar } from "@/constants";
 import { useState } from "react";
 

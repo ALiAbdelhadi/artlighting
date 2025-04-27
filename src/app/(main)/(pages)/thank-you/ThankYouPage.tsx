@@ -1,9 +1,9 @@
 "use client";
-import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
-import Container from "@/app/components/Container";
-import DiscountPrice from "@/app/helpers/DiscountPrice";
-import NormalPrice from "@/app/helpers/NormalPrice";
-import { formatPrice } from "@/app/utils/utils";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Container from "@/components/Container";
+import DiscountPrice from "@/helpers/DiscountPrice";
+import NormalPrice from "@/helpers/NormalPrice";
+import { calculateEstimatedDeliveryDate, formatPrice, isProductChandLamp } from "@/utils/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -14,11 +14,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Product, ShippingAddress } from "@prisma/client";
+import { PRODUCT_LAMP_LABEL } from "@/config";
+import { Product, ProductChandLamp, ShippingAddress } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
-import { addDays, format } from "date-fns";
-import { enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
@@ -41,11 +41,7 @@ interface Order {
   sectionType: string;
 }
 
-const calculateEstimatedDeliveryDate = () => {
-  const currentDate = new Date();
-  const estimatedDeliveryDate = addDays(currentDate, 7);
-  return format(estimatedDeliveryDate, "dd MMM, yyyy", { locale: enUS });
-};
+
 const ThankYouPage: React.FC<Order> = ({ discount }) => {
   const variants = {
     hidden: { opacity: 0, y: 15 },
@@ -61,7 +57,6 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
   const router = useRouter();
 
   const estimatedDeliveryDate = calculateEstimatedDeliveryDate();
-  const [currentIndex, setCurrentIndex] = React.useState(0);
   const searchParams = useSearchParams();
   const orderId = searchParams.get("orderId") || "";
   const {
@@ -84,19 +79,16 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
       router.push("/");
     }
   }, [orderId, router]);
-  if (isLoading) return <div>Loading order details...</div>;
+  if (isLoading) return <div className="flex items-center justify-center h-screen">Loading order details...</div>;
   if (error)
-    return <div>Error loading order details: {(error as Error).message}</div>;
-  if (!order) return <div>No order found. Please check your order ID.</div>;
+    return <div className="flex items-center justify-center h-screen text-lg">Error loading order details: {(error as Error).message}</div>;
+  if (!order) return <div className="flex items-center justify-center h-screen text-lg">No order found. Please check your order ID.</div>;
   if (order.isCompleted !== true)
     return (
-      <div>
+      <div className="flex items-center justify-center h-screen">
         This order has not been completed. Please complete your order first.
       </div>
     );
-  const handleSlideChange = (index: number) => {
-    setCurrentIndex(index);
-  };
 
   const getProductWattage = (productName: string) => {
     const lastIndex = productName.lastIndexOf("-");
@@ -106,6 +98,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
     }
     return "Not Available";
   };
+
   const isCairo =
     order.shippingAddress.state
       .toLowerCase()
@@ -164,7 +157,7 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                         </div>
                       </div>
                       <div className="grid grid-cols-2 items-center">
-                        <div className="font-medium">Delivery:</div>
+                        <div className="font-medium">Estimated Delivery Date :</div>
                         <div>{estimatedDeliveryDate}</div>
                       </div>
                       <div className="grid grid-cols-2 items-center">
@@ -177,23 +170,45 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                           <TableHeader>
                             <TableRow>
                               <TableHead>Item</TableHead>
-                              <TableHead className="pl-20 sm:pl-0">
+                              <TableHead>
                                 Qty
                               </TableHead>
-                              <TableHead className="text-nowrap">
-                                Price Per Item
+                              <TableHead className="font-semibold text-nowrap">
+                                Color Temp
                               </TableHead>
-                              {discount > 0 ? (
-                                <TableHead>Discount </TableHead>
-                              ) : null}
-                              <TableHead>Total</TableHead>
+                              {order.product.Brand === "balcom" && (
+                                <TableHead className="font-semibold text-nowrap">
+                                  Wattage
+                                </TableHead>
+                              )}
+                              {order.product.Brand === "mister-led" &&
+                                order.product.ChandelierLightingType ===
+                                "lamp" && (
+                                  <TableHead className="font-semibold text-nowrap">
+                                    Lamp
+                                  </TableHead>
+                                )}
+                              {
+                                order.product.Brand === "mister-led" &&
+                                order.product.ChandelierLightingType ===
+                                "LED" && (
+                                  <TableHead className="font-semibold text-nowrap">
+                                    Wattage
+                                  </TableHead>
+                                )
+                              }
+                              {order.product.Brand === "balcom" && (
+                                <TableHead className="font-semibold text-nowrap">
+                                  IP Rating
+                                </TableHead>
+                              )}
                             </TableRow>
                           </TableHeader>
                           <TableBody className="sm:space-x-4">
                             <TableRow>
                               <TableCell>
                                 <div className="flex items-center gap-4">
-                                  <img
+                                  <Image
                                     src={order.product.productImages[0]}
                                     width="70"
                                     height="70"
@@ -204,41 +219,68 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                     <div className="font-semibold text-sm md:text-base text-nowrap">
                                       {order.product.productName}
                                     </div>
-                                    <div className="text-muted-foreground text-xs md:text-sm break-words text-wrap font-medium">{`${order.product.Brand} spotlight with Maximum wattage of ${getProductWattage(order.product.productName)} and ${order.product.luminousFlux}`}</div>
+                                    <div className="text-muted-foreground text-xs md:text-sm break-words text-wrap font-medium">
+                                      <span className="capitalize">{order.product.Brand}</span>{" "}
+                                      {order.product?.Brand === "balcom" ? (
+                                        <span>
+                                          spotlight with Maximum wattage of {getProductWattage(order.product.productName)}
+                                        </span>
+                                      ) : (
+                                        order.product.ChandelierLightingType === "lamp" ? (
+                                          <span >
+                                            chandelier with{" "}
+                                            {isProductChandLamp(order.productChandLamp)
+                                              ? PRODUCT_LAMP_LABEL[order.productChandLamp as ProductChandLamp].toLocaleLowerCase()
+                                              : "Unknown Lamp"}{" "}
+                                          </span>
+                                        ) :
+                                          (
+                                            <span>
+                                              chandelier with{" "}
+                                              {order.product.maximumWattage}
+                                            </span>
+                                          )
+                                      )
+                                      }
+                                    </div>
                                   </div>
                                 </div>
                               </TableCell>
-                              <TableCell className="text-sm md:text-base pl-20 sm:pl-0 font-medium">
+                              <TableCell className="text-sm md:text-base font-semibold">
                                 {order.quantity}
                               </TableCell>
-                              <TableCell className="text-sm md:text-base font-medium">
-                                <NormalPrice
-                                  price={order.configPrice}
-                                  sectionType={order.product?.sectionType}
-                                />
+                              <TableCell className="font-semibold capitalize">
+                                {order.productColorTemp}
                               </TableCell>
-                              {discount > 0 ? (
-                                <TableCell className="text-sm md:text-base text-destructive font-medium">
-                                  {order.product?.discount * 100}%
-                                </TableCell>
-                              ) : null}
-                              {discount > 0 ? (
-                                <TableCell className="text-sm md:text-base font-medium">
-                                  <DiscountPrice
-                                    price={order.configPrice}
-                                    discount={order.product?.discount}
-                                    sectionType={order.product?.sectionType}
-                                  />
-                                </TableCell>
-                              ) : (
-                                <TableCell className="text-sm md:text-base font-medium">
-                                  <NormalPrice
-                                    price={order.configPrice}
-                                    quantity={order.quantity}
-                                    sectionType={order.product?.sectionType}
-                                  />
+                              {order.product.Brand === "balcom" && (
+                                <TableHead className="font-semibold text-black">
+                                  {order.product.maximumWattage + "W"}
+                                </TableHead>
+                              )}
+                              {order.product.Brand === "balcom" && (
+                                <TableCell className="font-semibold">
+                                  {order.productIp}
                                 </TableCell>
                               )}
+                              {order.product.Brand === "mister-led" &&
+                                order.product.ChandelierLightingType ===
+                                "lamp" && (
+                                  <TableCell className="font-semibold capitalize ">
+                                    {isProductChandLamp(order.productChandLamp)
+                                      ? PRODUCT_LAMP_LABEL[order.productChandLamp]
+                                      : "Unknown Lamp"}
+                                  </TableCell>
+                                )
+                              }
+                              {
+                                order.product.Brand === "mister-led" &&
+                                order.product.ChandelierLightingType ===
+                                "LED" && (
+                                  <TableCell className="font-semibold">
+                                    {order.product.maximumWattage + "W"}
+                                  </TableCell>
+                                )
+                              }
                             </TableRow>
                           </TableBody>
                         </Table>
@@ -284,10 +326,23 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
                                 {order.product?.discount * 100}%
                               </span>
                             </div>
+                            <div className="grid grid-cols-2 items-center">
+                              <div className="font-medium text-muted-foreground">
+                                After Discount:
+                              </div>
+                              <span className="text-right ">
+                                <DiscountPrice
+                                  price={order.configPrice}
+                                  quantity={order.quantity}
+                                  sectionType={order.product?.sectionType}
+                                  discount={order.product?.discount}
+                                />
+                              </span>
+                            </div>
                             <Separator />
                             <div className="grid grid-cols-2 items-center">
                               <div className="font-medium ">Total:</div>
-                              <div className="text-right text-base font-semibold text-destructive">
+                              <div className="text-right text-lg font-semibold text-destructive">
                                 <DiscountPrice
                                   price={order.configPrice}
                                   shippingPrice={order.shippingPrice}

@@ -1,5 +1,5 @@
 "use client";
-import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { motion } from "framer-motion";
 import Link from "next/link";
 export default function FAQs() {

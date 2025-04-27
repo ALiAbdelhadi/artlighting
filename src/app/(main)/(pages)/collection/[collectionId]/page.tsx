@@ -1,7 +1,7 @@
 "use client";
 
-import CustomBreadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
-import Container from "@/app/components/Container";
+import CustomBreadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Container from "@/components/Container";
 import { newCollectionProducts } from "@/constants";
 import { motion } from "framer-motion";
 import Image from "next/image";

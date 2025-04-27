@@ -1,6 +1,6 @@
 "use client";
-import Container from "@/app/components/Container";
-import ProductCard from "@/app/components/ProductCard/ProductCard";
+import Container from "@/components/Container";
+import ProductCard from "@/components/ProductCard/ProductCard";
 import { Product } from "@prisma/client";
 import { motion } from "framer-motion";
 

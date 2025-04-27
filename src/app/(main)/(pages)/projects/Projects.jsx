@@ -1,6 +1,6 @@
 "use client";
-import Container from "@/app/components/Container";
-import ProjectCard from "@/app/components/ProjectCard.tsx";
+import Container from "@/components/Container";
+import ProjectCard from "@/components/ProjectCard.tsx";
 import { cn } from "@/lib/utils";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

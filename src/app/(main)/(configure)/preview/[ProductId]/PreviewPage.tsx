@@ -1,12 +1,12 @@
 "use client";
 
-import Container from "@/app/components/Container";
-import LoginModal from "@/app/components/LoginModal";
-import DiscountPrice from "@/app/helpers/DiscountPrice";
-import NormalPrice from "@/app/helpers/NormalPrice";
-import { useToast } from "@/components/hooks/use-toast";
+import Container from "@/components/Container";
+import LoginModal from "@/components/LoginModal";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import DiscountPrice from "@/helpers/DiscountPrice";
+import NormalPrice from "@/helpers/NormalPrice";
+import { useToast } from "@/hooks/use-toast";
 import { useUser } from "@clerk/nextjs";
 import { Configuration, Product } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -26,7 +26,11 @@ const fetchProduct = async (productId: string): Promise<Product> => {
   }
   return response.json();
 };
-
+interface PreviewPageProps {
+  configuration: Configuration;
+  discount: number;
+  productId: string;
+}
 const PreviewPage: React.FC<PreviewPageProps> = ({
   configuration: initialConfiguration,
   discount,
@@ -113,7 +117,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
   };
   if (isLoading)
     return (
-      <div className="w-full mt-24 flex justify-center pb-24">
+      <div className="w-full h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-2">
           <Loader2 className="h-8 w-8 animate-spin text-zinc-500" />
           <h3 className="font-semibold text-2xl">Loading your order...</h3>
@@ -123,7 +127,7 @@ const PreviewPage: React.FC<PreviewPageProps> = ({
     );
   if (isError) {
     return (
-      <div className="w-full mt-24 flex justify-center pb-24">
+      <div className="w-full h-screen flex items-center justify-center">
         <div className="flex flex-col items-center gap-2">
           <h3 className="font-semibold text-2xl">Error loading product</h3>
           <p>

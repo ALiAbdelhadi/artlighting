@@ -1,6 +1,6 @@
 "use client";
-import Container from "@/app/components/Container";
-import ProjectExample from "@/app/components/ProjectExample";
+import Container from "@/components/Container";
+import ProjectExample from "@/components/ProjectExample";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";

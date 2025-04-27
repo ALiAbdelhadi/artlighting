@@ -1,5 +1,6 @@
 "use client";
 
+import ProductCard from "@/components/ProductCard/ProductCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Contact, Home, Search, ShoppingBag } from "lucide-react";
@@ -7,7 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { searchProducts } from "./(main)/actions/search";
-import ProductCard from "./components/ProductCard/ProductCard";
+
 
 type Product = {
   id: string;

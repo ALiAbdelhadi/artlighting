@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@/app/components/Container";
+import Container from "@/components/Container";
 import { Product } from "@prisma/client";
 import { motion } from "framer-motion";
 import Image from "next/image";

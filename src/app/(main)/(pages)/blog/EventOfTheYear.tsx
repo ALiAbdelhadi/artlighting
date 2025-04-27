@@ -1,10 +1,8 @@
 "use client";
 
-import Container from "@/app/components/Container";
+import Container from "@/components/Container";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface EventProps {

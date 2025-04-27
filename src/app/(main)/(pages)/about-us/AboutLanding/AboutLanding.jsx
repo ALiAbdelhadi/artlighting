@@ -1,5 +1,5 @@
 "use client";
-import Container from "@/app/components/Container";
+import Container from "@/components/Container";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";

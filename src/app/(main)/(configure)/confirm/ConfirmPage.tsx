@@ -1,10 +1,10 @@
 "use client";
-import Container from "@/app/components/Container";
-import CustomInput from "@/app/components/CustomInput";
-import DiscountPrice from "@/app/helpers/DiscountPrice";
-import NormalPrice from "@/app/helpers/NormalPrice";
-import { authFormConfirmingOrderSchema } from "@/app/utils/utils";
-import { useToast } from "@/components/hooks/use-toast";
+import Container from "@/components/Container";
+import CustomInput from "@/components/CustomInput";
+import DiscountPrice from "@/helpers/DiscountPrice";
+import NormalPrice from "@/helpers/NormalPrice";
+import { authFormConfirmingOrderSchema } from "@/utils/utils";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,6 +17,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { z } from "zod";
 import { getUserStatus } from "./action";
+import Image from "next/image";
 
 type Order = {
   id: string;
@@ -154,14 +155,18 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
       }
       const responseData = await response.json();
       toast({
-        title: <span className="text-primary text-base">Order Confirmed</span>,
+        title: (
+          <span className="text-sm text-muted-foreground">
+            Order Confirmed
+          </span>
+        ),
         description: (
           <span className="text-sm text-muted-foreground">
             Your order has been confirmed. Please check shipping details and
             product details.
           </span>
         ),
-        className: "rounded-lg",
+        className: "rounded-lg text-primary",
       });
       router.push(`/complete/?orderId=${responseData.id}`);
     } catch (error) {
@@ -218,7 +223,9 @@ const ConfirmPage: React.FC<ConfirmPageProps> = ({ discount }) => {
                     key={index}
                     className="w-full sm:w-[300px] md:w-[400px] lg:w-[500px]"
                   >
-                    <img
+                    <Image
+                      width={500}
+                      height={500}
                       src={img}
                       alt={`Product image ${index + 1}`}
                       className="object-contain h-[300px] md:h-[400px] lg:h-[500px]"

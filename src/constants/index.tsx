@@ -58,27 +58,27 @@ export const DASHBOARDS = [
   {
     name: "Dashboard",
     icon: <HomeIcon className="h-5 w-5" />,
-    url: "/dashboard",
+    url: "/admin/dashboard",
   },
   {
     name: "Orders",
     icon: <Boxes className="h-5 w-5" />,
-    url: "/dashboard/Orders",
+    url: "/admin/dashboard/Orders",
   },
   {
     name: "Products",
     icon: <PackageIcon className="h-5 w-5" />,
-    url: "/dashboard/Products",
+    url: "/admin/dashboard/Products",
   },
   {
     name: "Customers",
     icon: <UsersIcon className="h-5 w-5" />,
-    url: "/dashboard/Users",
+    url: "/admin/dashboard/Users",
   },
   {
     name: "Notification",
     icon: <BellDot className="h-5 w-5" />,
-    url: "/dashboard/Notification",
+    url: "/admin/dashboard/Notification",
   },
 ];
 // IndoorItems

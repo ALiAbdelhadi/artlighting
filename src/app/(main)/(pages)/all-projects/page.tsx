@@ -1,4 +1,4 @@
-import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { constructMetadata } from "@/lib/utils";
 import AllProjectPage from "./AllProjectPage";
 

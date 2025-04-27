@@ -1,11 +1,11 @@
 "use client";
-import ColorTemperatureSection from "@/app/components/ColorTemperatureSection";
-import Container from "@/app/components/Container";
-import ProductCard from "@/app/components/ProductCard/ProductCard";
-import ProductFeatures from "@/app/components/ProductFeatures";
-import ProductImages from "@/app/components/ProductImages";
-import ProductMainInfo from "@/app/components/ProductMainInfo";
-import ProductSpecifications from "@/app/components/ProductSpecifications";
+import ColorTemperatureSection from "@/components/ColorTemperatureSection";
+import Container from "@/components/Container";
+import ProductCard from "@/components/ProductCard/ProductCard";
+import ProductFeatures from "@/components/ProductFeatures";
+import ProductImages from "@/components/ProductImages";
+import ProductMainInfo from "@/components/ProductMainInfo";
+import ProductSpecifications from "@/components/ProductSpecifications";
 import { Order, OrderStatus, Product } from "@prisma/client";
 import { motion } from "framer-motion";
 import { useState } from "react";

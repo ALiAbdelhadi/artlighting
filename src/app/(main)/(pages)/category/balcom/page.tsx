@@ -1,4 +1,4 @@
-import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import { db } from "@/db";
 import { constructMetadata } from "@/lib/utils";
 import { Suspense } from "react";

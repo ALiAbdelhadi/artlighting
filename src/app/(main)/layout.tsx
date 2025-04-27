@@ -1,6 +1,6 @@
-import DiscountBanner from "@/app/components/banner/DiscountBanner";
-import Footer from "@/app/components/footer/Footer";
-import HeaderAndRightNav from "@/app/components/header/HeaderAndRightNav";
+import DiscountBanner from "@/components/banner/DiscountBanner";
+import Footer from "@/components/footer/Footer";
+import HeaderAndRightNav from "@/components/header/HeaderAndRightNav";
 import { Toaster } from "@/components/ui/toaster";
 import { Fragment } from "react";
 

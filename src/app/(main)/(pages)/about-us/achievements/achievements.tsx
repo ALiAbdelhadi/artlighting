@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@/app/components/Container";
+import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import {
   Card,

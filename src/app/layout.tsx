@@ -1,10 +1,10 @@
+import Providers from "@/components/Providers";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics } from "@vercel/analytics/react";
 import { Roboto } from "next/font/google";
 import { constructMetadata } from "../lib/utils";
-import Providers from "./components/Providers";
 import "./globals.css";
 const roboto = Roboto({
    weight: ["400", "500"],

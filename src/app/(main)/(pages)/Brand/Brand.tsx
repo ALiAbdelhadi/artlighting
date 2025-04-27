@@ -1,4 +1,4 @@
-import Container from "@/app/components/Container";
+import Container from "@/components/Container";
 import { Badge } from "@/components/ui/badge";
 import { brands } from "@/constants";
 import { ArrowRight } from "lucide-react";

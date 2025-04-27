@@ -1,7 +1,7 @@
 "use client";
 
-import Breadcrumb from "@/app/components/Breadcrumb/Breadcrumb";
-import Container from "@/app/components/Container";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
+import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { constructMetadata } from "@/lib/utils";
 import { motion } from "framer-motion";

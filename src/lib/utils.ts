@@ -119,8 +119,8 @@ export function constructMetadata({
     alternates: {
       canonical: "https://eg-artlighting.vercel.app/",
     },
-    other: {
-      "application-name": "Art Lighting Company",
-    },
+          other: {
+            "application-name": "Art Lighting Company",
+          },
   };
 }

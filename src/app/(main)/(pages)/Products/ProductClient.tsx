@@ -1,7 +1,6 @@
 "use client";
-
-import Container from "@/app/components/Container";
-import ProductCard from "@/app/components/ProductCard/ProductCard";
+import Container from "@/components/Container";
+import ProductCard from "@/components/ProductCard/ProductCard";
 import {
   Carousel,
   CarouselContent,

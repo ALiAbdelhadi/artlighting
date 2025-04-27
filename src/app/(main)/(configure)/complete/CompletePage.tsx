@@ -1,8 +1,5 @@
 "use client";
-import Container from "@/app/components/Container";
-import DiscountPrice from "@/app/helpers/DiscountPrice";
-import NormalPrice from "@/app/helpers/NormalPrice";
-import { useToast } from "@/components/hooks/use-toast";
+import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,15 +11,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ToastAction } from "@/components/ui/toast";
+import { PRODUCT_LAMP_LABEL } from "@/config";
+import DiscountPrice from "@/helpers/DiscountPrice";
+import NormalPrice from "@/helpers/NormalPrice";
+import { useToast } from "@/hooks/use-toast";
+import { formatPrice } from "@/lib/utils";
+import { calculateEstimatedDeliveryDate, isProductChandLamp } from "@/utils/utils";
 import {
   Configuration,
   Product,
-  ProductChandLamp,
-  ShippingAddress,
+  ShippingAddress
 } from "@prisma/client";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addDays, format } from "date-fns";
-import { enUS } from "date-fns/locale";
 import { motion } from "framer-motion";
 import {
   CheckCircle,
@@ -32,6 +32,7 @@ import {
   Truck,
   VariableIcon,
 } from "lucide-react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Fragment, useEffect } from "react";
 interface Order {
@@ -90,11 +91,6 @@ type CompletePageProps = {
   discount: number;
   Brand: string;
   ChandelierLightingType: string;
-};
-const calculateEstimatedDeliveryDate = () => {
-  const currentDate = new Date();
-  const estimatedDeliveryDate = addDays(currentDate, 7);
-  return format(estimatedDeliveryDate, "dd MMM, yyyy", { locale: enUS });
 };
 const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
   const searchParams = useSearchParams();
@@ -195,22 +191,35 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
     }
     router.push(`/category?orderingMoreProducts?orderId${order.id}`);
   };
-  const PRODUCT_LAMP_LABEL: Record<ProductChandLamp, string> = {
-    lamp9w: "Lamp 9w",
-    lamp12w: "Lamp 12",
-  };
-  function isProductChandLamp(value: string): value is ProductChandLamp {
-    return value === "lamp9w" || value === "lamp12w";
-  }
   const isCairo =
     order.shippingAddress.state
       .toLowerCase()
       .replace(/\s/g, "")
       .match(/cairo|القاهرة/) !== null;
-  const shippingPriceValue = () => {
-    return (
-      <span className="text-primary font-semibold">{order.shippingPrice}</span>
-    )
+  function getShippingPriceValue(price: number): number | null {
+    if (isCairo) {
+      return price;
+    } else {
+      return null;
+    }
+  }
+  function ShippingMessage(price: number) {
+    if (isCairo) {
+      return (
+        <span className="text-base">
+          Your order will be delivered to Cairo. The shipping price is{" "}
+          <span className="text-primary font-semibold">
+            {formatPrice(price)}
+          </span>
+        </span>
+      );
+    } else {
+      return (
+        <span>
+          We will contact you within 24 hours to provide the shipping price for your location.
+        </span>
+      );
+    }
   }
   return (
     <motion.div
@@ -263,14 +272,12 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             <TableHead className="font-semibold pl-32 ">
                               Qty
                             </TableHead>
-                            {discount > 0 && (
-                              <TableHead className="font-semibold">
-                                Discount
-                              </TableHead>
-                            )}
+                            <TableHead className="font-semibold text-nowrap">
+                              Color Temp
+                            </TableHead>
                             {Brand === "balcom" && (
                               <TableHead className="font-semibold text-nowrap">
-                                Color Temp
+                                Wattage
                               </TableHead>
                             )}
                             {Brand === "mister-led" &&
@@ -280,9 +287,23 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                                   Lamp
                                 </TableHead>
                               )}
+                            {
+                              Brand === "mister-led" &&
+                              order.product.ChandelierLightingType ===
+                              "LED" && (
+                                <TableHead className="font-semibold text-nowrap">
+                                  Wattage
+                                </TableHead>
+                              )
+                            }
                             {Brand === "balcom" && (
                               <TableHead className="font-semibold text-nowrap">
                                 IP Rating
+                              </TableHead>
+                            )}
+                            {discount > 0 && (
+                              <TableHead className="font-semibold">
+                                Discount
                               </TableHead>
                             )}
                             <TableHead className="font-semibold">
@@ -297,7 +318,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                           <TableRow>
                             <TableCell>
                               <div className="flex items-center gap-4">
-                                <img
+                                <Image
                                   src={order.product.productImages[0]}
                                   alt="Product Image"
                                   width={70}
@@ -317,15 +338,13 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             <TableCell className="font-semibold pl-32 pr-10">
                               {order.quantity}
                             </TableCell>
-                            {discount > 0 ? (
-                              <TableCell className="text-destructive font-semibold">
-                                {order.product.discount * 100}%
-                              </TableCell>
-                            ) : null}
+                            <TableCell className="font-semibold capitalize">
+                              {order.productColorTemp}
+                            </TableCell>
                             {Brand === "balcom" && (
-                              <TableCell className="font-semibold capitalize">
-                                {order.productColorTemp}
-                              </TableCell>
+                              <TableHead className="font-semibold text-black">
+                                {order.product.maximumWattage + "W"}
+                              </TableHead>
                             )}
                             {Brand === "balcom" && (
                               <TableCell className="font-semibold">
@@ -335,12 +354,27 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             {Brand === "mister-led" &&
                               order.product.ChandelierLightingType ===
                               "lamp" && (
-                                <TableCell className="font-semibold capitalize">
+                                <TableCell className="font-semibold capitalize ">
                                   {isProductChandLamp(order.productChandLamp)
                                     ? PRODUCT_LAMP_LABEL[order.productChandLamp]
                                     : "Unknown Lamp"}
                                 </TableCell>
-                              )}
+                              )
+                            }
+                            {
+                              Brand === "mister-led" &&
+                              order.product.ChandelierLightingType ===
+                              "LED" && (
+                                <TableCell className="font-semibold">
+                                  {order.product.maximumWattage + "W"}
+                                </TableCell>
+                              )
+                            }
+                            {discount > 0 ? (
+                              <TableCell className="text-destructive font-semibold">
+                                {order.product.discount * 100}%
+                              </TableCell>
+                            ) : null}
                             {discount > 0 ? (
                               <Fragment>
                                 <TableCell className="text-sm pr-4 sm:pr-0">
@@ -481,9 +515,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             : "Shipping to locations outside Cairo"}
                         </p>
                         <p className="tracking-wide leading-6">
-                          {isCairo
-                            ? `Your order will be delivered to Cairo. The shipping price is ${shippingPriceValue} EGP.`
-                            : "We will contact you within 48 hours to provide the shipping price for your location."}
+                          {ShippingMessage(order.shippingPrice)}
                         </p>
                       </div>
                       <div>
@@ -513,7 +545,7 @@ const CompletePage: React.FC<CompletePageProps> = ({ discount, Brand }) => {
                             ? "Fixed rate for Cairo"
                             : "To be determined"}
                         </p>
-                        <p className="tracking-wide leading-6 font-semibold">
+                        <p className="tracking-wide leading-6 font-semibold text-primary">
                           {isCairo ? (
                             <NormalPrice price={order.shippingPrice} />
                           ) : (
