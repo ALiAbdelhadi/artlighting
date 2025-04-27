@@ -418,24 +418,27 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
               <Plus className="md:w-5 md:h-5 h-4 w-4 " />
             </Button>
           </div>
-          <button
+          <Button
+            disabled={isPending}
             onClick={handleAddToBag}
-            className="bg-primary text-white md:px-4 md:py-3 px-2.5 py-2.5 md:text-base text-sm w-full rounded uppercase flex items-center justify-center"
+            className="bg-primary text-white md:px-4 md:py-6 px-2.5 py-2.5 md:text-base text-sm w-full rounded uppercase flex items-center justify-center"
           >
-            Add to Cart
+            {isPending ? "Adding..." : "Add to Cart"}
             <AddToCardIcon
               Fill="#fff"
               width={23}
               height={23}
               className="md:block hidden ml-1"
             />
-          </button>
+          </Button>
         </div>
         <div className="flex items-center justify-center gap-4 mt-4 max-w-full">
-          <button
+          <Button
+            disabled={isClicked}
+            variant={"outline"}
             onClick={handleClick}
             className={cn(
-              "border-gray-950 dark:border-gray-50 transition-colors duration-300 bg-gray-50 dark:bg-transparent border-[1.5px] md:px-4 md:py-3 px-2.5 py-2.5 md:text-base text-sm w-full rounded",
+              "border-gray-950 dark:border-gray-50 transition-colors duration-300 bg-gray-50 dark:bg-transparent border-[1.5px] md:px-4 md:py-6 px-2.5 py-2.5 md:text-base text-sm w-full rounded",
               {
                 "bg-black text-white": isClicked,
                 "hover:bg-black hover:text-white": !isClicked,
@@ -445,9 +448,8 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
               },
             )}
           >
-            {isClicked ? "Order Now" : "Processing order"
-            }
-          </button>
+            {isClicked ? "Processing order" : "Order Now"}
+          </Button>
         </div>
       </div>
       <div className="mt-6">
