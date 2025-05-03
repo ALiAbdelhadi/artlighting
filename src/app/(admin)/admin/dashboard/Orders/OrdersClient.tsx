@@ -1,7 +1,5 @@
 "use client";
 import DashboardHeader from "@/components/DashboardHeader";
-import DiscountPrice from "@/helpers/DiscountPrice";
-import NormalPrice from "@/helpers/NormalPrice";
 import { Input } from "@/components/ui/input";
 import {
   Table,
@@ -11,8 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import DiscountPrice from "@/helpers/DiscountPrice";
+import NormalPrice from "@/helpers/NormalPrice";
 import { formatPrice } from "@/lib/utils";
-import { Prisma, ProductChandLamp } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -238,37 +238,6 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
           </div>
         </div>
       </div>
-      <style jsx global>
-        {`
-          .custom-scrollbar {
-            scrollbar-width: thin;
-            scrollbar-color: #a0aec0 #edf2f7;
-          }
-          .custom-scrollbar::-webkit-scrollbar {
-            height: 8px;
-            width: 8px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-track {
-            background: #edf2f7;
-            border-radius: 10px;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #4a5568, #2d3748);
-            border-radius: 10px;
-            border: 2px solid #edf2f7;
-          }
-          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #2d3748, #1a202c);
-          }
-          img {
-            max-width: 100%;
-            height: auto;
-          }
-          address {
-            word-wrap: break-word;
-          }
-        `}
-      </style>
     </div>
   );
 };

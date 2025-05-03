@@ -1,9 +1,6 @@
 "use client";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import Container from "@/components/Container";
-import DiscountPrice from "@/helpers/DiscountPrice";
-import NormalPrice from "@/helpers/NormalPrice";
-import { calculateEstimatedDeliveryDate, formatPrice, isProductChandLamp } from "@/utils/utils";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -15,6 +12,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { PRODUCT_LAMP_LABEL } from "@/config";
+import DiscountPrice from "@/helpers/DiscountPrice";
+import NormalPrice from "@/helpers/NormalPrice";
+import { calculateEstimatedDeliveryDate, formatPrice, isProductChandLamp } from "@/utils/utils";
 import { Product, ProductChandLamp, ShippingAddress } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -408,26 +408,6 @@ const ThankYouPage: React.FC<Order> = ({ discount }) => {
           </div>
         </Container>
       </div>
-      <style jsx global>{`
-        .custom-scrollbar {
-          scrollbar-width: 10px;
-          scrollbar-color: #e5e7eb #f1f1f1;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-          height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #888;
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #555;
-        }
-      `}</style>
     </motion.div>
   );
 };

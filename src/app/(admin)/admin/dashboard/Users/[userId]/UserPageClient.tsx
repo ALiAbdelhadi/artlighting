@@ -1,8 +1,5 @@
 "use client";
 import Container from "@/components/Container";
-import UserAvatar from "@/components/UserAvatar";
-import DiscountPrice from "@/helpers/DiscountPrice";
-import NormalPrice from "@/helpers/NormalPrice";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,6 +17,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import UserAvatar from "@/components/UserAvatar";
+import DiscountPrice from "@/helpers/DiscountPrice";
+import NormalPrice from "@/helpers/NormalPrice";
 import { formatPrice } from "@/lib/utils";
 import { Order, Product, ShippingAddress, User } from "@prisma/client";
 import { format } from "date-fns";
@@ -278,28 +278,6 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
           </CardContent>
         </Card>
       </Container>
-      <style jsx global>{`
-        .custom-scrollbar {
-          scrollbar-width: thin;
-          scrollbar-color: #a0aec0 #edf2f7;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-          height: 8px;
-          width: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: #edf2f7;
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #4a5568, #2d3748);
-          border-radius: 10px;
-          border: 2px solid #edf2f7;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, #2d3748, #1a202c);
-        }
-      `}</style>
     </div>
   );
 };
