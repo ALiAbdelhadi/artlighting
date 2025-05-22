@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Brand = () => {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-[#1c1a17]">
+    <section className="w-full py-12 md:py-24 lg:py-32">
       <Container>
         <h2 className="font-bold text-2xl md:text-3xl tracking-tight text-center mb-12">
           Our Featured Brands

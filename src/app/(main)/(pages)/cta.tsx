@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Cta() {
     return (
-        <section className="w-full py-16 bg-background text-foreground">
+        <section className="w-full py-16 bg-background text-foreground bg-gray-50 dark:bg-[#1c1a17]">
             <div className="max-w-4xl mx-auto px-6 text-center space-y-10">
                 <div className="space-y-4">
                     <h2 className="text-4xl md:text-5xl font-bold text-primary">

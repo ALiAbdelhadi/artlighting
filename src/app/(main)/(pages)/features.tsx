@@ -23,7 +23,7 @@ export default function Features() {
     ]
 
     return (
-        <section className="w-full py-12">
+        <section className="w-full py-12 bg-gray-50 dark:bg-[#1c1a17]">
             <Container className="max-w-5xl">
                 <div className="mb-16 text-center space-y-3">
                     <Badge className="text-sm space-x-3 rounded-xl">
