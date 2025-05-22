@@ -18,14 +18,8 @@ const UserAvatar: React.FC<UserAvatarProps> = ({
   className = "",
   size = "md",
 }) => {
-  const initials = name
-    ? name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2)
-    : email.slice(0, 2).toUpperCase();
+  const initials =
+    name?.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)
 
   const sizeClasses = {
     sm: "h-6 w-6",

@@ -63,12 +63,12 @@ export default function NotFound() {
           <p className="text-xl text-center text-muted-foreground">
             Oops! The page you're looking for doesn't exist.
           </p>
-          <div className="relative max-w-xl mx-auto">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <div className="relative max-w-xl mx-auto ">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground " />
             <Input
               type="search"
               placeholder="Search for products..."
-              className="pl-10 pr-4 py-4 h-12 w-full text-lg shadow-md rounded-xl border-none outline-none"
+              className="pl-10 pr-4 py-4 h-12 w-full text-lg shadow-md rounded-xl border border-input outline-none"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />

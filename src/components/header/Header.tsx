@@ -38,15 +38,15 @@ import ContainerAuthInMobile from "./ContainerAuthInMobile";
 export default function Header() {
   return (
     <header className=" relative top-0 z-50 w-full bg-background shadow-sm">
-      <div className=" container flex h-16 md:h-20 items-center justify-between px-4 md:px-6">
+      <div className=" container flex h-16 lg:h-[69px] items-center justify-between px-4 md:px-6">
         <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <Image
             quality={100}
             width={80}
             height={80}
             src={"/Logo.png"}
-            className="md:w-20 md:h-20 w-16 h-16"
-            alt="Art Lighting  Logo"
+            className="lg:w-[68px] lg:h-[69px] object-cover h-16 w-16"
+            alt="Art Lighting Logo"
           />
         </Link>
         <nav className="hidden lg:flex items-center space-x-6">

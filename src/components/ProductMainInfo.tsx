@@ -372,7 +372,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
           </span>
         )}
       </div>
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full  items-center">
         <p className="text-primary md:text-xl sm:text-lg text-base flex items-center">
           Check Stores Availability
           <ArrowRight className="sm:w-6 sm:h-6 w-5 h-5 ml-2" />
@@ -399,7 +399,7 @@ const ProductMainInfo: React.FC<ProductDetailsProps> = ({
           )}
         </p>
       </div>
-      <div>
+      <div className="flex flex-col fixed z-50 w-full bg-white dark:bg-neutral-900 shadow-md p-2 bottom-0 left-0 md:block md:relative md:p-0 md:bg-transparent rounded-t-xl">
         <div className="flex items-center justify-center gap-2 mt-4 max-w-full">
           <div className="rounded flex flex-row items-center">
             <Button
