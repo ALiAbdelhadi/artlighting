@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import "./projects.module.css";
 
 const Projects = () => {
   const [projectData, setProjectData] = useState({});
