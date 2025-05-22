@@ -35,7 +35,7 @@ const ProductsClient: React.FC<ProductsClientProps> = ({ products }) => {
   };
 
   return (
-    <section className="py-12 md:py-14 lg:py-16">
+    <section className="py-12 md:py-14 lg:py-16 bg-gray-50 dark:bg-[#1c1a17]">
       <Container>
         <div className="mb-10 md:mb-12 text-center">
           <h2 className="font-bold text-2xl md:text-3xl tracking-tight text-center mb-2">
