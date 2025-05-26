@@ -1,7 +1,6 @@
 import Container from "@/components/Container"
 import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
-import { Crown, Lightbulb, Truck, Zap } from "lucide-react"
+import { Crown, HandCoins, Lightbulb, Truck } from "lucide-react"
 
 export default function Features() {
     const features = [
@@ -19,6 +18,11 @@ export default function Features() {
             icon: Truck,
             title: "Express 4-Day Delivery",
             description: "Fast-track logistics ensuring your premium lighting solutions arrive within 4 business days. Secure packaging and professional handling guarantee perfect condition upon arrival.",
+        },
+        {
+            icon: HandCoins,
+            title: "Cash On Delivery",
+            description: "Enjoy hassle-free payments with our Cash on Delivery option. Pay only when your lighting products arrive safely at your doorstep—no cards, no worries.",
         }
     ]
 
@@ -37,7 +41,7 @@ export default function Features() {
                         Our curated collection delivers professional-grade illumination solutions.
                     </p>
                 </div>
-                <div className="flex flex-wrap lg:flex-nowrap justify-center items-center gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {features.map((feature, index) => (
                         <div
                             key={index}
@@ -46,7 +50,7 @@ export default function Features() {
                             <div className="h-12 w-12 rounded-lg flex items-center justify-center mb-5 bg-muted/30">
                                 <feature.icon className="h-6 w-6" />
                             </div>
-                            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                            <h3 className="text-xl font-semibold text-primary mb-3">
                                 {feature.title}
                             </h3>
                             <p className="text-muted-foreground leading-relaxed">
