@@ -1,6 +1,6 @@
 import Container from "@/components/Container"
 import { Badge } from "@/components/ui/badge"
-import { Crown, HandCoins, Lightbulb, Truck } from "lucide-react"
+import { LampCeiling, HandCoins, Lightbulb, Truck } from "lucide-react"
 
 export default function Features() {
     const features = [
@@ -10,7 +10,7 @@ export default function Features() {
             description: "Professional-grade indoor and outdoor spotlights engineered for superior illumination. Weather-resistant designs with precision beam control for architectural and landscape applications.",
         },
         {
-            icon: Crown,
+            icon: LampCeiling,
             title: "LED & Lamps Chandeliers",
             description: "Luxury chandelier collections combining timeless elegance with cutting-edge LED technology. Transform any space with sophisticated lighting solutions that deliver both beauty and efficiency.",
         },
