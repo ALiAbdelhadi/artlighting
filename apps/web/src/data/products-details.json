@@ -1,0 +1,3397 @@
+{
+  "categories": {
+    "balcom": {
+      "indoor": {
+        "family202": [
+          {
+            "product-jy-202-15w": {
+              "ProductId": "product-jy-202-15w",
+              "productName": "Product-JY-202-15W",
+              "productImages": [
+                "/indoor/product202/jy-202-15w/JY-202-15W (1).png",
+                "/indoor/product202/jy-202-15w/JY-202-15W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 15,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1320LM (3000k) / 1400LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family202",
+              "Brand": "balcom",
+              "price": 729,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "family500": [
+          {
+            "product-jy-535-5w": {
+              "ProductId": "product-jy-535-5w",
+              "productName": "Product-JY-535-5W",
+              "productImages": [
+                "/indoor/products500/jy-535-5w/JY-535-5W (1).png",
+                "/indoor/products500/jy-535-5w/JY-535-5W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 5,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "440 LM (3000K / 6500K)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "45°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K /  6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 54,
+              "spotlightType": "family500",
+              "Brand": "balcom",
+              "price": 295,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-539-7w": {
+              "ProductId": "product-jy-539-7w",
+              "productName": "Product-JY-539-7W",
+              "productImages": [
+                "/indoor/products500/jy-539-7w/JY-539-7W (1).png",
+                "/indoor/products500/jy-539-7w/JY-539-7W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 7,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "540LM (3000k) / 560LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 54,
+              "spotlightType": "family500",
+              "Brand": "balcom",
+              "price": 469,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-540-7w": {
+              "ProductId": "product-jy-540-7w",
+              "productName": "Product-JY-540-7W",
+              "productImages": [
+                "/indoor/products500/jy-540-7w/JY-540-7W (1).png",
+                "/indoor/products500/jy-540-7w/JY-540-7W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 7,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "540LM (3000k) / 560LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53° ",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 54,
+              "spotlightType": "family500",
+              "Brand": "balcom",
+              "price": 469,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-595-44w": {
+              "ProductId": "product-jy-595-44w",
+              "productName": "Product-JY-595-44W",
+              "productImages": [
+                "/indoor/products500/jy-595-44w/JY-595-44W (1).png",
+                "/indoor/products500/jy-595-44w/JY-595-44W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 44,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "4500LM",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "Phillips External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 44,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family500",
+              "Brand": "balcom",
+              "price": 1625,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-595-48w": {
+              "ProductId": "product-jy-595-48w",
+              "productName": "Product-JY-595-48W",
+              "productImages": [
+                "/indoor/products500/jy-595-48w/JY-595-48W (1).png",
+                "/indoor/products500/jy-595-48w/JY-595-48W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 48,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "4800LM",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 44,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family500",
+              "Brand": "balcom",
+              "price": 1299,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "family800": [
+          {
+            "product-jy-805-7w": {
+              "ProductId": "product-jy-805-7w",
+              "productName": "Product-JY-805-7W",
+              "productImages": [
+                "/indoor/products800/jy-805-7w/JY-805-7W (1).png",
+                "/indoor/products800/jy-805-7w/JY-805-7W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 7,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "560LM (3000k) / 600LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "90°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 359,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-810-10w": {
+              "ProductId": "product-jy-810-10w",
+              "productName": "Product-JY-810-10W",
+              "productImages": [
+                "/indoor/products800/jy-810-10w/JY-810-10W (1).png",
+                "/indoor/products800/jy-810-10w/JY-810-10W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 10,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "840LM (3000k) / 870LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 54,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 529,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-810-12w": {
+              "ProductId": "product-jy-810-12w",
+              "productName": "Product-JY-810-12W",
+              "productImages": [
+                "/indoor/products800/jy-810-12w/JY-810-12W (1).png",
+                "/indoor/products800/jy-810-12w/JY-810-12W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 12,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "950LM (3000k) / 1000LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 54,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 440,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-810-18w": {
+              "ProductId": "product-jy-810-18w",
+              "productName": "Product-JY-810-18W",
+              "productImages": [
+                "/indoor/products800/jy-810-18w/JY-810-18W (1).png",
+                "/indoor/products800/jy-810-18w/JY-810-18W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 18,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1550LM (3000k) / 1600LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 54,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 939,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-810-30w": {
+              "ProductId": "product-jy-810-30w",
+              "productName": "Product-JY-810-30W",
+              "productImages": [
+                "/indoor/products800/jy-810-30w/JY-810-30W (1).png",
+                "/indoor/products800/jy-810-30w/JY-810-30W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 30,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2600LM (3000k) / 2700LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 54,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 1075,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-812-12w": {
+              "ProductId": "product-jy-812-12w",
+              "productName": "Product-JY-812-12W",
+              "productImages": [
+                "/indoor/products800/jy-812-12w/JY-812-12W (1).png",
+                "/indoor/products800/jy-812-12w/JY-812-12W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 12,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1085LM (3000k) / 1285LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 585,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-813-7w": {
+              "ProductId": "product-jy-813-7w",
+              "productName": "Product-JY-813-7W",
+              "productImages": [
+                "/indoor/products800/jy-813-7w/JY-813-7W (1).png",
+                "/indoor/products800/jy-813-7w/JY-813-7W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 7,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "600LM (3000k) / 610LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 549,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-813-20w": {
+              "ProductId": "product-jy-813-20w",
+              "productName": "Product-JY-813-20W",
+              "productImages": [
+                "/indoor/products800/jy-813-20w/JY-813-20W (1).png",
+                "/indoor/products800/jy-813-20w/JY-813-20W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 20,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2000LM (3000k) / 2020LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 889,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-813-30w": {
+              "ProductId": "product-jy-813-30w",
+              "productName": "Product-JY-813-30W",
+              "productImages": [
+                "/indoor/products800/jy-813-30w/JY-813-30W (1).png",
+                "/indoor/products800/jy-813-30w/JY-813-30W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 30,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2910LM (3000k) / 2920LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 1075,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-813-40w": {
+              "ProductId": "product-jy-813-40w",
+              "productName": "Product-JY-813-40W",
+              "productImages": [
+                "/indoor/products800/jy-813-40w/JY-813-40W (1).png",
+                "/indoor/products800/jy-813-40w/JY-813-40W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 40,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "4300LM (3000k) / 4400LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family800",
+              "Brand": "balcom",
+              "price": 1319,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "family900": [
+          {
+            "product-jy-903-8w": {
+              "ProductId": "product-jy-903-8w",
+              "productName": "Product-JY-903-8W",
+              "productImages": [
+                "/indoor/products900/jy-903-8w/JY-903-8W (1).png",
+                "/indoor/products900/jy-903-8w/JY-903-8W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 8,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "600LM (3000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 439,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-903-10w": {
+              "ProductId": "product-jy-903-10w",
+              "productName": "Product-JY-903-10W",
+              "productImages": [
+                "/indoor/products900/jy-903-10w/JY-903-10W (1).png",
+                "/indoor/products900/jy-903-10w/JY-903-10W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 12,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "750LM (3000k) / 800LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 529,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-903-18w": {
+              "ProductId": "product-jy-903-18w",
+              "productName": "Product-JY-903-18W",
+              "productImages": [
+                "/indoor/products900/jy-903-18w/JY-903-18W (1).png",
+                "/indoor/products900/jy-903-18w/JY-903-18W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 18,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1650LM (3000k) / 1600LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 685,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-903-30w": {
+              "ProductId": "product-jy-903-30w",
+              "productName": "Product-JY-903-30W",
+              "productImages": [
+                "/indoor/products900/jy-903-30w/JY-903-30W (1).png",
+                "/indoor/products900/jy-903-30w/JY-903-30W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 30,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2700LM (3000k) / 2750LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 1049,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-904-8w": {
+              "ProductId": "product-jy-904-8w",
+              "productName": "Product-JY-904-8W",
+              "productImages": [
+                "/indoor/products900/jy-904-8w/JY-904-8W (1).png",
+                "/indoor/products900/jy-904-8w/JY-904-8W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 8,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "600LM (3000k) / 610LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 499,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-904-10w": {
+              "ProductId": "product-jy-904-10w",
+              "productName": "Product-JY-904-10w",
+              "productImages": [
+                "/indoor/products900/jy-904-10w/JY-904-10W (1).png",
+                "/indoor/products900/jy-904-10w/JY-904-10W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 10,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "810LM (3000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 555,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-904-18w": {
+              "ProductId": "product-jy-904-18w",
+              "productName": "Product-JY-904-18W",
+              "productImages": [
+                "/indoor/products900/jy-904-18w/JY-904-18W (1).png",
+                "/indoor/products900/jy-904-18w/JY-904-18W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 18,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1700LM (3000k) / 1610LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 819,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-913-5w": {
+              "ProductId": "product-jy-913-5w",
+              "productName": "Product-JY-913-5W",
+              "productImages": [
+                "/indoor/products900/jy-913-5w/JY-913-5W (1).png",
+                "/indoor/products900/jy-913-5w/JY-913-5W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 5,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "330LM (3000k) / 350LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 259,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-913-8w": {
+              "ProductId": "product-jy-913-8w",
+              "productName": "Product-JY-913-8W",
+              "productImages": [
+                "/indoor/products900/jy-913-8w/JY-913-8W (1).png",
+                "/indoor/products900/jy-913-8w/JY-913-8W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 8,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "630LM (3000k) / 650LM(6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 279,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-913-12w": {
+              "ProductId": "product-jy-913-12w",
+              "productName": "Product-JY-913-12W",
+              "productImages": [
+                "/indoor/products900/jy-913-12w/JY-913-12W (1).png",
+                "/indoor/products900/jy-913-12w/JY-913-12W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 12,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "630LM (3000k) / 650LM(6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 294,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-913-18w": {
+              "ProductId": "product-jy-913-18w",
+              "productName": "Product-JY-913-18W",
+              "productImages": [
+                "/indoor/products900/jy-913-18w/JY-913-18W (1).png",
+                "/indoor/products900/jy-913-18w/JY-913-18W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 18,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1730LM(3000k) / 1800LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 525,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-922-8w": {
+              "ProductId": "product-jy-922-8w",
+              "productName": "Product-JY-922-8W",
+              "productImages": [
+                "/indoor/products900/jy-922-8w/JY-922-8W (1).png",
+                "/indoor/products900/jy-922-8w/JY-922-8W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 8,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "600LM (3000k) / 650LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 349,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-922-12w": {
+              "ProductId": "product-jy-922-12w",
+              "productName": "Product-JY-922-12W",
+              "productImages": [
+                "/indoor/products900/jy-922-12w/JY-922-12W (1).png",
+                "/indoor/products900/jy-922-12w/JY-922-12W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 12,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "950LM(3000k) / 990LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 499,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-922-18w": {
+              "ProductId": "product-jy-922-18w",
+              "productName": "Product-JY-922-18W",
+              "productImages": [
+                "/indoor/products900/jy-922-18w/JY-922-18W (1).png",
+                "/indoor/products900/jy-922-18w/JY-922-18W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 18,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1500LM (3000k) / 1650LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 745,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-922-30w": {
+              "ProductId": "product-jy-922-30w",
+              "productName": "Product-JY-922-30W",
+              "productImages": [
+                "/indoor/products900/jy-922-30w/JY-922-30W (1).png",
+                "/indoor/products900/jy-922-30w/JY-922-30W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 30,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2700LM (3000k) / 2750LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 1099,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-923-8w": {
+              "ProductId": "product-jy-923-8w",
+              "productName": "Product-JY-923-8W",
+              "productImages": [
+                "/indoor/products900/jy-923-8w/JY-923-8W (1).png",
+                "/indoor/products900/jy-923-8w/JY-923-8W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 8,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "420LM (3000k) / 470LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 399,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-923-12w": {
+              "ProductId": "product-jy-923-12w",
+              "productName": "Product-JY-923-12W",
+              "productImages": [
+                "/indoor/products900/jy-923-12w/JY-923-12W (1).png",
+                "/indoor/products900/jy-923-12w/JY-923-12W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 12,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "890LM (3000k) / 900LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 529,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-923-18w": {
+              "ProductId": "product-jy-923-18w",
+              "productName": "Product-JY-923-18W",
+              "productImages": [
+                "/indoor/products900/jy-923-18w/JY-923-18W (1).png",
+                "/indoor/products900/jy-923-18w/JY-923-18W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 18,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1400LM (3000k) / 1450LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "family900",
+              "Brand": "balcom",
+              "price": 749,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "double-spotlight": [
+          {
+            "product-jy-dw-0124gls-28w": {
+              "ProductId": "product-jy-dw-0124gls-28w",
+              "productName": "Product-JY-DW-0124GLS-28W",
+              "productImages": [
+                "/indoor/doublespot/jy-dw-0124gls-28w/JY-DW-0124GLS-2x14W (1).png",
+                "/indoor/doublespot/jy-dw-0124gls-28w/JY-DW-0124GLS-2x14W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 28,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1000LM (3000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "double-spotlight",
+              "Brand": "balcom",
+              "price": 779,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-dw-0124gls-42w": {
+              "ProductId": "product-jy-dw-0124gls-42w",
+              "productName": "Product-JY-DW-0124GLS-42W",
+              "productImages": [
+                "/indoor/doublespot/jy-dw-0124gls-42w/JY-DW-0124GLS-3x14W (1).png",
+                "/indoor/doublespot/jy-dw-0124gls-42w/JY-DW-0124GLS-3x14W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 42,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1440LM (3000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "double-spotlight",
+              "Brand": "balcom",
+              "price": 1169,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "strip": [
+          {
+            "product-jy-5050-12v-3000k": {
+              "ProductId": "product-jy-5050-12v-3000k",
+              "productName": "Product-JY-5050-12v-3000k",
+              "productImages": [
+                "/indoor/strip/jy-5050-12v-3000k/JY-5050-12V-3000K (1).png",
+                "/indoor/strip/jy-5050-12v-3000k/JY-5050-12V-3000K (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "590LM/M",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "strip",
+              "Brand": "balcom",
+              "price": 845,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-5050-12v-6500k": {
+              "ProductId": "product-jy-5050-12v-6500k",
+              "productName": "Product-JY-5050-12v-6500k",
+              "productImages": [
+                "/indoor/strip/jy-5050-12v-6500k/JY-5050-60-12v-6500K (1).png",
+                "/indoor/strip/jy-5050-12v-6500k/JY-5050-60-12v-6500K (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "620LM/M",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "strip",
+              "Brand": "balcom",
+              "price": 845,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "linear": [
+          {
+            "product-jy-pdt-0140030ln30-15w": {
+              "ProductId": "product-jy-pdt-0140030ln30-15w",
+              "productName": "Product-JY-pdt-0140030ln30-15w",
+              "productImages": [
+                "/indoor/linear/jy-pdt-0140030ln30-7w/JY-PDT-0140030LN30-7W(1).png",
+                "/indoor/linear/jy-pdt-0140030ln30-7w/JY-PDT-0140030LN30-7W(2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 15,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1350 LM ",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 1235,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-pdt-0140030ln30-30w": {
+              "ProductId": "product-jy-pdt-0140030ln30-30w",
+              "productName": "Product-JY-pdt-0140030ln30-30w",
+              "productImages": [
+                "/indoor/linear/jy-pdt-0140030ln30-7w/JY-PDT-0140030LN30-7W(1).png",
+                "/indoor/linear/jy-pdt-0140030ln30-7w/JY-PDT-0140030LN30-7W(2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 30,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2700LM ",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 1429,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnrd-001b-32w": {
+              "ProductId": "product-jy-lnrd-001b-32w",
+              "productName": "Product-JY-LNRD-001B-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnrd-001b-32w/JY-LNRD-001B-32W (1).png",
+                "/indoor/linear/jy-lnrd-001b-32w/JY-LNRD-001B-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "3250LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnrd-001s-32w": {
+              "ProductId": "product-jy-lnrd-001s-32w",
+              "productName": "Product-JY-LNRD-001S-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnrd-001s-32w/JY-LNRD-001S-32W (1).png",
+                "/indoor/linear/jy-lnrd-001s-32w/JY-LNRD-001S-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2400LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnsd-005b-32w": {
+              "ProductId": "product-jy-lnsd-005b-32w",
+              "productName": "Product-JY-LNSD-005B-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnsd-005b-32w/JY-LNSD-005B-32W (1).png",
+                "/indoor/linear/jy-lnsd-005b-32w/JY-LNSD-005B-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2850LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnsd-005s-32w": {
+              "ProductId": "product-jy-lnsd-005s-32w",
+              "productName": "Product-JY-LNSD-005s-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnsd-005s-32w/JY-LNSD-005S-32W (1).png",
+                "/indoor/linear/jy-lnsd-005s-32w/JY-LNSD-005S-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2300LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnsd-007-32w": {
+              "ProductId": "product-jy-lnsd-007-32w",
+              "productName": "Product-JY-LNSD-007-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnsd-007-32w/JY-LNSD-007-32W (1).png",
+                "/indoor/linear/jy-lnsd-007-32w/JY-LNSD-007-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "3000LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnsd-008-32w": {
+              "ProductId": "product-jy-lnsd-008-32w",
+              "productName": "Product-JY-LNRD-008-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnsd-008-32w/JY-LNSD-008-32W (1).png",
+                "/indoor/linear/jy-lnsd-008-32w/JY-LNSD-008-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "3050LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnsd-009-32w": {
+              "ProductId": "product-jy-lnsd-009-32w",
+              "productName": "Product-JY-LNSD-009-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnsd-009-32w/JY-LNSD-009-32W (1).png",
+                "/indoor/linear/jy-lnsd-009-32w/JY-LNSD-009-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2500LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnsd-011-32w": {
+              "ProductId": "product-jy-lnsd-011-32w",
+              "productName": "Product-JY-LNSD-011-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnsd-011-32w/JY-LNSD-011-32W (1).png",
+                "/indoor/linear/jy-lnsd-011-32w/JY-LNSD-011-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2000LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-lnsd-012-32w": {
+              "ProductId": "product-jy-lnsd-012-32w",
+              "productName": "Product-JY-LNSD-012-32W",
+              "productImages": [
+                "/indoor/linear/jy-lnsd-012-32w/JY-LNSD-012-32W (1).png",
+                "/indoor/linear/jy-lnsd-012-32w/JY-LNSD-012-32W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 32,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "2500LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 20,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 65,
+              "spotlightType": "linear",
+              "Brand": "balcom",
+              "price": 3999,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ]
+      },
+      "outdoor": {
+        "uplight": [
+          {
+            "product-jy-un-002-24w": {
+              "ProductId": "product-jy-un-002-24w",
+              "productName": "Product-JY-UN-002-24W",
+              "productImages": [
+                "/outdoor/uplight/JY-UN-002-24W/JY-UN-002-24W (1).png",
+                "/outdoor/uplight/JY-UN-002-24W/JY-UN-002-24W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 24,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "1760LM (3000k) / 1800LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "uplight",
+              "Brand": "balcom",
+              "price": 3599,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-un-001-7w": {
+              "ProductId": "product-jy-un-001-7w",
+              "productName": "Product-JY-UN-001-7W",
+              "productImages": [
+                "/outdoor/uplight/JY-UN-001-7W/JY-UN-001-7W (1).png",
+                "/outdoor/uplight/JY-UN-001-7W/JY-UN-001-7W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 7,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "590LM (3000k) / 630LM (6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "uplight",
+              "Brand": "balcom",
+              "price": 1999,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-un-007-3w": {
+              "ProductId": "product-jy-un-007-3w",
+              "productName": "Product-JY-UN-007-3W",
+              "productImages": [
+                "/outdoor/uplight/JY-UN-007-3W/JY-UN-007-3W (1).png",
+                "/outdoor/uplight/JY-UN-007-3W/JY-UN-007-3W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 3,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "5000LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "uplight",
+              "Brand": "balcom",
+              "price": 1299,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-un-008-3w": {
+              "ProductId": "product-jy-un-008-3w",
+              "productName": "Product-JY-UN-008-3W",
+              "productImages": [
+                "/outdoor/uplight/JY-UN-008-3W/JY-UN-008-3W (1).png",
+                "/outdoor/uplight/JY-UN-008-3W/JY-UN-008-3W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 3,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "5000LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "uplight",
+              "Brand": "balcom",
+              "price": 1299,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-un-009-3w": {
+              "ProductId": "product-jy-un-009-3w",
+              "productName": "Product-JY-UN-009-3W",
+              "productImages": [
+                "/outdoor/uplight/JY-UN-009-3W/JY-UN-009-3W (1).png",
+                "/outdoor/uplight/JY-UN-009-3W/JY-UN-009-3W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 3,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "5000LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "uplight",
+              "Brand": "balcom",
+              "price": 1299,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "spikes": [
+          {
+            "product-jy-316-5w": {
+              "ProductId": "product-jy-316-5w",
+              "productName": "Product-JY-316-5W",
+              "productImages": ["/outdoor/spikes/JY-316-5W/JY-316-5W.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 5,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "330LM",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "spikes",
+              "Brand": "balcom",
+              "price": 715,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-317-5w": {
+              "ProductId": "product-jy-317-5w",
+              "productName": "Product-JY-317-5W",
+              "productImages": ["/outdoor/spikes/JY-317-5W/JY-317-5W.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 5,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "330LM",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "spikes",
+              "Brand": "balcom",
+              "price": 715,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "flood-light": [
+          {
+            "product-jy-5053-100w": {
+              "ProductId": "product-jy-5053-100w",
+              "productName": "Product-JY-5053-100W",
+              "productImages": [
+                "/outdoor/floodlight/JY-5053-100W/JY-5053-100W (1).png",
+                "/outdoor/floodlight/JY-5053-100W/JY-5053-100W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 100,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "9000LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "90°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "flood-light",
+              "Brand": "balcom",
+              "price": 2635,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-5053-150w": {
+              "ProductId": "product-jy-5053-150w",
+              "productName": "Product-JY-5053-150W",
+              "productImages": [
+                "/outdoor/floodlight/JY-5053-150W/JY-5053-150W (1).png",
+                "/outdoor/floodlight/JY-5053-150W/JY-5053-150W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 150,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "14600LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "90°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "flood-light",
+              "Brand": "balcom",
+              "price": 4099,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "product-jy-5053-200w": {
+              "ProductId": "product-jy-5053-200w",
+              "productName": "Product-JY-5053-200W",
+              "productImages": [
+                "/outdoor/floodlight/JY-5053-200W/JY-5053-200W (1).png",
+                "/outdoor/floodlight/JY-5053-200W/JY-5053-200W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 200,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "14600LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "90°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "flood-light",
+              "Brand": "balcom",
+              "price": 4874,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "bollard": [
+          {
+            "product-jy-bo-001-650mm-8w": {
+              "ProductId": "product-jy-bo-001-650mm-8w",
+              "productName": "Product-JY-BO-001-650MM-8W",
+              "productImages": [
+                "/outdoor/Bollard/JY-BO-001-650MM-8W/JY-BO-001-650MM-8W (1).png",
+                "/outdoor/Bollard/JY-BO-001-650MM-8W/JY-BO-001-650MM-8W (2).png"
+              ],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 8,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "340LM (3000k / 4000k / 6500k)",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "53°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom internal Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "bollard",
+              "Brand": "balcom",
+              "price": 3699,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ],
+        "wall-washer": [
+          {
+            "product-jy-309-36w": {
+              "ProductId": "product-jy-309-36w",
+              "productName": "Product-JY-309-36W",
+              "productImages": ["/outdoor/wall-washer/JY-309-36W.png"],
+              "specificationsTable": {
+                "Input": "(Optional) DC24V",
+                "Maximum wattage": 36,
+                "Brand Of Led": "Epistar",
+                "Luminous Flux": "3600 LM",
+                "Main Material": "Die-Casting Aluminum",
+                "CRI": "≥ 80",
+                "Beam Angle": "20°",
+                "Working Temperature": "-10° to 45° C",
+                "Fixture Dimmable": "No",
+                "Electrical": "balcom External Driver",
+                "Power Factor": "≥0.5",
+                "Color Temperature": "3000K",
+                "IP": 65,
+                "Energy Saving": "90%",
+                "Life Time": "50,000"
+              },
+              "MaxIP": 68,
+              "spotlightType": "wall-washer",
+              "Brand": "balcom",
+              "price": 4745,
+              "sectionType": "outdoor",
+              "quantity": 10,
+              "discount": 0.1
+            }
+          }
+        ]
+      }
+    },
+    "mister-led": {
+      "chandelier": {
+        "MC15C": [
+          {
+            "product-MC15C001": {
+              "ProductId": "product-MC15C001",
+              "productName": "Product-MC15C001",
+              "productImages": ["/chandelier/MC15C/MC15C001.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 27,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC15C",
+              "Brand": "mister-led",
+              "ChandelierLightingType": "LED",
+              "price": 4649,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC15F": [
+          {
+            "product-MC15F001": {
+              "ProductId": "product-MC15F001",
+              "productName": "product-MC15F001",
+              "productImages": ["/chandelier/MC15F/MC15F001.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 27,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC15CF",
+              "Brand": "mister-led",
+              "ChandelierLightingType": "LED",
+              "price": 4734,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC15G": [
+          {
+            "product-MC15G001": {
+              "ProductId": "product-MC15G001",
+              "productName": "product-MC15G001",
+              "productImages": ["/chandelier/MC15G/MC15G001.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 0,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC15G",
+              "Brand": "mister-led",
+              "Hnumber": 1,
+              "ChandelierLightingType": "lamp",
+              "price": 3379,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC15P": [
+          {
+            "product-MC15P400": {
+              "ProductId": "product-MC15P400",
+              "productName": "product-MC15P400",
+              "productImages": ["/chandelier/MC15P/MC15P400.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 0,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC15P",
+              "Brand": "mister-led",
+              "Hnumber": 1,
+              "ChandelierLightingType": "lamp",
+              "price": 1305,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC15E": [
+          {
+            "product-MC15E004": {
+              "ProductId": "product-MC15E004",
+              "productName": "product-MC15E004",
+              "productImages": ["/chandelier/MC15E/MC15E004.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 0,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC15E",
+              "Brand": "mister-led",
+              "ChandelierLightingType": "lamp",
+              "price": 7099,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "Hnumber": 1,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC1608": [
+          {
+            "product-MC1608-H6": {
+              "ProductId": "product-MC1608-H6",
+              "productName": "product-MC1608-H6",
+              "productImages": ["/chandelier/MC1608/MC1608-H6.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 0,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC1608",
+              "Brand": "mister-led",
+              "Hnumber": 6,
+              "ChandelierLightingType": "lamp",
+              "price": 5746,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC1608-W1": {
+              "ProductId": "product-MC1608-W1",
+              "productName": "product-MC1608-W1",
+              "productImages": ["/chandelier/MC1608/MC1608-W1.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC1608",
+              "Brand": "mister-led",
+              "Hnumber": 1,
+              "ChandelierLightingType": "lamp",
+              "price": 676,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6014": [
+          {
+            "product-MC6014-H3": {
+              "ProductId": "product-MC6014-H3",
+              "productName": "Product-MC6014-H3",
+              "productImages": ["/chandelier/MC6014/MC6014-H3.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6014",
+              "Hnumber": 3,
+              "ChandelierLightingType": "lamp",
+              "price": 3549,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6014-H5": {
+              "ProductId": "product-MC6014-H5",
+              "productName": "Product-MC6014-H5",
+              "productImages": ["/chandelier/MC6014/MC6014-H5.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6014",
+              "ChandelierLightingType": "lamp",
+              "price": 5069,
+              "Hnumber": 5,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6015": [
+          {
+            "product-MC6015-H3": {
+              "ProductId": "product-MC6015-H3",
+              "productName": "Product-MC6015-H3",
+              "productImages": ["/chandelier/MC6015/MC6015-H3.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6015",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 3,
+              "price": 3219,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6015-H5": {
+              "ProductId": "product-MC6015-H5",
+              "productName": "Product-MC6015-H5",
+              "productImages": ["/chandelier/MC6015/MC6015-H5.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6015",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 4819,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6015-H6": {
+              "ProductId": "product-MC6015-H6",
+              "productName": "Product-MC6015-H6",
+              "productImages": ["/chandelier/MC6015/MC6015-H6.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6015",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 6,
+              "price": 5915,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6015-W1": {
+              "ProductId": "product-MC6015-W1",
+              "productName": "Product-MC6015-W1",
+              "productImages": ["/chandelier/MC6015/MC6015-W1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6015",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 845,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6031": [
+          {
+            "product-MC6031-H3": {
+              "ProductId": "product-MC6031-H3",
+              "productName": "Product-MC6031-H3",
+              "productImages": ["/chandelier/MC6031/MC6031-H3.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6031",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 3,
+              "price": 2875,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6031-H3D": {
+              "ProductId": "product-MC6031-H3D",
+              "productName": "Product-MC6031-H3D",
+              "productImages": ["/chandelier/MC6031/MC6031-H3D.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6031",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 3,
+              "price": 2875,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6031-H5": {
+              "ProductId": "product-MC6031-H5",
+              "productName": "Product-MC6031-H5",
+              "productImages": ["/chandelier/MC6031/MC6031-H5.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6031",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 4565,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6031-H5D": {
+              "ProductId": "product-MC6031-H5D",
+              "productName": "Product-MC6031-H5D",
+              "productImages": ["/chandelier/MC6031/MC6031-H5D.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6031",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 4565,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6031-S2": {
+              "ProductId": "product-MC6031-S2",
+              "productName": "Product-MC6031-S2",
+              "productImages": ["/chandelier/MC6031/MC6031-S2.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6031",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 2709,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6038": [
+          {
+            "product-MC6038-P1": {
+              "ProductId": "product-MC6038-P1",
+              "productName": "Product-MC6038-P1",
+              "productImages": ["/chandelier/MC6038/MC6038-P1.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6038",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 4479,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6041": [
+          {
+            "product-MC6041-W1": {
+              "ProductId": "product-MC6041-W1",
+              "productName": "Product-MC6041-W1",
+              "productImages": ["/chandelier/MC6041/MC6041-W1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6041",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 1019,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6041-P6": {
+              "ProductId": "product-MC6041-P6",
+              "productName": "Product-MC6041-P6",
+              "productImages": ["/chandelier/MC6041/MC6041-P6.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6041",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 6,
+              "price": 5409,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6041-P8": {
+              "ProductId": "product-MC6041-P8",
+              "productName": "Product-MC6041-P8",
+              "productImages": ["/chandelier/MC6041/MC6041-P8.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6041",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 8,
+              "price": 6595,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6051": [
+          {
+            "product-MC6051-1": {
+              "ProductId": "product-MC6051-1",
+              "productName": "Product-MC6051-1",
+              "productImages": ["/chandelier/MC6051/MC6051-1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 50,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "LED",
+              "price": 6425,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6051-3": {
+              "ProductId": "product-MC6051-3",
+              "productName": "Product-MC6051-3",
+              "productImages": ["/chandelier/MC6051/MC6051-3.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 50,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "LED",
+              "price": 7269,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6051-4": {
+              "ProductId": "product-MC6051-4",
+              "productName": "Product-MC6051-4",
+              "productImages": ["/chandelier/MC6051/MC6051-4.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 50,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "LED",
+              "price": 8789,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6051-t8": {
+              "ProductId": "product-MC6051-t8",
+              "productName": "Product-MC6051-t8",
+              "productImages": ["/chandelier/MC6051/MC6051-T8.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 8.5,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "LED",
+              "price": 3215,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6051-p3": {
+              "ProductId": "product-MC6051-p3",
+              "productName": "Product-MC6051-p3",
+              "productImages": ["/chandelier/MC6051/MC6051-P3.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 3,
+              "price": 4395,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6051-p4": {
+              "ProductId": "product-MC6051-p4",
+              "productName": "Product-MC6051-p4",
+              "productImages": ["/chandelier/MC6051/MC6051-P4.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 4,
+              "price": 5069,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6051-p1": {
+              "ProductId": "product-MC6051-p1",
+              "productName": "Product-MC6051-p1",
+              "productImages": ["/chandelier/MC6051/MC6051-P1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 1525,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6051-w1": {
+              "ProductId": "product-MC6051-w1",
+              "productName": "Product-MC6051-w1",
+              "productImages": ["/chandelier/MC6051/MC6051-W1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6051",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 1609,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6091": [
+          {
+            "product-MC6091-H3": {
+              "ProductId": "product-MC6091-H3",
+              "productName": "Product-MC6091-H3",
+              "productImages": ["/chandelier/MC6091/MC6091-H3.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6091",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 3,
+              "price": 2705,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6091-H5": {
+              "ProductId": "product-MC6091-H5",
+              "productName": "Product-MC6091-H5",
+              "productImages": ["/chandelier/MC6091/MC6091-H5.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6091",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 3889,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6091-H8": {
+              "ProductId": "product-MC6091-H8",
+              "productName": "Product-MC6091-H8",
+              "productImages": ["/chandelier/MC6091/MC6091-H8.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6091",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 8,
+              "price": 5409,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6091-W1": {
+              "ProductId": "product-MC6091-W1",
+              "productName": "Product-MC6091-W1",
+              "productImages": ["/chandelier/MC6091/MC6091-W1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6091",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 845,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6094": [
+          {
+            "product-MC6094-P1": {
+              "ProductId": "product-MC6094-P1",
+              "productName": "Product-MC6094-P1",
+              "productImages": ["/chandelier/MC6094/MC6094-P1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6094",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 1355,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC6097": [
+          {
+            "product-MC6097-H3": {
+              "ProductId": "product-MC6097-H3",
+              "productName": "Product-MC6097-H3",
+              "productImages": ["/chandelier/MC6097/MC6097-H3.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6097",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 3,
+              "price": 2535,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC6097-W1": {
+              "ProductId": "product-MC6097-W1",
+              "productName": "Product-MC6097-W1",
+              "productImages": ["/chandelier/MC6097/MC6097-W1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC6097",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 679,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC7021": [
+          {
+            "product-MC7021-H4": {
+              "ProductId": "product-MC7021-H4",
+              "productName": "Product-MC7021-H4",
+              "productImages": ["/chandelier/MC7021/MC7021-H4.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7021",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 4,
+              "price": 3211,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC7021-H8": {
+              "ProductId": "product-MC7021-H8",
+              "productName": "Product-MC7021-H8",
+              "productImages": ["/chandelier/MC7021/MC7021-H8.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7021",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 8,
+              "price": 6255,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC7023": [
+          {
+            "product-MC7023-P5": {
+              "ProductId": "product-MC7023-P5",
+              "productName": "Product-MC7023-P5",
+              "productImages": ["/chandelier/MC7023/MC7023-P5.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7023",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 5409,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC7091": [
+          {
+            "product-MC7091-Rod": {
+              "ProductId": "product-MC7091-Rod",
+              "productName": "Product-MC7091-Rod",
+              "productImages": ["/chandelier/MC7091/MC7091-Rod.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7091",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 1690,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC7091-S4": {
+              "ProductId": "product-MC7091-S4",
+              "productName": "Product-MC7091-S4",
+              "productImages": ["/chandelier/MC7091/MC7091-S4.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7091",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 4,
+              "price": 3379,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC7104": [
+          {
+            "product-MC7104-2": {
+              "ProductId": "product-MC7104-2",
+              "productName": "Product-MC7104-2",
+              "productImages": ["/chandelier/MC7104/MC7104-2.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7104",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 4,
+              "price": 4735,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-MC7104-1": {
+              "ProductId": "product-MC7104-1",
+              "productName": "Product-MC7104-1",
+              "productImages": ["/chandelier/MC7104/MC7104-1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 0,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7104",
+              "ChandelierLightingType": "LED",
+              "price": 5239,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC7105": [
+          {
+            "product-MC7105-C1": {
+              "ProductId": "product-MC7105-C1",
+              "productName": "Product-MC7105-C1",
+              "productImages": ["/chandelier/MC7105/MC7105-C1.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 0,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC7105",
+              "ChandelierLightingType": "LED",
+              "price": 6679,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "OH0109": [
+          {
+            "product-OH0109-H4": {
+              "ProductId": "product-OH0109-H4",
+              "productName": "Product-OH0109-H4",
+              "productImages": ["/chandelier/OH0109/OH0109-H4.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH0109",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 4,
+              "price": 3215,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "OH1109": [
+          {
+            "product-OH1109-H5": {
+              "ProductId": "product-OH1109-H5",
+              "productName": "Product-OH1109-H5",
+              "productImages": ["/chandelier/OH1109/OH1109-H5.png"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1109",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 7605,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "OH1203": [
+          {
+            "product-OH1203-H5": {
+              "ProductId": "product-OH1203-H5",
+              "productName": "Product-OH1203-H5",
+              "productImages": ["/chandelier/OH1203/OH1203-H5.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1203",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 3549,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-OH1203-W1": {
+              "ProductId": "product-OH1203-W1",
+              "productName": "Product-OH1203-W1",
+              "productImages": ["/chandelier/OH1203/OH1203-W1.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1203",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 845,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "OH1207": [
+          {
+            "product-OH1207-W1": {
+              "ProductId": "product-OH1207-W1",
+              "productName": "Product-OH1207-W1",
+              "productImages": ["/chandelier/OH1207/OH1207-W1.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1207",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 1,
+              "price": 1099,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-OH1207-S2": {
+              "ProductId": "product-OH1207-S2",
+              "productName": "Product-OH1207-S2",
+              "productImages": ["/chandelier/OH1207/OH1207-S2.jpeg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1207",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 2,
+              "price": 1319,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "OH1209": [
+          {
+            "product-OH1209-H5": {
+              "ProductId": "product-OH1209-H5",
+              "productName": "Product-OH1209-H5",
+              "productImages": ["/chandelier/OH1209/OH1209-H5.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1209",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 5,
+              "price": 4989,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            },
+            "product-OH1209-H9": {
+              "ProductId": "product-OH1209-H9",
+              "productName": "Product-OH1209-H9",
+              "productImages": ["/chandelier/OH1209/OH1209-H9.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1209",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 9,
+              "price": 7775,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "OH1309": [
+          {
+            "product-OH1309-H6": {
+              "ProductId": "product-OH1309-H6",
+              "productName": "Product-OH1309-H6",
+              "productImages": ["/chandelier/OH1309/OH1309-H6.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "OH1309",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 6,
+              "price": 3549,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "OH1601": [
+          {
+            "product-OH1601-H6": {
+              "ProductId": "product-OH1601-H6",
+              "productName": "Product-OH1601-H6",
+              "productImages": ["/chandelier/OH1601/OH1601-H6.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": "",
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000",
+                "Hnumber": 6
+              },
+              "spotlightType": "OH1601",
+              "ChandelierLightingType": "lamp",
+              "Hnumber": 6,
+              "price": 4989,
+              "sectionType": "chandelier",
+              "Brand": "mister-led",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ],
+        "MC15W": [
+          {
+            "product-MC15W009": {
+              "ProductId": "product-MC15W009",
+              "productName": "product-MC15W009",
+              "productImages": ["/chandelier/MC15W/MC15W009.jpg"],
+              "specificationsTable": {
+                "Input": "AC 85-265v ~ 50/60 Hz",
+                "Maximum wattage": 0,
+                "Main Material": "Aluminum Shade + Glass",
+                "Finished": "Brushed Nickel",
+                "Color Temperature": "3000K / 4000K / 6500K",
+                "Lamp Base": "E27",
+                "BULB": "No",
+                "Life Time": "50,000"
+              },
+              "spotlightType": "MC15W",
+              "Brand": "mister-led",
+              "ChandelierLightingType": "LED",
+              "price": 1525,
+              "sectionType": "chandelier",
+              "quantity": 10,
+              "discount": 0.2
+            }
+          }
+        ]
+      }
+    }
+  }
+}

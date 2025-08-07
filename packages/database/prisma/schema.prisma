@@ -1,0 +1,215 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Configuration {
+    id                String      @id @default(cuid())
+    ProductId         String
+    configPrice       Float
+    priceIncrease     Float
+    shippingPrice     Float
+    discount          Float
+    quantity          Int
+    lampPriceIncrease Float?
+    totalPrice        Float
+    productIp         ProductIP?
+    updatedAt         DateTime    @updatedAt
+    orders            Order[]     @relation("ConfigurationToOrder")
+    users             User[]      @relation("ConfigurationToUser")
+    orderItems        OrderItem[]
+}
+
+model User {
+    id                String           @id
+    email             String?
+    phoneNumber       String?
+    createdAt         DateTime         @default(now())
+    updatedAt         DateTime         @updatedAt
+    orders            Order[]
+    configurationId   String?
+    productId         String?
+    shippingAddressId String?          @unique
+    configuration     Configuration?   @relation("ConfigurationToUser", fields: [configurationId], references: [id])
+    product           Product?         @relation(fields: [productId], references: [id])
+    shippingAddress   ShippingAddress?
+    cart              Cart?
+}
+
+model OrderItem {
+    id              String         @id @default(cuid())
+    orderId         Int
+    productId       String
+    quantity        Int
+    configPrice     Float
+    configurationId String?
+    order           Order          @relation(fields: [orderId], references: [id])
+    product         Product        @relation(fields: [productId], references: [id])
+    configuration   Configuration? @relation(fields: [configurationId], references: [id])
+}
+
+model Order {
+    id                     Int              @id @default(autoincrement())
+    userId                 String
+    productId              String
+    productName            String
+    productImages          String[]
+    productColorTemp       String
+    productIp              String
+    productChandLamp       String
+    orderItems             OrderItem[]
+    quantity               Int
+    isCompleted            Boolean          @default(false)
+    status                 OrderStatus      @default(awaiting_shipment)
+    createdAt              DateTime         @default(now())
+    updatedAt              DateTime         @updatedAt
+    productPrice           Float
+    discountedPrice        Float?
+    discountApplied        Boolean          @default(false)
+    discountRate           Float?
+    totalPrice             Float
+    configPrice            Float
+    priceIncrease          Float?
+    Brand                  String?
+    ChandelierLightingType String?
+    shippingPrice          Float
+    product                Product          @relation(fields: [productId], references: [id])
+    shippingAddress        ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
+    shippingAddressId      String?
+    user                   User             @relation(fields: [userId], references: [id])
+    OrderTimeReceived      DateTime?
+    configurationId        String?
+    configuration          Configuration?   @relation("ConfigurationToOrder", fields: [configurationId], references: [id])
+}
+
+model ShippingAddress {
+    id          String  @id @default(cuid())
+    userId      String  @unique
+    fullName    String
+    address     String
+    city        String
+    state       String
+    zipCode     String
+    country     String
+    phoneNumber String
+    orders      Order[]
+    user        User    @relation(fields: [userId], references: [id])
+}
+
+model Cart {
+    id        String     @id @default(cuid())
+    userId    String     @unique
+    user      User       @relation(fields: [userId], references: [id])
+    items     CartItem[]
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+    id        String   @id @default(cuid())
+    cartId    String
+    cart      Cart     @relation(fields: [cartId], references: [id])
+    productId String
+    product   Product  @relation(fields: [productId], references: [id])
+    quantity  Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@unique([cartId, productId])
+}
+
+model Product {
+    id                     String            @id @default(cuid())
+    productId              String            @unique
+    productName            String
+    productImages          String[]
+    input                  String?
+    maximumWattage         Int?
+    brandOfLed             String?
+    luminousFlux           String?
+    mainMaterial           String?
+    cri                    String?
+    beamAngle              String?
+    workingTemperature     String?
+    fixtureDimmable        String?
+    electrical             String?
+    powerFactor            String?
+    colorTemperature       String?
+    ip                     Int?
+    energySaving           String?
+    lifeTime               String?
+    maxIP                  Int?
+    spotlightType          String
+    price                  Float
+    priceIncrease          Float?
+    sectionType            String
+    createdAt              DateTime          @default(now())
+    updatedAt              DateTime          @updatedAt
+    quantity               Int
+    Brand                  String
+    cartItems              CartItem[]
+    orders                 Order[]
+    orderItems             OrderItem[]
+    users                  User[]
+    discount               Float
+    finish                 String?
+    lampBase               String?
+    bulb                   String?
+    ChandelierLightingType String?
+    hNumber                Int?
+    category               Category          @relation(fields: [categoryId], references: [id])
+    categoryId             String
+    lightingtype           LightingType      @relation(fields: [lightingtypeId], references: [id])
+    lightingtypeId         String
+    productColor           ProductColorTemp? @default(warm)
+    productIp              ProductIP?        @default(IP20)
+    productChandLamp       ProductChandLamp? @default(lamp9w)
+}
+
+enum ProductColorTemp {
+    warm
+    cool
+    white
+}
+
+enum ProductIP {
+    IP20
+    IP44
+    IP54
+    IP65
+    IP68
+}
+
+enum ProductChandLamp {
+    lamp9w
+    lamp12w
+}
+
+model Category {
+    id        String    @id @default(cuid())
+    name      String    @unique
+    createdAt DateTime  @default(now())
+    products  Product[]
+}
+
+model LightingType {
+    id       String    @id @default(cuid())
+    name     String    @unique
+    products Product[]
+}
+
+enum OrderOption {
+    BasicShipping
+    StandardShipping
+}
+
+enum OrderStatus {
+    awaiting_shipment
+    processing
+    fulfilled
+    cancelled
+}
