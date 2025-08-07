@@ -160,7 +160,7 @@ export default function ProductClientComponent({
       <div className="py-8 md:py-16">
         <Container>
           <div className="space-y-12">
-            <div className="flex items-start gap-8">
+            <div className="flex items-start flex-col md:flex-row gap-8">
               <ProductImages productImages={product.productImages} />
               <ProductMainInfo
                 productName={product.productName}
@@ -196,7 +196,6 @@ export default function ProductClientComponent({
                 ip={product.ip || 20}
               />
             </div>
-
             <div className="space-y-12">
               <ProductSpecifications
                 specificationsTable={specificationsTable}

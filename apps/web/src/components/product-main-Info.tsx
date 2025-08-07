@@ -282,7 +282,7 @@ const ProductMainInfo: React.FC<ProductMainInfoProps> = ({
   ])
 
   return (
-    <div className="ml-7">
+    <div className="md:ml-7 ml-0">
       <div className="space-y-4">
         <h1 className="text-2xl lg:text-3xl font-bold uppercase tracking-tight">{productName}</h1>
         <p className="text-muted-foreground text-sm md:text-base lg:text-lg leading-relaxed">
@@ -368,7 +368,7 @@ const ProductMainInfo: React.FC<ProductMainInfoProps> = ({
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-neutral-900 border-t shadow-lg p-4 md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6">
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-neutral-900 border-t shadow-lg px-6 lg:px-8 py-4 md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6">
         <div className="flex items-center gap-4 max-w-md mx-auto md:max-w-none">
           <div className="flex items-center border rounded-lg">
             <Button
@@ -390,14 +390,16 @@ const ProductMainInfo: React.FC<ProductMainInfoProps> = ({
             <AddToCardIcon Fill="currentColor" width={20} height={20} className="ml-2" />
           </Button>
         </div>
-        <Button
-          disabled={isClicked}
-          variant="outline"
-          onClick={handleOrderNow}
-          className="w-full mt-3 h-12 bg-transparent text-base"
-        >
-          {isClicked ? "Processing Order..." : "Order Now"}
-        </Button>
+        <div className="flex items-center gap-4 max-w-md mx-auto md:max-w-none">
+          <Button
+            disabled={isClicked}
+            variant="outline"
+            onClick={handleOrderNow}
+            className="w-full mt-3 h-12 bg-transparent text-base"
+          >
+            {isClicked ? "Processing Order..." : "Order Now"}
+          </Button>
+        </div>
       </div>
       <div className="mt-8 mb-20 md:mb-0">
         <h2 className="text-xl font-semibold mb-4">Description</h2>
