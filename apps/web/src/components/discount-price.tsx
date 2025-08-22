@@ -14,10 +14,10 @@ interface DiscountPriceProps {
 export default function DiscountPrice({ price, discount, quantity = 1, shippingPrice = 0 }: DiscountPriceProps) {
   const locale = useLocale()
 
-  const priceIncreasing = Math.ceil(price)
-  const discountedPrice = Math.ceil(priceIncreasing * (1 - discount))
-
-  const formattedPrice = formatNumberWithConversion(discountedPrice * quantity + shippingPrice, locale)
+  const priceIncreasing = price
+  const discountedPrice = priceIncreasing * (1 - discount)
+  const finalPrice = discountedPrice * quantity + shippingPrice
+  const formattedPrice = formatNumberWithConversion(Math.ceil(finalPrice), locale)
 
   return (
     <div>

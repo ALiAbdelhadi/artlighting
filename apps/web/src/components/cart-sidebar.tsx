@@ -1,18 +1,18 @@
 "use client"
 
+import { QuantitySelector } from "@/components/quantity-selector"
 import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { SignUpButton, useAuth } from "@clerk/nextjs"
 import { Button } from "@repo/ui/button"
-import { Loader2, ShoppingBag, ShoppingCartIcon, Trash2 } from "lucide-react"
+import { Loader2, ShoppingBag, ShoppingCartIcon, Trash2, XIcon } from "lucide-react"
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import DiscountPrice from "./discount-price"
 import NormalPrice from "./normal-price"
-import { QuantitySelector } from "@/components/quantity-selector"
-import { useTranslations } from "next-intl"
 
 interface CartItem {
   id: string
@@ -29,7 +29,7 @@ interface CartItem {
 }
 
 export function CartSidebar() {
-  const  t  = useTranslations('cart') 
+  const t = useTranslations('cart')
   const [isOpen, setIsOpen] = useState(false)
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [isLoading, setIsLoading] = useState(false)
@@ -157,6 +157,13 @@ export function CartSidebar() {
         </Button>
       </SheetTrigger>
       <SheetContent className="flex flex-col w-full sm:max-w-lg z-50">
+        <SheetClose asChild className="cursor-pointer">
+          <button
+            className="absolute left-3 top-4 rounded-full p-1.5 hover:bg-muted transition"
+          >
+            <XIcon className="size-5" />
+          </button>
+        </SheetClose>
         <SheetHeader className="border-b pb-4">
           <SheetTitle className="flex items-center gap-2 text-xl font-bold">
             <ShoppingBag className="h-5 w-5" />

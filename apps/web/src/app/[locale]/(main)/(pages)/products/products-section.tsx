@@ -67,7 +67,7 @@ const ProductsSection = async ({ params }: ProductsSectionProps) => {
     "mc7091-rod",
     "mc7104-2",
     "mc7105-c1",
-    "oh0109-h4",
+    "oh0109-h5",
     "oh1109-h5",
     "oh1203-h5",
     "oh1207-s2",

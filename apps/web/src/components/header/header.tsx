@@ -19,6 +19,7 @@ import AuthSection from "./auth-section"
 import { AuthSectionWrapper } from "./auth-section-wrapper"
 import { SearchHeader } from "./search-header"
 import LanguageSwitcher from "../language-switcher"
+import { CartSidebar } from "../cart-sidebar"
 
 interface Project {
   ProjectId: string
@@ -197,7 +198,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
           </NavigationMenu>
           <div className="flex items-center gap-2 lg:hidden">
             <Sheet>
-              <SheetTrigger asChild className="p-4">
+              <SheetTrigger asChild >
                 <div className="flex items-center gap-2">
                   <LanguageSwitcher currentLocale={locale} />
                   <Button
@@ -233,7 +234,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                     <SheetClose asChild>
                       <Link
                         href="/about-us"
-                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
                         prefetch={false}
                       >
                         <UserIcon className="h-4 w-4" />
@@ -243,7 +244,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                     <SheetClose asChild>
                       <Link
                         href="/all-projects"
-                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
                         prefetch={false}
                       >
                         <BriefcaseIcon className="h-4 w-4" />
@@ -253,7 +254,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                     <SheetClose asChild>
                       <Link
                         href="/category"
-                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
                         prefetch={false}
                       >
                         <BoxIcon className="h-4 w-4" />
@@ -263,7 +264,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                     <SheetClose asChild>
                       <Link
                         href="/blog"
-                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
                         prefetch={false}
                       >
                         <NewspaperIcon className="h-4 w-4" />
@@ -273,13 +274,16 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                     <SheetClose asChild>
                       <Link
                         href="/contact-us"
-                        className="flex items-center gap-3 px-3 py-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3 p-3 text-sm font-medium rounded-md hover:bg-accent"
                         prefetch={false}
                       >
                         <MailIcon className="h-4 w-4" />
                         {t("contact-us")}
                       </Link>
                     </SheetClose>
+                    <div className="px-1.5 py-3">
+                      <CartSidebar />
+                    </div>
                   </nav>
                 </div>
               </SheetContent>

@@ -547,7 +547,7 @@
         "title": "Water Resistance (IP Rating)",
         "onlyAvailableRating": "Only available rating for this product",
         "maxIPInfo": "Maximum IP rating available: {{maxIP}}",
-        "priceIncrease": "Price increase: {{percent}}%",
+        "priceIncrease": "Price increase: {{percent}} EGP",
         "ratings": {
             "IP20": {
                 "label": "IP 20",

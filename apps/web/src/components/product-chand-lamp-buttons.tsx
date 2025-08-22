@@ -77,7 +77,7 @@ export default function ProductChandLampButtons({
             >
               {t(productLamp)}
               {priceIncrease > 0 && (
-                <span className="ml-2 font-normal text-sm opacity-70">
+                <span className="font-normal text-sm opacity-70">
                   {t("priceIncrease", { price: priceIncrease })} × {hNumber}
                 </span>
               )}

@@ -22,10 +22,10 @@ export default function AuthSection() {
   }
 
   return (
-    <div className="flex items-center gap-3 rtl:flex-row-reverse" suppressHydrationWarning>
+    <div className="flex items-center sm:gap-3 rtl:flex-row-reverse" suppressHydrationWarning>
       <DesktopAuth t={t} />
       <MobileAuth t={t} />
-      <CartSidebar />
+
     </div>
   )
 }
@@ -42,15 +42,17 @@ function AuthSkeleton() {
 
 function DesktopAuth({ t }: { t: any }) {
   return (
-    <div className="hidden lg:flex items-center rtl:flex-row-reverse">
-      <SignedOut>
-        <AuthDropdown t={t} />
-      </SignedOut>
-
-      <SignedIn>
-        <UserAvatar />
-      </SignedIn>
-    </div>
+    <>
+      <div className="hidden lg:flex items-center rtl:flex-row-reverse gap-3">
+        <SignedOut>
+          <AuthDropdown t={t} />
+        </SignedOut>
+        <SignedIn>
+          <UserAvatar />
+        </SignedIn>
+        <CartSidebar />
+      </div>
+    </>
   )
 }
 
@@ -60,7 +62,6 @@ function MobileAuth({ t }: { t: any }) {
       <SignedOut>
         <MobileAuthButtons t={t} />
       </SignedOut>
-
       <SignedIn>
         <UserAvatar isMobile />
       </SignedIn>
@@ -84,7 +85,6 @@ function AuthDropdown({ t }: { t: any }) {
           <ChevronDown className="w-4 h-4" />
         </Button>
       </DropdownMenuTrigger>
-
       <DropdownMenuContent
         align="end"
         className="w-48 shadow-lg border-border/50"
@@ -96,9 +96,7 @@ function AuthDropdown({ t }: { t: any }) {
             <span className="font-medium">{t("signIn")}</span>
           </DropdownMenuItem>
         </SignInButton>
-
         <DropdownMenuSeparator />
-
         <SignUpButton>
           <DropdownMenuItem className="cursor-pointer group hover:bg-accent/50 transition-colors">
             <UserPlus className="w-4 h-4 mr-2 group-hover:text-primary transition-colors rtl:mr-0 rtl:ml-2" />
@@ -123,7 +121,6 @@ function MobileAuthButtons({ t }: { t: any }) {
           {t("signIn")}
         </Button>
       </SignInButton>
-
       <SignUpButton>
         <Button
           size="sm"

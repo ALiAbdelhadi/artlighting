@@ -13,10 +13,9 @@ type ProductPrices = {
 export default function NormalPrice({ price, quantity = 1, shippingPrice = 0 }: ProductPrices) {
   const locale = useLocale()
 
-  const normalPrice = Math.ceil(price)
+  const normalPrice = price
   const PriceAfterTimesQuantity = normalPrice * quantity + shippingPrice
-
-  const formattedTotalPrice = formatNumberWithConversion(PriceAfterTimesQuantity, locale)
+  const formattedTotalPrice = formatNumberWithConversion(Math.ceil(PriceAfterTimesQuantity), locale)
 
   return (
     <div>

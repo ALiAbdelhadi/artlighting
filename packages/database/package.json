@@ -11,7 +11,8 @@
         "db:studio": "prisma studio",
         "db:seed": "tsx seed.ts",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-        "postinstall": "prisma generate"
+        "postinstall": "prisma generate",
+        "import:products": "tsx ./scripts/import-products.ts"
     },
     "dependencies": {
         "@prisma/client": "^6.14.0",

@@ -9,8 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "test": "echo \"No tests specified\" && exit 0",
-    "import:products": "tsx src/scripts/import-products.ts"
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.26.0",

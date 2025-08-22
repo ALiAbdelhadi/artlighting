@@ -36,10 +36,10 @@ const LoginModal = ({
         </button>
         <AlertDialogHeader>
           <div className="flex items-center">
-            <Lock className="mr-3 h-6 w-5 text-primary" />
+            <Lock className="mr-3 rtl:ml-3 h-5 w-5 text-primary" />
             <AlertDialogTitle className="text-xl">{t("loginRequired")}</AlertDialogTitle>
           </div>
-          <AlertDialogDescription className="text-left">
+          <AlertDialogDescription className="text-left rtl:text-right">
             {t("loginDescription")}
           </AlertDialogDescription>
         </AlertDialogHeader>

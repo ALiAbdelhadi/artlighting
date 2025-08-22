@@ -541,7 +541,7 @@ export default function ProductMainInfo({
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 z-10 bg-white dark:bg-neutral-900 border-t shadow-lg py-4 md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6">
+      <div className="fixed bottom-0 left-0 right-0 z-10 bg-white dark:bg-neutral-900 border-t shadow-lg px-4 md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6">
         <div className="flex flex-col gap-3 max-w-md mx-auto md:max-w-none md:p-0 p- ">
           <div className="flex items-center gap-4">
             <QuantitySelector
