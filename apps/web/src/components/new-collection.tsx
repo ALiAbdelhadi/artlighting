@@ -106,7 +106,7 @@ export function NewCollection() {
                 </p>
               </div>
             </Link>
-            <Link className="animate-box" href="/collection/hallo">
+            <Link className="animate-box" href="/collection/bollard">
               <div className="relative">
                 <Image
                   width={500}

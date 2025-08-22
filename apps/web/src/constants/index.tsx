@@ -26,9 +26,21 @@ export const exploreEftar = [
   },
 ];
 export const newCollectionProducts = [
-  { id: "track", name: "Track", image: "/new-collection/new-collection-1.jpg" },
-  { id: "hallo", name: "Hallo", image: "/new-collection/new-collection-2.jpg" },
-  { id: "spot", name: "Spot", image: "/new-collection/new-collection-3.jpg" },
+  {
+    id: "track",
+    nameKey: "collection.products.track",
+    image: "/new-collection/new-collection-1.jpg"
+  },
+  {
+    id: "bollard",
+    nameKey: "collection.products.bollard",
+    image: "/new-collection/new-collection-2.jpg"
+  },
+  {
+    id: "spot",
+    nameKey: "collection.products.spot",
+    image: "/new-collection/new-collection-3.jpg"
+  },
 ];
 
 export const brands = [

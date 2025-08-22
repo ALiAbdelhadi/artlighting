@@ -10,9 +10,9 @@ export default async function MainLayout({
     params,
 }: {
     children: React.ReactNode
-    params: Promise<{ locale: SupportedLanguage }> // 👈 مهم
+    params: Promise<{ locale: SupportedLanguage }> 
 }) {
-    const { locale } = await params  // 👈 لازم await
+    const { locale } = await params
 
     return (
         <>

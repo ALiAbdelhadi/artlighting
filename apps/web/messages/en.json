@@ -1038,5 +1038,15 @@
         "loginNote": "Don't worry! After logging in, you'll be redirected back to this page, and your progress will be saved.",
         "proceedToLogin": "Proceed to Login",
         "signUp": "Sign up"
+    },
+    "collection": {
+        "title": "New Collection",
+        "notFound": "Collection not found.",
+        "description": "This is the {name} collection. Add more details about the collection here.",
+        "products": {
+            "track": "Track",
+            "bollard": "Bollard",
+            "spot": "Spot"
+        }
     }
 }

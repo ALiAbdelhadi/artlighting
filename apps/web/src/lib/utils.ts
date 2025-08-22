@@ -1,3 +1,4 @@
+import { SupportedLanguage } from "@/types/products";
 import { ProductChandLamp } from "@repo/database";
 import { type ClassValue, clsx } from "clsx";
 import { addDays, format } from "date-fns";
@@ -12,12 +13,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function constructMetadata({
-  title = "Art Lighting Company - Professional lighting: Shop Spotlights, Light Poles, and LED Lights",
-  description = "Art Lighting Company: Elevate your spaces with exquisite Indoor and outdoor lighting solutions. Explore our curated selection of spotlights, light poles, LED fixtures, chandeliers, linear lighting, and bollards, meticulously crafted for enduring brilliance and energy efficiency. Experience the Art Lighting difference – exceptional illumination at exceptional value.",
+  title,
+  description,
   image = "/Logo.png",
   icons = "/favicon.ico",
   openGraph,
   twitter,
+  locale = "en",
 }: {
   title?: string;
   description?: string;
@@ -25,34 +27,60 @@ export function constructMetadata({
   icons?: string;
   openGraph?: Metadata["openGraph"];
   twitter?: Metadata["twitter"];
+  locale?: SupportedLanguage;
 } = {}): Metadata {
+  const defaultTitles: Record<SupportedLanguage, string> = {
+    en: "Art Lighting Company - Professional lighting: Shop Spotlights, Light Poles, and LED Lights",
+    ar: "شركة ارت لايتنج - حلول إضاءة احترافية: كشافات، أعمدة إنارة، ولمبات ليد",
+  };
+
+  const defaultDescriptions: Record<SupportedLanguage, string> = {
+    en:
+      "Art Lighting Company: Elevate your spaces with exquisite Indoor and outdoor lighting solutions. Explore our curated selection of spotlights, light poles, LED fixtures, chandeliers, linear lighting, and bollards, meticulously crafted for enduring brilliance and energy efficiency. Experience the Art Lighting difference – exceptional illumination at exceptional value.",
+    ar:
+      "شركة أرت لايتنج: ارتقِ بمساحاتك مع حلول الإضاءة الداخلية والخارجية الراقية. استكشف تشكيلتنا المختارة من الكشافات، أعمدة الإنارة، تجهيزات ليد، الثريات، الإضاءات الخطية، والبولارد — مصممة بعناية للحصول على سطوع دائم وكفاءة في استهلاك الطاقة. اكتشف فرق أرت لايتنج — إضاءة استثنائية بقيمة استثنائية.",
+  };
+
+  const ogLocale = locale === "ar" ? "ar_EG" : "en_US";
+  const siteUrl = "https://eg-artlighting.vercel.app/";
+  const siteName = "Art Lighting Company";
+
+  const resolvedTitle = title ?? defaultTitles[locale];
+  const resolvedDescription = description ?? defaultDescriptions[locale];
+
+  const imageAlt = locale === "ar" ? "شعار شركة آرت لايتنغ" : "Art Lighting Company Logo";
+
   return {
-    title,
-    description,
-    openGraph: openGraph ?? {
-      type: "website",
-      locale: "ar_EG",
-      url: "https://eg-artlighting.vercel.app/",
-      siteName: "Art Lighting Company",
-      title,
-      description,
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: "Art Lighting Company Logo",
-        },
-      ],
-    },
-    twitter: twitter ?? {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
-      creator: "@ArtLightingEG",
-      site: "@ArtLightingEG",
-    },
+    title: resolvedTitle,
+    description: resolvedDescription,
+    openGraph:
+      openGraph ??
+      {
+        type: "website",
+        locale: ogLocale,
+        url: siteUrl,
+        siteName,
+        title: resolvedTitle,
+        description: resolvedDescription,
+        images: [
+          {
+            url: image,
+            width: 1200,
+            height: 630,
+            alt: imageAlt,
+          },
+        ],
+      },
+    twitter:
+      twitter ??
+      {
+        card: "summary_large_image",
+        title: resolvedTitle,
+        description: resolvedDescription,
+        images: [image],
+        creator: "@ArtLightingEG",
+        site: "@ArtLightingEG",
+      },
     icons,
     keywords: [
       "Lighting",
@@ -101,7 +129,7 @@ export function constructMetadata({
       "تصميم الإضاءة",
       "تركيب الإضاءة",
     ],
-    metadataBase: new URL("https://eg-artlighting.vercel.app/"),
+    metadataBase: new URL(siteUrl),
     robots: {
       index: true,
       follow: true,
@@ -114,13 +142,14 @@ export function constructMetadata({
       },
     },
     alternates: {
-      canonical: "https://eg-artlighting.vercel.app/",
+      canonical: siteUrl,
     },
     other: {
-      "application-name": "Art Lighting Company",
+      "application-name": siteName,
     },
   };
 }
+
 
 export const authFormConfirmingOrderSchema = z.object({
   fullName: z.string().min(3, {
