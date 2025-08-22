@@ -44,7 +44,6 @@ export default function PrivacySection() {
               </p>
             </div>
             <div className="grid gap-8">
-              {/* Section 1 */}
               <div>
                 <h2 className="text-2xl font-bold">{t("s1.title")}</h2>
                 <div className="mt-6 space-y-6">
@@ -61,8 +60,6 @@ export default function PrivacySection() {
                   </div>
                 </div>
               </div>
-
-              {/* Section 2 */}
               <div>
                 <h2 className="text-2xl font-bold">{t("s2.title")}</h2>
                 <div className="mt-6 space-y-6">
@@ -79,8 +76,6 @@ export default function PrivacySection() {
                   </div>
                 </div>
               </div>
-
-              {/* Section 3 */}
               <div>
                 <h2 className="text-2xl font-bold">{t("s3.title")}</h2>
                 <div className="mt-6 space-y-6">
@@ -97,8 +92,6 @@ export default function PrivacySection() {
                   </div>
                 </div>
               </div>
-
-              {/* Section 4 */}
               <div>
                 <h2 className="text-2xl font-bold">{t("s4.title")}</h2>
                 <div className="mt-6 space-y-6">
@@ -114,8 +107,6 @@ export default function PrivacySection() {
                   </div>
                 </div>
               </div>
-
-              {/* Section 5 */}
               <div>
                 <h2 className="text-2xl font-bold">{t("s5.title")}</h2>
                 <div className="mt-6 space-y-6">
@@ -133,20 +124,18 @@ export default function PrivacySection() {
                   </div>
                 </div>
               </div>
-
-              {/* Section 6 */}
               <div>
                 <h2 className="text-2xl font-bold">{t("s6.title")}</h2>
                 <div className="mt-6 space-y-6">
                   <div>
                     <h3 className="text-lg font-semibold">{t("s6.q1")}</h3>
                     <p className="mt-2 text-muted-foreground">{t("s6.desc")}</p>
-                    <p className="mt-2 text-muted-foreground">
+                    <div className="mt-2 text-muted-foreground">
                       {t.rich("s6.contact", {
                         phone: (chunk) => (
                           <Link
                             href="tel:01154466259"
-                            className="font-medium hover:text-[#ff8800] transition-colors"
+                            className="font-medium hover:text-primary transition-colors"
                           >
                             {chunk}
                           </Link>
@@ -156,18 +145,17 @@ export default function PrivacySection() {
                             href="mailto:smartlight.balocm@gamil.com?Subject=Privacy Policy Inquiry"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="font-medium hover:text-[#ff8800] transition-colors"
+                            className="font-medium hover:text-primary transition-colors"
                           >
                             {chunk}
                           </Link>
                         )
                       })}
-                    </p>
+                    </div>
                     <p className="mt-2 text-muted-foreground">{t("s6.footer")}</p>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </Container>

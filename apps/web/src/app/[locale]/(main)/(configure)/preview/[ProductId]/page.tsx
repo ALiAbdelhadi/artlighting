@@ -7,7 +7,7 @@ import Preview from "./preview"
 interface PageProps {
   params: Promise<{
     locale: string
-    ProductId: string 
+    ProductId: string
   }>
   searchParams: Promise<{
     [key: string]: string | string[] | undefined
@@ -251,7 +251,6 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
       }
     }
 
-    // Use localized product name if available
     const localizedName = product.translations?.[0]?.name || product.productName
     const specification = product.specifications?.[0]
 
@@ -289,10 +288,18 @@ export const generateMetadata = async ({ params }: PageProps): Promise<Metadata>
       en: `Preview of ${localizedName} With a high CRI ${specification?.cri || 'N/A'}, and high beam angle of ${specification?.beamAngle || 'N/A'} this spotlight provides bright, ${typeOfSpotlight}`,
       ar: `معاينة ${localizedName} بمؤشر إضاءة عالي ${specification?.cri || 'غير متاح'}، وزاوية شعاع عالية ${specification?.beamAngle || 'غير متاح'} يوفر هذا الكشاف إضاءة ساطعة، ${typeOfSpotlight}`
     } as const
+    const imageUrl = product.productImages?.[0]
 
     return {
       title: titleTemplates[locale as keyof typeof titleTemplates] || titleTemplates.en,
       description: descriptionTemplates[locale as keyof typeof descriptionTemplates] || descriptionTemplates.en,
+      openGraph: {
+        images: [imageUrl]
+      },
+      twitter: {
+        card: "summary_large_image",
+        images: [imageUrl]
+      }
     }
   } catch (error) {
     console.error("Error generating metadata:", error)

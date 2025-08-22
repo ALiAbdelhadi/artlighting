@@ -17,6 +17,7 @@ const Page = async ({ searchParams }: ThankYouProps) => {
   if (!orderId || typeof orderId !== "string") {
     return notFound();
   }
+
   const locale = await getLocale();
 
   const order = await prisma.order.findUnique({
@@ -27,15 +28,15 @@ const Page = async ({ searchParams }: ThankYouProps) => {
         include: {
           specifications: {
             where: {
-              language: locale, // ✅ إضافة فلتر اللغة
+              language: locale,
             },
           },
           translations: {
             where: {
-              language: locale, // ✅ إضافة فلتر اللغة
+              language: locale,
             },
           },
-        }
+        },
       },
       shippingAddress: true,
     },
@@ -47,7 +48,9 @@ const Page = async ({ searchParams }: ThankYouProps) => {
 
   const discount = order.configuration?.discount ?? 0;
 
-  const localizedProductName = order.product.translations[0]?.name || order.product.productName;
+  const localizedProductName =
+    order.product.translations[0]?.name || order.product.productName;
+
   const localizedOrder = {
     ...order,
     productName: localizedProductName,
@@ -60,11 +63,10 @@ const Page = async ({ searchParams }: ThankYouProps) => {
     },
   };
 
-  // ✅ تمرير البيانات الأولية للكومبوننت
   return (
     <ThankYou
       discount={discount}
-      initialOrder={localizedOrder} // ✅ تمرير البيانات الأولية
+      initialOrder={localizedOrder}
     />
   );
 };
@@ -78,7 +80,6 @@ export async function generateMetadata({
     return notFound();
   }
 
-  // احصل على اللغة الحالية
   const locale = await getLocale();
 
   const order = await prisma.order.findUnique({
@@ -89,15 +90,15 @@ export async function generateMetadata({
         include: {
           specifications: {
             where: {
-              language: locale, // ✅ إضافة فلتر اللغة
+              language: locale,
             },
           },
           translations: {
             where: {
-              language: locale, // ✅ إضافة فلتر اللغة
+              language: locale,
             },
           },
-        }
+        },
       },
       shippingAddress: true,
     },
@@ -107,14 +108,27 @@ export async function generateMetadata({
     return notFound();
   }
 
-  // استخدم الاسم المترجم إذا كان متاحاً
-  const productName = order.product.translations[0]?.name || order.product.productName;
+  const productName =
+    order.product.translations[0]?.name || order.product.productName;
   const customerName = order.shippingAddress?.fullName;
-  const productImage = order.productImages[0];
+
+  let productImage: string = locale === "ar" ? "/logo-ar.png" : "/logo-en.png";
+  if (order.product?.productImages?.[0]) {
+    productImage = order.product.productImages[0];
+  }
+  const titles: Record<string, string> = {
+    en: `Thank you, ${customerName}! Your order is confirmed`,
+    ar: `شكرًا لك، ${customerName}! تم تأكيد طلبك`,
+  };
+
+  const descriptions: Record<string, string> = {
+    en: `Thank you for ordering ${productName}. Your order #${order.id} has been successfully placed and is being processed.`,
+    ar: `شكرًا لطلبك ${productName}. تم تسجيل طلبك رقم #${order.id} بنجاح وهو قيد المعالجة.`,
+  };
 
   return constructMetadata({
-    title: `Thank you, ${customerName}! Your order is confirmed`,
-    description: `Thank you for ordering ${productName}. Your order #${order.id} has been successfully placed and is being processed.`,
+    title: titles[locale] || titles.en,
+    description: descriptions[locale] || descriptions.en,
     image: productImage,
   });
 }

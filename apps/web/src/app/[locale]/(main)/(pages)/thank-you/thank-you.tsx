@@ -252,7 +252,7 @@ export default function ThankYou({
                     <div className="grid gap-4">
                       <div className="grid grid-cols-2 items-center">
                         <div className="font-medium">{t('orderNumber')}</div>
-                        <div className={isRTL ? "text-left" : "text-right"}>#{order.id}</div>
+                        <div className={isRTL ? "text-left" : "text-right"}>#{formatNumber(order.id, isRTL ? "ar" : "en")}</div>
                       </div>
                       <div className="grid grid-cols-2 items-center">
                         <div className="font-medium">{t('shippingAddress')}</div>
@@ -317,9 +317,6 @@ export default function ThankYou({
                               )}
                               <TableHead className="font-semibold" dir={isRTL ? "rtl" : "ltr"}>
                                 {t("price")}
-                              </TableHead>
-                              <TableHead className="font-semibold" dir={isRTL ? "rtl" : "ltr"}>
-                                {t("total")}
                               </TableHead>
                             </TableRow>
                           </TableHeader>
@@ -387,26 +384,11 @@ export default function ThankYou({
                                       discount={discount}
                                     />
                                   </TableCell>
-                                  <TableCell>
-                                    <DiscountPrice
-                                      price={order.configPrice}
-                                      discount={discount}
-                                      quantity={order?.quantity}
-                                      shippingPrice={order?.shippingPrice}
-                                    />
-                                  </TableCell>
                                 </>
                               ) : (
                                 <>
                                   <TableCell className="font-semibold">
                                     <NormalPrice price={order.configPrice} />
-                                  </TableCell>
-                                  <TableCell className="font-semibold">
-                                    <NormalPrice
-                                      price={order.configPrice}
-                                      quantity={order?.quantity}
-                                      shippingPrice={order?.shippingPrice}
-                                    />
                                   </TableCell>
                                 </>
                               )}

@@ -3,15 +3,21 @@ import { notFound } from "next/navigation"
 import Complete from "./complete"
 import { prisma } from "@repo/database"
 import { getLocale } from "next-intl/server"
+import { getLocaleFromParams } from "@/lib/i18n/utils"
+import { Metadata } from "next"
 
-interface CompleteProps {
+interface PageProps {
+  params: {
+    locale: string
+  }
   searchParams: {
     [key: string]: string | string[] | undefined
   }
 }
 
-const page = async ({ searchParams }: CompleteProps) => {
-  const { orderId } = await searchParams
+const Page = async ({ searchParams }: PageProps) => {
+  const orderId = searchParams.orderId
+
   if (!orderId || typeof orderId !== "string") {
     return notFound()
   }
@@ -45,7 +51,8 @@ const page = async ({ searchParams }: CompleteProps) => {
     return notFound()
   }
 
-  const localizedProductName = order.product.translations[0]?.name || order.product.productName
+  const localizedProductName =
+    order.product.translations[0]?.name || order.product.productName
 
   const localizedOrder = {
     ...order,
@@ -57,12 +64,50 @@ const page = async ({ searchParams }: CompleteProps) => {
     },
   }
 
-  return <Complete discount={order.configuration?.discount || 0} brand={order.brand || ""} order={localizedOrder} />
+  return (
+    <Complete
+      discount={order.configuration?.discount || 0}
+      brand={order.brand || ""}
+      order={localizedOrder}
+    />
+  )
 }
 
-export const metadata = constructMetadata({
-  title: "Order Confirmed!",
-  description: "Please Review you order before completed",
-})
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
+  const orderId = searchParams.orderId
+  const { locale: localeParam } = params
+  const locale = getLocaleFromParams(params)
 
-export default page
+  const titles: Record<string, string> = {
+    en: "Order Confirmed!",
+    ar: "تم تأكيد الطلب!",
+  }
+
+  const descriptions: Record<string, string> = {
+    en: "Please review your order before it is completed.",
+    ar: "يرجى مراجعة طلبك قبل إتمامه.",
+  }
+
+  let productImage: string = locale === 'ar' ? "/logo-ar.png" : "/logo-en.png"
+
+  if (orderId && typeof orderId === "string") {
+    const order = await prisma.order.findUnique({
+      where: { id: Number.parseInt(orderId, 10) },
+      include: {
+        product: true,
+      },
+    })
+
+    if (order?.product?.productImages?.[0]) {
+      productImage = order.product.productImages[0]
+    }
+  }
+
+  return constructMetadata({
+    title: titles[locale] || titles.en,
+    description: descriptions[locale] || descriptions.en,
+    image: productImage,
+  })
+}
+
+export default Page

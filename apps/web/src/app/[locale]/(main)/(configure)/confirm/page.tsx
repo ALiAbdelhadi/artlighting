@@ -1,17 +1,21 @@
-
 import { constructMetadata } from "@/lib/utils"
 import { prisma } from "@repo/database"
 import { notFound } from "next/navigation"
 import Confirm from "./confirm"
+import { Metadata } from "next"
+import { getLocaleFromParams } from "@/lib/i18n/utils"
 
-interface ConfirmProps {
-  searchParams: Promise<{
+interface PageProps {
+  params: {
+    locale: string
+  }
+  searchParams: {
     [key: string]: string | string[] | undefined
-  }>
+  }
 }
 
-export default async function page({ searchParams }: ConfirmProps) {
-  const { orderId } = await searchParams
+export default async function Page({ searchParams }: PageProps) {
+  const orderId = searchParams.orderId
 
   if (!orderId || typeof orderId !== "string") {
     return notFound()
@@ -32,8 +36,40 @@ export default async function page({ searchParams }: ConfirmProps) {
   return <Confirm />
 }
 
-export const metadata = constructMetadata({
-  title: "Confirm your order by typing all your info",
-  description: "Review your order carefully and click 'Send data' to confirm. Once submitted",
-})
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
+  const orderId = searchParams.orderId
+  const { locale: localeParam } = params
+  const locale = getLocaleFromParams(params)
 
+  const titles: Record<string, string> = {
+    en: "Confirm your order by typing all your info",
+    ar: "أكد طلبك عن طريق كتابة جميع معلوماتك",
+  }
+
+  const descriptions: Record<string, string> = {
+    en: "Review your order carefully and click 'Send data' to confirm. Once submitted",
+    ar: "راجع طلبك بعناية واضغط على زر 'إرسال البيانات' للتأكيد. بمجرد الإرسال...",
+  }
+
+  let productImage: string = locale === 'ar' ? "/logo-ar.png" : "/logo-en.png"
+
+  if (orderId && typeof orderId === "string") {
+    const order = await prisma.order.findUnique({
+      where: { id: Number.parseInt(orderId, 10) },
+      include: {
+        configuration: true,
+        product: true,
+      },
+    })
+
+    if (order?.product?.productImages?.[0]) {
+      productImage = order.product.productImages[0]
+    }
+  }
+
+  return constructMetadata({
+    title: titles[locale] || titles.en,
+    description: descriptions[locale] || descriptions.en,
+    image: productImage,
+  })
+}

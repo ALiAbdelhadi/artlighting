@@ -97,28 +97,25 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
     onSuccess: (response) => {
       console.log("API Response:", response)
       if (response.success && response.order && response.order.isCompleted) {
-        toast.success("Order completed successfully. Redirecting to thank you page")
+        toast.success(t("complete-notifications.success"))
         router.push(`/thank-you?orderId=${response.order.id}`)
       } else {
         console.error("Order not marked as completed or unexpected response structure")
-        toast.error("Order completion issue", {
-          description: "There was an issue completing your order. Please try again or contact support.",
+        toast.error(t("complete-notifications.error.title"), {
+          description: t("complete-notifications.error.description"),
         })
       }
     },
     onError: (error) => {
       console.error("Error completing order:", error)
-      toast.error("There was an error completing your order. Please try again.", {
-        description: "There was an error completing your order. Please try again.",
-        className: "rounded-lg",
-      })
+      toast.error(t("complete-notifications.error-unknown"))
     },
   })
-useEffect(() => {
-  if (order?.isCompleted) {
-    localStorage.setItem("lastCompletedOrderId", order.id.toString());
-  }
-}, [order]);
+  useEffect(() => {
+    if (order?.isCompleted) {
+      localStorage.setItem("lastCompletedOrderId", order.id.toString());
+    }
+  }, [order]);
   useEffect(() => {
     const checkOrderStatus = async () => {
       if (orderId) {
@@ -126,7 +123,6 @@ useEffect(() => {
           const response = await fetch(`/api/orders/${orderId}`)
           const orderData = await response.json()
           if (orderData.isCompleted) {
-            // If the order is already completed, redirect to the product page
             router.push(
               `/category/${orderData.brand}/${orderData.product.sectionType}/${orderData.product.spotlightType}/${orderData.productId}`,
             )

@@ -122,11 +122,11 @@ export default function ChandelierProducts({
       specs.colorTemperature || fallbackSpecs.colorTemperature
     );
     safeAssign(
-      locale === 'ar' ? 'قاعدة المصباح' : 'Lamp Base',
+      locale === 'ar' ? 'قاعدة اللمبة' : 'Lamp Base',
       specs.lampBase || fallbackSpecs.lampBase
     );
     safeAssign(
-      locale === 'ar' ? 'المصباح' : 'BULB',
+      locale === 'ar' ? 'اللمبة' : 'BULB',
       specs.bulb || 'No'
     );
     safeAssign(

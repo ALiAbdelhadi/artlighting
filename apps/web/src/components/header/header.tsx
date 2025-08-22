@@ -198,7 +198,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
           <div className="flex items-center gap-2 lg:hidden">
             <Sheet>
               <SheetTrigger asChild className="p-4">
-                <>
+                <div className="flex items-center gap-2">
                   <LanguageSwitcher currentLocale={locale} />
                   <Button
                     variant="outline"
@@ -208,7 +208,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                   >
                     <MenuIcon className="h-5 w-5" />
                   </Button>
-                </>
+                </div>
               </SheetTrigger>
               <SheetContent side="right" className="w-[85vw] max-w-sm overflow-y-auto">
                 <div className="flex justify-between px-3 py-2">

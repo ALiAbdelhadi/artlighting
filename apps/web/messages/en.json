@@ -12,7 +12,8 @@
         "contact-us": "Contact Us"
     },
     "loading": {
-        "title": "Loading, please wait..."
+        "title": "Loading your order...",
+        "description": "This won’t take long"
     },
     "search": {
         "placeholder": "Search in products...",
@@ -845,7 +846,15 @@
         "noBillingAddressAvailable": "No billing address available",
         "unknownLamp": "Unknown Lamp",
         "na": "N/A",
-        "off": "OFF"
+        "off": "OFF",
+        "complete-notifications": {
+            "success": "Order completed successfully. Redirecting to thank you page",
+            "error": {
+                "title": "Order completion issue",
+                "description": "There was an issue completing your order. Please try again or contact support."
+            },
+            "error-unknown": "There was an error completing your order. Please try again."
+        }
     },
     "thankYou": {
         "pageTitle": "Thank you!",
@@ -864,9 +873,10 @@
         "wattage": "Wattage",
         "lamp": "Lamp",
         "ipRating": "IP Rating",
-        "subtotal": "Subtotal:",
+        "subtotal": "Subtotal Before Discount:",
         "discount": "Discount:",
         "afterDiscount": "After Discount:",
+        "price": "Item Price:",
         "total": "Total:",
         "continueShopping": "Continue Shopping",
         "modernDesign": "Modern design with high-quality materials",
@@ -1021,5 +1031,12 @@
             "failedToRemove": "Failed to remove item. Please try again."
         },
         "discount": "discount"
+    },
+    "login": {
+        "loginRequired": "Login Required",
+        "loginDescription": "To proceed with your order, we kindly ask you to log in to your account.",
+        "loginNote": "Don't worry! After logging in, you'll be redirected back to this page, and your progress will be saved.",
+        "proceedToLogin": "Proceed to Login",
+        "signUp": "Sign up"
     }
 }
