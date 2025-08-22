@@ -21,7 +21,7 @@
     "include": [
         "**/*.ts",
         "**/*.tsx"
-, "../../apps/web/src/components/ui/badge.tsx", "../../apps/web/src/components/ui/carousel.tsx"    ],
+, "../../apps/web/src/components/ui/badge.tsx", "../../apps/web/src/components/ui/carousel.tsx", "../../apps/web/src/components/ui/form.tsx"    ],
     "exclude": [
         "node_modules",
         "dist"

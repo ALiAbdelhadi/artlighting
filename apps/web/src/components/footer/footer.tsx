@@ -1,117 +1,124 @@
 import { ChandelierItems, IndoorItems, OutdoorItems } from "@/constants";
+import { Link } from "@/i18n/navigation";
+import { Container } from "@repo/ui/container";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import ChangeTheme from "../theme-changer";
-import { Container } from "@repo/ui";
 
 export default function Footer() {
+  const t = useTranslations("footer");
+  const tProducts = useTranslations("products");
+
   return (
-    <footer className="bg-muted/30 py-6 shadow-lg">
+    <footer className="bg-muted/30 py-12 shadow-lg">
       <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16">
-          <div className="space-y-4" role="indoorCategories">
-            <h3 className="text-xl font-bold text-primary">Indoor Lighting</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 lg:gap-16">
+          <div className="space-y-4">
+            <Link
+              href="/"
+              className="text-2xl font-bold text-primary hover:text-primary-foreground transition-colors"
+            >
+              {t("brandName")}
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              {t("brandDescription")}
+            </p>
+          </div>
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-primary">{t("indoorLighting")}</h3>
             <ul className="space-y-2">
               {IndoorItems.map((IndoorItem) => (
-                <li
-                  key={IndoorItem.id}
-                  className="hover:text-primary transition-colors "
-                >
-                  <Link href={`${IndoorItem.href}`}>
-                    {IndoorItem.spotlightType}
+                <li key={IndoorItem.id} className="hover:text-primary transition-colors">
+                  <Link href={IndoorItem.href}>
+                    {tProducts(`indoor.${IndoorItem.id}`)}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="space-y-4" role="outdoorCategories">
-            <h3 className="text-xl font-bold text-primary">Outdoor Lighting</h3>
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-primary">{t("outdoorLighting")}</h3>
             <ul className="space-y-2">
               {OutdoorItems.map((OutdoorItem) => (
-                <li
-                  key={OutdoorItem.id}
-                  className="hover:text-primary transition-colors  "
-                >
-                  <Link href={`${OutdoorItem.href}`}>
-                    <span className="capitalize">{OutdoorItem.id}</span>
+                <li key={OutdoorItem.id} className="hover:text-primary transition-colors">
+                  <Link href={OutdoorItem.href}>
+                    <span className="capitalize">
+                      {tProducts(`outdoor.${OutdoorItem.id}`)}
+                    </span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="space-y-4" role="ChandeliersCategories">
-            <h3 className="text-xl font-bold text-primary">Chandeliers</h3>
-            <ul className="space-y-2 grid grid-cols-2 gap-x-4">
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold text-primary">{t("chandeliers")}</h3>
+            <ul className="space-y-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4">
               {ChandelierItems.map((ChandelierItem) => (
-                <li
-                  key={ChandelierItem.id}
-                  className="hover:text-primary transition-colors "
-                >
-                  <Link href={`${ChandelierItem.href}`}>
-                    {ChandelierItem.spotlightType}
+                <li key={ChandelierItem.id} className="hover:text-primary transition-colors">
+                  <Link href={ChandelierItem.href}>
+                    {tProducts(`chandelier.${ChandelierItem.id}`)}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="space-y-4" role="contentinfo">
-            <h3 className="text-xl font-bold text-primary">Company</h3>
-            <ul className="space-y-2">
-              {[
-                { name: "About Us", href: "/about-us" },
-                { name: "Contact", href: "/contact-us" },
-                { name: "FAQs", href: "/faqs" },
-                { name: "Privacy Policy", href: "/privacy" },
-              ].map((item) => (
-                <li
-                  key={item.name}
-                  className="hover:text-primary transition-colors "
-                >
-                  <Link href={item.href}>{item.name}</Link>
-                </li>
-              ))}
-            </ul>
-            <div className="pt-4" role="socialMedia accounts">
-              <h4 className="text-lg font-semibold text-primary mb-2">
-                Follow Us
-              </h4>
-              <div className="flex space-x-4">
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold text-primary">{t("company")}</h3>
+              <ul className="space-y-2">
+                {[
+                  { name: t("aboutUs"), href: "/about-us" },
+                  { name: t("contact"), href: "/contact-us" },
+                  { name: t("faqs"), href: "/faqs" },
+                  { name: t("privacyPolicy"), href: "/privacy" },
+                ].map((item) => (
+                  <li key={item.name} className="hover:text-primary transition-colors">
+                    <Link href={item.href}>{item.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="pt-4">
+              <h4 className="text-lg font-semibold text-primary mb-2">{t("followUs")}</h4>
+              <div className="flex space-x-2">
                 <Link
-                  className="text-black hover:text-primary p-2 rounded-full hover:bg-black transition-colors dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-primary"
+                  className="text-muted-foreground hover:text-primary hover:bg-accent p-2 rounded-full transition-colors"
                   href="https://www.instagram.com/artlightingofficial"
                   target="_blank"
+                  aria-label="Instagram"
                 >
-                  <Instagram size={24} />
-                  <span className="sr-only">Instagram</span>
+                  <Instagram size={20} />
                 </Link>
                 <Link
-                  className="text-black hover:text-primary p-2 rounded-full hover:bg-black transition-colors dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-primary"
+                  className="text-muted-foreground hover:text-primary hover:bg-accent p-2 rounded-full transition-colors"
                   href="https://www.facebook.com/ArtLightingOfficial/"
                   target="_blank"
+                  aria-label="Facebook"
                 >
-                  <Facebook size={24} />
-                  <span className="sr-only">Facebook</span>
+                  <Facebook size={20} />
                 </Link>
                 <Link
-                  className="text-black hover:text-primary p-2 rounded-full hover:bg-black transition-colors dark:text-gray-100 dark:hover:bg-gray-100 dark:hover:text-primary"
+                  className="text-muted-foreground hover:text-primary hover:bg-accent p-2 rounded-full transition-colors"
                   href="https://www.youtube.com/channel/UC__8-8U4dAIgK1JYWvqv5cQ"
                   target="_blank"
+                  aria-label="YouTube"
                 >
-                  <Youtube size={24} />
-                  <span className="sr-only">YouTube</span>
+                  <Youtube size={20} />
                 </Link>
               </div>
-              <div className="pt-2">
-                <h4 className="text-lg font-semibold text-primary mb-2">Theme</h4>
-                <ChangeTheme />
-              </div>
+            </div>
+            <div className="pt-2">
+              <h4 className="text-lg font-semibold text-primary mb-2">{t("theme")}</h4>
+              <ChangeTheme />
             </div>
           </div>
         </div>
-        <div className="border-t border-border text-center flex justify-center items-center mt-6 pt-6">
-          <p className="text-muted-foreground">
-            © {new Date().getFullYear()} Art Lighting | Your Lighting Store.
-            All rights reserved.
+        <div className="border-t border-border text-center mt-12 pt-6">
+          <p className="text-muted-foreground text-sm">
+            {t("copyright", {
+              year: new Date().getFullYear(),
+              brand: t("brandName"),
+            })}
           </p>
         </div>
       </Container>

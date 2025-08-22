@@ -90,7 +90,7 @@ export default function OrderPage({ order }: OrderPageProps) {
                       value={order.productColorTemp}
                     />
                     <ProductDetail label="IP Rating" value={order.configuration.productIp} />
-                    {order.ChandelierLightingType && (
+                    {order.chandelierLightingType && (
                       <ProductDetail
                         label="Lamp Type"
                         value={order.productChandLamp}
@@ -99,10 +99,10 @@ export default function OrderPage({ order }: OrderPageProps) {
                     {order.Brand && (
                       <ProductDetail label="Brand" value={order.Brand} />
                     )}
-                    {order.ChandelierLightingType && (
+                    {order.chandelierLightingType && (
                       <ProductDetail
                         label="Lighting Type"
-                        value={order.ChandelierLightingType}
+                        value={order.chandelierLightingType}
                       />
                     )}
                   </div>

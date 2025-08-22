@@ -1,3 +1,5 @@
+"use client"
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -6,52 +8,68 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { ChandelierItems, IndoorItems, OutdoorItems, projectDataForHeader } from "@/constants"
+import { ChandelierItems, IndoorItems, OutdoorItems } from "@/constants"
+import { Link } from "@/i18n/navigation"
 import { Container } from "@repo/ui"
 import { Button } from "@repo/ui/button"
-import { BoxIcon, BriefcaseIcon, MailIcon, MenuIcon, NewspaperIcon, UserIcon, XIcon } from "lucide-react"
+import { BoxIcon, BriefcaseIcon, MailIcon, MenuIcon, MoveRight, NewspaperIcon, UserIcon, XIcon } from "lucide-react"
+import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
-import Link from "next/link"
-import { CartSidebar } from "../cart-sidebar"
 import AuthSection from "./auth-section"
 import { AuthSectionWrapper } from "./auth-section-wrapper"
 import { SearchHeader } from "./search-header"
+import LanguageSwitcher from "../language-switcher"
 
-export default function Header() {
+interface Project {
+  ProjectId: string
+  ProjectName: string
+  ProjectImages: string[]
+  ProjectDescription: string
+}
+
+interface HeaderProps {
+  projectsForHeader: Project[]
+}
+
+export default function Header({ projectsForHeader }: HeaderProps) {
+  const t = useTranslations("header")
+  const tProducts = useTranslations("products")
+  const locale = useLocale()
+  const isRTL = locale === 'ar'
   return (
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
       <Container className="container">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-16 gap-4 rt:flex-row-reverse">
           <Link href="/" className="flex items-center gap-2 shrink-0" prefetch={false} aria-label="Art Lighting - Home">
             <Image
               quality={100}
               width={80}
               height={80}
-              src="/logo.png"
-              className="w-12 h-12 lg:w-16 lg:h-16"
+              src={locale === 'ar' ? "/logo-ar.png" : "/logo-en.png"}
+              className="sm:w-16 sm:h-16 w-14 h-14"
               alt="Art Lighting Logo"
               priority
             />
           </Link>
-          <NavigationMenu className="hidden xl:flex">
-            <NavigationMenuList className="space-x-3">
+          <NavigationMenu className="hidden lg:flex">
+            <NavigationMenuList className="space-x-3 rtl:flex-row-reverse">
               <NavigationMenuItem>
                 <Link href="/about-us" prefetch={false}>
                   <Button
                     variant="ghost"
                     className="h-10 px-3 py-2 text-sm font-medium hover:bg-transparent hover:underline"
                   >
-                    About Us
+                    {t("about-us")}
                   </Button>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="h-10 px-3 py-2 text-sm font-medium bg-transparent hover:underline">
-                  Projects
+                  {t("projects")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[800px] grid-cols-2 lg:grid-cols-3 gap-4 p-6">
-                    {projectDataForHeader.map((project) => (
+                    {projectsForHeader.map((project) => (
                       <div
                         className="group relative overflow-hidden rounded-lg border border-border bg-card hover:bg-accent/20 transition-colors"
                         key={project.ProjectId}
@@ -62,15 +80,20 @@ export default function Header() {
                               width={300}
                               height={200}
                               className="w-full h-32 object-cover rounded-md"
-                              src={project.ProjectImages[0]}
+                              src={project.ProjectImages[0] || "/placeholder.svg"}
                               alt={project.ProjectName}
                             />
                           </div>
-                          <h3 className="font-semibold text-[15px] mb-2 line-clamp-2">{project.ProjectName}</h3>
-                          <p className="text-[13px] text-muted-foreground line-clamp-2">{project.ProjectDescription}</p>
-                          <span className="text-[13px] text-primary mt-2 inline-block group-hover:underline">
-                            View Details →
-                          </span>
+                          <div className="rtl:text-right text-left space-y-2">
+                            <h3 className="font-semibold text-[15px] line-clamp-2">{project.ProjectName}</h3>
+                            <p className="text-[13px] text-muted-foreground line-clamp-2">{project.ProjectDescription}</p>
+                            <span className="text-[13px] text-primary mt-2 flex items-center rtl:items-start rtl:justify-end group-hover:underline gap-2">
+                              {t('view-details')}
+                              <span>
+                                <MoveRight className="rtl:-rotate-180" />
+                              </span>
+                            </span>
+                          </div>
                         </Link>
                       </div>
                     ))}
@@ -79,62 +102,62 @@ export default function Header() {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="h-10 px-3 py-2 text-sm font-medium bg-transparent hover:underline">
-                  Products
+                  {t("products")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[700px] grid-cols-3 gap-6 p-6 justify-items-center ">
-                    <div className="space-y-3">
+                    <div className="space-y-3  rtl:space-y-reverse">
                       <h4 className="font-semibold text-primary text-base mb-3">
                         <Link href="/category/balcom/indoor" className="hover:underline">
-                          Indoor
+                          {tProducts("indoor.title") || "Indoor"}
                         </Link>
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2  rtl:space-y-reverse">
                         {IndoorItems.map((item) => (
                           <li key={item.id}>
                             <Link
                               href={item.href}
                               className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors"
                             >
-                              {item.spotlightType}
+                              {tProducts(`indoor.${item.id}`)}
                             </Link>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-3  rtl:space-y-reverse">
                       <h4 className="font-semibold text-primary text-base mb-3">
                         <Link href="/category/balcom/outdoor" className="hover:underline">
-                          Outdoor
+                          {tProducts("outdoor.title") || "Outdoor"}
                         </Link>
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2  rtl:space-y-reverse">
                         {OutdoorItems.map((item) => (
                           <li key={item.id}>
                             <Link
                               href={item.href}
                               className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors"
                             >
-                              {item.spotlightType}
+                              {tProducts(`outdoor.${item.id}`)}
                             </Link>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-3  rtl:space-y-reverse">
                       <h4 className="font-semibold text-primary text-base mb-3">
                         <Link href="/category/mister-led/chandelier" className="hover:underline">
-                          Chandelier
+                          {tProducts("chandelier.title") || "Chandelier"}
                         </Link>
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2  rtl:space-y-reverse">
                         {ChandelierItems.slice(0, 12).map((item) => (
                           <li key={item.id}>
                             <Link
                               href={item.href}
                               className="text-sm text-muted-foreground hover:text-foreground hover:underline transition-colors"
                             >
-                              {item.spotlightType}
+                              {tProducts(`chandelier.${item.id}`)}
                             </Link>
                           </li>
                         ))}
@@ -149,7 +172,7 @@ export default function Header() {
                     variant="ghost"
                     className="h-10 px-3 py-2 text-sm font-medium hover:bg-transparent hover:underline"
                   >
-                    Blog
+                    {t("blog")}
                   </Button>
                 </Link>
               </NavigationMenuItem>
@@ -159,29 +182,33 @@ export default function Header() {
                     variant="ghost"
                     className="h-10 px-3 py-2 text-sm font-medium hover:bg-transparent hover:underline"
                   >
-                    Contact
+                    {t("contact-us")}
                   </Button>
                 </Link>
               </NavigationMenuItem>
-              <div className="hidden lg:flex items-center space-x-3">
+              <div className="hidden lg:flex items-center space-x-3 rtl:flex-row-reverse">
                 <SearchHeader />
                 <AuthSectionWrapper>
                   <AuthSection />
                 </AuthSectionWrapper>
+                <LanguageSwitcher currentLocale={locale} />
               </div>
             </NavigationMenuList>
           </NavigationMenu>
           <div className="flex items-center gap-2 lg:hidden">
             <Sheet>
               <SheetTrigger asChild className="p-4">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-10 w-10"
-                  aria-label="Open navigation menu"
-                >
-                  <MenuIcon className="h-5 w-5" />
-                </Button>
+                <>
+                  <LanguageSwitcher currentLocale={locale} />
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-9 w-9 bg-transparent"
+                    aria-label="Open navigation menu"
+                  >
+                    <MenuIcon className="h-5 w-5" />
+                  </Button>
+                </>
               </SheetTrigger>
               <SheetContent side="right" className="w-[85vw] max-w-sm overflow-y-auto">
                 <div className="flex justify-between px-3 py-2">
@@ -202,7 +229,7 @@ export default function Header() {
                       <SearchHeader isMobileSheet />
                     </div>
                   </div>
-                  <nav className="flex flex-col space-y-1 pt-6 flex-1">
+                  <nav className="flex flex-col space-y-1  rtl:space-y-reverse pt-6 flex-1">
                     <SheetClose asChild>
                       <Link
                         href="/about-us"
@@ -210,7 +237,7 @@ export default function Header() {
                         prefetch={false}
                       >
                         <UserIcon className="h-4 w-4" />
-                        About Us
+                        {t("about-us")}
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
@@ -220,7 +247,7 @@ export default function Header() {
                         prefetch={false}
                       >
                         <BriefcaseIcon className="h-4 w-4" />
-                        Projects
+                        {t("projects")}
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
@@ -230,7 +257,7 @@ export default function Header() {
                         prefetch={false}
                       >
                         <BoxIcon className="h-4 w-4" />
-                        Products
+                        {t("products")}
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
@@ -240,7 +267,7 @@ export default function Header() {
                         prefetch={false}
                       >
                         <NewspaperIcon className="h-4 w-4" />
-                        Blog
+                        {t("blog")}
                       </Link>
                     </SheetClose>
                     <SheetClose asChild>
@@ -250,12 +277,9 @@ export default function Header() {
                         prefetch={false}
                       >
                         <MailIcon className="h-4 w-4" />
-                        Contact
+                        {t("contact-us")}
                       </Link>
                     </SheetClose>
-                    <div className="px-3">
-                      <CartSidebar />
-                    </div>
                   </nav>
                 </div>
               </SheetContent>
@@ -263,6 +287,6 @@ export default function Header() {
           </div>
         </div>
       </Container>
-    </header >
+    </header>
   )
 }

@@ -1,16 +1,17 @@
 "use client";
 
 import { updateProductIP } from "@/actions/product-ip";
-import { Button } from "@repo/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { cn } from "@repo/ui";
 import { ProductIP } from "@repo/database";
+import { cn } from "@repo/ui";
+import { Button } from "@repo/ui/button";
 import { Droplets } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const PRODUCT_IP_LABEL_MAP: Record<
@@ -48,6 +49,7 @@ interface ProductIPButtonsProps {
   productId: string;
   configId: string;
   productIp: ProductIP;
+  maxIP: string
   basePrice: number;
   onProductIpChange: (newProductIp: ProductIP, priceIncrease: number) => void;
 }
@@ -78,11 +80,11 @@ export default function ProductIPButtons({
       priceIncrease,
     });
   };
-
+  const t = useTranslations("product-ip");
   return (
     <div className="space-y-2">
       <h3 className="text-lg font-semibold mb-2">
-        Water Resistance (IP Rating)
+        {t("title")}
       </h3>
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-2">
         {Object.entries(PRODUCT_IP_LABEL_MAP).map(
@@ -101,11 +103,14 @@ export default function ProductIPButtons({
                     )}
                   >
                     <Droplets className="w-4 h-4 mr-1" />
-                    <span className="ml-1">{label}</span>
+                    <span className={cn("rtl:mr-1 ltr:ml-1")}>
+                      {t(`ratings.${ip}.label`)}
+                    </span>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="sm:block hidden font-medium">
-                  {description}
+                <TooltipContent className="sm:block hidden font-medium max-w-xs">
+                  <p>{t(`ratings.${ip}.description`)}</p>
+                  <p className="text-xs mt-1 opacity-75">{t("onlyAvailableRating")}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

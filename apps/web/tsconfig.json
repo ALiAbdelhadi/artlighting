@@ -35,7 +35,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "../admin/components/dashboard-summary.tsx", "../admin/components/dashboard-header.tsx", "../admin/components/user-avatar.tsx", "../../packages/ui/container.tsx", "src/scripts/import-products.js"  ],
+, "../admin/components/dashboard-summary.tsx", "../admin/components/dashboard-header.tsx", "../admin/components/user-avatar.tsx", "../../packages/ui/container.tsx", "src/scripts/import-products.ts", "src/components/new-collection.jsx", "src/app/[locale]/(main)/(pages)/about.jsx"  ],
   "exclude": [
     "node_modules"
   ]

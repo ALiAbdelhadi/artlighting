@@ -77,7 +77,7 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
           <TableCell>
             {order &&
               order.Brand === "mister-led" &&
-              order.product?.ChandelierLightingType === "lamp"
+              order.product?.chandelierLightingType === "lamp"
               ? order.productChandLamp
               : "No Lamp"}
           </TableCell>

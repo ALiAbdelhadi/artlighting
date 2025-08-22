@@ -1,9 +1,11 @@
 "use client";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 const Button = ({ destination }: { destination: string }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const t = useTranslations("discover-more");
   return (
     <span className="grid my-6">
       <Link
@@ -32,7 +34,7 @@ const Button = ({ destination }: { destination: string }) => {
             }}
           />
         </svg>
-        Discover more
+        {t('text')}
       </Link>
     </span>
   );

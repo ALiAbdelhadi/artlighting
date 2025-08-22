@@ -1,4 +1,3 @@
-
 export const exploreEftar = [
   {
     id: "eftar-2020",
@@ -27,32 +26,51 @@ export const exploreEftar = [
   },
 ];
 export const newCollectionProducts = [
-  { id: "track", name: "Track", image: "/NewCollection/new-collection-1.jpg" },
-  { id: "hallo", name: "Hallo", image: "/NewCollection/new-collection-2.jpg" },
-  { id: "spot", name: "Spot", image: "/NewCollection/new-collection-3.jpg" },
+  { id: "track", name: "Track", image: "/new-collection/new-collection-1.jpg" },
+  { id: "hallo", name: "Hallo", image: "/new-collection/new-collection-2.jpg" },
+  { id: "spot", name: "Spot", image: "/new-collection/new-collection-3.jpg" },
 ];
 
 export const brands = [
   {
+    id: "balcom",
     name: "Balcom",
-    description: "Premium home appliances for discerning customers",
     logo: "/brand/balcom.jpeg",
     link: "/category/balcom",
   },
   {
+    id: "misterLed",
     name: "Mister LED",
-    description: "Innovative LED lighting solutions for every space",
     logo: "/brand/mrled.png",
     link: "/category/mister-led",
   },
   {
+    id: "jetra",
     name: "Jetra",
-    description: "High-performance electronics for modern living",
     logo: "/brand/jetra.png",
     link: "/category/jetra",
   },
 ];
 
+export const brandConfig = {
+  featured: ["balcom", "misterLed"],
+  comingSoon: ["jetra"],
+  defaultImage: {
+    width: 250,
+    height: 100
+  }
+};
+export const getBrandById = (id: string) => {
+  return brands.find(brand => brand.id === id);
+};
+
+export const isBrandFeatured = (id: string): boolean => {
+  return brandConfig.featured.includes(id);
+};
+
+export const isBrandComingSoon = (id: string): boolean => {
+  return brandConfig.comingSoon.includes(id);
+};
 
 // IndoorItems
 export const IndoorItems = [
@@ -258,7 +276,7 @@ export const ChandelierItems = [
     href: "/category/mister-led/chandelier/OH1601",
   },
 ];
-// project data for header
+
 export const projectDataForHeader = [
   {
     ProjectId: "dar-misr",
@@ -298,5 +316,21 @@ export const projectDataForHeader = [
     ProjectImages: ["/projects/armant-hospital/armant-hospital-1.webp"],
     ProjectDescription:
       "Armant Hospital is a healthcare institution committed to delivering comprehensive medical services to its community.",
+  },
+];
+
+
+export const CategoryItems = [
+  {
+    id: "balcom",
+    title: "Balcom",
+    href: "/category/balcom/",
+    image: "/indoor/products500/jy-535-5w/JY-535-5W (1).png"
+  },
+  {
+    id: "mrled",
+    title: "Mister Led",
+    href: "/category/mister-led/",
+    image: "/chandelier/MC6014/MC6014-H5.png"
   },
 ];

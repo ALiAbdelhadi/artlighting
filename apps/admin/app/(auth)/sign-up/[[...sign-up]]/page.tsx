@@ -26,7 +26,7 @@ const SignUpPage = () => {
             
           />
           <div className="absolute inset-0 bg-background/60 backdrop-blur-sm flex flex-col justify-end p-8 text-foreground">
-            <h2 className="text-3xl font-bold mb-2">Sign in to Art lighting</h2>
+            <h2 className="text-3xl font-bold mb-2">Sign up to Art lighting</h2>
             <p className="text-sm">
             Welcome back! Please sign in to continue
             </p>

@@ -1,72 +1,62 @@
+import { SpecificationsTable } from '@/types/products';
+import { useTranslations } from 'next-intl';
+
 type ProductFeaturesProps = {
-  specificationsTable: {
-    [key: string]: string;
-  };
+  specificationsTable: SpecificationsTable
 };
 
 export default function ProductFeatures({
   specificationsTable,
 }: ProductFeaturesProps) {
+  const t = useTranslations('productFeatures');
+
   return (
     <div className="mt-6">
-      <h2 className="sm:text-2xl text-xl font-semibold mb-3">Features :</h2>
+      <h2 className="sm:text-2xl text-xl font-semibold mb-3">{t('title')}</h2>
       <ul>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>Energy Efficiency Champion : </strong> Reduce your electricity
-          bill and your carbon footprint by up to
-          {specificationsTable["Energy Saving"]} compared to traditional lighting
-          with this spotlight&apos;s exceptional energy efficiency.
+          <strong>{t('energy.title')} </strong>
+          {t('energy.desc', { saving: specificationsTable['Energy Saving'] })}
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>Built to Last : </strong> Enjoy years of maintenance-free
-          illumination with the spotlight&apos;s extended lifespan, lasting{" "}
-          {specificationsTable["Life Time"]} Life time 25 times longer than
-          standard halogen lamps.
+          <strong>{t('lifetime.title')} </strong>
+          {t('lifetime.desc', { lifetime: specificationsTable['Life Time'] })}
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          {parseInt(specificationsTable["IP"]) >= 44 ? (
-            <strong>Weatherproof Warrior :</strong>
-          ) : (
-            <strong>Indoor Haven :</strong>
-          )}
-          {parseInt(specificationsTable["IP"]) >= 44
-            ? `Embrace outdoor applications, knowing your spotlight is shielded from the elements thanks to its ${specificationsTable["IP"]} water and dust resistance rating.`
-            : `Illuminate your home or office safely with a design crafted for Indoor lighting ًWith IP ${specificationsTable["IP"]}. Keep it shielded from outdoor elements to preserve its optimal brightness.`}
+          {parseInt(specificationsTable['IP']) >= 44
+            ? <strong>{t('weatherproof.title')}</strong>
+            : <strong>{t('indoor.title')}</strong>
+          }
+          {parseInt(specificationsTable['IP']) >= 44
+            ? t('weatherproof.desc', { ip: specificationsTable['IP'] })
+            : t('indoor.desc', { ip: specificationsTable['IP'] })
+          }
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>Illuminating Powerhouse :</strong> Tailor your lighting to any
-          space with the spotlight&apos;s impressive brightness of up to{" "}
-          {specificationsTable["Luminous Flux"]} lumens, perfect for both general
-          and task lighting
+          <strong>{t('brightness.title')}</strong>
+          {t('brightness.desc', { lumens: specificationsTable['Luminous Flux'] })}
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>Wide-Reaching Illumination :</strong> Achieve uniform and even
-          lighting across larger areas with the spotlight&apos;s expansive beam
-          angle of
-          {specificationsTable["Beam Angle"]} degrees.
+          <strong>{t('beam.title')}</strong>
+          {t('beam.desc', { angle: specificationsTable['Beam Angle'] })}
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>Climate Conqueror :</strong>Install your spotlight with
-          confidence in diverse environments, as it thrives in temperatures
-          ranging from
-          {specificationsTable["Working Temperature"]}.
+          <strong>{t('temperature.title')}</strong>
+          {t('temperature.desc', { range: specificationsTable['Working Temperature'] })}
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>True Color Specialist :</strong>Experience exceptional color
-          accuracy with the spotlight&apos;s high CRI, ideal for applications
-          demanding precise color rendering.
+          <strong>{t('cri.title')}</strong>
+          {t('cri.desc')}
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>Effortless Installation :</strong>Simplify your setup with the
-          spotlight&apos;s user-friendly installation process, requiring no
-          special tools or expertise.
+          <strong>{t('installation.title')}</strong>
+          {t('installation.desc')}
         </li>
         <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          <strong>Built to Endure :</strong>Invest in lasting performance with the
-          spotlight&apos;s robust design, able to withstand shocks and vibrations
-          without compromising function.
+          <strong>{t('durability.title')}</strong>
+          {t('durability.desc')}
         </li>
       </ul>
     </div>
-  )
+  );
 }

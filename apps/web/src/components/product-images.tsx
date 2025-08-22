@@ -15,7 +15,7 @@ export default function ProductImages({ productImages }: ProductImagesProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" dir="ltr">
       <Carousel
         showThumbs={true}
         showStatus={false}

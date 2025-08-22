@@ -4,15 +4,14 @@ import { changeProductChandLamp } from "@/actions/product-chandLamp";
 import { Button } from "@repo/ui/button";
 import { ProductChandLamp } from "@repo/database";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "@repo/ui";
-const PRODUCT_CHAND_LAMP_LABEL_MAP: Record<
-  ProductChandLamp,
-  { label: string; priceIncrease: number }
-> = {
-  lamp9w: { label: "Lamp 9W", priceIncrease: 0 },
-  lamp12w: { label: "Lamp 12w", priceIncrease: 20 },
+import { useTranslations } from "next-intl"
+import { useRouter } from "@/i18n/navigation";
+
+const PRODUCT_CHAND_LAMP_LABEL_MAP: Record<ProductChandLamp, { priceIncrease: number }> = {
+  lamp9w: { priceIncrease: 0 },
+  lamp12w: { priceIncrease: 20 },
 };
 
 interface ProductChandLampButtonsProps {
@@ -31,6 +30,7 @@ export default function ProductChandLampButtons({
   hNumber,
   onProductLampChange,
 }: ProductChandLampButtonsProps) {
+  const t = useTranslations('ProductChandLampButtons');
   const router = useRouter();
   const [activeProductLamp, setActiveProductLamp] =
     useState<ProductChandLamp>(productChandLamp);
@@ -54,26 +54,33 @@ export default function ProductChandLampButtons({
 
   return (
     <div className="space-y-2">
-      <h3 className="text-lg font-semibold mb-2">Choose Lamp Wattage</h3>
+      <h3 className="text-lg font-semibold mb-2">
+        {t("chooseLampWattage")}
+      </h3>
       <div className="grid grid-cols-2 gap-2">
         {Object.entries(PRODUCT_CHAND_LAMP_LABEL_MAP).map(
-          ([ProductLamp, { label }]) => (
+          ([productLamp, { priceIncrease }]) => (
             <Button
-              key={ProductLamp}
+              key={productLamp}
               onClick={() =>
-                handleColorTempChange(ProductLamp as ProductChandLamp)
+                handleColorTempChange(productLamp as ProductChandLamp)
               }
               variant={
-                activeProductLamp === ProductLamp ? "default" : "outline"
+                activeProductLamp === productLamp ? "default" : "outline"
               }
               className={cn(
                 "flex items-center justify-center rounded-full transition-all duration-200",
-                activeProductLamp === ProductLamp
+                activeProductLamp === productLamp
                   ? "bg-primary text-primary-foreground shadow-lg"
                   : "bg-background hover:bg-secondary",
               )}
             >
-              {label}
+              {t(productLamp)}
+              {priceIncrease > 0 && (
+                <span className="ml-2 font-normal text-sm opacity-70">
+                  {t("priceIncrease", { price: priceIncrease })} × {hNumber}
+                </span>
+              )}
             </Button>
           ),
         )}

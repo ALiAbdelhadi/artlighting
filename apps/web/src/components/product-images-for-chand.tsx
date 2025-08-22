@@ -8,14 +8,14 @@ type ProductImagesProps = {
   productImages: string[];
 };
 
-export default function ProductImages({ productImages }: ProductImagesProps){
+export default function ProductImages({ productImages }: ProductImagesProps) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const handleSlideChange = (index: number) => {
     setCurrentIndex(index);
   };
 
   return (
-    <div className="relative">
+    <div className="relative" dir="ltr">
       <Carousel
         showThumbs={true}
         showStatus={false}
@@ -104,7 +104,7 @@ export default function ProductImages({ productImages }: ProductImagesProps){
           </div>
         ))}
       </Carousel>
-      <style jsx>{`
+      <style>{`
         .thumbnail-wrapper {
           display: flex;
           justify-content: center;
@@ -113,9 +113,6 @@ export default function ProductImages({ productImages }: ProductImagesProps){
           border: 2px solid transparent;
           cursor: pointer;
           transition: border 0.3s ease;
-        }
-        .thumbnail-wrapper:hover {
-          border: 2px solid #000;
         }
         .thumbnail-image {
           width: 64px;

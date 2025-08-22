@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import { useTranslations } from "next-intl";
 
 interface SpecificationsTable {
   [key: string]: string;
@@ -10,66 +11,57 @@ interface ColorTemperatureSectionProps {
   specificationsTable: SpecificationsTable;
 }
 
-const createParagraphWithStrong = (text: string) => (
-  <p className="text-xl tracking-wide my-2">
-    <strong>{text}</strong>
-  </p>
-);
-
-const createStrongForListItem = (text: string) => (
-  <strong className="text-muted-foreground md:text-lg text-xl md:leading-9 leading-6 tracking-wide">
-    {text}
-  </strong>
-);
-
-const createListItemWithStrong = (text: string) => (
-  <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-    {text}
-  </li>
-);
-
 export default function ColorTemperatureSection({
   specificationsTable,
 }: ColorTemperatureSectionProps) {
+  const t = useTranslations("colorTemperature");
+
   return (
     <div>
       {specificationsTable["Color Temperature"]?.includes("3000K") && (
         <ul>
-        {createParagraphWithStrong("Warm lighting: ")}
-        <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          {createStrongForListItem("Not recommended for office use")} : The
-          soft, warm glow of the LED ceiling lights may be too relaxing and
-          inviting for office environments.
-        </li>
-        {createListItemWithStrong(
-          "Warm lighting is ideally suited for bedrooms, living rooms, and kitchens. Its gentle, inviting radiance cultivates a cozy ambiance, promoting relaxation and comfort in these areas. It Helps You to be More relax and It's improve Your Sleep.",
-        )}
-      </ul>
-    )}
-    {specificationsTable["Color Temperature"]?.includes("4000K") && (
-      <ul>
-        {createParagraphWithStrong("Cool lighting: ")}
-        {createListItemWithStrong(
-          "Boosts alertness and productivity in work and study spaces.",
-        )}
-        {createListItemWithStrong("Enlivens modern or light décor.")}
-        {createListItemWithStrong(
-          "Creates a vibrant and energetic atmosphere.",
-        )}
-      </ul>
-    )}
-    {specificationsTable["Color Temperature"]?.includes("6500K") && (
-      <ul>
-        {createParagraphWithStrong("White lighting: ")}
-        <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
-          {createStrongForListItem("Recommended for")} : study spaces and
-          offices as it aids in maintaining focus during work.
-        </li>
-        {createListItemWithStrong(
-          "Cultivates a sophisticated and modern ambiance ideal for creating a neutral and contemporary setting. Perfect for enhancing spaces with its white color temperature.",
-        )}
-      </ul>
-    )}
-  </div>
-);
+          <p className="text-xl tracking-wide my-2">
+            <strong>{t("warm.title")}</strong>
+          </p>
+          <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
+            <strong>{t("warm.notRecommended")}</strong> : {t("warm.notRecommendedDesc")}
+          </li>
+          <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
+            {t("warm.desc")}
+          </li>
+        </ul>
+      )}
+
+      {specificationsTable["Color Temperature"]?.includes("4000K") && (
+        <ul>
+          <p className="text-xl tracking-wide my-2">
+            <strong>{t("cool.title")}</strong>
+          </p>
+          <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
+            {t("cool.boost")}
+          </li>
+          <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
+            {t("cool.decor")}
+          </li>
+          <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
+            {t("cool.energy")}
+          </li>
+        </ul>
+      )}
+
+      {specificationsTable["Color Temperature"]?.includes("6500K") && (
+        <ul>
+          <p className="text-xl tracking-wide my-2">
+            <strong>{t("white.title")}</strong>
+          </p>
+          <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
+            <strong>{t("white.recommended")}</strong> : {t("white.recommendedDesc")}
+          </li>
+          <li className="text-muted-foreground md:text-lg text-[1.1rem] md:leading-9 leading-6 tracking-wide">
+            {t("white.desc")}
+          </li>
+        </ul>
+      )}
+    </div>
+  );
 }

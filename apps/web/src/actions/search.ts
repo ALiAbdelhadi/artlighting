@@ -1,4 +1,4 @@
-"use server";
+"use server";  
 import { prisma } from "@repo/database";
 
 export async function searchProducts(searchItem: string) {
@@ -6,7 +6,7 @@ export async function searchProducts(searchItem: string) {
     where: {
       OR: [
         { productName: { contains: searchItem, mode: "insensitive" } },
-        { Brand: { contains: searchItem, mode: "insensitive" } },
+        { brand: { contains: searchItem, mode: "insensitive" } },
         { sectionType: { contains: searchItem, mode: "insensitive" } },
       ],
     },
@@ -15,7 +15,7 @@ export async function searchProducts(searchItem: string) {
       productId: true,
       productName: true,
       price: true,
-      Brand: true,
+      brand: true,
       sectionType: true,
       spotlightType: true,
       productImages: true,

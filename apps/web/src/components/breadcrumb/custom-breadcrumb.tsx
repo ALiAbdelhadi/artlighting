@@ -8,11 +8,12 @@ import styles from "./breadcrumb.module.css";
 
 const CustomBreadcrumb = () => {
   const pathname = usePathname();
-  const pathParts = pathname.split("/").filter((part) => part);
+  const cleanedPath = pathname.replace(/^\/(ar|en)/, "")
+  const pathParts = cleanedPath.split("/").filter((part) => part);
 
   return (
     <Container>
-      <Breadcrumb className="pt-9 pb-0 sm:block hidden">
+      <Breadcrumb className="pt-9 pb-0 sm:block hidden rtl:hidden">
         <BreadcrumbItem className="p-0 m-0">
           <Link href="/">Home</Link>
         </BreadcrumbItem>

@@ -1,58 +1,67 @@
-"use server";
+"use server"
 
-import { prisma } from "@repo/database";
+import { prisma } from "@repo/database"
 
-
-export type SaveConfigArgs = {
-  ProductId: string;
-  configPrice: number;
-  priceIncrease: number;
-  quantity: number;
-  configId: string;
-  lampPriceIncrease: number;
-  discount: number;
-  totalPrice: number;
-};
+export interface SaveConfigArgs {
+  configId: string
+  productId: string
+  configPrice: number
+  priceIncrease: number
+  lampPriceIncrease: number
+  quantity: number
+  discount: number
+  totalPrice: number
+}
 
 export async function saveConfig({
   configId,
-  ProductId,
+  productId,
   configPrice,
   priceIncrease,
+  lampPriceIncrease,
   quantity,
   discount,
-  lampPriceIncrease,
+  totalPrice,
 }: SaveConfigArgs) {
-  const existingConfig = await prisma.configuration.findUnique({
-    where: { id: configId },
-  });
-  const totalPrice = configPrice;
-  if (existingConfig) {
-    await prisma.configuration.update({
+  try {
+    console.log("Saving configuration:", {
+      configId,
+      productId,
+      configPrice,
+      priceIncrease,
+      lampPriceIncrease,
+      quantity,
+      discount,
+      totalPrice,
+    })
+
+    // Verify the configuration exists
+    const existingConfig = await prisma.configuration.findUnique({
+      where: { id: configId },
+    })
+
+    if (!existingConfig) {
+      throw new Error(`Configuration with ID ${configId} not found`)
+    }
+
+    // Update the configuration
+    const updatedConfiguration = await prisma.configuration.update({
       where: { id: configId },
       data: {
-        ProductId,
-        configPrice,
-        lampPriceIncrease,
-        priceIncrease,
-        quantity,
-        shippingPrice: 69,
-        discount,
-        totalPrice,
-      },
-    });
-  } else {
-    await prisma.configuration.create({
-      data: {
-        ProductId,
-        quantity,
         configPrice,
         priceIncrease,
-        shippingPrice: 69,
-        lampPriceIncrease,
+        lampPriceIncrease: lampPriceIncrease || 0,
+        quantity,
         discount,
         totalPrice,
+        updatedAt: new Date(),
       },
-    });
+    })
+
+    console.log("Configuration updated successfully:", updatedConfiguration.id)
+    return { success: true, configuration: updatedConfiguration }
+  } catch (error) {
+    console.error("Error saving configuration:", error)
+    throw error
   }
 }

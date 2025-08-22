@@ -5,13 +5,17 @@ import { Button } from "@repo/ui/button";
 import { cn } from "@repo/ui";
 import { ProductColorTemp } from "@repo/database";
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import {  useParams } from "next/navigation";
 import { useState } from "react";
+import { SupportedLanguage } from "@/types/products";
+import { useRouter } from "@/i18n/navigation";
+import { PRODUCT_TEMP_LABEL_MAP } from "@/config/config";
 
-const PRODUCT_TEMP_LABEL_MAP: Record<ProductColorTemp, { label: string }> = {
-  warm: { label: "Warm" },
-  cool: { label: "Cool" },
-  white: { label: "White" },
+
+
+const SECTION_TITLE_MAP: Record<SupportedLanguage, string> = {
+  en: "Color Temperature",
+  ar: "درجة حرارة اللون",
 };
 
 interface ProductColorTempButtonsProps {
@@ -26,6 +30,9 @@ export default function ProductColorTempButtons({
   onColorTempChange,
 }: ProductColorTempButtonsProps) {
   const router = useRouter();
+  const params = useParams() as { locale?: string };
+  const locale = (params.locale as SupportedLanguage) || "en";
+
   const [activeTemp, setActiveTemp] =
     useState<ProductColorTemp>(productColorTemp);
 
@@ -41,11 +48,15 @@ export default function ProductColorTempButtons({
     mutate({ productId, newColorTemp: colorTemp });
   };
 
+  const isRTL = locale === "ar";
+
   return (
-    <div className="space-y-2">
-      <h3 className="text-lg font-semibold mb-2">Color Temperature</h3>
+    <div className="space-y-2" dir={isRTL ? "rtl" : "ltr"}>
+      <h3 className="text-lg font-semibold mb-2">
+        {SECTION_TITLE_MAP[locale]}
+      </h3>
       <div className="grid grid-cols-3 gap-2">
-        {Object.entries(PRODUCT_TEMP_LABEL_MAP).map(([temp, { label }]) => (
+        {Object.entries(PRODUCT_TEMP_LABEL_MAP[locale]).map(([temp, label]) => (
           <Button
             key={temp}
             onClick={() => handleColorTempChange(temp as ProductColorTemp)}

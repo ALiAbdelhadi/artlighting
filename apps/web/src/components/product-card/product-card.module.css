@@ -1,82 +1,16 @@
-.SelectedProducts {
-  padding: var(--main-padding-top) 0;
-}
-
-.headerPar {
-  text-align: center;
-  margin: 20px 0;
-  text-transform: uppercase;
-  font-size: calc(1.425rem + 0.5vw);
-}
-
-.ProductCards {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-@media (max-width: 1024px) {
-  .ProductCards {
-    flex-wrap: wrap;
-  }
-}
-
-.productItem {
-  padding: 10px;
-  position: relative;
-  transition: 0.4s;
-}
-
 .imageContainer {
   min-width: 100%;
   width: fit-content;
   padding: 0;
   margin: 0;
-  border-radius: 10px;
-}
-
-.shipping {
-  position: absolute;
-  top: 5%;
-  left: 0;
-  z-index: 10;
-  padding: 7px 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #dadadc;
-  font-size: 12px;
-  border-radius: 0 6px 6px 0;
-  background-color: #676769;
 }
 
 .productItem:hover {
   transform: translateY(-3px);
 }
 
-.textContainer {
-  width: 100%;
-}
-
-.productTitle {
-  font-size: 19px;
-  font-weight: 500;
-  margin: 10px 0 0;
-  text-transform: uppercase;
-}
-
-.textParagraph {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
 .buttons {
   max-width: 100%;
-}
-
-.DetailsContainer {
-  margin-right: 10px;
-  width: 100%;
 }
 
 .AddToCard {
@@ -99,38 +33,39 @@
   outline: none;
   border: none;
   position: absolute;
-  display: inline-block;
-  z-index: 100000;
-  bottom: 40%;
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  transition: var(--transition-time);
+  background-color: rgba(0, 0, 0, 0.4);
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .controlPrev:hover,
 .controlNext:hover {
-  box-shadow: var(--box-shadow-box);
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: translateY(-50%) scale(1.05);
 }
 
 .controlPrev {
-  left: 0;
+  left: 10px;
 }
 
 .controlNext {
-  right: 0;
-}
-
-.arrowPrev,
-.arrowNext {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  right: 10px;
 }
 
 .arrowPrev svg,
 .arrowNext svg {
-  margin: -1px 0;
+  width: 22px;
+  height: 22px;
+  stroke-width: 2.5;
+  color: #fff;
 }

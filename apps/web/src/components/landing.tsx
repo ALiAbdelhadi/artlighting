@@ -31,7 +31,7 @@ const Landing = ({ images }: LandingProps) => {
   }, []);
   return (
     <section className="relative">
-      <div className="relative w-full">
+      <div className="relative w-full" dir="ltr">
         <Carousel
           showThumbs={false}
           showStatus={false}

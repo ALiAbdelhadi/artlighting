@@ -34,7 +34,7 @@ export {
   FormDescription,
   FormMessage,
   FormField,
-} from "./form"
+} from "../../apps/web/src/components/ui/form"
 
 // Label
 export { Label } from "../../apps/web/src/components/ui/label"
@@ -51,7 +51,7 @@ export { Separator } from "./separator"
 
 
 // Theme Provider
-export { ThemeProvider } from "./theme-provider"
+export { ThemeProvider } from "../../apps/web/src/components/theme-provider"
 
 
 export { Container } from "./container"

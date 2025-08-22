@@ -1,13 +1,14 @@
 "use server";
 
-import { prisma } from "@repo/database";
-import { ProductIP } from "@prisma/client";
+import { prisma, ProductIP } from "@repo/database";
 
 export const updateProductIP = async ({
+  productId,
   configId,
   newProductIp,
   priceIncrease,
 }: {
+  productId: string
   configId: string;
   newProductIp: ProductIP;
   priceIncrease: number;
