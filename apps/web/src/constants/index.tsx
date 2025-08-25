@@ -97,24 +97,19 @@ export const IndoorItems = [
     href: "/category/balcom/indoor/linear",
   },
   {
-    id: "family202",
-    spotlightType: "Family202",
-    href: "/category/balcom/indoor/family202",
+    id: "track-light",
+    spotlightType: "Track Light",
+    href: "/category/balcom/indoor/track-light",
   },
   {
-    id: "family500",
-    spotlightType: "Family500",
-    href: "/category/balcom/indoor/family500",
+    id: "cob",
+    spotlightType: "COB",
+    href: "/category/balcom/indoor/cob",
   },
   {
-    id: "family800",
-    spotlightType: "Family800",
-    href: "/category/balcom/indoor/family800",
-  },
-  {
-    id: "family900",
-    spotlightType: "Family900",
-    href: "/category/balcom/indoor/family900",
+    id: "panel-light",
+    spotlightType: "Panel Light",
+    href: "/category/balcom/indoor/panel-light",
   },
   {
     id: "double-spotlight",

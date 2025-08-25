@@ -7,11 +7,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { formatNumber } from "@/lib/utils";
 import { ProductIP } from "@repo/database";
 import { cn } from "@repo/ui";
 import { Button } from "@repo/ui/button";
 import { Droplets } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const PRODUCT_IP_LABEL_MAP: Record<
@@ -49,8 +50,9 @@ interface ProductIPButtonsProps {
   productId: string;
   configId: string;
   productIp: ProductIP;
-  maxIP: string
+  maxIP: string;
   basePrice: number;
+  discount: number;
   onProductIpChange: (newProductIp: ProductIP, priceIncrease: number) => void;
 }
 
@@ -59,12 +61,20 @@ export default function ProductIPButtons({
   configId,
   productIp,
   basePrice,
+  discount,
   onProductIpChange,
 }: ProductIPButtonsProps) {
   const [selectedIp, setSelectedIp] = useState<ProductIP>(productIp);
+  const t = useTranslations("product-ip");
+  const locale = useLocale()
+  const isRTL = locale === "ar"
+
+  // حساب السعر بعد الخصم للعرض فقط
+  const discountedBasePrice = basePrice * (1 - discount);
 
   useEffect(() => {
     const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[selectedIp];
+    // حساب الزيادة على السعر الأساسي (قبل الخصم)
     const priceIncrease = basePrice * increaseOnPricePercent;
     onProductIpChange(selectedIp, priceIncrease);
   }, [selectedIp, basePrice, onProductIpChange]);
@@ -72,6 +82,7 @@ export default function ProductIPButtons({
   const handleIpChange = async (newIp: ProductIP) => {
     setSelectedIp(newIp);
     const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[newIp];
+    // حساب الزيادة على السعر الأساسي (قبل الخصم)
     const priceIncrease = basePrice * increaseOnPricePercent;
     await updateProductIP({
       productId,
@@ -80,41 +91,52 @@ export default function ProductIPButtons({
       priceIncrease,
     });
   };
-  const t = useTranslations("product-ip");
+
   return (
     <div className="space-y-2">
-      <h3 className="text-lg font-semibold mb-2">
-        {t("title")}
-      </h3>
+      <h3 className="text-lg font-semibold mb-2">{t("title")}</h3>
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-2">
         {Object.entries(PRODUCT_IP_LABEL_MAP).map(
-          ([ip, { label, description }]) => (
-            <TooltipProvider key={ip}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    onClick={() => handleIpChange(ip as ProductIP)}
-                    variant={selectedIp === ip ? "default" : "outline"}
-                    className={cn(
-                      "flex items-center justify-center w-full rounded-full",
-                      selectedIp === ip
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-background hover:bg-secondary",
-                    )}
-                  >
-                    <Droplets className="w-4 h-4 mr-1" />
-                    <span className={cn("rtl:mr-1 ltr:ml-1")}>
-                      {t(`ratings.${ip}.label`)}
-                    </span>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent className="sm:block hidden font-medium max-w-xs">
-                  <p>{t(`ratings.${ip}.description`)}</p>
-                  <p className="text-xs mt-1 opacity-75">{t("onlyAvailableRating")}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          ),
+          ([ip, { label, description, increaseOnPricePercent }]) => {
+            // حساب الزيادة على السعر الأساسي ثم تطبيق الخصم للعرض
+            const basePriceIncrease = basePrice * increaseOnPricePercent;
+            const displayedIncrease = basePriceIncrease * (1 - discount);
+
+            return (
+              <TooltipProvider key={ip}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => handleIpChange(ip as ProductIP)}
+                      variant={selectedIp === ip ? "default" : "outline"}
+                      className={cn(
+                        "flex items-center justify-center w-full rounded-full transition-all duration-200",
+                        selectedIp === ip
+                          ? "bg-primary text-primary-foreground shadow-lg"
+                          : "bg-background hover:bg-secondary",
+                      )}
+                    >
+                      <Droplets className="w-4 h-4 mr-1" />
+                      <span className={cn("rtl:mr-1 ltr:ml-1")}>
+                        {t(`ratings.${ip}.label`)}
+                      </span>
+                      {displayedIncrease > 0 && (
+                        <span className="ml-2 text-sm opacity-70">
+                          +{formatNumber(Math.ceil(displayedIncrease), isRTL ? "ar" : "en")}
+                        </span>
+                      )}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="sm:block hidden font-medium max-w-xs">
+                    <p>{t(`ratings.${ip}.description`)}</p>
+                    <p className="text-xs mt-1 opacity-75">
+                      {t("onlyAvailableRating")}
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            );
+          },
         )}
       </div>
     </div>

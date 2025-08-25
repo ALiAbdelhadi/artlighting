@@ -2,7 +2,7 @@
     "categories": {
         "balcom": {
             "indoor": {
-                "family202": [
+                "track-light": [
                     {
                         "jy-202-15w": {
                             "specificationsTable": {
@@ -26,7 +26,7 @@
                         }
                     }
                 ],
-                "family500": [
+                "cob": [
                     {
                         "jy-535-5w": {
                             "specificationsTable": {
@@ -88,50 +88,6 @@
                                 "Life Time": "50,000"
                             }
                         },
-                        "jy-595-44w": {
-                            "specificationsTable": {
-                                "Input": "AC 85-265v ~ 50/60 hz",
-                                "Maximum wattage": 44,
-                                "Brand Of Led": "Epistar",
-                                "Luminous Flux": "4500LM",
-                                "Main Material": "Die-Casting Aluminum",
-                                "CRI": "≥ 80",
-                                "Beam Angle": "53°",
-                                "Working Temperature": "-10° to 45° C",
-                                "Fixture Dimmable": "No",
-                                "Electrical": "Phillips External Driver",
-                                "Power Factor": "≥0.5",
-                                "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": 44,
-                                "maxIP": 44,
-                                "Energy Saving": "90%",
-                                "Life Time": "50,000"
-                            }
-                        },
-                        "jy-595-48w": {
-                            "specificationsTable": {
-                                "Input": "AC 85-265v ~ 50/60 hz",
-                                "Maximum wattage": 48,
-                                "Brand Of Led": "Epistar",
-                                "Luminous Flux": "4500LM",
-                                "Main Material": "Die-Casting Aluminum",
-                                "CRI": "≥ 80",
-                                "Beam Angle": "53°",
-                                "Working Temperature": "-10° to 45° C",
-                                "Fixture Dimmable": "No",
-                                "Electrical": "Balcom internal Driver",
-                                "Power Factor": "≥0.5",
-                                "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": 44,
-                                "maxIP": 44,
-                                "Energy Saving": "90%",
-                                "Life Time": "50,000"
-                            }
-                        }
-                    }
-                ],
-                "family800": [
-                    {
                         "jy-805-7w": {
                             "specificationsTable": {
                                 "Input": "AC 85-265v ~ 50/60 hz",
@@ -334,7 +290,7 @@
                         }
                     }
                 ],
-                "family900": [
+                "panel-light": [
                     {
                         "jy-903-8w": {
                             "specificationsTable": {
@@ -692,6 +648,46 @@
                                 "Color Temperature": "3000K / 4000K / 6500K",
                                 "IP": 20,
                                 "maxIP": 65,
+                                "Energy Saving": "90%",
+                                "Life Time": "50,000"
+                            }
+                        },
+                        "jy-595-44w": {
+                            "specificationsTable": {
+                                "Input": "AC 85-265v ~ 50/60 hz",
+                                "Maximum wattage": 44,
+                                "Brand Of Led": "Epistar",
+                                "Luminous Flux": "4500LM",
+                                "Main Material": "Die-Casting Aluminum",
+                                "CRI": "≥ 80",
+                                "Beam Angle": "53°",
+                                "Working Temperature": "-10° to 45° C",
+                                "Fixture Dimmable": "No",
+                                "Electrical": "Phillips External Driver",
+                                "Power Factor": "≥0.5",
+                                "Color Temperature": "3000K / 4000K / 6500K",
+                                "IP": 44,
+                                "maxIP": 44,
+                                "Energy Saving": "90%",
+                                "Life Time": "50,000"
+                            }
+                        },
+                        "jy-595-48w": {
+                            "specificationsTable": {
+                                "Input": "AC 85-265v ~ 50/60 hz",
+                                "Maximum wattage": 48,
+                                "Brand Of Led": "Epistar",
+                                "Luminous Flux": "4500LM",
+                                "Main Material": "Die-Casting Aluminum",
+                                "CRI": "≥ 80",
+                                "Beam Angle": "53°",
+                                "Working Temperature": "-10° to 45° C",
+                                "Fixture Dimmable": "No",
+                                "Electrical": "Balcom internal Driver",
+                                "Power Factor": "≥0.5",
+                                "Color Temperature": "3000K / 4000K / 6500K",
+                                "IP": 44,
+                                "maxIP": 44,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }

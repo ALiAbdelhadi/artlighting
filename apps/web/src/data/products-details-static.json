@@ -2,7 +2,7 @@
   "categories": {
     "balcom": {
       "indoor": {
-        "family202": [
+        "track-light": [
           {
             "jy-202-15w": {
               "ProductId": "jy-202-15w",
@@ -12,7 +12,7 @@
                 "/indoor/product202/jy-202-15w/JY-202-15W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family202",
+              "spotlightType": "track-light",
               "brand": "balcom",
               "price": 729,
               "sectionType": "indoor",
@@ -21,7 +21,7 @@
             }
           }
         ],
-        "family500": [
+        "cob": [
           {
             "jy-535-5w": {
               "ProductId": "jy-535-5w",
@@ -31,7 +31,7 @@
                 "/indoor/products500/jy-535-5w/JY-535-5W (2).png"
               ],
               "MaxIP": 54,
-              "spotlightType": "family500",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 295,
               "sectionType": "indoor",
@@ -46,7 +46,7 @@
                 "/indoor/products500/jy-539-7w/JY-539-7W (2).png"
               ],
               "MaxIP": 54,
-              "spotlightType": "family500",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 469,
               "sectionType": "indoor",
@@ -61,47 +61,13 @@
                 "/indoor/products500/jy-540-7w/JY-540-7W (2).png"
               ],
               "MaxIP": 54,
-              "spotlightType": "family500",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 469,
               "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1
             },
-            "jy-595-44w": {
-              "ProductId": "jy-595-44w",
-              "productName": "JY-595-44W",
-              "productImages": [
-                "/indoor/products500/jy-595-44w/JY-595-44W (1).png",
-                "/indoor/products500/jy-595-44w/JY-595-44W (2).png"
-              ],
-              "MaxIP": 65,
-              "spotlightType": "family500",
-              "brand": "balcom",
-              "price": 1625,
-              "sectionType": "indoor",
-              "quantity": 10,
-              "discount": 0.1
-            },
-            "jy-595-48w": {
-              "ProductId": "jy-595-48w",
-              "productName": "JY-595-48W",
-              "productImages": [
-                "/indoor/products500/jy-595-48w/JY-595-48W (1).png",
-                "/indoor/products500/jy-595-48w/JY-595-48W (2).png"
-              ],
-              "MaxIP": 65,
-              "spotlightType": "family500",
-              "brand": "balcom",
-              "price": 1299,
-              "sectionType": "indoor",
-              "quantity": 10,
-              "discount": 0.1
-            }
-          }
-        ],
-        "family800": [
-          {
             "jy-805-7w": {
               "ProductId": "jy-805-7w",
               "productName": "JY-805-7W",
@@ -110,7 +76,7 @@
                 "/indoor/products800/jy-805-7w/JY-805-7W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 359,
               "sectionType": "indoor",
@@ -125,7 +91,7 @@
                 "/indoor/products800/jy-810-10w/JY-810-10W (2).png"
               ],
               "MaxIP": 54,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 529,
               "sectionType": "indoor",
@@ -140,7 +106,7 @@
                 "/indoor/products800/jy-810-12w/JY-810-12W (2).png"
               ],
               "MaxIP": 54,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 440,
               "sectionType": "indoor",
@@ -155,7 +121,7 @@
                 "/indoor/products800/jy-810-18w/JY-810-18W (2).png"
               ],
               "MaxIP": 54,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 939,
               "sectionType": "indoor",
@@ -170,7 +136,7 @@
                 "/indoor/products800/jy-810-30w/JY-810-30W (2).png"
               ],
               "MaxIP": 54,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 1075,
               "sectionType": "indoor",
@@ -185,7 +151,7 @@
                 "/indoor/products800/jy-812-12w/JY-812-12W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 585,
               "sectionType": "indoor",
@@ -200,7 +166,7 @@
                 "/indoor/products800/jy-813-7w/JY-813-7W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 549,
               "sectionType": "indoor",
@@ -215,7 +181,7 @@
                 "/indoor/products800/jy-813-20w/JY-813-20W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 889,
               "sectionType": "indoor",
@@ -230,7 +196,7 @@
                 "/indoor/products800/jy-813-30w/JY-813-30W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 1075,
               "sectionType": "indoor",
@@ -245,7 +211,7 @@
                 "/indoor/products800/jy-813-40w/JY-813-40W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family800",
+              "spotlightType": "cob",
               "brand": "balcom",
               "price": 1319,
               "sectionType": "indoor",
@@ -254,7 +220,7 @@
             }
           }
         ],
-        "family900": [
+        "panel-light": [
           {
             "jy-903-8w": {
               "ProductId": "jy-903-8w",
@@ -264,7 +230,7 @@
                 "/indoor/products900/jy-903-8w/JY-903-8W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 439,
               "sectionType": "indoor",
@@ -279,7 +245,7 @@
                 "/indoor/products900/jy-903-10w/JY-903-10W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 529,
               "sectionType": "indoor",
@@ -294,7 +260,7 @@
                 "/indoor/products900/jy-903-18w/JY-903-18W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 685,
               "sectionType": "indoor",
@@ -309,7 +275,7 @@
                 "/indoor/products900/jy-903-30w/JY-903-30W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 1049,
               "sectionType": "indoor",
@@ -324,7 +290,7 @@
                 "/indoor/products900/jy-904-8w/JY-904-8W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 499,
               "sectionType": "indoor",
@@ -339,7 +305,7 @@
                 "/indoor/products900/jy-904-10w/JY-904-10W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 555,
               "sectionType": "indoor",
@@ -354,7 +320,7 @@
                 "/indoor/products900/jy-904-18w/JY-904-18W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 819,
               "sectionType": "indoor",
@@ -369,7 +335,7 @@
                 "/indoor/products900/jy-913-5w/JY-913-5W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 259,
               "sectionType": "indoor",
@@ -384,7 +350,7 @@
                 "/indoor/products900/jy-913-8w/JY-913-8W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 279,
               "sectionType": "indoor",
@@ -399,7 +365,7 @@
                 "/indoor/products900/jy-913-12w/JY-913-12W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 294,
               "sectionType": "indoor",
@@ -414,7 +380,7 @@
                 "/indoor/products900/jy-913-18w/JY-913-18W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 525,
               "sectionType": "indoor",
@@ -429,7 +395,7 @@
                 "/indoor/products900/jy-922-8w/JY-922-8W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 349,
               "sectionType": "indoor",
@@ -444,7 +410,7 @@
                 "/indoor/products900/jy-922-12w/JY-922-12W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 499,
               "sectionType": "indoor",
@@ -459,7 +425,7 @@
                 "/indoor/products900/jy-922-18w/JY-922-18W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 745,
               "sectionType": "indoor",
@@ -474,7 +440,7 @@
                 "/indoor/products900/jy-922-30w/JY-922-30W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 1099,
               "sectionType": "indoor",
@@ -489,7 +455,7 @@
                 "/indoor/products900/jy-923-8w/JY-923-8W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 399,
               "sectionType": "indoor",
@@ -504,7 +470,7 @@
                 "/indoor/products900/jy-923-12w/JY-923-12W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 529,
               "sectionType": "indoor",
@@ -519,9 +485,39 @@
                 "/indoor/products900/jy-923-18w/JY-923-18W (2).png"
               ],
               "MaxIP": 65,
-              "spotlightType": "family900",
+              "spotlightType": "panel-light",
               "brand": "balcom",
               "price": 749,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "jy-595-44w": {
+              "ProductId": "jy-595-44w",
+              "productName": "JY-595-44W",
+              "productImages": [
+                "/indoor/products500/jy-595-44w/JY-595-44W (1).png",
+                "/indoor/products500/jy-595-44w/JY-595-44W (2).png"
+              ],
+              "MaxIP": 65,
+              "spotlightType": "panel-light",
+              "brand": "balcom",
+              "price": 1625,
+              "sectionType": "indoor",
+              "quantity": 10,
+              "discount": 0.1
+            },
+            "jy-595-48w": {
+              "ProductId": "jy-595-48w",
+              "productName": "JY-595-48W",
+              "productImages": [
+                "/indoor/products500/jy-595-48w/JY-595-48W (1).png",
+                "/indoor/products500/jy-595-48w/JY-595-48W (2).png"
+              ],
+              "MaxIP": 65,
+              "spotlightType": "panel-light",
+              "brand": "balcom",
+              "price": 1299,
               "sectionType": "indoor",
               "quantity": 10,
               "discount": 0.1

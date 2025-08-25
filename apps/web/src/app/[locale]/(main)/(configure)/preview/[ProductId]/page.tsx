@@ -41,35 +41,29 @@ const Page = async ({ params, searchParams }: PageProps) => {
   let productSpecification = null
 
   try {
-    // Primary: Use ProductId from URL parameters
     if (ProductId) {
       console.log(`Fetching configuration for ProductId: ${ProductId}`)
-
-      // Fetch configuration with comprehensive error handling
       configuration = await prisma.configuration.findFirst({
         where: { productId: ProductId },
-        orderBy: { updatedAt: 'desc' } // Get the most recent configuration
+        orderBy: { updatedAt: 'desc' }
       })
 
       if (configuration) {
         console.log(`Found configuration: ${configuration.id}`)
       } else {
         console.log(`No configuration found for ProductId: ${ProductId}, creating default`)
-
-        // First, verify the product exists
         const productExists = await prisma.product.findUnique({
           where: { productId: ProductId },
           select: { productId: true, price: true, discount: true }
         })
 
         if (productExists) {
-          // Create a default configuration if none exists
           configuration = await prisma.configuration.create({
             data: {
               productId: ProductId,
               configPrice: productExists.price,
               priceIncrease: 0,
-              shippingPrice: 69, // Default shipping price
+              shippingPrice: 69,
               discount: productExists.discount,
               quantity: 1,
               totalPrice: productExists.price,
@@ -78,8 +72,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
           console.log(`Created default configuration: ${configuration.id}`)
         }
       }
-
-      // Fetch product with comprehensive localized data
       product = await prisma.product.findUnique({
         where: { productId: ProductId },
         include: {
@@ -105,8 +97,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
           }
         }
       })
-
-      // Get localized product specification
       productSpecification = await prisma.productSpecification.findUnique({
         where: {
           productId_language: {
@@ -115,15 +105,12 @@ const Page = async ({ params, searchParams }: PageProps) => {
           }
         }
       })
-
       console.log("Product fetch result:", {
         found: !!product,
         hasTranslations: product?.translations?.length ?? 0,
         hasSpecifications: product?.specifications?.length ?? 0,
       })
     }
-
-    // Fallback: Use configuration ID from search params
     if (!configuration && id && typeof id === "string") {
       console.log(`Fallback: Fetching configuration by ID: ${id}`)
 
@@ -171,7 +158,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
       }
     }
 
-    // Final validation
     if (!configuration) {
       console.error("Configuration not found after all attempts")
       return notFound()
@@ -181,8 +167,6 @@ const Page = async ({ params, searchParams }: PageProps) => {
       console.error("Product not found after all attempts")
       return notFound()
     }
-
-    // Merge localized product data with fallbacks
     const localizedProduct = {
       ...product,
       productName: product.translations?.[0]?.name || product.productName,

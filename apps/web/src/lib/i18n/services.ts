@@ -1,45 +1,30 @@
 import { prisma } from "@repo/database";
 import type { SupportedLanguage, LocalizedCategory, SectionType, LocalizedProduct } from "./types";
 interface LocalizedProduct {
-    // المعرفات الأساسية
     id: string;
     productId: string;
     productName: string;
     localizedName?: string;
     localizedDescription?: string;
-
-    // بيانات المنتج
     brand: string;
     price: number;
     discount?: number;
     priceIncrease?: number;
     quantity: number;
-
-    // الصور
     images: string[];
-    productImages?: string[]; // للتوافق
-
-    // التصنيف
+    productImages?: string[];
     sectionType: string;
     spotlightType: string;
     categoryId?: string;
     lightingtypeId?: string;
-
-    // البيانات الفنية المهمة
     maxIP?: number;
-    hNumber?: number; // مهم للنجف
-    chandelierLightingType?: string; // مهم للنجف
-
-    // الخصائص
+    hNumber?: number;
+    chandelierLightingType?: string;
     productColor?: string;
     productIp?: string;
     productChandLamp?: string;
-
-    // الحالة
     isActive?: boolean;
     featured?: boolean;
-
-    // المواصفات
     specifications?: {
         language: string;
         maximumWattage?: string;
@@ -62,8 +47,6 @@ interface LocalizedProduct {
         bulb?: string;
         customSpecs?: any;
     };
-
-    // للتوافق مع الكود القديم
     specificationsArray?: any[];
     translations?: any[];
     maximumWattage?: string;
@@ -74,8 +57,6 @@ interface LocalizedProduct {
     lifeTime?: string;
     finish?: string;
     input?: string;
-
-    // التوقيتات
     createdAt?: Date;
     updatedAt?: Date;
 }

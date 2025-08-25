@@ -9,14 +9,23 @@ interface DiscountPriceProps {
   quantity?: number
   shippingPrice?: number
   sectionType?: string
+  priceIncrease?: number
 }
 
-export default function DiscountPrice({ price, discount, quantity = 1, shippingPrice = 0 }: DiscountPriceProps) {
+export default function DiscountPrice({
+  price,
+  discount,
+  quantity = 1,
+  shippingPrice = 0,
+  priceIncrease = 0,
+  sectionType
+}: DiscountPriceProps) {
   const locale = useLocale()
-
-  const priceIncreasing = price
-  const discountedPrice = priceIncreasing * (1 - discount)
-  const finalPrice = discountedPrice * quantity + shippingPrice
+  const discountedBasePrice = price * (1 - discount)
+  const discountedPriceIncrease = priceIncrease 
+  const totalDiscountedPrice = discountedBasePrice + discountedPriceIncrease
+  const totalItemsPrice = totalDiscountedPrice * quantity
+  const finalPrice = totalItemsPrice + shippingPrice
   const formattedPrice = formatNumberWithConversion(Math.ceil(finalPrice), locale)
 
   return (

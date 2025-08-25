@@ -309,7 +309,6 @@ const getRelatedBalcomProducts = async (product: any, subCategory: string, local
     productName: relatedProduct.translations?.[0]?.name || relatedProduct.productName,
     localizedSpecs: relatedProduct.specifications?.[0] || {},
     chandelierLightingType: relatedProduct.chandelierLightingType || undefined,
-    // Add missing specification fields
     input: relatedProduct.specifications?.[0]?.input || undefined,
     maximumWattage: relatedProduct.specifications?.[0]?.maximumWattage ?
       parseInt(relatedProduct.specifications[0].maximumWattage) : undefined,

@@ -36,7 +36,7 @@ const transformProductForCard = (product: LocalizedProduct, locale: SupportedLan
         (product.hNumber ? String(product.hNumber * 12) : "غير محدد"),
       mainMaterial: product.mainMaterial || "معدن عالي الجودة",
       beamAngle: product.beamAngle || "متغير",
-      lampBase: product.lampBase || "قاعدة LED",
+      lampBase: product.lampBase || "قاعدة ليد",
       colorTemperature: product.colorTemperature || "3000K-6500K",
       lifeTime: product.lifeTime || "50000 ساعة",
       finish: product.finish || "أنيق",
@@ -91,7 +91,7 @@ export default function LightingType({
 
   const labels = {
     en: {
-      title: `Mister led - ${displayName}`,
+      title: `Baclom - ${displayName}`,
       productsFound: `${total} products`,
       loadMore: "Load More Products",
       loading: "Loading...",
@@ -99,7 +99,7 @@ export default function LightingType({
       noProductsDesc: "Try searching for a different category or check back later",
     },
     ar: {
-      title: `مستر ليد - ${displayName}`,
+      title: `بالكوم - ${displayName}`,
       productsFound: `${total} منتج`,
       loadMore: "تحميل المزيد من المنتجات",
       loading: "جاري التحميل...",

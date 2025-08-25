@@ -144,7 +144,6 @@ class SmartSlugGenerator {
   }
 }
 
-// Enhanced Translation Registry with Better Organization
 class EnterpriseTranslationRegistry {
   private static readonly CATEGORY_TRANSLATIONS: TranslationMap = {
     indoor: { en: "Indoor Lighting", ar: "إضاءة داخلية" },
@@ -153,16 +152,15 @@ class EnterpriseTranslationRegistry {
   };
 
   private static readonly LIGHTING_TYPE_TRANSLATIONS: TranslationMap = {
-    family202: { en: "Family 202 Series", ar: "سلسلة العائلة 202" },
-    family500: { en: "Family 500 Series", ar: "سلسلة العائلة 500" },
-    family800: { en: "Family 800 Series", ar: "سلسلة العائلة 800" },
-    family900: { en: "Family 900 Series", ar: "سلسلة العائلة 900" },
-    strip: { en: "LED Strips", ar: "شرائط الليد" },
-    linear: { en: "Linear Lighting", ar: "الإضاءة الخطية" },
-    uplight: { en: "Uplights", ar: "الإضاءة العلوية" },
-    spikes: { en: "Spike Lights", ar: "الحربات" },
-    bollard: { en: "Bollard Lights", ar: "إضاءة الأعمدة" },
-    "flood-light": { en: "Flood Lights", ar: "كشافات الوجهات" },
+    "track-light": { en: "Track light", ar: "تراك لايت" },
+    cob: { en: "COB", ar: "COB" },
+    "panel-light": { en: "Panel light", ar: "إضاءة بانل" },
+    "led-strip": { en: "LED Strips", ar: "شرائط الليد" },
+    "linear-lighting": { en: "Linear Lighting", ar: "الإضاءة الخطية" },
+    "uplight": { en: "Uplights", ar: "الإضاءة العلوية" },
+    "spikes": { en: "Spike Lights", ar: "الحربات" },
+    "bollard": { en: "Bollard Lights", ar: "إضاءة الأعمدة" },
+    "flood-light": { en: "Flood Lights", ar: "كشافات الوجهات و الملاعب" },
     "wall-washer": { en: "Wall Washer Lights", ar: "إضاءة جدارية" }
   };
 
@@ -178,7 +176,6 @@ class EnterpriseTranslationRegistry {
 
   private static fallbackTranslation(text: string, language: SupportedLanguage): string {
     if (language === 'ar') {
-      // Simple fallback: add "مجموعة" (collection) prefix for Arabic
       return `مجموعة ${text}`;
     }
     return text.replace(/[-_]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());

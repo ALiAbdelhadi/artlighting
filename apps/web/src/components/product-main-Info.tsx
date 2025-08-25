@@ -494,6 +494,7 @@ export default function ProductMainInfo({
                 productIp={selectedProductIp}
                 onProductIpChange={handleProductIPChange}
                 basePrice={price}
+                discount={0}
               />
             )}
           </div>
@@ -509,7 +510,12 @@ export default function ProductMainInfo({
           {discount > 0 ? (
             <>
               <span className="text-xl font-semibold">
-                <DiscountPrice price={totalPrice} discount={discount} quantity={currentQuantity} />
+                <DiscountPrice
+                  price={price}
+                  discount={discount}
+                  quantity={currentQuantity}
+                  priceIncrease={priceIncrease + lampPriceIncrease}
+                />
               </span>
               <s className="text-muted-foreground text-base">
                 <NormalPrice price={totalPrice} quantity={currentQuantity} />

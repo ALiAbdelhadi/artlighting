@@ -15,11 +15,11 @@ export function cn(...inputs: ClassValue[]) {
 export function constructMetadata({
   title,
   description,
-  image = "/Logo.png",
+  locale = "en",
+  image =  locale === "ar" ? "/Logo-ar.png" : "/Logo-en.png",
   icons = "/favicon.ico",
   openGraph,
   twitter,
-  locale = "en",
 }: {
   title?: string;
   description?: string;
@@ -253,7 +253,6 @@ export function calculateEstimatedDeliveryDate(locale: "ar" | "en") {
   const estimatedDeliveryDate = addDays(currentDate, 4);
 
   if (locale === "ar") {
-    // ✅ استخدام Intl API للغة العربية
     return new Intl.DateTimeFormat("ar-EG", {
       day: "numeric",
       month: "long",
@@ -261,7 +260,6 @@ export function calculateEstimatedDeliveryDate(locale: "ar" | "en") {
     }).format(estimatedDeliveryDate);
   }
 
-  // ✅ استخدام date-fns للإنجليزية
   return format(estimatedDeliveryDate, "dd MMM, yyyy", { locale: enUS });
 }
 

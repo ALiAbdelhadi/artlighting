@@ -105,7 +105,7 @@
             "ProjectDescription": "Dar-Misr is a real estate compound.",
             "ProjectInfor": "Dar Misr is a prominent housing project initiated by the Egyptian Ministry of Housing, aiming to provide 150,000 high-quality residential units for middle-income citizens across various new cities in Egypt.",
             "ProjectInfor2": "The project is being executed in four phases, offering units with areas ranging from 100 to 150 square meters. Each unit features a distinctive architectural design and superior finishing standards, ensuring a contemporary living experience. Our company contributed to this project by supplying advanced lighting solutions that enhance the aesthetic appeal and functionality of the residential spaces.",
-            "usedProducts": "/category/balcom/indoor/family900"
+            "usedProducts": "/category/balcom/indoor/panel-light"
         },
         "tolip": {
             "ProjectId": "tolip",
@@ -129,7 +129,7 @@
             "ProjectDescription": "Al-Majd Conference Center in Alexandria.",
             "ProjectInfor": "The Al-Majd Conference Center in Alexandria is a premier venue designed to host a variety of events, including conferences, seminars, and workshops.",
             "ProjectInfor2": "The center boasts modern architecture and is equipped with state-of-the-art facilities to accommodate both local and international gatherings. Our lighting solutions were implemented to ensure optimal illumination, creating an inviting atmosphere for all attendees.",
-            "usedProducts": "/category/balcom/indoor/family900"
+            "usedProducts": "/category/balcom/indoor/panel-light"
         },
         "mansoura-hospital": {
             "ProjectId": "mansoura-hospital",
@@ -322,10 +322,9 @@
             "title": "Indoor",
             "strip": "Strip Lights",
             "linear": "Linear Lights",
-            "family202": "Family 202",
-            "family500": "Family 500",
-            "family800": "Family 800",
-            "family900": "Family 900",
+            "track-light": "Track Light",
+            "cob": "COB",
+            "panel-light": "Panel Light",
             "double-spotlight": "Double Spotlight"
         },
         "outdoor": {
@@ -466,7 +465,8 @@
     "products-client": {
         "title": "Our Best-Selling Products",
         "description": "Discover a wide range of high-quality lighting products designed to meet your needs",
-        "exploreAllProducts": "Explore All Products"
+        "exploreAllProducts": "Explore All Products",
+        "noProducts": "No products available"
     },
     "product-card": {
         "moreDetails": "More Details",
@@ -515,8 +515,7 @@
         "adding": "Adding...",
         "orderNow": "Order Now",
         "processingOrder": "Processing Order...",
-        "off": "OFF",
-        "updateError": "Failed to update configuration. Please try again."
+        "off": "OFF"
     },
     "product-descriptions": {
         "balcomIndoor": "Elevate your indoor space with the {Brand} {wattage}W LED luminaire. Crafted with premium {material}, this high-performance light offers {luminousFlux} luminous output, {beamAngle} beam angle.",
@@ -535,7 +534,11 @@
         "addedToCart": "{productName} has been added to your cart",
         "failedToAdd": "Failed to add item to cart. Please try again.",
         "orderError": "There was an error with your order. Please refresh the page and try again.",
-        "configSaved": "Product configuration has been saved successfully."
+        "configSaved": "Product configuration has been saved successfully.",
+        "updateError": "Failed to update configuration. Please try again.",
+        "configError": "Configuration not found. Please refresh the page.",
+        "productError": "Product information missing. Please refresh the page.",
+        "quantityError": "Please select a valid quantity."
     },
     "product-dialog": {
         "bulkOrderTitle": "Bulk Order Notification",
