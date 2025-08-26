@@ -29,5 +29,8 @@
   "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
