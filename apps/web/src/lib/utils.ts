@@ -16,7 +16,7 @@ export function constructMetadata({
   title,
   description,
   locale = "en",
-  image =  locale === "ar" ? "/Logo-ar.png" : "/Logo-en.png",
+  image = locale === "ar" ? "/Logo-ar.png" : "/Logo-en.png",
   icons = "/favicon.ico",
   openGraph,
   twitter,
@@ -42,45 +42,58 @@ export function constructMetadata({
   };
 
   const ogLocale = locale === "ar" ? "ar_EG" : "en_US";
-  const siteUrl = "https://eg-artlighting.vercel.app/";
+  const baseUrl = "https://eg-artlighting.vercel.app";
+  const siteUrl = `${baseUrl}/${locale}/`;
   const siteName = "Art Lighting Company";
 
   const resolvedTitle = title ?? defaultTitles[locale];
   const resolvedDescription = description ?? defaultDescriptions[locale];
+
+  const resolvedImage = image.startsWith("http") ? image : `${baseUrl}${image}`;
 
   const imageAlt = locale === "ar" ? "شعار شركة آرت لايتنغ" : "Art Lighting Company Logo";
 
   return {
     title: resolvedTitle,
     description: resolvedDescription,
-    openGraph:
-      openGraph ??
-      {
-        type: "website",
-        locale: ogLocale,
-        url: siteUrl,
-        siteName,
-        title: resolvedTitle,
-        description: resolvedDescription,
-        images: [
-          {
-            url: image,
-            width: 1200,
-            height: 630,
-            alt: imageAlt,
-          },
-        ],
+    openGraph: openGraph ?? {
+      type: "website",
+      locale: ogLocale,
+      url: siteUrl,
+      siteName,
+      title: resolvedTitle,
+      description: resolvedDescription,
+      images: [
+        {
+          url: resolvedImage,
+          width: 1200,
+          height: 630,
+          alt: imageAlt,
+          type: "image/png"
+        },
+      ],
+    },
+    twitter: twitter ?? {
+      card: "summary_large_image",
+      site: "@ArtLightingEG",
+      creator: "@ArtLightingEG",
+      title: resolvedTitle,
+      description: resolvedDescription,
+      images: {
+        url: resolvedImage,
+        alt: imageAlt,
       },
-    twitter:
-      twitter ??
-      {
-        card: "summary_large_image",
-        title: resolvedTitle,
-        description: resolvedDescription,
-        images: [image],
-        creator: "@ArtLightingEG",
-        site: "@ArtLightingEG",
-      },
+    },
+    other: {
+      "application-name": siteName,
+      "og:image": resolvedImage,
+      "og:image:width": "1200",
+      "og:image:height": "630",
+      "og:image:alt": imageAlt,
+      "twitter:image": resolvedImage,
+      "twitter:image:alt": imageAlt,
+    },
+    
     icons,
     keywords: [
       "Lighting",
@@ -129,7 +142,7 @@ export function constructMetadata({
       "تصميم الإضاءة",
       "تركيب الإضاءة",
     ],
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(baseUrl),
     robots: {
       index: true,
       follow: true,
@@ -143,9 +156,10 @@ export function constructMetadata({
     },
     alternates: {
       canonical: siteUrl,
-    },
-    other: {
-      "application-name": siteName,
+      languages: {
+        en: `${baseUrl}/en/`,
+        ar: `${baseUrl}/ar/`,
+      },
     },
   };
 }

@@ -1,7 +1,6 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -29,13 +28,12 @@ model Configuration {
   @@map("configurations")
 }
 
-// Enhanced User Model with Localization Preferences
 model User {
   id                String   @id
   email             String?
   phoneNumber       String?
-  preferredLanguage String   @default("ar") // User's preferred language
-  preferredCurrency String   @default("EGP") // User's preferred currency
+  preferredLanguage String   @default("ar")
+  preferredCurrency String   @default("EGP")
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
@@ -53,8 +51,6 @@ model User {
 
   @@map("users")
 }
-
-// Enhanced OrderItem with Localized Product Info
 model OrderItem {
   id              String  @id @default(cuid())
   orderId         Int
@@ -62,7 +58,7 @@ model OrderItem {
   quantity        Int
   configPrice     Float
   configurationId String?
-  localizedName   String? // Cached localized product name at time of order
+  localizedName   String?
 
   // Relations
   order         Order          @relation(fields: [orderId], references: [id])
@@ -72,7 +68,6 @@ model OrderItem {
   @@map("order_items")
 }
 
-// Enhanced Order Model with Multi-language Support
 model Order {
   id               Int         @id @default(autoincrement())
   userId           String
@@ -86,7 +81,7 @@ model Order {
   isCompleted      Boolean     @default(false)
   status           OrderStatus @default(awaiting_shipment)
   currency         String      @default("EGP")
-  customerLanguage String      @default("ar") // Language when order was placed
+  customerLanguage String      @default("ar")
   createdAt        DateTime    @default(now())
   updatedAt        DateTime    @updatedAt
 
@@ -116,8 +111,6 @@ model Order {
 
   @@map("orders")
 }
-
-// Enhanced ShippingAddress with Localized Fields
 model ShippingAddress {
   id          String  @id @default(cuid())
   userId      String  @unique
@@ -127,9 +120,9 @@ model ShippingAddress {
   state       String
   zipCode     String
   country     String
-  countryCode String  @default("EG") // ISO country code for better i18n
+  countryCode String  @default("EG")
   phoneNumber String
-  isDefault   Boolean @default(false) // Allow multiple addresses
+  isDefault   Boolean @default(false) 
 
   // Relations
   orders Order[]
@@ -138,7 +131,6 @@ model ShippingAddress {
   @@map("shipping_addresses")
 }
 
-// Enhanced Cart Model
 model Cart {
   id        String   @id @default(cuid())
   userId    String   @unique
@@ -168,12 +160,10 @@ model CartItem {
   @@unique([cartId, productId])
   @@map("cart_items")
 }
-
-// Enhanced Product Model with Better i18n Architecture
 model Product {
   id                     String   @id @default(cuid())
   productId              String   @unique
-  productName            String // Base name (usually English)
+  productName            String
   productImages          String[]
   maxIP                  Int?
   spotlightType          String
@@ -185,8 +175,8 @@ model Product {
   discount               Float    @default(0)
   chandelierLightingType String?
   hNumber                Int?
-  isActive               Boolean  @default(true) // Product visibility
-  featured               Boolean  @default(false) // Featured products
+  isActive               Boolean  @default(true) 
+  featured               Boolean  @default(false) 
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 
@@ -207,7 +197,7 @@ model Product {
   category       Category               @relation(fields: [categoryId], references: [id])
   lightingtype   LightingType           @relation(fields: [lightingtypeId], references: [id])
   specifications ProductSpecification[]
-  translations   ProductTranslation[] // New relation for product name translations
+  translations   ProductTranslation[]
 
   // Indexes for performance
   @@index([categoryId])
@@ -217,14 +207,12 @@ model Product {
   @@index([featured])
   @@map("products")
 }
-
-// New Model: Product Name Translations
 model ProductTranslation {
   id          String   @id @default(cuid())
   productId   String
   language    String
-  name        String // Translated product name
-  description String? // Optional product description
+  name        String 
+  description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   product     Product  @relation(fields: [productId], references: [productId], onDelete: Cascade)

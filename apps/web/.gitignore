@@ -41,3 +41,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+apps\web\src\data\products-details-ar.json
+apps\web\src\data\products-details-en.json
+apps\web\src\data\products-details-static.json

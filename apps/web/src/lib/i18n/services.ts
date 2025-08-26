@@ -89,7 +89,6 @@ export class I18nService {
         }
 
         try {
-            // Get categories with product counts
             const categoriesWithCounts = await prisma.product.groupBy({
                 by: ["sectionType", "categoryId"],
                 where: {
@@ -103,8 +102,6 @@ export class I18nService {
                     sectionType: "desc",
                 },
             });
-
-            // Get category details with translations
             const categoryIds = [...new Set(categoriesWithCounts.map(c => c.categoryId))];
 
             const categoriesWithTranslations = await prisma.category.findMany({
@@ -120,8 +117,6 @@ export class I18nService {
                     },
                 },
             });
-
-            // Merge data and create localized categories
             const localizedCategories: LocalizedCategory[] = categoriesWithCounts.map(groupItem => {
                 const categoryDetail = categoriesWithTranslations.find(c => c.id === groupItem.categoryId);
                 const translation = categoryDetail?.translations[0];
@@ -137,8 +132,6 @@ export class I18nService {
                     image: this.getSectionTypeImage(groupItem.sectionType as SectionType),
                 };
             });
-
-            // Cache the result for 5 minutes
             this.translationCache.set(cacheKey, localizedCategories);
             setTimeout(() => {
                 this.translationCache.delete(cacheKey);
@@ -166,7 +159,6 @@ export class I18nService {
         }
 
         try {
-            // نفس الكود الحالي
             const lightingTypesWithCounts = await prisma.product.groupBy({
                 by: ["lightingtypeId", "spotlightType", "categoryId"], // أضفنا categoryId هنا
                 where: {
@@ -179,8 +171,6 @@ export class I18nService {
 
             const lightingTypeIds = [...new Set(lightingTypesWithCounts.map(lt => lt.lightingtypeId))];
             const categoryIds = [...new Set(lightingTypesWithCounts.map(lt => lt.categoryId))];
-
-            // جلب الترجمات
             const [lightingTypesWithTranslations, categoriesWithTranslations, firstProductImages] = await Promise.all([
                 prisma.lightingType.findMany({
                     where: { id: { in: lightingTypeIds }, isActive: true },
@@ -227,7 +217,6 @@ export class I18nService {
                     spotlightType: groupItem.spotlightType,
                     productCount: groupItem._count._all,
                     firstProductImage: imageData?.firstImage || null,
-                    // أضفنا اسم الكاتيجوري المترجم هنا
                     localizedCategoryName: categoryTranslation?.name || categoryDetail?.name || "",
                 };
             });
@@ -279,8 +268,6 @@ export class I18nService {
                 ...filters,
                 isActive: true,
             };
-
-            // تحديد الحقول المطلوبة بناءً على الخيارات
             const includeFields = {
                 translations: options?.includeTranslations !== false ? {
                     where: { language },
@@ -288,7 +275,6 @@ export class I18nService {
                 specifications: options?.includeSpecifications !== false ? {
                     where: { language },
                 } : false,
-                // يمكن إضافة المزيد من العلاقات حسب الحاجة
             };
 
             const [products, total] = await Promise.all([
@@ -306,52 +292,34 @@ export class I18nService {
             ]);
 
             const localizedProducts: LocalizedProduct[] = products.map(product => {
-                // الحصول على المواصفات الأولى أو إنشاء واحدة افتراضية
                 const primarySpec = product.specifications?.[0];
-
-                // الحصول على الترجمة الأولى أو استخدام الاسم الأساسي
                 const primaryTranslation = product.translations?.[0];
 
                 return {
-                    // المعرفات الأساسية
                     id: product.id,
                     productId: product.productId,
                     productName: product.productName,
                     localizedName: primaryTranslation?.name || product.productName,
                     localizedDescription: primaryTranslation?.description,
-
-                    // بيانات المنتج الأساسية
                     brand: product.brand,
                     price: product.price,
                     discount: product.discount || 0,
                     priceIncrease: product.priceIncrease || 0,
                     quantity: product.quantity,
-
-                    // الصور
                     images: product.productImages,
-                    productImages: product.productImages, // للتوافق مع الإصدارات القديمة
-
-                    // التصنيف والنوع
+                    productImages: product.productImages,
                     sectionType: product.sectionType,
                     spotlightType: product.spotlightType,
                     categoryId: product.categoryId,
                     lightingtypeId: product.lightingtypeId,
-
-                    // البيانات الفنية المهمة
                     maxIP: product.maxIP,
-                    hNumber: product.hNumber, // هذا هو الحقل المفقود!
-                    chandelierLightingType: product.chandelierLightingType, // وهذا أيضاً!
-
-                    // الخصائص التقنية
+                    hNumber: product.hNumber,
+                    chandelierLightingType: product.chandelierLightingType, 
                     productColor: product.productColor,
                     productIp: product.productIp,
                     productChandLamp: product.productChandLamp,
-
-                    // حالة المنتج
                     isActive: product.isActive,
                     featured: product.featured,
-
-                    // المواصفات المفصلة
                     specifications: primarySpec ? {
                         language: primarySpec.language,
                         maximumWattage: primarySpec.maximumWattage,
@@ -374,18 +342,10 @@ export class I18nService {
                         bulb: primarySpec.bulb,
                         customSpecs: primarySpec.customSpecs,
                     } : undefined,
-
-                    // مصفوفة المواصفات الكاملة (للتوافق)
                     specificationsArray: product.specifications || [],
-
-                    // مصفوفة الترجمات الكاملة
                     translations: product.translations || [],
-
-                    // التوقيتات
                     createdAt: product.createdAt,
                     updatedAt: product.updatedAt,
-
-                    // للتوافق مع الكود القديم - نسخ المواصفات للمستوى الأعلى
                     maximumWattage: primarySpec?.maximumWattage,
                     mainMaterial: primarySpec?.mainMaterial,
                     beamAngle: primarySpec?.beamAngle,
@@ -402,8 +362,6 @@ export class I18nService {
                 total,
                 hasMore: pagination.page * pagination.limit < total,
             };
-
-            // إضافة تسجيل للمراقبة
             console.log('🔍 [getLocalizedProducts] Result sample:', {
                 count: localizedProducts.length,
                 firstProduct: localizedProducts[0] ? {
@@ -427,9 +385,6 @@ export class I18nService {
             throw new Error(`Database query failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
         }
     }
-
-    // إضافة تعريف interface محدث لـ LocalizedProduct
-
 
     /**
      * Get single localized product with full details

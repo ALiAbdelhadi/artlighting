@@ -11,7 +11,7 @@ const __dirname = dirname(__filename);
 const prisma = new PrismaClient({
   datasources: {
     db: {
-      url: process.env.DATABASE_URL || 'postgresql://neondb_owner:npg_uwOxFJ0L4bTp@ep-rapid-pond-a2995531-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
+      url: process.env.DATABASE_URL
     },
   },
   log: ['warn', 'error'],

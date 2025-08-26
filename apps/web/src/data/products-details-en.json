@@ -1267,6 +1267,57 @@
                             }
                         }
                     }
+                ],
+                "street-light": [
+                    {
+                        "jy-sl-001-150": {
+                            "specificationsTable": {
+                                "Input": "AC 100-277v ~ 50/60 hz",
+                                "Maximum wattage": 150,
+                                "Brand Of Led": "Epistar",
+                                "Luminous Flux": "18000LM ~ 19500LM (3000k / 4000k / 6500k)",
+                                "Main Material": "Die-Casting Aluminum",
+                                "CRI": "≥ 97",
+                                "Beam Angle": "120°",
+                                "Working Temperature": "-10° to 45° C",
+                                "Fixture Dimmable": "No",
+                                "Electrical": "Phillips Internal Driver",
+                                "Power Factor": "≥0.5",
+                                "Color Temperature": "6500K",
+                                "IP": 66,
+                                "maxIP": 68,
+                                "Energy Saving": "90%",
+                                "Life Time": "50,000"
+                            }
+                        },
+                    }
+                ],
+                "stairs-light": [
+                    {
+                        "jy-sl-003-30w": {
+                            "specificationsTable": {
+                                "Input": "AC 85-265v ~ 50/60 hz",
+                                "Maximum wattage": 30,
+                                "Brand Of Led": "Epistar",
+                                "Luminous Flux": "18000LM ~ 19500LM (3000k / 4000k / 6500k)",
+                                "Main Material": "Die-Casting Aluminum",
+                                "CRI": "≥ 80",
+                                "Beam Angle": "120°",
+                                "Working Temperature": "-10° to 45° C",
+                                "Fixture Dimmable": "No",
+                                "Electrical": "Phillips Internal Driver",
+                                "Power Factor": "≥0.5",
+                                "Color Temperature": "6500K",
+                                "IP": 66,
+                                "maxIP": 68,
+                                "Energy Saving": "90%",
+                                "Life Time": "50,000"
+                            }
+                        }
+                    }
+                ],
+                "up-and-down" :[
+                    
                 ]
             }
         },
