@@ -1,6 +1,7 @@
+import { PagePropsTypes } from "@/types";
 import { prisma } from "@repo/database";
-import ProductsClient from "./products-client";
 import { notFound } from "next/navigation";
+import ProductsClient from "./products-client";
 
 interface ProductTranslationData {
   productId: string;
@@ -29,13 +30,8 @@ interface ProductTranslationData {
   }>;
 }
 
-interface ProductsSectionProps {
-  params: Promise<{
-    locale: string;
-  }>;
-}
 
-const ProductsSection = async ({ params }: ProductsSectionProps) => {
+const ProductsSection = async ({ params }: PagePropsTypes) => {
   const { locale } = await params;
   const supportedLocales = ['ar', 'en'];
   if (!supportedLocales.includes(locale)) {

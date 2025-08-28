@@ -1,19 +1,13 @@
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
+import { getLocaleFromParams } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
+import { PagePropsTypes } from "@/types";
+import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import AllProjectPage from "./all-projects";
-import { getLocaleFromParams } from "@/lib/i18n/utils";
-import { PagePropsTypes } from "@/types";
-import { Metadata } from "next";
 
-interface PageProps {
-  params: Promise<{
-    locale: string;
-  }>;
-}
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PagePropsTypes) {
   const { locale } = await params;
   const supportedLocales = ['ar', 'en'];
 

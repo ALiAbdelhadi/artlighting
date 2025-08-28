@@ -1,65 +1,5 @@
+import type { LocalizedCategory, LocalizedProduct, SectionType, SupportedLanguage } from "@/types/products";
 import { prisma } from "@repo/database";
-import type { SupportedLanguage, LocalizedCategory, SectionType, LocalizedProduct } from "./types";
-interface LocalizedProduct {
-    id: string;
-    productId: string;
-    productName: string;
-    localizedName?: string;
-    localizedDescription?: string;
-    brand: string;
-    price: number;
-    discount?: number;
-    priceIncrease?: number;
-    quantity: number;
-    images: string[];
-    productImages?: string[];
-    sectionType: string;
-    spotlightType: string;
-    categoryId?: string;
-    lightingtypeId?: string;
-    maxIP?: number;
-    hNumber?: number;
-    chandelierLightingType?: string;
-    productColor?: string;
-    productIp?: string;
-    productChandLamp?: string;
-    isActive?: boolean;
-    featured?: boolean;
-    specifications?: {
-        language: string;
-        maximumWattage?: string;
-        mainMaterial?: string;
-        beamAngle?: string;
-        lampBase?: string;
-        input?: string;
-        brandOfLed?: string;
-        luminousFlux?: string;
-        cri?: string;
-        workingTemperature?: string;
-        fixtureDimmable?: string;
-        electrical?: string;
-        powerFactor?: string;
-        colorTemperature?: string;
-        ip?: string;
-        energySaving?: string;
-        lifeTime?: string;
-        finish?: string;
-        bulb?: string;
-        customSpecs?: any;
-    };
-    specificationsArray?: any[];
-    translations?: any[];
-    maximumWattage?: string;
-    mainMaterial?: string;
-    beamAngle?: string;
-    lampBase?: string;
-    colorTemperature?: string;
-    lifeTime?: string;
-    finish?: string;
-    input?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
-}
 export class I18nService {
     private static instance: I18nService;
     private translationCache = new Map<string, any>();
@@ -314,7 +254,7 @@ export class I18nService {
                     lightingtypeId: product.lightingtypeId,
                     maxIP: product.maxIP,
                     hNumber: product.hNumber,
-                    chandelierLightingType: product.chandelierLightingType, 
+                    chandelierLightingType: product.chandelierLightingType,
                     productColor: product.productColor,
                     productIp: product.productIp,
                     productChandLamp: product.productChandLamp,
@@ -437,9 +377,14 @@ export class I18nService {
                 price: product.price,
                 discount: product.discount || 0,
                 images: product.productImages,
-                specifications: product.specifications[0] ? this.formatSpecifications(product.specifications[0]) : undefined,
+                specifications: product.specifications[0]
+                    ? {
+                        language: product.specifications[0].language,
+                        ...this.formatSpecifications(product.specifications[0])
+                    }
+                    : undefined,
                 quantity: product.quantity,
-                maxIP: product.maxIP,
+                maxIP: product.maxIP || undefined,
                 spotlightType: product.spotlightType,
                 sectionType: product.sectionType,
             };

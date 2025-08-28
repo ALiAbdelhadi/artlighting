@@ -38,7 +38,6 @@ function AboutLanding() {
                 className={"Image rounded-[40px]"}
                 src="/factory.jpg"
                 alt="factory Image"
-                quality={100}
                 width={1000}
                 height={1000}
               />

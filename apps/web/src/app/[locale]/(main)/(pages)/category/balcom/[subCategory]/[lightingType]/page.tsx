@@ -4,20 +4,16 @@ import { constructMetadata } from "@/lib/utils";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LightingType from "./lighting-type";
+import { PagePropsTypes } from "@/types";
 
-interface PageProps {
-  params: {
-    locale: string;
-    subCategory: string;
-    lightingType: string;
-  };
-}
 
-export default async function Page({ params }: PageProps) {
-  const { locale: localeParam, subCategory, lightingType } = params;
-  const locale = getLocaleFromParams(params);
+export default async function Page({ params }: PagePropsTypes) {
+  const { locale: localeParam, subCategory, lightingType } = await params;
+  const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
-
+  if (!subCategory || !lightingType) {
+    notFound();
+  }
   try {
     const lightingTypes = await service.getLocalizedLightingTypes("balcom", subCategory, locale);
 
@@ -73,10 +69,12 @@ export default async function Page({ params }: PageProps) {
   }
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { subCategory, lightingType, locale: localeParam } = params;
-  const locale = getLocaleFromParams(params);
-
+export async function generateMetadata({ params }: PagePropsTypes): Promise<Metadata> {
+  const { subCategory, lightingType, locale: localeParam } = await params;
+  const locale = getLocaleFromParams(await params);
+  if (!subCategory || !lightingType) {
+    notFound();
+  }
   const titles = {
     en: `Balcom ${subCategory} - ${lightingType}`,
     ar: `بالكوم ${subCategory} - ${lightingType}`

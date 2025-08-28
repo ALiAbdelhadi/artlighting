@@ -3,19 +3,15 @@ import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import SubCategory from "./sub-category";
+import { PagePropsTypes } from "@/types";
 
-interface PageProps {
-  params: {
-    locale: string;
-    subCategory: string;
-  };
-}
-
-export default async function Page({ params }: PageProps) {
-  const { subCategory } = params;
-  const locale = getLocaleFromParams(params);
+export default async function Page({ params }: PagePropsTypes) {
+  const { subCategory } = await params;
+  const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
-
+  if (!subCategory) {
+    notFound();
+  }
   try {
     const localizedLightingTypes = await service.getLocalizedLightingTypes(
       "balcom",
@@ -55,11 +51,13 @@ export default async function Page({ params }: PageProps) {
   }
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { subCategory } = params;
-  const locale = getLocaleFromParams(params);
+export async function generateMetadata({ params }: PagePropsTypes) {
+  const { subCategory } = await params;
+  const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
-
+  if (!subCategory) {
+    notFound();
+  }
   try {
     const localizedLightingTypes = await service.getLocalizedLightingTypes(
       "balcom",

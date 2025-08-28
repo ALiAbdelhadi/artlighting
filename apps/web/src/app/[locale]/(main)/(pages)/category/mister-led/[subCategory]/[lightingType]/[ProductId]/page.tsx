@@ -2,18 +2,11 @@ import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import ProductRouter from "@/components/product-router";
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
+import { PagePropsTypes } from "@/types";
 import { prisma } from "@repo/database";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: Promise<{
-    locale: string;
-    subCategory: string;
-    lightingType: string;
-    ProductId: string;
-  }>;
-}
 
 export async function generateStaticParams() {
   const products = await prisma.product.findMany({
@@ -44,7 +37,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PagePropsTypes) {
   const { subCategory, lightingType, ProductId } = await params;
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
@@ -152,7 +145,9 @@ export default async function Page({ params }: PageProps) {
 
     // Conditionally fetch related products based on product type
     let relatedProducts = undefined;
-
+    if (!subCategory || !lightingType || !ProductId) {
+      notFound();
+    }
     // Only fetch related products for Balcom products
     // For chandeliers (mister-led), we don't need related products
     if (product.brand === "mister-led") {
@@ -191,7 +186,7 @@ export default async function Page({ params }: PageProps) {
   }
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PagePropsTypes): Promise<Metadata> {
   const { subCategory, ProductId, lightingType } = await params;
   const locale = getLocaleFromParams(await params);
 
@@ -200,8 +195,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       productId: ProductId,
       sectionType: subCategory,
       spotlightType: lightingType,
-      // Remove brand filter from metadata generation or make it dynamic
-      // brand: "mister-led",
     },
     include: {
       category: {
@@ -305,7 +298,7 @@ const getRelatedBalcomProducts = async (product: any, subCategory: string, local
         },
       },
     },
-    take: 8, // Limit related products
+    take: 8, 
   });
 
   return relatedProducts.map((relatedProduct) => ({
@@ -313,7 +306,6 @@ const getRelatedBalcomProducts = async (product: any, subCategory: string, local
     productName: relatedProduct.translations?.[0]?.name || relatedProduct.productName,
     localizedSpecs: relatedProduct.specifications?.[0] || {},
     chandelierLightingType: relatedProduct.chandelierLightingType || undefined,
-    // Add missing specification fields
     input: relatedProduct.specifications?.[0]?.input || undefined,
     maximumWattage: relatedProduct.specifications?.[0]?.maximumWattage ?
       parseInt(relatedProduct.specifications[0].maximumWattage) : undefined,

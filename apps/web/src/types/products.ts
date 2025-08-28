@@ -201,42 +201,56 @@ export interface Product extends BaseProduct {
   specifications?: ProductSpecification[]
   translations?: ProductTranslation[]
 }
-
+export type SectionType = "indoor" | "outdoor" | "chandelier";
 export interface LocalizedProduct {
-  id: string
-  productId: string
-  productName: string
-  localizedName?: string
-  images: string[]
-  price: number
-  discount?: number
-  brand: string
-  quantity?: number
-  maxIP?: number
-  spotlightType: string
-  sectionType: string
-  chandelierLightingType?: string
-  hNumber?: number
-  specifications?: LocalizedSpecs
-  productColor?: ProductColorTemp
-  productIp?: ProductIP
-  productChandelierLamp?: ProductChandelierLamp
-  category?: {
-    id: string
-    name: string
-    localizedName?: string
-    slug: string
-  }
-  lightingType?: {
-    id: string
-    name: string
-    localizedName?: string
-    slug: string
-  }
+  id: string;
+  productId: string;
+  productName: string;
+  localizedName?: string;
+  localizedDescription?: string;
+  brand: string;
+  price: number;
+  discount?: number;
   priceIncrease?: number;
+  quantity: number;
+  images: string[];
   productImages?: string[];
-  translations?: any[];
+  sectionType: string;
+  spotlightType: string;
+  categoryId?: string;
+  lightingtypeId?: string;
+  maxIP?: number;
+  hNumber?: number;
+  chandelierLightingType?: string;
+  productColor?: string;
+  productIp?: string;
+  productChandLamp?: string;
+  isActive?: boolean;
+  featured?: boolean;
+  specifications?: {
+    language: string;
+    maximumWattage?: string;
+    mainMaterial?: string;
+    beamAngle?: string;
+    lampBase?: string;
+    input?: string;
+    brandOfLed?: string;
+    luminousFlux?: string;
+    cri?: string;
+    workingTemperature?: string;
+    fixtureDimmable?: string;
+    electrical?: string;
+    powerFactor?: string;
+    colorTemperature?: string;
+    ip?: string;
+    energySaving?: string;
+    lifeTime?: string;
+    finish?: string;
+    bulb?: string;
+    customSpecs?: any;
+  };
   specificationsArray?: any[];
+  translations?: any[];
   maximumWattage?: string;
   mainMaterial?: string;
   beamAngle?: string;
@@ -245,12 +259,6 @@ export interface LocalizedProduct {
   lifeTime?: string;
   finish?: string;
   input?: string;
-  localizedDescription?: string;
-  productChandLamp?: string;
-  isActive?: boolean;
-  featured?: boolean;
-  categoryId?: string;
-  lightingtypeId?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -503,3 +511,4 @@ export interface SearchParams {
 export type OptionalExcept<T, K extends keyof T> = Partial<T> & Pick<T, K>
 export type LocalizedField<T> = T & { localizedValue?: string }
 export type WithTranslations<T> = T & { translations?: Record<SupportedLanguage, Partial<T>> }
+

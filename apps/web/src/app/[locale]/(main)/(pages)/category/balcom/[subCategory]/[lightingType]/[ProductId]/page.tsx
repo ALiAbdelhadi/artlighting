@@ -2,18 +2,10 @@ import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import ProductRouter from "@/components/product-router";
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
+import { PagePropsTypes } from "@/types";
 import { prisma } from "@repo/database";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-
-interface PageProps {
-  params: Promise<{
-    locale: string;
-    subCategory: string;
-    lightingType: string;
-    ProductId: string;
-  }>;
-}
 
 export async function generateStaticParams() {
   const products = await prisma.product.findMany({
@@ -44,7 +36,7 @@ export async function generateStaticParams() {
   return paths;
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PagePropsTypes) {
   const { subCategory, lightingType, ProductId } = await params;
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
@@ -133,7 +125,9 @@ export default async function Page({ params }: PageProps) {
       lampBase: localizedSpecs.lampBase || undefined,
       ip: localizedSpecs.ip ? parseInt(localizedSpecs.ip) : product.maxIP || undefined,
     };
-
+    if (!subCategory || !lightingType || !ProductId) {
+      notFound();
+    }
     // Fetch related products with better filtering for Balcom
     const relatedProducts = await getRelatedBalcomProducts(product, subCategory, locale);
 
@@ -186,7 +180,7 @@ export default async function Page({ params }: PageProps) {
   }
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PagePropsTypes): Promise<Metadata> {
   const { subCategory, ProductId, lightingType } = await params;
   const locale = getLocaleFromParams(await params);
 
@@ -277,7 +271,7 @@ const getRelatedBalcomProducts = async (product: any, subCategory: string, local
       isActive: true,
       OR: [
         {
-          spotlightType: product.spotlightType, // Same spotlight type
+          spotlightType: product.spotlightType,
         },
         {
           maxIP: {

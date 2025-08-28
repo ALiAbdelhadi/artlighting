@@ -2,14 +2,9 @@ import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
 import Balcom from "./balcom";
+import { PagePropsTypes } from "@/types";
 
-interface PageProps {
-  params: Promise<{
-    locale: string;
-  }>;
-}
-
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
 
@@ -36,7 +31,7 @@ export default async function Page({ params }: PageProps) {
   }
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
 
   const titles = {

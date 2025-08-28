@@ -1,9 +1,9 @@
 "use client";
 
-import DiscountPrice from "@/components/discount-price";
 import LoginModal from "@/components/login-model";
 import NormalPrice from "@/components/normal-price";
 import ProductImages from "@/components/product-images";
+import { useRouter } from "@/i18n/navigation";
 import { useUser } from "@clerk/nextjs";
 import { Configuration } from "@repo/database";
 import { Container } from "@repo/ui";
@@ -13,12 +13,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useParams} from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { toast } from "sonner";
 import { createOrder } from "./action";
-import { useRouter } from "@/i18n/navigation";
 
 interface ProductWithSpecs {
   id: string;
@@ -116,7 +115,6 @@ export default function Preview({
 }: PreviewProps) {
   const [configuration, setConfiguration] = useState<Configuration | undefined>(initialConfiguration);
   const { ProductId } = useParams();
-  const [quantity, setQuantity] = useState<number>(1);
   const router = useRouter();
   const { isLoaded, isSignedIn, user } = useUser();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
@@ -145,7 +143,6 @@ export default function Preview({
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-  // Enhanced configuration fetching
   const {
     data: fetchedConfiguration,
     isLoading: isConfigLoading,
@@ -161,7 +158,47 @@ export default function Preview({
 
   const finalProduct = initialProduct || product;
   const finalConfiguration = initialConfiguration || configuration || fetchedConfiguration;
-  const finalDiscount = initialDiscount !== undefined ? initialDiscount : finalProduct?.discount || 0;
+
+  // حساب الأسعار المبسط - نستخدم ما هو محفوظ في قاعدة البيانات
+  const priceCalculations = useMemo(() => {
+    if (!finalConfiguration) {
+      return {
+        configPrice: 0,
+        totalPrice: 0,
+        quantity: 1,
+        discount: 0,
+        unitPriceAfterDiscount: 0,
+        hasDiscount: false
+      };
+    }
+
+    const configPrice = finalConfiguration.configPrice || 0; // السعر قبل الخصم
+    const totalPrice = finalConfiguration.totalPrice || 0; // السعر النهائي بعد الخصم
+    const quantity = finalConfiguration.quantity || 1;
+    const discount = finalConfiguration.discount || 0;
+
+    // حساب السعر للوحدة الواحدة بعد الخصم
+    const unitPriceAfterDiscount = quantity > 0 ? totalPrice / quantity : 0;
+    const hasDiscount = discount > 0;
+
+    console.log("Price calculations from saved configuration:", {
+      configPrice,
+      totalPrice,
+      quantity,
+      discount,
+      unitPriceAfterDiscount,
+      hasDiscount
+    });
+
+    return {
+      configPrice,
+      totalPrice,
+      quantity,
+      discount,
+      unitPriceAfterDiscount,
+      hasDiscount
+    };
+  }, [finalConfiguration]);
 
   useEffect(() => {
     if (isLoaded) {
@@ -171,16 +208,6 @@ export default function Preview({
       });
     }
   }, [isLoaded, isSignedIn, user]);
-
-  useEffect(() => {
-    try {
-      const storedQuantity = localStorage.getItem(`quantity-${actualProductId}`);
-      setQuantity(storedQuantity ? parseInt(storedQuantity, 10) : 1);
-    } catch (error) {
-      console.error("Error loading quantity from localStorage:", error);
-      setQuantity(1);
-    }
-  }, [actualProductId]);
 
   useEffect(() => {
     if (finalConfiguration) {
@@ -223,7 +250,10 @@ export default function Preview({
   });
 
   const handleConfirm = useCallback(async () => {
-    console.log("Authentication state:", { isLoaded, isSignedIn, user: !!user, authState });
+    console.log("Creating order with configuration:", {
+      configId: finalConfiguration?.id,
+      priceCalculations
+    });
 
     if (!isLoaded) {
       toast.error(t('waitAuth'));
@@ -244,16 +274,20 @@ export default function Preview({
     if (isSignedIn && user && finalConfiguration) {
       console.log("Proceeding with order creation:", {
         configId: finalConfiguration.id,
-        quantity,
-        userId: user.id
+        quantity: priceCalculations.quantity,
+        userId: user.id,
+        totalPrice: priceCalculations.totalPrice
       });
 
-      CreateOrderSession({ configId: finalConfiguration.id, quantity });
+      CreateOrderSession({
+        configId: finalConfiguration.id,
+        quantity: priceCalculations.quantity
+      });
     } else {
       console.log("Final validation failed, showing login modal");
       setIsLoginModalOpen(true);
     }
-  }, [isLoaded, isSignedIn, user, authState, finalConfiguration, quantity, CreateOrderSession, t]);
+  }, [isLoaded, isSignedIn, user, authState, finalConfiguration, priceCalculations, CreateOrderSession, t]);
 
   const handleRetry = () => {
     refetchProduct();
@@ -331,7 +365,7 @@ export default function Preview({
               )}
             </div>
             <div>
-              <div className="h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col" >
+              <div className="h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col">
                 <ScrollArea className="relative flex-1 overflow-auto" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                   <div className="p-[18px]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     <div className="-ml-4">
@@ -389,28 +423,28 @@ export default function Preview({
                     <div className="mt-8">
                       <div className="py-4 sm:py-6 sm:rounded-lg">
                         <div className="flow-root text-lg">
-                          {finalDiscount > 0 ? (
+                          {priceCalculations.hasDiscount ? (
                             <>
                               <div className="flex items-center justify-between py-1 mt-2">
                                 <p className="md:text-lg text-base">
                                   {t('pricePerItem')}
                                 </p>
                                 <s className="text-gray-500 md:text-lg text-base">
-                                  <NormalPrice price={finalConfiguration.configPrice} />
+                                  <NormalPrice price={priceCalculations.configPrice} />
                                 </s>
                               </div>
                               <div className="flex items-center justify-between py-1 mt-2">
                                 <p className="md:text-lg text-base text-center">
                                   {t('quantity')}
                                 </p>
-                                <p className="md:text-lg text-base">{quantity}</p>
+                                <p className="md:text-lg text-base">{priceCalculations.quantity}</p>
                               </div>
                               <div className="flex items-center justify-between py-1 mt-2">
                                 <p className="md:text-lg text-base">
                                   {t('discountAmount')}
                                 </p>
                                 <span className="text-green-600 font-semibold md:text-lg text-base">
-                                  {`${finalDiscount * 100}%`}
+                                  {`${Math.round((priceCalculations.discount > 1 ? priceCalculations.discount : priceCalculations.discount * 100))}%`}
                                 </span>
                               </div>
                               <div className="flex items-center justify-between py-1 mt-2">
@@ -418,11 +452,7 @@ export default function Preview({
                                   {t('priceAfterDiscount')}
                                 </p>
                                 <span className="md:text-lg text-base text-destructive font-semibold">
-                                  <DiscountPrice
-                                    price={finalConfiguration.configPrice}
-                                    discount={finalDiscount}
-                                    quantity={quantity}
-                                  />
+                                  <NormalPrice price={priceCalculations.totalPrice} />
                                 </span>
                               </div>
                             </>
@@ -431,20 +461,17 @@ export default function Preview({
                               <div className="flex items-center justify-between py-1 mt-2">
                                 <p>{t('pricePerItem')}</p>
                                 <p>
-                                  <NormalPrice price={finalConfiguration.configPrice} />
+                                  <NormalPrice price={priceCalculations.unitPriceAfterDiscount} />
                                 </p>
                               </div>
                               <div className="flex items-center justify-between py-1 mt-2">
                                 <p>{t('quantity')}</p>
-                                <p>{quantity}</p>
+                                <p>{priceCalculations.quantity}</p>
                               </div>
                               <div className="flex items-center justify-between py-1 mt-2">
                                 <p>{t('totalPrice')}</p>
                                 <p>
-                                  <NormalPrice
-                                    price={finalConfiguration.configPrice}
-                                    quantity={quantity}
-                                  />
+                                  <NormalPrice price={priceCalculations.totalPrice} />
                                 </p>
                               </div>
                             </>

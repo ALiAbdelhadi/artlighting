@@ -6,16 +6,10 @@ import type { SupportedLanguage } from "@/types/products"
 import { Metadata } from "next"
 import Project from "./project"
 
-interface PageProps {
-  params: {
-    locale: string
-    projectId: string
-  }
-}
-
-export default function Page({ params }: PageProps) {
+export default async function Page({ params }: PagePropsTypes) {
+  const resolvedParams = await params;
   return (
-    <Project locale={params.locale as SupportedLanguage}>
+    <Project locale={resolvedParams?.locale as SupportedLanguage}>
       <Breadcrumb />
     </Project>
   )

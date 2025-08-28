@@ -46,7 +46,6 @@ const Landing = ({ images }: LandingProps) => {
               <Image
                 width={1450}
                 height={850}
-                quality={100}
                 src={src || "/placeholder.svg"}
                 alt={`Slide ${index + 1}`}
                 className="image object-fill h-[280px] sm:h-[500px] md:h-[600px] lg:h-[850px] w-full"

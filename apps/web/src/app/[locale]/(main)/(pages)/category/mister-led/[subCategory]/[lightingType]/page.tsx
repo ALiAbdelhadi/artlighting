@@ -1,25 +1,20 @@
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
+import { PagePropsTypes } from "@/types";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import LightingType from "./lighting-type";
-import { useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 
-interface PageProps {
-  params: {
-    locale: string;
-    subCategory: string;
-    lightingType: string;
-  };
-}
-
-export default async function Page({ params }: PageProps) {
-  const { locale: localeParam, subCategory, lightingType } = params;
-  const locale = getLocaleFromParams(params);
+export default async function Page({ params }: PagePropsTypes) {
+  const { locale: localeParam, subCategory, lightingType } = await params;
+  const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
   const t = await getTranslations('error')
+  if (!subCategory || !lightingType) {
+    notFound();
+  }
   try {
     const lightingTypes = await service.getLocalizedLightingTypes("mister-led", subCategory, locale);
 
@@ -91,10 +86,12 @@ export default async function Page({ params }: PageProps) {
   }
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { subCategory, lightingType, locale: localeParam } = params;
-  const locale = getLocaleFromParams(params);
-
+export async function generateMetadata({ params }: PagePropsTypes): Promise<Metadata> {
+  const { subCategory, lightingType, locale: localeParam } = await params;
+  const locale = getLocaleFromParams(await params);
+  if (!subCategory || !lightingType) {
+    notFound();
+  }
   const titles = {
     en: `Mister led ${subCategory} - ${lightingType}`,
     ar: `مستر ليد ${subCategory} - ${lightingType}`

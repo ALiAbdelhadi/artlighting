@@ -98,7 +98,6 @@ export default function ProductImages({ productImages }: ProductImagesProps) {
               width={2600}
               height={2600}
               priority
-              quality={100}
               className="object-cover rounded-lg"
             />
           </div>

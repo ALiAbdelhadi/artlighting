@@ -15,7 +15,7 @@ import { CheckCircle, DiscIcon, LightbulbIcon, Loader2, Package, Truck, Variable
 import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 import { useSearchParams } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 import { toast } from "sonner"
 
 type OrderWithRelations = Order & {
@@ -87,6 +87,47 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
     enabled: !!orderId,
     initialData: initialOrder,
   })
+
+  // استخدام نفس منطق حساب الأسعار من ملف preview.tsx
+  const priceCalculations = useMemo(() => {
+    if (!order) return null
+
+    const configPrice = order.configuration?.configPrice || order.configPrice || 0
+    const totalPrice = order.configuration?.totalPrice || order.totalPrice || 0
+    const quantity = order.configuration?.quantity || order.quantity || 1
+    const discountRate = order.configuration?.discount || order.discount || discount || 0
+
+    const unitPriceAfterDiscount = quantity > 0 ? totalPrice / quantity : 0
+    const hasDiscount = discountRate > 0
+    const discountPercentage = Math.round(discountRate > 1 ? discountRate : discountRate * 100)
+    const subtotal = configPrice * quantity
+    const discountAmount = hasDiscount ? (subtotal * (discountRate > 1 ? discountRate / 100 : discountRate)) : 0
+
+    console.log("Price calculations in Complete component:", {
+      configPrice,
+      totalPrice,
+      quantity,
+      discountRate,
+      unitPriceAfterDiscount,
+      hasDiscount,
+      discountPercentage,
+      subtotal,
+      discountAmount
+    });
+
+    return {
+      configPrice,
+      totalPrice,
+      quantity,
+      discountRate,
+      unitPriceAfterDiscount,
+      hasDiscount,
+      discountPercentage,
+      subtotal,
+      discountAmount
+    }
+  }, [order, discount])
+
   const estimatedDeliveryDate = calculateEstimatedDeliveryDate(isRTL ? "ar" : "en")
 
   const { mutate: handleComplete, isPending } = useMutation({
@@ -111,11 +152,13 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
       toast.error(t("complete-notifications.error-unknown"))
     },
   })
+
   useEffect(() => {
     if (order?.isCompleted) {
       localStorage.setItem("lastCompletedOrderId", order.id.toString());
     }
   }, [order]);
+
   useEffect(() => {
     const checkOrderStatus = async () => {
       if (orderId) {
@@ -138,7 +181,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
 
   if (isLoading) return <div className="flex justify-center items-center h-screen">{t("loadingOrderDetails")}</div>
   if (error) return <div className="flex justify-center items-center h-screen">{t("errorLoadingOrderDetails")}</div>
-  if (!order) return <div className="flex justify-center items-center h-screen">{t("noOrderFound")}</div>
+  if (!order || !priceCalculations) return <div className="flex justify-center items-center h-screen">{t("noOrderFound")}</div>
 
   const isCairo =
     order.shippingAddress?.state
@@ -213,7 +256,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                                 {t("ipRating")}
                               </TableHead>
                             )}
-                            {discount > 0 && (
+                            {priceCalculations.hasDiscount && (
                               <TableHead className="font-semibold" dir={isRTL ? "rtl" : "ltr"}>
                                 {t("discount")}
                               </TableHead>
@@ -248,7 +291,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                               </div>
                             </TableCell>
                             <TableCell className="font-semibold pl-32 pr-10">
-                              {formatNumber(order.quantity, isRTL ? "ar" : "en")}
+                              {formatNumber(priceCalculations.quantity, isRTL ? "ar" : "en")}
                             </TableCell>
                             <TableCell className="font-semibold capitalize">
                               {PRODUCT_TEMP_LABEL_MAP[locale][order.productColorTemp] || order.productColorTemp}
@@ -277,38 +320,36 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                                   {order.product.specifications?.[0]?.maximumWattage || "N/A"}W
                                 </TableCell>
                               )}
-                            {discount > 0 ? (
+                            {priceCalculations.hasDiscount && (
                               <TableCell className="text-destructive font-semibold">
-                                {discount * 100}% {t("off")}
+                                {priceCalculations.discountPercentage}% {t("off")}
                               </TableCell>
-                            ) : null}
-                            {discount > 0 ? (
+                            )}
+                            {priceCalculations.hasDiscount ? (
                               <>
                                 <TableCell className="text-sm pr-4 sm:pr-0">
-                                  <DiscountPrice
-                                    price={order.configPrice}
-                                    discount={discount}
-                                  />
+                                  <div className="space-y-1">
+                                    <div className="text-destructive font-semibold">
+                                      <NormalPrice price={priceCalculations.unitPriceAfterDiscount} />
+                                    </div>
+                                  </div>
                                 </TableCell>
                                 <TableCell>
-                                  <DiscountPrice
-                                    price={order.configPrice}
-                                    discount={discount}
-                                    quantity={order?.quantity}
-                                    shippingPrice={order?.shippingPrice}
+                                  <NormalPrice
+                                    price={priceCalculations.totalPrice}
+                                    shippingPrice={order.shippingPrice}
                                   />
                                 </TableCell>
                               </>
                             ) : (
                               <>
                                 <TableCell className="font-semibold">
-                                  <NormalPrice price={order.configPrice} />
+                                  <NormalPrice price={priceCalculations.unitPriceAfterDiscount} />
                                 </TableCell>
                                 <TableCell className="font-semibold">
                                   <NormalPrice
-                                    price={order.configPrice}
-                                    quantity={order?.quantity}
-                                    shippingPrice={order?.shippingPrice}
+                                    price={priceCalculations.totalPrice}
+                                    shippingPrice={order.shippingPrice}
                                   />
                                 </TableCell>
                               </>

@@ -51,6 +51,14 @@ type Order = {
     country: string
     phoneNumber: string
   }
+  // إضافة خصائص Configuration المطلوبة
+  configuration?: {
+    id: string
+    configPrice: number
+    totalPrice: number
+    quantity: number
+    discount: number
+  }
 }
 
 const fetchOrderDetails = async (orderId: string): Promise<Order> => {
@@ -65,41 +73,90 @@ const fetchOrderDetails = async (orderId: string): Promise<Order> => {
 const OrderSummary = ({ order }: { order: Order }) => {
   const t = useTranslations("confirm")
 
-  const subtotal = order.configPrice * order.quantity
-  const discountAmount = subtotal * order.discountRate
+  // استخدام نفس منطق حساب الأسعار من ملف preview.tsx
+  const priceCalculations = useMemo(() => {
+    // إعطاء الأولوية لبيانات configuration إذا كانت متوفرة
+    const configPrice = order.configuration?.configPrice || order.configPrice || 0
+    const totalPrice = order.configuration?.totalPrice || order.totalPrice || 0
+    const quantity = order.configuration?.quantity || order.quantity || 1
+    const discount = order.configuration?.discount || order.discountRate || 0
+
+    // حساب السعر للوحدة الواحدة بعد الخصم
+    const unitPriceAfterDiscount = quantity > 0 ? totalPrice / quantity : 0
+    const hasDiscount = discount > 0
+
+    console.log("Price calculations from order configuration:", {
+      configPrice,
+      totalPrice,
+      quantity,
+      discount,
+      unitPriceAfterDiscount,
+      hasDiscount
+    });
+
+    return {
+      configPrice,
+      totalPrice,
+      quantity,
+      discount,
+      unitPriceAfterDiscount,
+      hasDiscount,
+      subtotal: configPrice * quantity,
+      discountAmount: hasDiscount ? (configPrice * quantity * (discount > 1 ? discount / 100 : discount)) : 0
+    }
+  }, [order])
+
   // A strategic best practice would be to source this value from a config file or the API
   // to avoid hardcoding business logic in the UI.
   const shippingCost = 69
-  const total = subtotal - discountAmount + shippingCost
-  const itemsText = order.quantity === 1 ? t("orderSummary.item") : t("orderSummary.items")
+  const finalTotal = priceCalculations.totalPrice + shippingCost
+  const itemsText = priceCalculations.quantity === 1 ? t("orderSummary.item") : t("orderSummary.items")
 
   return (
     <div className="bg-muted/50 backdrop-blur-sm rounded-2xl p-6 sticky top-6 border border-border">
       <h3 className="text-lg font-semibold text-foreground mb-6">{t("orderSummary.title")}</h3>
       <div className="space-y-4 mb-6">
+        {/* عرض السعر الأصلي قبل الخصم */}
         <div className="flex justify-between items-center text-muted-foreground">
-          <span>{`${t("orderSummary.subtotal")} (${order.quantity} ${itemsText})`}</span>
-          <s className="text-gray-400">
-            <NormalPrice price={subtotal} />
-          </s>
+          <span>{`${t("orderSummary.subtotal")} (${priceCalculations.quantity} ${itemsText})`}</span>
+          {priceCalculations.hasDiscount ? (
+            <s className="text-gray-400">
+              <NormalPrice price={priceCalculations.subtotal} />
+            </s>
+          ) : (
+            <NormalPrice price={priceCalculations.subtotal} />
+          )}
         </div>
-        {order.discountRate > 0 && (
+
+        {/* عرض الخصم إذا كان متوفراً */}
+        {priceCalculations.hasDiscount && (
           <div className="flex justify-between items-center text-green-600">
-            <span>{`${t("orderSummary.discount")} (${Math.round(order.discountRate * 100)}%)`}</span>
+            <span>{`${t("orderSummary.discount")} (${Math.round(priceCalculations.discount > 1 ? priceCalculations.discount : priceCalculations.discount * 100)}%)`}</span>
             <span>
-              -<NormalPrice price={discountAmount} />
+              -<NormalPrice price={priceCalculations.discountAmount} />
             </span>
           </div>
         )}
+
+        {/* عرض سعر المنتج بعد الخصم */}
+        {priceCalculations.hasDiscount && (
+          <div className="flex justify-between items-center text-foreground">
+            <span>{t("orderSummary.subtotalAfterDiscount")}</span>
+            <NormalPrice price={priceCalculations.totalPrice} />
+          </div>
+        )}
+
+        {/* تكلفة الشحن */}
         <div className="flex justify-between items-center text-muted-foreground">
           <span>{t("orderSummary.shipping")}</span>
           <NormalPrice price={shippingCost} />
         </div>
+
         <div className="border-t border-border pt-4">
           <div className="flex justify-between items-center">
             <span className="text-lg font-semibold text-foreground">{t("orderSummary.total")}</span>
             <span className="text-xl font-semibold text-destructive">
-              <NormalPrice price={total} />
+              <NormalPrice price={finalTotal} />
             </span>
           </div>
         </div>
@@ -196,11 +253,27 @@ const Confirm = () => {
     },
   })
 
-  const orderMetrics = useMemo(() => {
+  // استخدام نفس منطق حساب الأسعار من ملف preview.tsx
+  const priceCalculations = useMemo(() => {
     if (!order) return null
+
+    const configPrice = order.configuration?.configPrice || order.configPrice || 0
+    const totalPrice = order.configuration?.totalPrice || order.totalPrice || 0
+    const quantity = order.configuration?.quantity || order.quantity || 1
+    const discount = order.configuration?.discount || order.discountRate || 0
+
+    const unitPriceAfterDiscount = quantity > 0 ? totalPrice / quantity : 0
+    const hasDiscount = discount > 0
+    const discountPercentage = Math.round(discount > 1 ? discount : discount * 100)
+
     return {
-      hasDiscount: order.discountRate > 0,
-      discountPercentage: Math.round(order.discountRate * 100),
+      configPrice,
+      totalPrice,
+      quantity,
+      discount,
+      unitPriceAfterDiscount,
+      hasDiscount,
+      discountPercentage
     }
   }, [order])
 
@@ -234,7 +307,7 @@ const Confirm = () => {
   }, [orderId, order, router, form, t])
 
   const onSubmit = async (data: z.infer<typeof authFormConfirmingOrderSchema>) => {
-    if (!order) {
+    if (!order || !priceCalculations) {
       toast.error(t("errors.dataError"), {
         description: t("errors.orderInfoNotAvailable"),
       })
@@ -248,10 +321,10 @@ const Confirm = () => {
         productId: order.product.id,
         productName: order.product.productName,
         productImages: order.product.productImages || [],
-        quantity: order.quantity,
-        configPrice: order.configPrice,
+        quantity: priceCalculations.quantity,
+        configPrice: priceCalculations.configPrice,
         productPrice: order.product.price,
-        totalPrice: order.totalPrice,
+        totalPrice: priceCalculations.totalPrice, // استخدام السعر المحسوب من التكوين
         shippingMethod: "standard",
         shippingPrice: 69,
         configurationId: order.configurationId,
@@ -306,7 +379,7 @@ const Confirm = () => {
     return <ErrorState error={error as Error} onRetry={() => refetch()} />
   }
 
-  if (!order) {
+  if (!order || !priceCalculations) {
     return <NotFoundState onGoHome={() => router.push("/")} />
   }
 
@@ -339,32 +412,32 @@ const Confirm = () => {
                     <div className="space-y-4">
                       <div className="flex justify-between items-center py-3 px-4 bg-muted/60 rounded-xl">
                         <span className="text-foreground text-[17px]">{t("productDetails.pricePerItem")}</span>
-                        {orderMetrics?.hasDiscount ? (
+                        {priceCalculations.hasDiscount ? (
                           <div className="text-right">
                             <div className="line-through text-gray-400 text-sm">
-                              <NormalPrice price={order.configPrice} />
+                              <NormalPrice price={priceCalculations.configPrice} />
                             </div>
-                            <div className="text-green-600 font-semibold">
-                              <DiscountPrice price={order.configPrice} discount={order.discountRate} quantity={1} />
+                            <div className="text-destructive font-semibold">
+                              <NormalPrice price={priceCalculations.unitPriceAfterDiscount} />
                             </div>
                           </div>
                         ) : (
                           <span className="font-semibold">
-                            <NormalPrice price={order.configPrice} />
+                            <NormalPrice price={priceCalculations.unitPriceAfterDiscount} />
                           </span>
                         )}
                       </div>
                       <div className="flex justify-between items-center py-3 px-4 bg-muted/60  rounded-xl">
                         <span className="text-foreground text-[17px]">{t("productDetails.quantity")}</span>
                         <Badge variant="secondary" className="rounded-full">
-                          {order.quantity}
+                          {priceCalculations.quantity}
                         </Badge>
                       </div>
-                      {orderMetrics?.hasDiscount && (
+                      {priceCalculations.hasDiscount && (
                         <div className="flex justify-between items-center py-3 px-4 bg-green-50 rounded-xl">
                           <span className="text-green-700 font-medium">{t("orderSummary.youSave")}</span>
                           <span className="text-green-700 font-semibold">
-                            {orderMetrics.discountPercentage}% {t("orderSummary.off")}
+                            {priceCalculations.discountPercentage}% {t("orderSummary.off")}
                           </span>
                         </div>
                       )}

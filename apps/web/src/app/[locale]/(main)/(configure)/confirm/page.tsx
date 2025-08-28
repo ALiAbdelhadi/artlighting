@@ -4,18 +4,11 @@ import { notFound } from "next/navigation"
 import Confirm from "./confirm"
 import { Metadata } from "next"
 import { getLocaleFromParams } from "@/lib/i18n/utils"
+import { PagePropsTypes } from "@/types"
 
-interface PageProps {
-  params: {
-    locale: string
-  }
-  searchParams: {
-    [key: string]: string | string[] | undefined
-  }
-}
 
-export default async function Page({ searchParams }: PageProps) {
-  const orderId = searchParams.orderId
+export default async function Page({ searchParams }: PagePropsTypes) {
+  const orderId = searchParams?.orderId
 
   if (!orderId || typeof orderId !== "string") {
     return notFound()
@@ -36,10 +29,10 @@ export default async function Page({ searchParams }: PageProps) {
   return <Confirm />
 }
 
-export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
-  const orderId = searchParams.orderId
-  const { locale: localeParam } = params
-  const locale = getLocaleFromParams(params)
+export async function generateMetadata({ params, searchParams }: PagePropsTypes): Promise<Metadata> {
+  const orderId = searchParams?.orderId
+  const { locale: localeParam } = await params
+  const locale = getLocaleFromParams(await params)
 
   const titles: Record<string, string> = {
     en: "Confirm your order by typing all your info",

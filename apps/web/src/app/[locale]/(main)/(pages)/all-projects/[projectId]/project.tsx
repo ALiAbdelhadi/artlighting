@@ -97,7 +97,6 @@ export default function Project({ children, locale }: { children?: React.ReactNo
                     alt={project.ProjectName}
                     width={500}
                     height={250}
-                    quality={100}
                     className="object-cover h-full w-full transition-transform duration-500 hover:scale-105"
                   />
                 </div>
@@ -109,7 +108,6 @@ export default function Project({ children, locale }: { children?: React.ReactNo
                     alt={project.ProjectName}
                     width={500}
                     height={250}
-                    quality={100}
                     className="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
                   />
                 </div>

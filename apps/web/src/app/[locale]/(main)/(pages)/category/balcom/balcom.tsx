@@ -71,7 +71,6 @@ export default function Balcom({
                         alt={category.localizedName}
                         width={475}
                         height={475}
-                        quality={100}
                         className="rounded-md w-[500px] h-[290px] object-cover group-hover:scale-110 transition-transform duration-500"
                         loading={index < 2 ? "eager" : "lazy"}
                       />

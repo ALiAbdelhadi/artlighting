@@ -86,7 +86,6 @@ export function NewCollection() {
                 <Image
                   width={500}
                   height={500}
-                  quality={100}
                   alt="Line Up/Down LED Suspended Lamp"
                   className="object-cover w-full h-72 md:h-[500px]  rounded-lg animate-image"
                   src="/new-collection/new-collection-3.jpg"
@@ -111,7 +110,6 @@ export function NewCollection() {
                 <Image
                   width={500}
                   height={500}
-                  quality={100}
                   alt="Line Up/Down LED Suspended Lamp"
                   className="object-cover w-full h-72 md:h-[500px] rounded-lg animate-image"
                   src="/new-collection/new-collection-2.jpg"
@@ -140,7 +138,6 @@ export function NewCollection() {
               <Image
                 width={750}
                 height={750}
-                quality={100}
                 alt="Line Up/Down LED Suspended Lamp"
                 className="object-cover w-full h-[550px] md:h-[650px] lg:h-[750px] rounded-lg animate-image"
                 src="/new-collection/new-collection-1.jpg"

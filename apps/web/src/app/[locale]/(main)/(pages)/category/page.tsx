@@ -2,18 +2,13 @@ import { constructMetadata } from "@/lib/utils";
 import CategoryContent from "./category-content";
 import { getLocaleFromParams } from "@/lib/i18n/utils";
 import { Metadata } from "next";
+import { PagePropsTypes } from "@/types";
 
-interface PageProps {
-  params: Promise<{
-    locale: string;
-  }>
-}
-
-export default async function page({ params }: PageProps) {
+export default async function page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
   return <CategoryContent locale={locale} />;
 }
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PagePropsTypes): Promise<Metadata> {
   const locale = getLocaleFromParams(await params);
   const titles = {
     en: "Explore All lighting Brands that give a solution of every lighting situation (Balcom | Mister Led | Jetra )",

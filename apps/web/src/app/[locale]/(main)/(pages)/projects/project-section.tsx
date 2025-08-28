@@ -1,5 +1,6 @@
 import projectsDetailsAr from "@/data/projects-details-ar.json";
 import projectsDetailsEn from "@/data/projects-details-en.json";
+import { PagePropsTypes } from "@/types";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ProjectsClient from "./project-client";
@@ -19,13 +20,8 @@ interface ProjectsData {
     projects: Record<string, Project>;
 }
 
-interface ProjectsSectionProps {
-    params: Promise<{
-        locale: string;
-    }>;
-}
 
-const ProjectsSection = async ({ params }: ProjectsSectionProps) => {
+const ProjectsSection = async ({ params }: PagePropsTypes) => {
     const { locale } = await params;
     const supportedLocales = ['ar', 'en'];
 

@@ -1,56 +1,138 @@
 "use client";
 
 import { changeProductChandLamp } from "@/actions/product-chandLamp";
-import { Button } from "@repo/ui/button";
+import { saveConfig } from "@/components/action";
+import { formatNumber } from "@/lib/utils";
 import { ProductChandLamp } from "@repo/database";
-import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
 import { cn } from "@repo/ui";
-import { useTranslations } from "next-intl"
-import { useRouter } from "@/i18n/navigation";
+import { Button } from "@repo/ui/button";
+import { useMutation } from "@tanstack/react-query";
+import { useLocale, useTranslations } from "next-intl";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 
-const PRODUCT_CHAND_LAMP_LABEL_MAP: Record<ProductChandLamp, { priceIncrease: number }> = {
-  lamp9w: { priceIncrease: 0 },
-  lamp12w: { priceIncrease: 20 },
+const PRODUCT_CHAND_LAMP_LABEL_MAP: Record<ProductChandLamp, { priceIncreasePerLamp: number }> = {
+  lamp9w: { priceIncreasePerLamp: 0 },
+  lamp12w: { priceIncreasePerLamp: 20 },
 };
 
-interface ProductChandLampButtonsProps {
+interface ProductChandelierLampButtonsProps {
   productId: string;
+  configId?: string;
   productChandLamp: ProductChandLamp;
   hNumber: number;
+  basePrice: number;
+  priceIncrease?: number;
   onProductLampChange: (
     newProductLamp: ProductChandLamp,
-    priceIncrease: number,
+    lampPriceIncrease: number,
   ) => void;
 }
 
-export default function ProductChandLampButtons({
+export default function ProductChandelierLampButtons({
   productId,
+  configId,
   productChandLamp,
   hNumber,
+  basePrice,
+  priceIncrease = 0,
   onProductLampChange,
-}: ProductChandLampButtonsProps) {
+}: ProductChandelierLampButtonsProps) {
   const t = useTranslations('ProductChandLampButtons');
-  const router = useRouter();
-  const [activeProductLamp, setActiveProductLamp] =
-    useState<ProductChandLamp>(productChandLamp);
+  const locale = useLocale();
+  const isRTL = locale === "ar";
 
-  const { mutate } = useMutation({
+  const [activeProductLamp, setActiveProductLamp] = useState<ProductChandLamp>(productChandLamp);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const calculateLampPriceIncrease = useCallback((lampType: ProductChandLamp) => {
+    const { priceIncreasePerLamp } = PRODUCT_CHAND_LAMP_LABEL_MAP[lampType];
+    return priceIncreasePerLamp * hNumber;
+  }, [hNumber]);
+
+  const { mutate: changeLampMutation } = useMutation({
     mutationKey: ["change-product-chand-lamp"],
     mutationFn: changeProductChandLamp,
-    onSuccess: () => router.refresh(),
+    onSuccess: () => {
+      console.log("Lamp type changed successfully");
+    },
+    onError: (error) => {
+      console.error("Failed to change lamp type:", error);
+      toast.error("فشل في تغيير نوع المصباح");
+      setIsUpdating(false);
+    }
   });
 
-  useEffect(() => {
-    const { priceIncrease } = PRODUCT_CHAND_LAMP_LABEL_MAP[activeProductLamp];
-    const calculatedPriceIncrease = priceIncrease * hNumber;
-    onProductLampChange(activeProductLamp, calculatedPriceIncrease);
-  }, [activeProductLamp, onProductLampChange, hNumber]);
+  const { mutate: saveConfigMutation, isPending: isSavingConfig } = useMutation({
+    mutationKey: ["save-config-lamp", configId],
+    mutationFn: saveConfig,
+    onSuccess: (data) => {
+      console.log("Lamp configuration saved successfully:", data);
+      setIsUpdating(false);
+    },
+    onError: (error) => {
+      console.error("Configuration save error:", error);
+      toast.error("فشل في حفظ إعدادات المصباح");
+      setIsUpdating(false);
+    },
+  });
 
-  const handleColorTempChange = (productLamp: ProductChandLamp) => {
+  const saveConfigurationAsync = useCallback(async (lampType: ProductChandLamp) => {
+    if (!configId) return;
+
+    const lampPriceIncrease = calculateLampPriceIncrease(lampType);
+    const totalConfigPrice = basePrice + priceIncrease + lampPriceIncrease;
+
+    const configData = {
+      configId,
+      productId,
+      configPrice: totalConfigPrice,
+      priceIncrease,
+      lampPriceIncrease,
+      quantity: 1,
+      totalPrice: Math.ceil(totalConfigPrice),
+    };
+
+    console.log("Saving lamp configuration:", {
+      ...configData,
+      basePrice,
+      hNumber,
+      lampType,
+      calculatedLampIncrease: lampPriceIncrease,
+    });
+
+    saveConfigMutation(configData);
+  }, [configId, productId, basePrice, priceIncrease, calculateLampPriceIncrease, saveConfigMutation, hNumber]);
+
+  useEffect(() => {
+    const lampPriceIncrease = calculateLampPriceIncrease(activeProductLamp);
+    onProductLampChange(activeProductLamp, lampPriceIncrease);
+  }, [activeProductLamp, calculateLampPriceIncrease, onProductLampChange]);
+
+  const handleLampChange = useCallback((productLamp: ProductChandLamp) => {
+    if (productLamp === activeProductLamp || isUpdating) return;
+
     setActiveProductLamp(productLamp);
-    mutate({ productId, newProductLamp: productLamp });
-  };
+    setIsUpdating(true);
+
+    changeLampMutation({ productId, newProductLamp: productLamp });
+
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+    saveTimeoutRef.current = setTimeout(() => {
+      saveConfigurationAsync(productLamp);
+    }, 500);
+  }, [activeProductLamp, isUpdating, productId, changeLampMutation, saveConfigurationAsync]);
+
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="space-y-2">
@@ -59,30 +141,41 @@ export default function ProductChandLampButtons({
       </h3>
       <div className="grid grid-cols-2 gap-2">
         {Object.entries(PRODUCT_CHAND_LAMP_LABEL_MAP).map(
-          ([productLamp, { priceIncrease }]) => (
-            <Button
-              key={productLamp}
-              onClick={() =>
-                handleColorTempChange(productLamp as ProductChandLamp)
-              }
-              variant={
-                activeProductLamp === productLamp ? "default" : "outline"
-              }
-              className={cn(
-                "flex items-center justify-center rounded-full transition-all duration-200",
-                activeProductLamp === productLamp
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-background hover:bg-secondary",
-              )}
-            >
-              {t(productLamp)}
-              {priceIncrease > 0 && (
-                <span className="font-normal text-sm opacity-70">
-                  {t("priceIncrease", { price: priceIncrease })} × {hNumber}
-                </span>
-              )}
-            </Button>
-          ),
+          ([productLamp, { priceIncreasePerLamp }]) => {
+            const totalLampIncrease = priceIncreasePerLamp * hNumber;
+            const totalPrice = basePrice + priceIncrease + totalLampIncrease;
+
+            return (
+              <Button
+                key={productLamp}
+                onClick={() => handleLampChange(productLamp as ProductChandLamp)}
+                disabled={isUpdating || isSavingConfig}
+                variant={activeProductLamp === productLamp ? "default" : "outline"}
+                className={cn(
+                  "flex items-center justify-center rounded-full transition-all duration-200 min-h-[44px]",
+                  activeProductLamp === productLamp
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "bg-background hover:bg-secondary",
+                  (isUpdating || isSavingConfig) && "opacity-60 cursor-not-allowed"
+                )}
+              >
+                <div className="flex flex-col items-center text-center">
+                  <span className="font-medium">
+                    {t(productLamp)}
+                  </span>
+                  {totalLampIncrease > 0 && (
+                    <span className="text-xs opacity-70 whitespace-nowrap">
+                      +{formatNumber(Math.ceil(totalLampIncrease), isRTL ? "ar" : "en")}
+                      {" "}({priceIncreasePerLamp} × {hNumber})
+                    </span>
+                  )}
+                </div>
+                {(isUpdating || isSavingConfig) && activeProductLamp === productLamp && (
+                  <div className="ml-2 animate-spin rounded-full h-3 w-3 border-b-2 border-current"></div>
+                )}
+              </Button>
+            );
+          },
         )}
       </div>
     </div>

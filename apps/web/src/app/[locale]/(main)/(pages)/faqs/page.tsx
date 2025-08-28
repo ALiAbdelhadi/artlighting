@@ -1,18 +1,14 @@
 import { constructMetadata } from "@/lib/utils";
 import FAQs from "./faq-section";
 import { Metadata } from "next";
+import { PagePropsTypes } from "@/types";
 
-interface PageProps {
-  params: {
-    locale: string
-  }
-}
 export default function FAQsPage() {
   return <FAQs />;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale } = params;
+export async function generateMetadata({ params }: PagePropsTypes): Promise<Metadata> {
+  const { locale } = await params;
 
   const titles: Record<string, string> = {
     en: "FAQs",

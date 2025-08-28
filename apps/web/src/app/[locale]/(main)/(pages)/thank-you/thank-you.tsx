@@ -22,10 +22,9 @@ import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-// Define the type for the order object with its relations
 type OrderWithRelations = Order & {
   product: Product & {
     specifications: ProductSpecification[]
@@ -34,18 +33,6 @@ type OrderWithRelations = Order & {
   configuration: Configuration | null
   discount: number | null
 }
-
-interface UpdateOrderStatusResponse {
-  success: boolean
-  order: Order
-}
-
-// Helper function to extract wattage from a product name string
-const getProductWattage = (productName: string): number => {
-  if (!productName) return 0;
-  const match = productName.match(/(\d+)(?:W)/);
-  return match ? parseInt(match[1], 10) : 0;
-};
 
 export default function ThankYou({
   discount,
@@ -112,6 +99,46 @@ export default function ThankYou({
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
+
+  // استخدام نفس منطق حساب الأسعار من ملف preview.tsx
+  const priceCalculations = useMemo(() => {
+    if (!order) return null
+
+    const configPrice = order.configuration?.configPrice || order.configPrice || 0
+    const totalPrice = order.configuration?.totalPrice || order.totalPrice || 0
+    const quantity = order.configuration?.quantity || order.quantity || 1
+    const discountRate = order.configuration?.discount || order.discount || discount || 0
+
+    const unitPriceAfterDiscount = quantity > 0 ? totalPrice / quantity : 0
+    const hasDiscount = discountRate > 0
+    const discountPercentage = Math.round(discountRate > 1 ? discountRate : discountRate * 100)
+    const subtotal = configPrice * quantity
+    const discountAmount = hasDiscount ? (subtotal * (discountRate > 1 ? discountRate / 100 : discountRate)) : 0
+
+    console.log("Price calculations in ThankYou component:", {
+      configPrice,
+      totalPrice,
+      quantity,
+      discountRate,
+      unitPriceAfterDiscount,
+      hasDiscount,
+      discountPercentage,
+      subtotal,
+      discountAmount
+    });
+
+    return {
+      configPrice,
+      totalPrice,
+      quantity,
+      discountRate,
+      unitPriceAfterDiscount,
+      hasDiscount,
+      discountPercentage,
+      subtotal,
+      discountAmount
+    }
+  }, [order, discount])
 
   // Debugging useEffect to log order data
   useEffect(() => {
@@ -180,7 +207,7 @@ export default function ThankYou({
   }
 
   // No order found state
-  if (!order) {
+  if (!order || !priceCalculations) {
     return (
       <div className="flex items-center justify-center h-screen text-lg">
         <div className="text-center">
@@ -310,7 +337,7 @@ export default function ThankYou({
                                   {t("ipRating")}
                                 </TableHead>
                               )}
-                              {discount > 0 && (
+                              {priceCalculations.hasDiscount && (
                                 <TableHead className="font-semibold" dir={isRTL ? "rtl" : "ltr"}>
                                   {t("discount")}
                                 </TableHead>
@@ -342,7 +369,7 @@ export default function ThankYou({
                                 </div>
                               </TableCell>
                               <TableCell className="font-semibold pl-32 pr-10">
-                                {formatNumber(order.quantity, isRTL ? "ar" : "en")}
+                                {formatNumber(priceCalculations.quantity, isRTL ? "ar" : "en")}
                               </TableCell>
                               <TableCell className="font-semibold capitalize">
                                 {PRODUCT_TEMP_LABEL_MAP[locale]?.[order.productColorTemp] || order.productColorTemp}
@@ -371,26 +398,23 @@ export default function ThankYou({
                                     {order.product.specifications?.[0]?.maximumWattage || "N/A"}W
                                   </TableCell>
                                 )}
-                              {discount > 0 ? (
+                              {priceCalculations.hasDiscount && (
                                 <TableCell className="text-destructive font-semibold">
-                                  {discount * 100}%
+                                  {priceCalculations.discountPercentage}%
                                 </TableCell>
-                              ) : null}
-                              {discount > 0 ? (
-                                <>
-                                  <TableCell className="text-sm pr-4 sm:pr-0">
-                                    <DiscountPrice
-                                      price={order.configPrice}
-                                      discount={discount}
-                                    />
-                                  </TableCell>
-                                </>
+                              )}
+                              {priceCalculations.hasDiscount ? (
+                                <TableCell className="text-sm pr-4 sm:pr-0">
+                                  <div className="space-y-1">
+                                    <div className="text-destructive font-semibold">
+                                      <NormalPrice price={priceCalculations.unitPriceAfterDiscount} />
+                                    </div>
+                                  </div>
+                                </TableCell>
                               ) : (
-                                <>
-                                  <TableCell className="font-semibold">
-                                    <NormalPrice price={order.configPrice} />
-                                  </TableCell>
-                                </>
+                                <TableCell className="font-semibold">
+                                  <NormalPrice price={priceCalculations.unitPriceAfterDiscount} />
+                                </TableCell>
                               )}
                             </TableRow>
                           </TableBody>
@@ -398,19 +422,34 @@ export default function ThankYou({
                       </div>
                       <Separator />
                       <div className="space-y-2.5">
-                        {discount > 0 ? (
+                        {priceCalculations.hasDiscount ? (
                           <>
                             <div className="grid grid-cols-2 items-center">
                               <div className="font-medium text-muted-foreground">
                                 {t('subtotal')}
                               </div>
-                              <s className={`text-base font-semibold text-gray-500 ${isRTL ? "text-left" : "text-right"}`}>
-                                <NormalPrice
-                                  price={order.configPrice}
-                                  quantity={order.quantity}
-                                  sectionType={order.product?.sectionType}
-                                />
-                              </s>
+                              <div className={`text-base font-semibold text-gray-500 line-through ${isRTL ? "text-left" : "text-right"}`}>
+                                <NormalPrice price={priceCalculations.subtotal} />
+                              </div>
+                            </div>
+                            <div className="grid grid-cols-2 items-center">
+                              <div className="font-medium text-muted-foreground">
+                                {t('discount')}
+                              </div>
+                              <div className={`text-base font-semibold text-green-600 flex justify-end ${isRTL ? "text-left" : "text-right"}`}>
+                                <span>
+                                  -{priceCalculations.discountPercentage}%
+                                </span>
+                                <span className="flex ml-1">({"  "}<NormalPrice price={priceCalculations.discountAmount} />)</span>
+                              </div>
+                            </div>
+                            <div className="grid grid-cols-2 items-center">
+                              <div className="font-medium text-muted-foreground">
+                                {t('afterDiscount')}
+                              </div>
+                              <span className={`text-base font-semibold ${isRTL ? "text-left" : "text-right"}`}>
+                                <NormalPrice price={priceCalculations.totalPrice} />
+                              </span>
                             </div>
                             <div className="grid grid-cols-2 items-center">
                               <div className="font-medium text-muted-foreground">
@@ -418,10 +457,7 @@ export default function ThankYou({
                               </div>
                               <div className={`text-base font-semibold ${isRTL ? "text-left" : "text-right"}`}>
                                 {isCairo ? (
-                                  <NormalPrice
-                                    price={order.shippingPrice}
-                                    sectionType={order.product?.sectionType}
-                                  />
+                                  <NormalPrice price={order.shippingPrice} />
                                 ) : (
                                   <p className="text-sm">
                                     {t('outsideCairoShipping')}
@@ -429,38 +465,11 @@ export default function ThankYou({
                                 )}
                               </div>
                             </div>
-                            <div className="grid grid-cols-2 items-center">
-                              <div className="font-medium text-muted-foreground">
-                                {t('discount')}
-                              </div>
-                              <span className={`text-base font-semibold text-destructive ${isRTL ? "text-left" : "text-right"}`}>
-                                {order.product?.discount ? order.product.discount * 100 : discount * 100}%
-                              </span>
-                            </div>
-                            <div className="grid grid-cols-2 items-center">
-                              <div className="font-medium text-muted-foreground">
-                                {t('afterDiscount')}
-                              </div>
-                              <span className={isRTL ? "text-left" : "text-right"}>
-                                <DiscountPrice
-                                  price={order.configPrice}
-                                  quantity={order.quantity}
-                                  sectionType={order.product?.sectionType}
-                                  discount={order.product?.discount || discount}
-                                />
-                              </span>
-                            </div>
                             <Separator />
                             <div className="grid grid-cols-2 items-center">
                               <div className="font-medium">{t('total')}</div>
                               <div className={`text-lg font-semibold text-destructive ${isRTL ? "text-left" : "text-right"}`}>
-                                <DiscountPrice
-                                  price={order.configPrice}
-                                  shippingPrice={order.shippingPrice}
-                                  discount={order.product?.discount || discount}
-                                  quantity={order.quantity}
-                                  sectionType={order.product?.sectionType}
-                                />
+                                <NormalPrice price={priceCalculations.totalPrice + order.shippingPrice} />
                               </div>
                             </div>
                           </>
@@ -471,11 +480,7 @@ export default function ThankYou({
                                 {t('subtotal')}
                               </div>
                               <span className={`text-base font-semibold ${isRTL ? "text-left" : "text-right"}`}>
-                                <NormalPrice
-                                  price={order.configPrice}
-                                  quantity={order.quantity}
-                                  sectionType={order.product?.sectionType}
-                                />
+                                <NormalPrice price={priceCalculations.totalPrice} />
                               </span>
                             </div>
                             <div className="grid grid-cols-2 items-center">
@@ -483,23 +488,14 @@ export default function ThankYou({
                                 {t('shippingFee')}
                               </div>
                               <div className={`text-base font-semibold ${isRTL ? "text-left" : "text-right"}`}>
-                                <NormalPrice
-                                  price={order.shippingPrice}
-                                  sectionType={order.product?.sectionType}
-                                />
+                                <NormalPrice price={order.shippingPrice} />
                               </div>
                             </div>
+                            <Separator />
                             <div className="grid grid-cols-2 items-center">
-                              <div className="font-medium text-muted-foreground">
-                                {t('total')}
-                              </div>
-                              <span className={`text-base font-semibold ${isRTL ? "text-left" : "text-right"}`}>
-                                <NormalPrice
-                                  price={order.configPrice}
-                                  quantity={order.quantity}
-                                  shippingPrice={order.shippingPrice}
-                                  sectionType={order.product?.sectionType}
-                                />
+                              <div className="font-medium">{t('total')}</div>
+                              <span className={`text-lg font-semibold ${isRTL ? "text-left" : "text-right"}`}>
+                                <NormalPrice price={priceCalculations.totalPrice + order.shippingPrice} />
                               </span>
                             </div>
                           </>

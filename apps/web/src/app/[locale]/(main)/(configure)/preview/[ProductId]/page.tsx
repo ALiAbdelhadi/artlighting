@@ -1,25 +1,16 @@
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils"
+import { PagePropsTypes } from "@/types"
 import { prisma } from "@repo/database"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Preview from "./preview"
 
-interface PageProps {
-  params: Promise<{
-    locale: string
-    ProductId: string
-  }>
-  searchParams: Promise<{
-    [key: string]: string | string[] | undefined
-  }>
-}
-
-const Page = async ({ params, searchParams }: PageProps) => {
+const Page = async ({ params, searchParams }: PagePropsTypes) => {
   const resolvedParams = await params
   const locale = getLocaleFromParams(resolvedParams)
   const { ProductId } = resolvedParams // Changed to match parameter name
   const resolvedSearchParams = await searchParams
-  const { id } = resolvedSearchParams
+  const id = resolvedSearchParams?.id
 
   console.log("Preview page - Resolved parameters:", {
     locale,
@@ -200,7 +191,7 @@ const Page = async ({ params, searchParams }: PageProps) => {
   }
 }
 
-export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: PagePropsTypes): Promise<Metadata> => {
   const resolvedParams = await params
   const locale = getLocaleFromParams(resolvedParams)
   const { ProductId } = resolvedParams

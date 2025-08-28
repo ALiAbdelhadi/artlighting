@@ -1,22 +1,14 @@
+import { getLocaleFromParams } from "@/lib/i18n/utils"
 import { constructMetadata } from "@/lib/utils"
+import { PagePropsTypes } from "@/types"
+import { prisma } from "@repo/database"
+import { Metadata } from "next"
+import { getLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
 import Complete from "./complete"
-import { prisma } from "@repo/database"
-import { getLocale } from "next-intl/server"
-import { getLocaleFromParams } from "@/lib/i18n/utils"
-import { Metadata } from "next"
 
-interface PageProps {
-  params: {
-    locale: string
-  }
-  searchParams: {
-    [key: string]: string | string[] | undefined
-  }
-}
-
-const Page = async ({ searchParams }: PageProps) => {
-  const orderId = searchParams.orderId
+const Page = async ({ searchParams }: PagePropsTypes) => {
+  const orderId = searchParams?.orderId
 
   if (!orderId || typeof orderId !== "string") {
     return notFound()
@@ -73,10 +65,10 @@ const Page = async ({ searchParams }: PageProps) => {
   )
 }
 
-export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
-  const orderId = searchParams.orderId
-  const { locale: localeParam } = params
-  const locale = getLocaleFromParams(params)
+export async function generateMetadata({ params, searchParams }: PagePropsTypes): Promise<Metadata> {
+  const orderId = searchParams?.orderId
+  const { locale: localeParam } = await params
+  const locale = getLocaleFromParams(await params)
 
   const titles: Record<string, string> = {
     en: "Order Confirmed!",

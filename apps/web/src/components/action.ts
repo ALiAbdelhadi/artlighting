@@ -5,63 +5,88 @@ import { prisma } from "@repo/database"
 export interface SaveConfigArgs {
   configId: string
   productId: string
-  configPrice: number
-  priceIncrease: number
-  lampPriceIncrease: number
-  quantity: number
-  discount: number
-  totalPrice: number
+  basePrice: number // السعر الأساسي للمنتج (بدون زيادات)
+  priceIncrease: number // زيادة IP
+  lampPriceIncrease: number // زيادة المصابيح
+  shippingPrice?: number // سعر الشحن
+  quantity: number // الكمية
+  discount: number // نسبة الخصم
 }
 
 export async function saveConfig({
   configId,
   productId,
-  configPrice,
+  basePrice,
   priceIncrease,
   lampPriceIncrease,
+  shippingPrice = 0,
   quantity,
   discount,
-  totalPrice,
 }: SaveConfigArgs) {
   try {
-    console.log("Saving configuration:", {
+    const normalizedDiscount = discount > 1 ? discount / 100 : discount
+
+    // 1. السعر بعد الخصم (قبل أي زيادات)
+    const discountedBase = basePrice * (1 - normalizedDiscount)
+
+    // 2. إضافة الزيادات بعد الخصم
+    const finalUnitPrice =
+      discountedBase + priceIncrease + (lampPriceIncrease || 0) + shippingPrice
+
+    // 3. ضرب في الكمية
+    const totalPrice = Math.ceil(finalUnitPrice * Math.max(1, quantity))
+
+    // 4. configPrice = السعر الأساسي + كل الزيادات (بدون خصم)
+    const configPrice =
+      basePrice + priceIncrease + (lampPriceIncrease || 0) + shippingPrice
+
+    console.log("Saving configuration with new discount logic:", {
       configId,
       productId,
-      configPrice,
+      basePrice,
+      discountedBase,
       priceIncrease,
       lampPriceIncrease,
+      shippingPrice,
       quantity,
       discount,
+      configPrice,
       totalPrice,
     })
 
-    // Verify the configuration exists
     const existingConfig = await prisma.configuration.findUnique({
       where: { id: configId },
+      select: { id: true },
     })
 
     if (!existingConfig) {
       throw new Error(`Configuration with ID ${configId} not found`)
     }
 
-    // Update the configuration
     const updatedConfiguration = await prisma.configuration.update({
       where: { id: configId },
       data: {
-        configPrice,
-        priceIncrease,
-        lampPriceIncrease: lampPriceIncrease || 0,
+        configPrice: Math.ceil(configPrice), // السعر قبل الخصم مع الزيادات
+        priceIncrease: Math.ceil(priceIncrease),
+        lampPriceIncrease: Math.ceil(lampPriceIncrease || 0),
+        shippingPrice: Math.ceil(shippingPrice),
         quantity,
-        discount,
+        discount: normalizedDiscount,
         totalPrice,
-        updatedAt: new Date(),
       },
     })
 
-    console.log("Configuration updated successfully:", updatedConfiguration.id)
-    return { success: true, configuration: updatedConfiguration }
+    return {
+      success: true,
+      configuration: updatedConfiguration,
+      message: "Configuration saved successfully",
+    }
   } catch (error) {
     console.error("Error saving configuration:", error)
-    throw error
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error occurred",
+      configuration: null,
+    }
   }
 }

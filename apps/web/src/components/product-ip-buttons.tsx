@@ -66,24 +66,22 @@ export default function ProductIPButtons({
 }: ProductIPButtonsProps) {
   const [selectedIp, setSelectedIp] = useState<ProductIP>(productIp);
   const t = useTranslations("product-ip");
-  const locale = useLocale()
-  const isRTL = locale === "ar"
-
-  // حساب السعر بعد الخصم للعرض فقط
-  const discountedBasePrice = basePrice * (1 - discount);
+  const locale = useLocale();
+  const isRTL = locale === "ar";
 
   useEffect(() => {
     const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[selectedIp];
-    // حساب الزيادة على السعر الأساسي (قبل الخصم)
-    const priceIncrease = basePrice * increaseOnPricePercent;
+    // ✅ حساب زيادة IP من السعر الأساسي (قبل الخصم) مع التقريب لأعلى
+    const priceIncrease = Math.ceil(basePrice * increaseOnPricePercent);
     onProductIpChange(selectedIp, priceIncrease);
   }, [selectedIp, basePrice, onProductIpChange]);
 
   const handleIpChange = async (newIp: ProductIP) => {
     setSelectedIp(newIp);
     const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[newIp];
-    // حساب الزيادة على السعر الأساسي (قبل الخصم)
-    const priceIncrease = basePrice * increaseOnPricePercent;
+    // ✅ حساب زيادة IP من السعر الأساسي (قبل الخصم) مع التقريب لأعلى
+    const priceIncrease = Math.ceil(basePrice * increaseOnPricePercent);
+
     await updateProductIP({
       productId,
       configId,
@@ -98,9 +96,8 @@ export default function ProductIPButtons({
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-2">
         {Object.entries(PRODUCT_IP_LABEL_MAP).map(
           ([ip, { label, description, increaseOnPricePercent }]) => {
-            // حساب الزيادة على السعر الأساسي ثم تطبيق الخصم للعرض
-            const basePriceIncrease = basePrice * increaseOnPricePercent;
-            const displayedIncrease = basePriceIncrease * (1 - discount);
+            // ✅ حساب زيادة IP من السعر الأساسي (قبل الخصم) مع التقريب لأعلى
+            const displayedIncrease = Math.ceil(basePrice * increaseOnPricePercent);
 
             return (
               <TooltipProvider key={ip}>
@@ -122,7 +119,7 @@ export default function ProductIPButtons({
                       </span>
                       {displayedIncrease > 0 && (
                         <span className="ml-2 text-sm opacity-70">
-                          +{formatNumber(Math.ceil(displayedIncrease), isRTL ? "ar" : "en")}
+                          +{formatNumber(displayedIncrease, isRTL ? "ar" : "en")}
                         </span>
                       )}
                     </Button>

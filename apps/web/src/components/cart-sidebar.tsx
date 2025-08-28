@@ -159,7 +159,7 @@ export function CartSidebar() {
       <SheetContent className="flex flex-col w-full sm:max-w-lg z-50">
         <SheetClose asChild className="cursor-pointer">
           <button
-            className="absolute left-3 top-4 rounded-full p-1.5 hover:bg-muted transition"
+            className="absolute right-3 rtl:left-3 top-4 rounded-full p-1.5 hover:bg-muted transition"
           >
             <XIcon className="size-5" />
           </button>

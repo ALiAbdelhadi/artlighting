@@ -2,19 +2,16 @@ import { constructMetadata } from "@/lib/utils";
 import { Metadata } from "next";
 import { getLocaleFromParams } from "@/lib/i18n/utils";
 import PrivacySection from "./privacy-section";
-interface PageProps {
-  params: {
-    locale: string;
-  };
-}
+import { PagePropsTypes } from "@/types";
+
 export default function page() {
   return <PrivacySection />;
 }
 
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { locale } = params;
-  const currentLocale = getLocaleFromParams(params);
+export async function generateMetadata({ params }: PagePropsTypes): Promise<Metadata> {
+  const { locale } = await params;
+  const currentLocale = getLocaleFromParams(await params);
 
   const titles: Record<string, string> = {
     en: "Privacy Policy | Art Lighting",

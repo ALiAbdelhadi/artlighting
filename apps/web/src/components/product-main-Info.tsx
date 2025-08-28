@@ -130,24 +130,49 @@ export default function ProductMainInfo({
   const [priceIncrease, setPriceIncrease] = useState(0)
   const [lampPriceIncrease, setLampPriceIncrease] = useState(0)
   const { isSignedIn } = useAuth()
-
-  // Refs to prevent race conditions and unnecessary updates
   const isUpdatingRef = useRef(false)
   const lastUpdateRef = useRef<string>("")
-
-  // Debounce the product IP selection to avoid rapid API calls
   const [debouncedProductIp] = useDebounce(selectedProductIp, DEBOUNCE_DELAY)
 
-  // Memoized calculations for price and conditional rendering
-  const totalPrice = useMemo(() => price + priceIncrease + lampPriceIncrease, [price, priceIncrease, lampPriceIncrease])
+  // حساب السعر الإجمالي قبل الخصم: السعر الأساسي + جميع الزيادات
+  const totalPriceBeforeDiscount = useMemo(() => {
+    const total = price + priceIncrease + lampPriceIncrease
+    console.log("Price calculation:", {
+      basePrice: price,
+      priceIncrease,
+      lampPriceIncrease,
+      total,
+    })
+    return total
+  }, [price, priceIncrease, lampPriceIncrease])
+
+  // حساب السعر بعد الخصم للوحدة الواحدة
+  const discountedUnitPrice = useMemo(() => {
+    const normalizedDiscount = discount > 1 ? discount / 100 : discount
+    const discountedPrice = totalPriceBeforeDiscount * (1 - normalizedDiscount)
+    const finalPrice = Math.ceil(discountedPrice) // تقريب للأعلى
+
+    console.log("Discount calculation:", {
+      totalPriceBeforeDiscount,
+      discount,
+      normalizedDiscount,
+      discountedPrice,
+      finalPrice,
+    })
+
+    return finalPrice
+  }, [totalPriceBeforeDiscount, discount])
+
+  // حساب السعر النهائي للكمية المطلوبة (هذا ما سيُحفظ في قاعدة البيانات)
+  const finalTotalPrice = useMemo(() => {
+    return discountedUnitPrice * currentQuantity
+  }, [discountedUnitPrice, currentQuantity])
 
   const showIP20Text = useMemo(() => PRODUCTS_WITH_IP20_TEXT.includes(productId), [productId])
-
   const showMaxIpText = useMemo(() => PRODUCTS_WITH_MAX_IP_TEXT.includes(productId), [productId])
-
   const showOutdoorText = useMemo(() => sectionTypes?.includes("outdoor") ?? false, [sectionTypes])
 
-  // Effect to persist quantity in localStorage
+  // حفظ الكمية في localStorage
   useEffect(() => {
     const key = `${QUANTITY_STORAGE_KEY_PREFIX}${productId}`
     try {
@@ -157,7 +182,6 @@ export default function ProductMainInfo({
     }
   }, [currentQuantity, productId])
 
-  // Handlers for quantity changes
   const handleIncreaseQuantity = useCallback(() => {
     setCurrentQuantity((prev) => prev + 1)
     increaseQuantity?.()
@@ -170,13 +194,18 @@ export default function ProductMainInfo({
     }
   }, [currentQuantity, decreaseQuantity])
 
-  // Handlers for product configuration changes
   const handleProductChandelierLampChange = useCallback(
-    (newProductLamp: ProductChandelierLamp, newPriceIncrease: number) => {
+    (newProductLamp: ProductChandelierLamp, newLampPriceIncrease: number) => {
+      console.log("Chandelier lamp change:", {
+        newProductLamp,
+        newLampPriceIncrease,
+        basePrice: price,
+        currentPriceIncrease: priceIncrease,
+      })
       setSelectedProductChandelierLamp(newProductLamp)
-      setLampPriceIncrease(newPriceIncrease)
+      setLampPriceIncrease(newLampPriceIncrease)
     },
-    [],
+    [price, priceIncrease],
   )
 
   const handleColorTempChange = useCallback((newColorTemp: ProductColorTemp) => {
@@ -184,11 +213,16 @@ export default function ProductMainInfo({
   }, [])
 
   const handleProductIPChange = useCallback((newProductIp: ProductIP, newPriceIncrease: number) => {
+    console.log("IP change:", {
+      newProductIp,
+      newPriceIncrease,
+      basePrice: price,
+      currentLampPriceIncrease: lampPriceIncrease,
+    })
     setSelectProductIp(newProductIp)
     setPriceIncrease(newPriceIncrease)
-  }, [])
+  }, [price, lampPriceIncrease])
 
-  // Function to update product configuration via API
   const updateProductIPConfig = useCallback(
     async (newProductIp: ProductIP, newPriceIncrease: number) => {
       if (!configId || isUpdatingRef.current) return
@@ -211,6 +245,7 @@ export default function ProductMainInfo({
           const updatedConfig: Configuration = {
             ...result.updatedConfig,
             lampPriceIncrease: result.updatedConfig.lampPriceIncrease ?? undefined,
+            priceIncrease: result.updatedConfig.priceIncrease ?? undefined,
           }
           setConfiguration(updatedConfig)
         } else {
@@ -227,14 +262,12 @@ export default function ProductMainInfo({
     [configId, productId, tNotification],
   )
 
-  // Effect to trigger API update when debounced IP changes
   useEffect(() => {
     if (debouncedProductIp && configId) {
       updateProductIPConfig(debouncedProductIp, priceIncrease)
     }
   }, [debouncedProductIp, priceIncrease, configId, updateProductIPConfig])
 
-  // Enhanced mutation for saving the final configuration with proper routing
   const { mutate: saveConfig, isPending: isSavingConfig } = useMutation({
     mutationKey: ["save-config", configId],
     mutationFn: (args: SaveConfigArgs) => _saveConfig(args),
@@ -245,16 +278,9 @@ export default function ProductMainInfo({
     },
     onSuccess: (data) => {
       console.log("Configuration saved successfully:", data)
-
-      // Enhanced routing with proper locale and parameter structure
       try {
-        // Clear any cached data that might interfere
         localStorage.removeItem("cached-config")
-
-        // Navigate to preview with proper locale-aware routing
         router.push(`/preview/${productId}`)
-
-        // Add success notification
         toast.success(tNotification("configSaved") || "Configuration saved successfully!")
       } catch (error) {
         console.error("Navigation error:", error)
@@ -264,18 +290,19 @@ export default function ProductMainInfo({
     },
   })
 
-  // Enhanced handler for "Order Now" button with comprehensive validation
   const handleOrderNow = useCallback(() => {
-    console.log("Order Now clicked - Initial validation", {
-      isSavingConfig,
+    console.log("Order Now clicked - Complete price breakdown", {
+      basePrice: price,
+      priceIncrease,
+      lampPriceIncrease,
+      totalPriceBeforeDiscount,
+      discount,
+      discountedUnitPrice,
+      currentQuantity,
+      finalTotalPrice,
       configId,
       productId,
-      currentQuantity,
-      totalPrice,
-      locale,
     })
-
-    // Comprehensive validation
     if (isSavingConfig) {
       console.log("Already processing configuration save")
       return
@@ -299,7 +326,6 @@ export default function ProductMainInfo({
       return
     }
 
-    // Prevent double-clicks
     if (isClicked) {
       console.log("Button already clicked, preventing duplicate request")
       return
@@ -310,33 +336,32 @@ export default function ProductMainInfo({
     const configData = {
       configId,
       productId,
-      configPrice: totalPrice,
+      basePrice: price, 
+      configPrice: totalPriceBeforeDiscount, 
       priceIncrease,
       lampPriceIncrease,
       quantity: currentQuantity,
       discount,
-      totalPrice: totalPrice * currentQuantity, // Calculate final total
+      totalPrice: finalTotalPrice,
     }
 
-    console.log("Saving configuration:", configData)
-
+    console.log("Final configuration data being saved:", configData)
     saveConfig(configData)
   }, [
     isSavingConfig,
     configId,
     productId,
     currentQuantity,
-    totalPrice,
-    locale,
+    totalPriceBeforeDiscount,
+    discountedUnitPrice,
+    finalTotalPrice,
     isClicked,
     saveConfig,
     priceIncrease,
     lampPriceIncrease,
     discount,
-    tNotification,
   ])
 
-  // Handler for "Add to Bag" button
   const handleAddToBag = useCallback(() => {
     if (!isSignedIn) {
       toast.error(tNotification("signInRequired"))
@@ -359,7 +384,6 @@ export default function ProductMainInfo({
     })
   }, [isSignedIn, currentQuantity, productId, tNotification, productName])
 
-  // Create parameter objects with consistent variable names matching the translation strings
   const createProductDescription = useCallback((): string => {
     const params = {
       Brand: Brand,
@@ -482,9 +506,13 @@ export default function ProductMainInfo({
             {chandelierLightingType === "lamp" && Brand === "mister-led" && (
               <ProductChandelierLampButtons
                 productId={productId}
+                configId={configId}
                 productChandLamp={selectedProductChandelierLamp}
                 onProductLampChange={handleProductChandelierLampChange}
                 hNumber={hNumber || 0}
+                basePrice={price}
+                discount={discount}
+                priceIncrease={priceIncrease}
               />
             )}
             {Brand === "balcom" && (
@@ -494,7 +522,8 @@ export default function ProductMainInfo({
                 productIp={selectedProductIp}
                 onProductIpChange={handleProductIPChange}
                 basePrice={price}
-                discount={0}
+                lampPriceIncrease={lampPriceIncrease}
+                discount={discount}
               />
             )}
           </div>
@@ -514,19 +543,21 @@ export default function ProductMainInfo({
                   price={price}
                   discount={discount}
                   quantity={currentQuantity}
-                  priceIncrease={priceIncrease + lampPriceIncrease}
+                  priceIncrease={priceIncrease}
+                  lampPriceIncrease={lampPriceIncrease}
+                  roundingMode="ceil"
                 />
               </span>
               <s className="text-muted-foreground text-base">
-                <NormalPrice price={totalPrice} quantity={currentQuantity} />
+                <NormalPrice price={totalPriceBeforeDiscount} quantity={currentQuantity} />
               </s>
               <span className="bg-green-100 text-green-800 px-2 py-1 rounded-md text-sm font-medium">
-                {discount * 100}% {t("off")}
+                {discount > 1 ? discount : discount * 100}% {t("off")}
               </span>
             </>
           ) : (
             <span className="text-xl font-semibold">
-              <NormalPrice price={totalPrice} quantity={currentQuantity} />
+              <NormalPrice price={totalPriceBeforeDiscount} quantity={currentQuantity} />
             </span>
           )}
         </div>
@@ -548,7 +579,7 @@ export default function ProductMainInfo({
         </div>
       </div>
       <div className="fixed bottom-0 left-0 right-0 z-10 bg-white dark:bg-neutral-900 border-t shadow-lg px-4 md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6">
-        <div className="flex flex-col gap-3 max-w-md mx-auto md:max-w-none md:p-0 p- ">
+        <div className="flex flex-col gap-3 max-w-md mx-auto md:max-w-none md:p-0 p-4 ">
           <div className="flex items-center gap-4">
             <QuantitySelector
               quantity={currentQuantity}

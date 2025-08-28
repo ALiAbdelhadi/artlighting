@@ -226,7 +226,6 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
                     alt={displayName}
                     width={500}
                     height={400}
-                    quality={100}
                     loading={index === 0 ? "eager" : "lazy"}
                   />
                 </div>

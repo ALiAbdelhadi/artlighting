@@ -55,7 +55,7 @@
             "2013 - Breakthrough Innovation",
             "2014 - Local Expansion and Acquisition",
             "2015 - Sustainability Initiatives",
-            "2016 - Art Lighting Working with Military",
+            "2016 – Art Lighting’s Contribution to National Projects",
             "2020 - Pandemic Response and Resilience",
             "2023 - Our Factory completed"
         ]
@@ -737,7 +737,8 @@
             "shipping": "Shipping",
             "total": "Total",
             "youSave": "You save",
-            "off": "off"
+            "off": "off",
+            "subtotalAfterDiscount": "Subtotal after discount"
         },
         "productDetails": {
             "pricePerItem": "Price per item",

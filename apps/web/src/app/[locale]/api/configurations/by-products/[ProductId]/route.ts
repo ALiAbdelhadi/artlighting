@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
 const ParamsSchema = z.object({
-  ProductId: z.string(), // Changed from productId to ProductId to match your URL structure
+  ProductId: z.string(),
 })
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ ProductId: string }> }) {
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     console.log(`API: Fetching configuration for ProductId: ${ProductId}`)
 
     const configuration = await prisma.configuration.findFirst({
-      where: { productId: ProductId }, // productId in database matches ProductId from URL
+      where: { productId: ProductId }, 
       orderBy: { updatedAt: "desc" },
     })
 
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
             productId: ProductId,
             configPrice: product.price,
             priceIncrease: 0,
-            shippingPrice: 69, // Default shipping price
+            shippingPrice: 69,
             discount: product.discount,
             quantity: 1,
             totalPrice: product.price,

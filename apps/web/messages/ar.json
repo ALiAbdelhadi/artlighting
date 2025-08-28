@@ -524,7 +524,8 @@
             "shipping": "الشحن",
             "total": "المجموع",
             "youSave": "توفر",
-            "off": "خصم"
+            "off": "خصم",
+            "subtotalAfterDiscount": "المجموع الفرعي بعد الخصم"
         },
         "productDetails": {
             "pricePerItem": "السعر لكل عنصر",

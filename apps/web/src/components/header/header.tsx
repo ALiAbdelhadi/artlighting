@@ -38,12 +38,11 @@ export default function Header({ projectsForHeader }: HeaderProps) {
   const locale = useLocale()
   const isRTL = locale === 'ar'
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/30 border-b border-border/30">
       <Container className="container">
         <div className="flex items-center justify-between h-16 gap-4 rt:flex-row-reverse">
           <Link href="/" className="flex items-center gap-2 shrink-0" prefetch={false} aria-label="Art Lighting - Home">
             <Image
-              quality={100}
               width={80}
               height={80}
               src={locale === 'ar' ? "/logo-ar.png" : "/logo-en.png"}

@@ -15,7 +15,6 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useParams, usePathname } from "next/navigation";
 
-// Enhanced Product interface aligned with Prisma schema
 interface Product {
   id: string;
   productId: string;
@@ -81,7 +80,6 @@ interface ProductsClientProps {
   locale?: string;
 }
 
-// Critical: Pre-determined locale-aware styling to prevent hydration mismatch
 const getLocaleAwareStyles = (locale: string) => {
   const isRTL = locale === 'ar';
 
@@ -109,12 +107,12 @@ const getLocaleAwareStyles = (locale: string) => {
 // Debug utility with enhanced analytics
 const analyzeProductData = (products: Product[], locale: string) => {
   if (products.length === 0) {
-    console.log('🔍 [ProductsClient] No products available for analysis');
+    console.log('[ProductsClient] No products available for analysis');
     return;
   }
 
   const sampleProduct = products[0];
-  console.log('🔍 [ProductsClient] Product Analysis Report:', {
+  console.log('[ProductsClient] Product Analysis Report:', {
     locale,
     totalProducts: products.length,
     sampleProductId: sampleProduct.productId,

@@ -1,23 +1,10 @@
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
-import { constructMetadata } from "@/lib/utils";
-import { prisma } from "@repo/database";
-import MisterLed from "./mister-led";
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
-import { useTranslations } from "next-intl";
+import { constructMetadata } from "@/lib/utils";
+import { PagePropsTypes } from "@/types";
+import { prisma } from "@repo/database";
 import { getTranslations } from "next-intl/server";
-
-type SectionType = "chandelier";
-
-const sectionTypeImages: Record<SectionType, string> = {
-  chandelier: "/chandelier/MC6031/MC6031-H3.png",
-};
-
-
-interface PageProps {
-  params: Promise<{
-    locale: string;
-  }>;
-}
+import MisterLed from "./mister-led";
 
 export async function generateStaticParams() {
   const categories = await prisma.product.groupBy({
@@ -35,7 +22,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
   const t = await getTranslations('error')
@@ -68,7 +55,7 @@ export default async function Page({ params }: PageProps) {
   }
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
 
   const titles = {
