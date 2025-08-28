@@ -13,7 +13,8 @@ import { cn } from "@repo/ui";
 import { Button } from "@repo/ui/button";
 import { Droplets } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const PRODUCT_IP_LABEL_MAP: Record<
   ProductIP,
@@ -65,28 +66,45 @@ export default function ProductIPButtons({
   onProductIpChange,
 }: ProductIPButtonsProps) {
   const [selectedIp, setSelectedIp] = useState<ProductIP>(productIp);
+  const [isUpdating, setIsUpdating] = useState(false);
   const t = useTranslations("product-ip");
   const locale = useLocale();
   const isRTL = locale === "ar";
 
+  const calculatePriceIncrease = useCallback((ip: ProductIP) => {
+    const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[ip];
+    return Math.ceil(basePrice * increaseOnPricePercent);
+  }, [basePrice]);
+
   useEffect(() => {
-    const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[selectedIp];
-    const priceIncrease = Math.ceil(basePrice * increaseOnPricePercent);
+    const priceIncrease = calculatePriceIncrease(selectedIp);
     onProductIpChange(selectedIp, priceIncrease);
-  }, [selectedIp, basePrice, onProductIpChange]);
+  }, [selectedIp, calculatePriceIncrease, onProductIpChange]);
 
-  const handleIpChange = async (newIp: ProductIP) => {
-    setSelectedIp(newIp);
-    const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[newIp];
-    const priceIncrease = Math.ceil(basePrice * increaseOnPricePercent);
+  const handleIpChange = useCallback(async (newIp: ProductIP) => {
+    if (newIp === selectedIp || isUpdating) return;
 
-    await updateProductIP({
-      productId,
-      configId,
-      newProductIp: newIp,
-      priceIncrease,
-    });
-  };
+    setIsUpdating(true);
+
+    try {
+      const priceIncrease = calculatePriceIncrease(newIp);
+
+      await updateProductIP({
+        productId,
+        configId,
+        newProductIp: newIp,
+        priceIncrease,
+      });
+
+      setSelectedIp(newIp);
+      toast.success(t("change-success"));
+    } catch (error) {
+      console.error("Failed to change IP rating:", error);
+      toast.error(t("change-error"));
+    } finally {
+      setIsUpdating(false);
+    }
+  }, [selectedIp, isUpdating, productId, configId, calculatePriceIncrease, t]);
 
   return (
     <div className="space-y-2">
@@ -94,7 +112,7 @@ export default function ProductIPButtons({
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-2">
         {Object.entries(PRODUCT_IP_LABEL_MAP).map(
           ([ip, { label, description, increaseOnPricePercent }]) => {
-            const displayedIncrease = Math.ceil(basePrice * increaseOnPricePercent);
+            const displayedIncrease = calculatePriceIncrease(ip as ProductIP);
 
             return (
               <TooltipProvider key={ip}>
@@ -102,12 +120,14 @@ export default function ProductIPButtons({
                   <TooltipTrigger asChild>
                     <Button
                       onClick={() => handleIpChange(ip as ProductIP)}
+                      disabled={isUpdating}
                       variant={selectedIp === ip ? "default" : "outline"}
                       className={cn(
                         "flex items-center justify-center w-full rounded-full transition-all duration-200",
                         selectedIp === ip
                           ? "bg-primary text-primary-foreground shadow-lg"
                           : "bg-background hover:bg-secondary",
+                        isUpdating && "opacity-60 cursor-not-allowed"
                       )}
                     >
                       <Droplets className="w-4 h-4 mr-1" />
@@ -118,6 +138,9 @@ export default function ProductIPButtons({
                         <span className="ml-2 text-sm opacity-70">
                           +{formatNumber(displayedIncrease, isRTL ? "ar" : "en")}
                         </span>
+                      )}
+                      {isUpdating && selectedIp === ip && (
+                        <div className="ml-2 animate-spin rounded-full h-3 w-3 border-b-2 border-current" />
                       )}
                     </Button>
                   </TooltipTrigger>

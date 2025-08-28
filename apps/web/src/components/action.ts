@@ -66,7 +66,7 @@ export async function saveConfig({
     const updatedConfiguration = await prisma.configuration.update({
       where: { id: configId },
       data: {
-        configPrice: Math.ceil(configPrice), // السعر قبل الخصم مع الزيادات
+        configPrice: Math.ceil(configPrice), 
         priceIncrease: Math.ceil(priceIncrease),
         lampPriceIncrease: Math.ceil(lampPriceIncrease || 0),
         shippingPrice: Math.ceil(shippingPrice),
