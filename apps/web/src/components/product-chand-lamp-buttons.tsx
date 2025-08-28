@@ -56,10 +56,11 @@ export default function ProductChandelierLampButtons({
     mutationFn: changeProductChandLamp,
     onSuccess: () => {
       console.log("Lamp type changed successfully");
+      toast.success(t("change-success"));
     },
     onError: (error) => {
       console.error("Failed to change lamp type:", error);
-      toast.error("فشل في تغيير نوع المصباح");
+      toast.error(t("change-error"));
       setIsUpdating(false);
     }
   });
@@ -73,7 +74,7 @@ export default function ProductChandelierLampButtons({
     },
     onError: (error) => {
       console.error("Configuration save error:", error);
-      toast.error("فشل في حفظ إعدادات المصباح");
+      toast.error(t("saving-error"));
       setIsUpdating(false);
     },
   });
@@ -152,26 +153,26 @@ export default function ProductChandelierLampButtons({
                 disabled={isUpdating || isSavingConfig}
                 variant={activeProductLamp === productLamp ? "default" : "outline"}
                 className={cn(
-                  "flex items-center justify-center rounded-full transition-all duration-200 min-h-[44px]",
+                  "flex items-center justify-center rounded-full transition-all duration-200",
                   activeProductLamp === productLamp
                     ? "bg-primary text-primary-foreground shadow-lg"
                     : "bg-background hover:bg-secondary",
                   (isUpdating || isSavingConfig) && "opacity-60 cursor-not-allowed"
                 )}
               >
-                <div className="flex flex-col items-center text-center">
+                <div className="flex flex-row gap-2 justify-center items-end text-center">
                   <span className="font-medium">
                     {t(productLamp)}
                   </span>
                   {totalLampIncrease > 0 && (
-                    <span className="text-xs opacity-70 whitespace-nowrap">
+                    <span className="opacity-70 whitespace-nowrap block font-medium max-w-xs">
                       +{formatNumber(Math.ceil(totalLampIncrease), isRTL ? "ar" : "en")}
                       {" "}({priceIncreasePerLamp} × {hNumber})
                     </span>
                   )}
                 </div>
                 {(isUpdating || isSavingConfig) && activeProductLamp === productLamp && (
-                  <div className="ml-2 animate-spin rounded-full h-3 w-3 border-b-2 border-current"></div>
+                  <div className="ml-2 animate-spin rounded-full h-3 w-3 border-b-2 border-current" />
                 )}
               </Button>
             );

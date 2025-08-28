@@ -71,7 +71,6 @@ export default function ProductIPButtons({
 
   useEffect(() => {
     const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[selectedIp];
-    // ✅ حساب زيادة IP من السعر الأساسي (قبل الخصم) مع التقريب لأعلى
     const priceIncrease = Math.ceil(basePrice * increaseOnPricePercent);
     onProductIpChange(selectedIp, priceIncrease);
   }, [selectedIp, basePrice, onProductIpChange]);
@@ -79,7 +78,6 @@ export default function ProductIPButtons({
   const handleIpChange = async (newIp: ProductIP) => {
     setSelectedIp(newIp);
     const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[newIp];
-    // ✅ حساب زيادة IP من السعر الأساسي (قبل الخصم) مع التقريب لأعلى
     const priceIncrease = Math.ceil(basePrice * increaseOnPricePercent);
 
     await updateProductIP({
@@ -96,7 +94,6 @@ export default function ProductIPButtons({
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-2">
         {Object.entries(PRODUCT_IP_LABEL_MAP).map(
           ([ip, { label, description, increaseOnPricePercent }]) => {
-            // ✅ حساب زيادة IP من السعر الأساسي (قبل الخصم) مع التقريب لأعلى
             const displayedIncrease = Math.ceil(basePrice * increaseOnPricePercent);
 
             return (
@@ -124,7 +121,7 @@ export default function ProductIPButtons({
                       )}
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent className="sm:block hidden font-medium max-w-xs">
+                  <TooltipContent className="block font-medium max-w-xs">
                     <p>{t(`ratings.${ip}.description`)}</p>
                     <p className="text-xs mt-1 opacity-75">
                       {t("onlyAvailableRating")}

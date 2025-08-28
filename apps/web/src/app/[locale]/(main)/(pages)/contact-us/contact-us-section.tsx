@@ -1,10 +1,10 @@
-"use client";
+  "use client";
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
+import { Link } from "@/i18n/navigation";
 import { Container } from "@repo/ui";
 import { motion } from "framer-motion";
 import { Check, Facebook, Instagram, Youtube } from "lucide-react";
-import { useLocale, useTranslations } from 'next-intl';
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from 'next-intl';
 
 export default function ContactUsSection() {
   const t = useTranslations('contact');

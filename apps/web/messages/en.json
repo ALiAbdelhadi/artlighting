@@ -638,10 +638,14 @@
         }
     },
     "ProductChandLampButtons": {
-        "chooseLampWattage": "Choose Lamp Wattage",
-        "lamp9w": "Lamp 9W",
-        "lamp12w": "Lamp 12W",
-        "priceIncrease": "+{price} EGP"
+        "chooseLampWattage": "Choose lamp wattage",
+        "lamp9w": "9W lamp",
+        "lamp12w": "12W lamp",
+        "priceIncrease": "+{price} EGP",
+        "change-error": "An error occurred while changing the lamp settings. Please try again.",
+        "change-success": "Lamp settings changed successfully.",
+        "saving-success": "Lamp settings saved successfully.",
+        "saving-error": "An error occurred while saving the lamp settings. Please try again."
     },
     "error": {
         "title": "Error loading this page",
