@@ -7,7 +7,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import React from "react";
 import { LocalizedCategory, SupportedLanguage } from "@/types/products";
-
+import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 interface MisterLedProps {
   categories: LocalizedCategory[];
   locale: SupportedLanguage;
@@ -35,6 +35,7 @@ export default function MisterLed({
   return (
     <>
       <Landing images={images} />
+              <Breadcrumb />
       <motion.section
         className={`py-11 md:py-15 lg:py-19 ${isRTL ? 'rtl' : 'ltr'}`}
         initial="hidden"

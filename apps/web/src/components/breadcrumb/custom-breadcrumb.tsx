@@ -24,12 +24,12 @@ const CustomBreadcrumb = () => {
             <span key={href} className={`${styles.breadcrumbItem}`}>
               {!isLast ? (
                 <>
-                  <Link href={href} className="capitalize">
+                  <Link href={href} className="capitalize cursor-pointer text-foreground hover:underline">
                     {decodeURIComponent(part)}
                   </Link>
                 </>
               ) : (
-                <span className={`${styles.active}`}>
+                <span className="capitalize cursor-pointer text-foreground hover:underline font-bold">
                   {decodeURIComponent(part)}
                 </span>
               )}

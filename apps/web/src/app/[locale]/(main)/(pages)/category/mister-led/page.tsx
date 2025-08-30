@@ -14,7 +14,7 @@ export default async function Page({ params }: PagePropsTypes) {
 
     return (
       <>
-        <Breadcrumb />
+
         <MisterLed categories={localizedCategories} locale={locale} />
       </>
     );

@@ -14,11 +14,11 @@ export default async function Page({ params }: PagePropsTypes) {
 
     return (
       <>
+
         <Balcom
           categories={localizedCategories}
           locale={locale}
         />
-        <Breadcrumb />
       </>
     );
   } catch (error) {

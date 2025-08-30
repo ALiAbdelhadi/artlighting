@@ -6,7 +6,7 @@ import { Container } from "@repo/ui";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
-
+import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 interface BalcomProps {
   categories: LocalizedCategory[];
   locale: SupportedLanguage;
@@ -37,6 +37,7 @@ export default function Balcom({
   return (
     <>
       <Landing images={images} />
+      <Breadcrumb />
       <motion.section
         className={`py-11 md:py-15 lg:py-19 ${isRTL ? 'rtl' : 'ltr'}`}
         initial="hidden"
