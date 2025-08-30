@@ -55,7 +55,6 @@
   --slide-in-from-right: slide-in-from-right 0.2s ease-out;
 }
 
-/* Enhanced Light Mode Palette */
 :root {
   /* Core Backgrounds */
   --background: oklch(0.985 0.002 95);
@@ -104,7 +103,6 @@
   --chart-5: oklch(0.78 0.17 70);
 }
 
-/* Enhanced Dark Mode Palette */
 .dark {
   /* Core Backgrounds */
   --background: oklch(0.13 0.004 270);

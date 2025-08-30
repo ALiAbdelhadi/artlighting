@@ -70,6 +70,7 @@ export default function ProductChandelierLampButtons({
     mutationFn: saveConfig,
     onSuccess: (data) => {
       console.log("Lamp configuration saved successfully:", data);
+      toast.success(t("saving-success"));
       setIsUpdating(false);
     },
     onError: (error) => {

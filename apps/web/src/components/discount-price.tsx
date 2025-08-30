@@ -6,13 +6,13 @@ import { useLocale } from "next-intl"
 type RoundingMode = "round" | "ceil" | "floor"
 
 interface DiscountPriceProps {
-  price: number // السعر الأساسي للمنتج
-  discount?: number // نسبة الخصم (0.1 = 10% أو 10 = 10%)
-  quantity?: number // الكمية
-  shippingPrice?: number // سعر الشحن
+  price: number
+  discount?: number
+  quantity?: number
+  shippingPrice?: number
   sectionType?: string
-  priceIncrease?: number // زيادة IP
-  lampPriceIncrease?: number // زيادة المصابيح
+  priceIncrease?: number 
+  lampPriceIncrease?: number 
   roundingMode?: RoundingMode
 }
 
@@ -27,8 +27,6 @@ export default function DiscountPrice({
   roundingMode = "ceil",
 }: DiscountPriceProps) {
   const locale = useLocale()
-
-  // تطبيع نسبة الخصم (إذا كانت أكبر من 1، فهي بالنسبة المئوية)
   const normalizedDiscount = discount > 1 ? discount / 100 : discount
 
   const applyRounding = (v: number, mode: RoundingMode) => {

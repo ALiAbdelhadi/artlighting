@@ -15,6 +15,6 @@ export const config = {
     // Pages except static files
     "/((?!_next|_vercel|.*\\..*).*)",
     // API routes
-    "/(api|trpc)(.*)",
+    "/((?!api|_next|_vercel|.*/opengraph-image|.*\\..*).*)"
   ],
 };
