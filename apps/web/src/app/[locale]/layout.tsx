@@ -5,6 +5,7 @@ import { routing } from '@/i18n/routing';
 import { cn, constructMetadata } from "@/lib/utils";
 import { SupportedLanguage } from "@/types/products";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { Almarai, Roboto } from "next/font/google";
@@ -78,6 +79,7 @@ export default async function RootLayout({
             <NextIntlClientProvider>
               <Providers>
                 {children}
+                <Analytics />
               </Providers>
             </NextIntlClientProvider>
             <Toaster />
