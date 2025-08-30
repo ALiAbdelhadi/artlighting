@@ -5,6 +5,7 @@ export interface PagePropsTypes {
         projectId?: string;
         subCategory?: string;
         lightingType?: string;
+        orderId?: string;
     }>,
     searchParams?: Promise<{
         [key: string]: string | string[] | undefined

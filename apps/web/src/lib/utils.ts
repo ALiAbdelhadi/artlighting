@@ -11,12 +11,11 @@ import { Locale } from "./i18n/config";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-
 export function constructMetadata({
   title,
   description,
   locale = "en",
-  image = locale === "ar" ? "/Logo-ar.png" : "/Logo-en.png",
+  image = "/Logo-en.png",
   icons = "/favicon.ico",
   openGraph,
   twitter,
@@ -29,37 +28,38 @@ export function constructMetadata({
   twitter?: Metadata["twitter"];
   locale?: SupportedLanguage;
 } = {}): Metadata {
+  const baseUrl = "https://eg-artlighting.vercel.app";
+
   const defaultTitles: Record<SupportedLanguage, string> = {
     en: "Art Lighting Company - Professional lighting: Shop Spotlights, Light Poles, and LED Lights",
     ar: "شركة ارت لايتنج - حلول إضاءة احترافية: كشافات، أعمدة إنارة، ولمبات ليد",
   };
 
   const defaultDescriptions: Record<SupportedLanguage, string> = {
-    en:
-      "Art Lighting Company: Elevate your spaces with exquisite Indoor and outdoor lighting solutions. Explore our curated selection of spotlights, light poles, LED fixtures, chandeliers, linear lighting, and bollards, meticulously crafted for enduring brilliance and energy efficiency. Experience the Art Lighting difference – exceptional illumination at exceptional value.",
-    ar:
-      "شركة أرت لايتنج: ارتقِ بمساحاتك مع حلول الإضاءة الداخلية والخارجية الراقية. استكشف تشكيلتنا المختارة من الكشافات، أعمدة الإنارة، تجهيزات ليد، الثريات، الإضاءات الخطية، والبولارد — مصممة بعناية للحصول على سطوع دائم وكفاءة في استهلاك الطاقة. اكتشف فرق أرت لايتنج — إضاءة استثنائية بقيمة استثنائية.",
+    en: "Art Lighting Company: Elevate your spaces with exquisite indoor and outdoor lighting solutions...",
+    ar: "شركة أرت لايتنج: ارتقِ بمساحاتك مع حلول الإضاءة الداخلية والخارجية الراقية...",
   };
-
-  const ogLocale = locale === "ar" ? "ar_EG" : "en_US";
-  const baseUrl = "https://eg-artlighting.vercel.app";
-  const siteUrl = `${baseUrl}/${locale}/`;
-  const siteName = "Art Lighting Company";
 
   const resolvedTitle = title ?? defaultTitles[locale];
   const resolvedDescription = description ?? defaultDescriptions[locale];
 
-  const resolvedImage = image.startsWith("http") ? image : `${baseUrl}${image}`;
+  const resolvedImage = image.startsWith("http")
+    ? image
+    : `${baseUrl}${image.startsWith("/") ? image : `/${image}`}`;
 
   const imageAlt = locale === "ar" ? "شعار شركة آرت لايتنغ" : "Art Lighting Company Logo";
+
+  const ogLocale = locale === "ar" ? "ar_EG" : "en_US";
+  const siteName = "Art Lighting Company";
 
   return {
     title: resolvedTitle,
     description: resolvedDescription,
+    metadataBase: new URL(baseUrl),
     openGraph: openGraph ?? {
       type: "website",
       locale: ogLocale,
-      url: siteUrl,
+      url: `${baseUrl}/${locale}/`,
       siteName,
       title: resolvedTitle,
       description: resolvedDescription,
@@ -69,7 +69,7 @@ export function constructMetadata({
           width: 1200,
           height: 630,
           alt: imageAlt,
-          type: "image/png"
+          type: "image/png",
         },
       ],
     },
@@ -79,22 +79,21 @@ export function constructMetadata({
       creator: "@ArtLightingEG",
       title: resolvedTitle,
       description: resolvedDescription,
-      images: {
-        url: resolvedImage,
-        alt: imageAlt,
-      },
+      images: [resolvedImage],
     },
+    icons,
     other: {
       "application-name": siteName,
       "og:image": resolvedImage,
-      "og:image:width": "1200",
-      "og:image:height": "630",
-      "og:image:alt": imageAlt,
       "twitter:image": resolvedImage,
-      "twitter:image:alt": imageAlt,
     },
-    
-    icons,
+    alternates: {
+      canonical: `${baseUrl}/${locale}/`,
+      languages: {
+        en: `${baseUrl}/en/`,
+        ar: `${baseUrl}/ar/`,
+      },
+    },
     keywords: [
       "Lighting",
       "LED",
@@ -142,7 +141,6 @@ export function constructMetadata({
       "تصميم الإضاءة",
       "تركيب الإضاءة",
     ],
-    metadataBase: new URL(baseUrl),
     robots: {
       index: true,
       follow: true,
@@ -152,13 +150,6 @@ export function constructMetadata({
         "max-video-preview": -1,
         "max-image-preview": "large",
         "max-snippet": -1,
-      },
-    },
-    alternates: {
-      canonical: siteUrl,
-      languages: {
-        en: `${baseUrl}/en/`,
-        ar: `${baseUrl}/ar/`,
       },
     },
   };

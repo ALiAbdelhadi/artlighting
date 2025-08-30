@@ -29,7 +29,8 @@ const ProjectsSection = async ({ params }: PagePropsTypes) => {
         notFound();
     }
 
-    const t = await getTranslations("news-projects");
+    const t = await getTranslations({ locale, namespace: "news-projects" });
+
     const projectsData = (locale === 'ar'
         ? (projectsDetailsAr as ProjectsData).projects
         : (projectsDetailsEn as ProjectsData).projects) || {};

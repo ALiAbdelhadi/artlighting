@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
-  const t = await getTranslations('error')
+  const t = await getTranslations({ locale, namespace: "error" });
   try {
     const localizedCategories = await service.getLocalizedCategories("mister-led", locale);
 

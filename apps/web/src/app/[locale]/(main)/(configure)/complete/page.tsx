@@ -7,8 +7,8 @@ import { getLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
 import Complete from "./complete"
 
-const Page = async ({ searchParams }: PagePropsTypes) => {
-  const orderId = searchParams?.orderId
+const Page = async ({ params, searchParams }: PagePropsTypes) => {
+  const orderId = (await params)?.orderId
 
   if (!orderId || typeof orderId !== "string") {
     return notFound()
@@ -66,7 +66,7 @@ const Page = async ({ searchParams }: PagePropsTypes) => {
 }
 
 export async function generateMetadata({ params, searchParams }: PagePropsTypes): Promise<Metadata> {
-  const orderId = searchParams?.orderId
+  const orderId = (await params)?.orderId
   const { locale: localeParam } = await params
   const locale = getLocaleFromParams(await params)
 
