@@ -5,12 +5,14 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LightingType from "./lighting-type";
 import { PagePropsTypes } from "@/types";
+import { getTranslations } from "next-intl/server";
 
 
 export default async function Page({ params }: PagePropsTypes) {
   const { locale: localeParam, subCategory, lightingType } = await params;
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
+  const t = await getTranslations('error')
   if (!subCategory || !lightingType) {
     notFound();
   }
@@ -57,11 +59,13 @@ export default async function Page({ params }: PagePropsTypes) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-foreground/90 mb-4">
-            Error loading products
+            {t('title')}
           </h2>
-          <p className="text-muted-foreground">Please try again later.</p>
+          <p className="text-muted-foreground">
+            {t('message')}
+          </p>
           <p className="text-xs text-muted-foreground mt-2">
-            {error instanceof Error ? error.message : 'Unknown error'}
+            {error instanceof Error ? error.message : t('unknown_error')}
           </p>
         </div>
       </div>

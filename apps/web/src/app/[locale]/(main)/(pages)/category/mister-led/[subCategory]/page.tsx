@@ -10,7 +10,7 @@ export default async function Page({ params }: PagePropsTypes) {
   const { subCategory } = await params;
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
-  const t = await getTranslations({ locale, namespace: "error" });
+  const t = await getTranslations('error')
 
   if (!subCategory) {
     notFound();

@@ -40,7 +40,6 @@ export default async function Page({ params }: PagePropsTypes) {
   const { subCategory, lightingType, ProductId } = await params;
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
-
   console.log("Fetching Balcom product with params:", { ProductId, subCategory, lightingType, locale });
 
   try {
@@ -91,23 +90,16 @@ export default async function Page({ params }: PagePropsTypes) {
       notFound();
     }
 
-    // Get localized product name
     const localizedName = product.translations?.[0]?.name || product.productName;
 
-    // Get localized specifications
     const localizedSpecs = product.specifications?.[0] || {};
-
-    // Create product with localized data and proper type conversion
     const localizedProduct = {
       ...product,
       productName: localizedName,
       localizedSpecs,
-      // Convert null to undefined for chandelierLightingType
       chandelierLightingType: product.chandelierLightingType || undefined,
       category: product.category,
-      lightingtype: product.lightingtype,
-      // Add missing specification fields from the database model
-      input: localizedSpecs.input || undefined,
+      lightingtype: product.lightingtype,      input: localizedSpecs.input || undefined,
       maximumWattage: localizedSpecs.maximumWattage ? parseInt(localizedSpecs.maximumWattage) : undefined,
       brandOfLed: localizedSpecs.brandOfLed || undefined,
       luminousFlux: localizedSpecs.luminousFlux || undefined,

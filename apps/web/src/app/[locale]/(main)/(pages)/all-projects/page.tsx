@@ -15,7 +15,7 @@ export default async function Page({ params }: PagePropsTypes) {
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: "allProjects" });
+  const t = await getTranslations("allProjects");
 
   return (
     <AllProjectPage

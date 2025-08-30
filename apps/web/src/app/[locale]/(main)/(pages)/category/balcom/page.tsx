@@ -3,29 +3,39 @@ import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
 import Balcom from "./balcom";
 import { PagePropsTypes } from "@/types";
+import { getTranslations } from "next-intl/server";
 
 export default async function Page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
-
+  const t = await getTranslations("error");
   try {
     const localizedCategories = await service.getLocalizedCategories("balcom", locale);
 
     return (
       <>
-        <Breadcrumb />
         <Balcom
           categories={localizedCategories}
           locale={locale}
         />
+        <Breadcrumb />
       </>
     );
   } catch (error) {
     console.error("Failed to load Balcom categories:", error);
     return (
-      <div className="container mx-auto py-8">
-        <h1>Error loading categories</h1>
-        <p>Please try again later.</p>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-foreground/90 mb-4">
+            {t('title')}
+          </h2>
+          <p className="text-muted-foreground">
+            {t('message')}
+          </p>
+          <p className="text-xs text-muted-foreground mt-2">
+            {error instanceof Error ? error.message : t('unknown_error')}
+          </p>
+        </div>
       </div>
     );
   }

@@ -143,8 +143,6 @@ const ProductsSection = async ({ params }: PagePropsTypes) => {
         specifications: product.specifications,
       };
     });
-    console.log(`[ProductsSection] Loading ${formattedProducts.length} products for locale: ${locale}`);
-
     return <ProductsClient products={formattedProducts} locale={locale} />;
   } catch (error) {
     console.error('Products section data fetching error:', error);
