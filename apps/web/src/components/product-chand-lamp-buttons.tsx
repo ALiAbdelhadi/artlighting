@@ -152,6 +152,7 @@ export default function ProductChandelierLampButtons({
                 key={productLamp}
                 onClick={() => handleLampChange(productLamp as ProductChandLamp)}
                 disabled={isUpdating || isSavingConfig}
+                size={"lg"}
                 variant={activeProductLamp === productLamp ? "default" : "outline"}
                 className={cn(
                   "flex items-center justify-center rounded-full transition-all duration-200",
@@ -161,7 +162,7 @@ export default function ProductChandelierLampButtons({
                   (isUpdating || isSavingConfig) && "opacity-60 cursor-not-allowed"
                 )}
               >
-                <div className="flex flex-row gap-2 justify-center items-end text-center">
+                <div className="flex flex-row sm:flex-col sm:items-start xl:flex-row xl:gap-2 gap-0 justify-center items-end text-center">
                   <span className="font-medium">
                     {t(productLamp)}
                   </span>

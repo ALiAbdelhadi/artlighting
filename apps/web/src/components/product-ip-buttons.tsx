@@ -113,12 +113,12 @@ export default function ProductIPButtons({
         {Object.entries(PRODUCT_IP_LABEL_MAP).map(
           ([ip, { label, description, increaseOnPricePercent }]) => {
             const displayedIncrease = calculatePriceIncrease(ip as ProductIP);
-
             return (
               <TooltipProvider key={ip}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
+                      size={"lg"}
                       onClick={() => handleIpChange(ip as ProductIP)}
                       disabled={isUpdating}
                       variant={selectedIp === ip ? "default" : "outline"}
@@ -130,8 +130,8 @@ export default function ProductIPButtons({
                         isUpdating && "opacity-60 cursor-not-allowed"
                       )}
                     >
-                      <Droplets className="w-4 h-4 mr-1" />
-                      <span className={cn("rtl:mr-1 ltr:ml-1")}>
+                      <Droplets className="w-4 h-4 mr-1 block lg:hidden xl:block" />
+                      <span className={cn("lg:ltr:ml-0 ltr:ml-1 xl:ltr:mr-1 rtl:mr-1 lg:rtl:mr-0 xl:rtl:mr-1")}>
                         {t(`ratings.${ip}.label`)}
                       </span>
                       {displayedIncrease > 0 && (
