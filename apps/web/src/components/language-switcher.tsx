@@ -8,7 +8,6 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { ChevronDown } from 'lucide-react'
-import { useTranslations } from 'next-intl'
 import { usePathname, useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 
