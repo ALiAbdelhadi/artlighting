@@ -11,6 +11,8 @@ import { Locale } from "./i18n/config";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+
 export function constructMetadata({
   title,
   description,
@@ -19,6 +21,7 @@ export function constructMetadata({
   icons = "/favicon.ico",
   openGraph,
   twitter,
+  productData,
 }: {
   title?: string;
   description?: string;
@@ -27,6 +30,15 @@ export function constructMetadata({
   openGraph?: Metadata["openGraph"];
   twitter?: Metadata["twitter"];
   locale?: SupportedLanguage;
+  productData?: {
+    name?: string;
+    price?: string;
+    currency?: string;
+    availability?: string;
+    category?: string;
+    brand?: string;
+    sku?: string;
+  };
 } = {}): Metadata {
   const baseUrl = "https://eg-artlighting.vercel.app";
 
@@ -43,14 +55,65 @@ export function constructMetadata({
   const resolvedTitle = title ?? defaultTitles[locale];
   const resolvedDescription = description ?? defaultDescriptions[locale];
 
-  const resolvedImage = image.startsWith("http")
-    ? image
-    : `${baseUrl}${image.startsWith("/") ? image : `/${image}`}`;
+  const resolveImageUrl = (imagePath: string): string => {
+    if (!imagePath) return `${baseUrl}/default-product.png`;
+    if (imagePath.startsWith("http")) return imagePath;
+    return `${baseUrl}${imagePath.startsWith("/") ? imagePath : `/${imagePath}`}`;
+  };
 
-  const imageAlt = locale === "ar" ? "شعار شركة آرت لايتنغ" : "Art Lighting Company Logo";
+  const resolvedImage = resolveImageUrl(image);
+  const imageAlt =
+    productData?.name ??
+    (locale === "ar" ? "شعار شركة آرت لايتنج" : "Art Lighting Company Logo");
 
   const ogLocale = locale === "ar" ? "ar_EG" : "en_US";
   const siteName = "Art Lighting Company";
+  const canonicalUrl = `${baseUrl}/${locale}/`;
+
+  let structuredData: any = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteName,
+    url: baseUrl,
+    description: resolvedDescription,
+    inLanguage: locale,
+  };
+
+  if (productData) {
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: productData.name || resolvedTitle,
+      description: resolvedDescription,
+      image: resolvedImage,
+      sku: productData.sku,
+      brand: productData.brand
+        ? {
+            "@type": "Brand",
+            name: productData.brand,
+          }
+        : undefined,
+      category: productData.category,
+      offers: {
+        "@type": "Offer",
+        url: canonicalUrl,
+        price: productData.price,
+        priceCurrency: productData.currency || "EGP",
+        availability: `https://schema.org/${productData.availability || "InStock"}`,
+      },
+    };
+  }
+
+  const other: Record<string, string | number | (string | number)[]> = {
+    "application-name": siteName,
+  };
+
+  if (productData?.price) {
+    other["product:price:amount"] = productData.price;
+  }
+  if (productData?.currency) {
+    other["product:price:currency"] = productData.currency;
+  }
 
   return {
     title: resolvedTitle,
@@ -59,7 +122,7 @@ export function constructMetadata({
     openGraph: openGraph ?? {
       type: "website",
       locale: ogLocale,
-      url: `${baseUrl}/${locale}/`,
+      url: canonicalUrl,
       siteName,
       title: resolvedTitle,
       description: resolvedDescription,
@@ -81,14 +144,13 @@ export function constructMetadata({
       description: resolvedDescription,
       images: [resolvedImage],
     },
-    icons,
-    other: {
-      "application-name": siteName,
-      "og:image": resolvedImage,
-      "twitter:image": resolvedImage,
+    icons: {
+      icon: icons,
+      shortcut: icons,
+      apple: icons,
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}/`,
+      canonical: canonicalUrl,
       languages: {
         en: `${baseUrl}/en/`,
         ar: `${baseUrl}/ar/`,
@@ -99,47 +161,15 @@ export function constructMetadata({
       "LED",
       "Spotlight",
       "Flood Light",
-      "Spikes",
-      "Balcom",
-      "Jetra",
-      "mister-led",
       "Bollard",
       "Poles",
-      "إضاءة عامة",
-      "إضاءة وظيفية",
-      "إضاءة زخرفية",
-      "إضاءة طوارئ",
-      "إضاءة غرفة نوم",
-      "إضاءة معيشة",
-      "إضاءة مطبخ",
-      "إضاءة حمام",
-      "إضاءة مدخل",
-      "إضاءة متاجر",
-      "إضاءة مكاتب",
-      "إضاءة مطاعم",
-      "إضاءة فنادق",
-      "إضاءة مصانع",
-      "إضاءة مخازن",
-      "إضاءة ورش عمل",
-      "إضاءة حدائق",
-      "إضاءة واجهات",
-      "إضاءة ملاعب",
-      "إضاءة شوارع",
-      "لمبات LED",
-      "لمبات فلورسنت",
-      "لمبات هالوجين",
-      "لمبات زئبق",
-      "لمبات صوديوم",
-      "إضاءة مباشرة",
-      "إضاءة غير مباشرة",
-      "إضاءة موجهة",
-      "ثريات حديد",
-      "ثريات نحاس",
-      "ديمر",
-      "فلتر",
-      "رفلكتور",
-      "تصميم الإضاءة",
-      "تركيب الإضاءة",
+      "E-commerce",
+      "Online Shop",
+      "إضاءة",
+      "لمبات ليد",
+      "كشافات",
+      "أعمدة إنارة",
+      "متجر إلكتروني",
     ],
     robots: {
       index: true,
@@ -152,9 +182,9 @@ export function constructMetadata({
         "max-snippet": -1,
       },
     },
+    other,
   };
 }
-
 
 export const authFormConfirmingOrderSchema = z.object({
   fullName: z.string().min(3, {
