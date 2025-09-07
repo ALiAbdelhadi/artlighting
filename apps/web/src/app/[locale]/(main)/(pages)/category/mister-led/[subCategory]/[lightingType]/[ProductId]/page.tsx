@@ -227,6 +227,8 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
         ? "لم يتم العثور على المنتج المطلوب."
         : "The requested product could not be found.",
       icons: "/misterled.ico",
+      locale,
+      pathname: `/${locale}/category/mister-led/${subCategory}/${lightingType}/${ProductId}`,
     });
   }
 
@@ -260,6 +262,8 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
     description: descriptions[locale as keyof typeof descriptions],
     icons: "/misterled.ico",
     image: product.productImages[0] || undefined,
+    locale,
+    pathname: `/${locale}/category/mister-led/${subCategory}/${lightingType}/${ProductId}`,
   });
 }
 

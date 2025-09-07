@@ -22,6 +22,7 @@ export function constructMetadata({
   openGraph,
   twitter,
   productData,
+  pathname,
 }: {
   title?: string;
   description?: string;
@@ -39,6 +40,7 @@ export function constructMetadata({
     brand?: string;
     sku?: string;
   };
+  pathname?: string; // localized path like "/ar/category/..." used for canonical/og url
 } = {}): Metadata {
   const baseUrl = "https://eg-artlighting.vercel.app";
 
@@ -68,7 +70,12 @@ export function constructMetadata({
 
   const ogLocale = locale === "ar" ? "ar_EG" : "en_US";
   const siteName = "Art Lighting Company";
-  const canonicalUrl = `${baseUrl}/${locale}/`;
+  const canonicalPath = pathname
+    ? pathname.startsWith("/")
+      ? pathname
+      : `/${pathname}`
+    : `/${locale}/`;
+  const canonicalUrl = `${baseUrl}${canonicalPath}`;
 
   let structuredData: any = {
     "@context": "https://schema.org",

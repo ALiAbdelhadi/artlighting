@@ -214,6 +214,8 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
         ? "لم يتم العثور على المنتج المطلوب."
         : "The requested product could not be found.",
       icons: "/balcom.ico",
+      locale,
+      pathname: `/${locale}/category/balcom/${subCategory}/${lightingType}/${ProductId}`,
     });
   }
 
@@ -247,6 +249,8 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
     description: descriptions[locale as keyof typeof descriptions],
     icons: "/balcom.ico",
     image: product.productImages[0] || undefined,
+    locale,
+    pathname: `/${locale}/category/balcom/${subCategory}/${lightingType}/${ProductId}`,
   });
 }
 

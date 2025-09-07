@@ -32,7 +32,8 @@ export async function generateMetadata({
   const { locale } = await params
 
   return constructMetadata({
-    locale: locale as SupportedLanguage
+    locale: locale as SupportedLanguage,
+    pathname: `/${locale}/`
   })
 }
 
