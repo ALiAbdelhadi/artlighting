@@ -17,7 +17,7 @@ export function constructMetadata({
   title,
   description,
   locale = "en",
-  image = "/Logo-en.png",
+  image = locale == "ar" ? "/logo-ar.png" : "/logo-en.png",
   icons = "/favicon.ico",
   openGraph,
   twitter,
@@ -40,7 +40,7 @@ export function constructMetadata({
     brand?: string;
     sku?: string;
   };
-  pathname?: string; // localized path like "/ar/category/..." used for canonical/og url
+  pathname?: string;
 } = {}): Metadata {
   const baseUrl = "https://eg-artlighting.vercel.app";
 
