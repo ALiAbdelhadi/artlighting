@@ -35,9 +35,10 @@ interface Product {
 interface SearchHeaderProps {
     isMobile?: boolean
     isMobileSheet?: boolean
+    onResultClick?: () => void
 }
 
-export function SearchHeader({ isMobile = false, isMobileSheet = false }: SearchHeaderProps) {
+export function SearchHeader({ isMobile = false, isMobileSheet = false, onResultClick }: SearchHeaderProps) {
     const [searchTerm, setSearchTerm] = useState("")
     const [debouncedSearchTerm] = useDebounce(searchTerm, 300)
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
@@ -105,6 +106,7 @@ export function SearchHeader({ isMobile = false, isMobileSheet = false }: Search
     const handleResultClick = () => {
         setShowResults(false)
         setSearchTerm("")
+        onResultClick?.()
     }
 
     if (isMobile && !isMobileSheet) {
@@ -246,7 +248,6 @@ function ProductItem({ product, onResultClick }: {
                         height={64}
                     />
                 )}
-
                 <div className="flex-1 space-y-1 min-w-0 rtl:text-right">
                     <p className="font-medium uppercase text-sm line-clamp-2">
                         {product.productName}
@@ -254,7 +255,6 @@ function ProductItem({ product, onResultClick }: {
                     <p className="text-xs text-muted-foreground">
                         {product.brand} • {product.spotlightType}
                     </p>
-
                     <ProductPrice product={product} />
                 </div>
             </div>

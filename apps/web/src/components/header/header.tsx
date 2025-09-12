@@ -15,11 +15,12 @@ import { Button } from "@repo/ui/button"
 import { BoxIcon, BriefcaseIcon, MailIcon, MenuIcon, MoveRight, NewspaperIcon, UserIcon, XIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
+import { CartSidebar } from "../cart-sidebar"
+import LanguageSwitcher from "../language-switcher"
 import AuthSection from "./auth-section"
 import { AuthSectionWrapper } from "./auth-section-wrapper"
 import { SearchHeader } from "./search-header"
-import LanguageSwitcher from "../language-switcher"
-import { CartSidebar } from "../cart-sidebar"
+import { useRef } from "react"
 
 interface Project {
   ProjectId: string
@@ -33,6 +34,15 @@ interface HeaderProps {
 }
 
 export default function Header({ projectsForHeader }: HeaderProps) {
+
+
+  const sheetCloseRef = useRef<HTMLButtonElement>(null)
+  const handleCloseSheet = () => {
+    if (sheetCloseRef.current) {
+      sheetCloseRef.current.click()
+    }
+  }
+
   const t = useTranslations("header")
   const tProducts = useTranslations("products")
   const locale = useLocale()
@@ -218,7 +228,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                       <AuthSection />
                     </AuthSectionWrapper>
                   </SheetHeader>
-                  <SheetClose className="cursor-pointer">
+                  <SheetClose className="cursor-pointer" ref={sheetCloseRef}>
                     <XIcon className="size-5" />
                     <span className="sr-only">Close</span>
                   </SheetClose>
@@ -226,7 +236,11 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                 <div className="flex flex-col h-full">
                   <div className="px-3 border-b border-t">
                     <div className="py-4">
-                      <SearchHeader isMobileSheet />
+                      <SearchHeader isMobileSheet
+                      
+                      onResultClick={handleCloseSheet}
+                      
+                      />
                     </div>
                   </div>
                   <nav className="flex flex-col space-y-1  rtl:space-y-reverse pt-6 flex-1">

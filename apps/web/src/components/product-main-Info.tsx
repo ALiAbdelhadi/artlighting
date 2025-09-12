@@ -76,7 +76,7 @@ const extractNumericValueImproved = (value: any): number | undefined => {
   if (typeof value === 'number') {
     return value > 0 ? value : undefined
   }
-  
+
   if (typeof value === 'string') {
     const convertedValue = convertArabicToEnglishNumbers(value)
     const match = convertedValue.match(/(\d+)/);
@@ -85,7 +85,7 @@ const extractNumericValueImproved = (value: any): number | undefined => {
       return parsed > 0 ? parsed : undefined;
     }
   }
-  
+
   return undefined
 }
 
@@ -299,6 +299,15 @@ export default function ProductMainInfo({
     },
   })
 
+  const [isMobilePanelVisible, setIsMobilePanelVisible] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsMobilePanelVisible(true)
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [])
+
   const handleOrderNow = useCallback(() => {
     console.log("Order Now clicked - Complete price breakdown", {
       basePrice: price,
@@ -409,14 +418,14 @@ export default function ProductMainInfo({
           }
         }
       }
-    
+
       if (maximumWattage !== undefined) {
         const numericWattage = extractNumericValue(maximumWattage);
         if (numericWattage !== undefined && numericWattage > 0) {
           return formatWattage(numericWattage, locale);
         }
       }
-    
+
       return locale === 'ar' ? 'غير متاح' : 'N/A';
     };
 
@@ -487,12 +496,12 @@ export default function ProductMainInfo({
           }
         }
       }
-      
+
       const numericWattage = extractNumericValueImproved(maximumWattage);
       if (numericWattage && numericWattage > 0) {
         return locale === 'ar' ? `${numericWattage} وات` : `${numericWattage}W`;
       }
-      
+
       return "N/A";
     }
 
@@ -646,8 +655,19 @@ export default function ProductMainInfo({
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 z-10 bg-white dark:bg-neutral-900 border-t shadow-lg px-4 md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6">
-        <div className="flex flex-col gap-3 mx-auto md:max-w-none md:p-0 p-4 ">
+      <div
+        className={cn(
+          "fixed bottom-0 left-0 right-0 z-10",
+          "bg-white/95 backdrop-blur-sm dark:bg-neutral-900/95",
+          "border-t shadow-lg px-4",
+          "md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6",
+          "transform transition-all duration-500",
+          isMobilePanelVisible
+            ? "translate-y-0 opacity-100"
+            : "translate-y-full opacity-0 md:translate-y-0 md:opacity-100"
+        )}
+      >
+        <div className="flex flex-col gap-3 mx-auto md:max-w-none md:p-0 p-4">
           <div className="flex items-center gap-4">
             <QuantitySelector
               quantity={currentQuantity}
