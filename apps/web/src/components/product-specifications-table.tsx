@@ -9,6 +9,8 @@ interface ProductSpecificationsTableProps {
   hNumber?: number | null
   sectionType?: string
   locale: string
+  maximumWattage?: number
+  productName?: string
 }
 
 export default function ProductSpecificationsTable({
@@ -18,6 +20,8 @@ export default function ProductSpecificationsTable({
   hNumber,
   sectionType,
   locale,
+  maximumWattage,
+  productName,
 }: ProductSpecificationsTableProps) {
 
   const labels = {
@@ -40,21 +44,34 @@ export default function ProductSpecificationsTable({
   const currentLabels = labels[locale as keyof typeof labels] || labels.en;
 
   const calculateWattage = (): string => {
-    if (Brand === "mister-led" && chandelierLightingType === "lamp" && hNumber) {
-      const wattageText = locale === 'ar' ? "W (لمبة 12W)" : "W (12W lamp)";
-      return `${hNumber * 12}${wattageText}`;
+    if (Brand === "mister-led" && sectionType === "chandelier") {
+      if (chandelierLightingType === "lamp" && hNumber) {
+        const wattageText = locale === 'ar' ? "وات (لمبة 12وات)" : "W (12W lamp)";
+        return `${hNumber * 12}${wattageText}`;
+      }
+      if (chandelierLightingType === "LED") {
+        if (typeof maximumWattage === 'number' && maximumWattage > 0) {
+          return `${maximumWattage}W`;
+        }
+        if (productName) {
+          const match = /([0-9]{1,4})\s*W/i.exec(productName);
+          if (match) {
+            const parsed = Number(match[1]);
+            if (parsed > 0) return `${parsed}W`;
+          }
+        }
+      }
     }
     return specificationsTable[locale === 'ar' ? "أقصى قوة" : "Maximum wattage"] || "15W/M";
   };
 
   const formatValue = (key: string, value: string): string => {
     if (key.includes("Maximum wattage") || key.includes("أقصى قوة")) {
+      // Unified chandelier handling for Mister LED
       if (sectionType === "chandelier") {
-        const wattageText = locale === 'ar' ? "W (لمبة 12W)" : "W (12W lamp)";
-        return hNumber ? `${hNumber * 12}${wattageText}` : "15W/M";
-      } else {
         return calculateWattage();
       }
+      return calculateWattage();
     } else if (key.toLowerCase().includes("hnumber") && hNumber) {
       return hNumber.toString();
     }

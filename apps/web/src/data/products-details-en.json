@@ -1932,7 +1932,7 @@
                         "mc7105-c1": {
                             "specificationsTable": {
                                 "Input": "AC 85-265v ~ 50/60 hz",
-                                "Maximum wattage": 0,
+                                "Maximum wattage": 50,
                                 "Main Material": "Aluminum Shade + Glass",
                                 "Finished": "Brushed Nickel",
                                 "Color Temperature": "3000K / 4000K / 6500K",
