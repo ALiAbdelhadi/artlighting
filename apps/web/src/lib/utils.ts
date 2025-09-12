@@ -245,10 +245,8 @@ export const extractNumericValue = (value: any): number | undefined => {
   }
 
   if (typeof value === 'string') {
-    // استخدام الدالة الموجودة لديك لتحويل الأرقام العربية إلى إنجليزية
     const convertedValue = convertArabicToEnglishNumbers(value);
 
-    // استخراج الأرقام من النص
     const match = convertedValue.match(/(\d+(?:\.\d+)?)/);
     if (match) {
       const parsed = parseFloat(match[1]);
@@ -258,6 +256,42 @@ export const extractNumericValue = (value: any): number | undefined => {
 
   return undefined;
 };
+
+export const formatWattage = (wattage: number | string, locale: string): string => {
+  let numericWattage: number | undefined;
+  
+  if (typeof wattage === 'number') {
+    numericWattage = wattage;
+  } else {
+    numericWattage = extractNumericValue(wattage);
+  }
+
+  if (!numericWattage || numericWattage <= 0) {
+    return locale === 'ar' ? 'غير متاح' : 'N/A';
+  }
+
+  if (locale === 'ar') {
+    // تحويل الرقم إلى أرقام عربية وإضافة "وات"
+    const arabicNumber = convertEnglishToArabicNumbers(numericWattage.toString());
+    return `${arabicNumber} وات`;
+  } else {
+    // عرض بالإنجليزية
+    return `${numericWattage}W`;
+  }
+};
+export function convertEnglishToArabicNumbers(str: string): string {
+  if (!str) return ""
+
+  const englishNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  const arabicNumbers = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+
+  let result = str.toString()
+  for (let i = 0; i < englishNumbers.length; i++) {
+    result = result.replace(new RegExp(englishNumbers[i], "g"), arabicNumbers[i])
+  }
+  return result
+}
+
 export function formatPrice(amount: number, locale: string, currency = "EGP", useArabicNumbers = true): string {
   const formatter = new Intl.NumberFormat(locale === "ar" ? "ar-EG" : "en-US", {
     style: "currency",

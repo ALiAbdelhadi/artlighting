@@ -20,7 +20,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { usePathname, useRouter } from "@/i18n/navigation"
-import { convertArabicToEnglishNumbers } from "@/lib/utils"
+import { convertArabicToEnglishNumbers, extractNumericValue, formatWattage } from "@/lib/utils"
 import { type Configuration, type Order, ProductChandelierLamp, ProductColorTemp, ProductIP } from "@/types/products"
 import { useAuth } from "@clerk/nextjs"
 import { cn } from "@repo/ui"
@@ -399,26 +399,25 @@ export default function ProductMainInfo({
         if (chandelierLightingType === "lamp") {
           const total = (hNumber ?? 0) * 12;
           if (total > 0) {
-            return locale === 'ar' ? `${total} وات` : `${total}W`;
+            return formatWattage(total, locale);
           }
         }
         if (chandelierLightingType === "LED") {
-          // استخدام الدالة المحسنة مع دعم الأرقام العربية
-          const numericWattage = extractNumericValueImproved(maximumWattage);
+          const numericWattage = extractNumericValue(maximumWattage);
           if (numericWattage) {
-            return locale === 'ar' ? `${numericWattage} وات` : `${numericWattage}W`;
+            return formatWattage(numericWattage, locale);
           }
         }
       }
-
+    
       if (maximumWattage !== undefined) {
-        const numericWattage = extractNumericValueImproved(maximumWattage);
+        const numericWattage = extractNumericValue(maximumWattage);
         if (numericWattage !== undefined && numericWattage > 0) {
-          return locale === 'ar' ? `${numericWattage} وات` : `${numericWattage}W`;
+          return formatWattage(numericWattage, locale);
         }
       }
-
-      return "N/A";
+    
+      return locale === 'ar' ? 'غير متاح' : 'N/A';
     };
 
     const params = {

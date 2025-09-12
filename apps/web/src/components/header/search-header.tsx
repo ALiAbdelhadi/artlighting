@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from "react"
 import { useDebounce } from "use-debounce"
 import DiscountPrice from "../discount-price"
 import NormalPrice from "../normal-price"
+import { cn } from "@/lib/utils"
 
 interface Product {
     productId: string
@@ -121,7 +122,7 @@ export function SearchHeader({ isMobile = false, isMobileSheet = false }: Search
 
     return (
         <div className="relative" ref={searchRef}>
-            <div className={`relative ${isMobileSheet ? "w-full" : "w-80"}`}>
+            <div className={cn("relative", isMobileSheet ? "w-full" : "w-68")}>
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground rtl:left-auto rtl:right-3" />
                 <Input
                     type="search"
@@ -132,7 +133,6 @@ export function SearchHeader({ isMobile = false, isMobileSheet = false }: Search
                     onFocus={handleInputFocus}
                 />
             </div>
-
             {showResults && (
                 <SearchResults
                     isSearching={isSearching}
