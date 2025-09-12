@@ -2,13 +2,12 @@
 
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import { CategoryItems } from "@/constants";
+import { Link, useRouter } from "@/i18n/navigation";
 import { SupportedLanguage } from "@/types/products";
 import { Container } from "@repo/ui";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { useRouter } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 interface CategoryProps {

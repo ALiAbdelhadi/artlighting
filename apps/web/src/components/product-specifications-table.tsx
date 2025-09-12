@@ -1,4 +1,5 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { convertArabicToEnglishNumbers, extractNumericValue } from "@/lib/utils"
 import { SpecificationsTable } from "@/types/products"
 import { cn } from "@repo/ui"
 
@@ -50,11 +51,16 @@ export default function ProductSpecificationsTable({
         return `${hNumber * 12}${wattageText}`;
       }
       if (chandelierLightingType === "LED") {
-        if (typeof maximumWattage === 'number' && maximumWattage > 0) {
-          return `${maximumWattage}W`;
+        // استخدام دالتك لاستخراج الرقم
+        const numericWattage = extractNumericValue(maximumWattage);
+        if (numericWattage !== undefined && numericWattage > 0) {
+          return `${numericWattage}W`;
         }
+
         if (productName) {
-          const match = /([0-9]{1,4})\s*W/i.exec(productName);
+          // استخدام دالتك لتحويل الأرقام في اسم المنتج
+          const convertedProductName = convertArabicToEnglishNumbers(productName);
+          const match = /([0-9]{1,4})\s*W/i.exec(convertedProductName);
           if (match) {
             const parsed = Number(match[1]);
             if (parsed > 0) return `${parsed}W`;
@@ -62,7 +68,36 @@ export default function ProductSpecificationsTable({
         }
       }
     }
-    return specificationsTable[locale === 'ar' ? "أقصى قوة" : "Maximum wattage"] || "15W/M";
+
+    // التعامل مع القيمة من specificationsTable
+    const wattageKey = locale === 'ar' ? "أقصى قوة" : "Maximum wattage";
+    let wattageValue = specificationsTable[wattageKey];
+
+    // إذا لم توجد بالمفتاح الأساسي، جرب المفاتيح الأخرى
+    if (!wattageValue) {
+      // البحث في جميع المفاتيح التي قد تحتوي على wattage
+      const possibleKeys = Object.keys(specificationsTable).filter(key =>
+        key.includes("أقصى قوة") ||
+        key.includes("Maximum wattage") ||
+        key.toLowerCase().includes("wattage") ||
+        key.includes("قوة كهربائية")
+      );
+
+      if (possibleKeys.length > 0) {
+        wattageValue = specificationsTable[possibleKeys[0]];
+      }
+    }
+
+    if (wattageValue) {
+      const numericValue = extractNumericValue(wattageValue);
+      if (numericValue !== undefined) {
+        return `${numericValue}W`;
+      }
+      // إذا لم نستطع استخراج رقم، نعيد القيمة كما هي
+      return String(wattageValue);
+    }
+
+    return "15W/M";
   };
 
   const formatValue = (key: string, value: string): string => {

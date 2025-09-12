@@ -219,50 +219,27 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
         : "The requested product could not be found.",
       icons: "/misterled.ico",
       locale,
-      pathname: `/${locale}/category/mister-led/${subCategory}/${lightingType}/${ProductId}`,
+      // pathname: `/${locale}/category/mister-led/${subCategory}/${lightingType}/${ProductId}`,
     });
   }
 
   const localizedName = product.translations?.[0]?.name || product.productName;
-  
-  // Get properly localized category and lighting type names
   const localizedCategory = product.category?.translations?.[0]?.name || product.category?.name || '';
   const localizedLightingType = product.lightingtype?.translations?.[0]?.name || product.lightingtype?.name || '';
-  
-  // Use fallback translations if not found in database
-  const fallbackTranslations = {
-    chandelier: {
-      ar: 'نجفة',
-      en: 'chandelier'
-    },
-    // Add other categories as needed
-  };
-  
-  const categoryName = localizedCategory || fallbackTranslations[subCategory as keyof typeof fallbackTranslations]?.[locale as 'ar' | 'en'] || subCategory;
-  const lightingTypeName = localizedLightingType || lightingType;
-  
-  const specs = product.specifications?.[0];
+  const specs = product.specifications?.[0] || {};
 
   const computeMetaWattage = () => {
+    const localizedSpecs = product.specifications?.[0] || {};
+
     if (product.brand === 'mister-led' && product.sectionType === 'chandelier') {
       if (product.chandelierLightingType === 'lamp') {
         const total = (product.hNumber ?? 0) * 12;
         if (total > 0) return String(total);
       }
-      
       if (product.chandelierLightingType === 'LED') {
-        // First check localized specs
-        const localizedMaxWattage = specs?.maximumWattage;
-        if (localizedMaxWattage && Number(localizedMaxWattage) > 0) {
-          return localizedMaxWattage;
+        if (localizedSpecs?.maximumWattage && Number(localizedSpecs.maximumWattage) > 0) {
+          return localizedSpecs.maximumWattage;
         }
-        
-        // Then check product direct property
-        if (product?.maximumWattage && Number(product?.maximumWattage) > 0) {
-          return String(product?.maximumWattage);
-        }
-        
-        // Extract from name as fallback
         const name = product.translations?.[0]?.name || product.productName || '';
         const match = /([0-9]{1,4})\s*W/i.exec(name);
         if (match) {
@@ -271,35 +248,29 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
         }
       }
     }
-    
-    // For non-chandelier products or fallback
-    const localizedMaxWattage = specs?.maximumWattage;
-    if (localizedMaxWattage && Number(localizedMaxWattage) > 0) {
-      return localizedMaxWattage;
-    }
-    
-    if (product?.maximumWattage && Number(product.maximumWattage) > 0) {
-      return String(product?.maximumWattage);
-    }
-    
-    return '15'; // Default fallback
+    return localizedSpecs?.maximumWattage && Number(localizedSpecs.maximumWattage) > 0
+      ? localizedSpecs.maximumWattage
+      : '15';
   };
 
+  console.log('Debug specs:', specs);
+  console.log('maximumWattage:', specs.maximumWattage);
+  console.log('product.chandelierLightingType:', product.chandelierLightingType);
   const wattage = computeMetaWattage();
   const isOutdoor = product.maxIP && product.maxIP >= 65;
   const brandName = product.brand === "mister-led" ? "Mister LED" : "Balcom";
 
   const titles = {
-    en: `${localizedName} - ${wattage}W ${categoryName} ${lightingTypeName} | ${brandName} Lighting`,
-    ar: `${localizedName} - ${wattage} وات ${categoryName} ${lightingTypeName} | إضاءة ${brandName}`
+    en: `${localizedName} - ${wattage}W ${subCategory} ${localizedLightingType} | ${brandName} Lighting`,
+    ar: `${localizedName} - ${wattage} وات ${subCategory} ${localizedLightingType} | إضاءة ${brandName}`
   };
 
   const descriptions = {
-    en: `Discover the ${localizedName}, a professional ${wattage}W ${categoryName} ${lightingTypeName?.toLowerCase()} perfect for ${categoryName?.toLowerCase()} applications. ${isOutdoor ? `With an IP rating of IP${product.maxIP}, it's ideal for outdoor use. ` : ""
+    en: `Discover the ${localizedName}, a professional ${wattage}W ${subCategory} ${localizedLightingType.toLowerCase()} perfect for ${localizedCategory.toLowerCase()} applications. ${isOutdoor ? `With an IP rating of IP${product.maxIP}, it's ideal for outdoor use. ` : ""
       }Featuring ${specs?.colorTemperature || 'adjustable color temperature'} and ${specs?.cri ? `CRI of ${specs.cri}, ` : ""
       }this ${specs?.brandOfLed || 'LED'} light offers ${specs?.luminousFlux || 'high brightness'
       } lumens. Professional lighting solutions by ${brandName}!`,
-    ar: `اكتشف ${localizedName}، مصباح احترافي ${wattage} وات ${categoryName} ${lightingTypeName?.toLowerCase()} مثالي لتطبيقات ${categoryName?.toLowerCase()}. ${isOutdoor ? `بتصنيف IP${product.maxIP}، مثالي للاستخدام الخارجي. ` : ""
+    ar: `اكتشف ${localizedName}، مصباح احترافي ${wattage} وات ${subCategory} ${localizedLightingType.toLowerCase()} مثالي لتطبيقات ${localizedCategory.toLowerCase()}. ${isOutdoor ? `بتصنيف IP${product.maxIP}، مثالي للاستخدام الخارجي. ` : ""
       }يتميز بـ${specs?.colorTemperature || 'درجة حرارة لون قابلة للتعديل'} و${specs?.cri ? `CRI ${specs.cri}، ` : ""
       }هذا المصباح ${specs?.brandOfLed || 'LED'} يوفر ${specs?.luminousFlux || 'سطوع عالي'
       } لومن. حلول إضاءة احترافية من ${brandName}!`

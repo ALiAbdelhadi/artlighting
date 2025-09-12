@@ -20,6 +20,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { usePathname, useRouter } from "@/i18n/navigation"
+import { convertArabicToEnglishNumbers } from "@/lib/utils"
 import { type Configuration, type Order, ProductChandelierLamp, ProductColorTemp, ProductIP } from "@/types/products"
 import { useAuth } from "@clerk/nextjs"
 import { cn } from "@repo/ui"
@@ -71,6 +72,23 @@ interface ProductMainInfoProps {
   lampBase?: string
 }
 
+const extractNumericValueImproved = (value: any): number | undefined => {
+  if (typeof value === 'number') {
+    return value > 0 ? value : undefined
+  }
+  
+  if (typeof value === 'string') {
+    const convertedValue = convertArabicToEnglishNumbers(value)
+    const match = convertedValue.match(/(\d+)/);
+    if (match) {
+      const parsed = parseInt(match[1], 10);
+      return parsed > 0 ? parsed : undefined;
+    }
+  }
+  
+  return undefined
+}
+
 export default function ProductMainInfo({
   productName,
   price,
@@ -104,7 +122,6 @@ export default function ProductMainInfo({
   input,
   lampBase,
 }: ProductMainInfoProps) {
-  // Enhanced hooks for translations, navigation, and locale
   const t = useTranslations("product-main-info")
   const tDescription = useTranslations("product-descriptions")
   const tFullDescription = useTranslations("product-fullDescriptions")
@@ -113,8 +130,6 @@ export default function ProductMainInfo({
   const router = useRouter()
   const locale = useLocale()
   const pathname = usePathname()
-
-  // State management
   const [isPending, startTransition] = useTransition()
   const [showDialog, setShowDialog] = useState(false)
   const [currentQuantity, setCurrentQuantity] = useState(quantity)
@@ -134,7 +149,6 @@ export default function ProductMainInfo({
   const lastUpdateRef = useRef<string>("")
   const [debouncedProductIp] = useDebounce(selectedProductIp, DEBOUNCE_DELAY)
 
-  // حساب السعر الإجمالي قبل الخصم: السعر الأساسي + جميع الزيادات
   const totalPriceBeforeDiscount = useMemo(() => {
     const total = price + priceIncrease + lampPriceIncrease
     console.log("Price calculation:", {
@@ -145,12 +159,10 @@ export default function ProductMainInfo({
     })
     return total
   }, [price, priceIncrease, lampPriceIncrease])
-
-  // حساب السعر بعد الخصم للوحدة الواحدة
   const discountedUnitPrice = useMemo(() => {
     const normalizedDiscount = discount > 1 ? discount / 100 : discount
     const discountedPrice = totalPriceBeforeDiscount * (1 - normalizedDiscount)
-    const finalPrice = Math.ceil(discountedPrice) // تقريب للأعلى
+    const finalPrice = Math.ceil(discountedPrice)
 
     console.log("Discount calculation:", {
       totalPriceBeforeDiscount,
@@ -162,8 +174,6 @@ export default function ProductMainInfo({
 
     return finalPrice
   }, [totalPriceBeforeDiscount, discount])
-
-  // حساب السعر النهائي للكمية المطلوبة (هذا ما سيُحفظ في قاعدة البيانات)
   const finalTotalPrice = useMemo(() => {
     return discountedUnitPrice * currentQuantity
   }, [discountedUnitPrice, currentQuantity])
@@ -172,7 +182,6 @@ export default function ProductMainInfo({
   const showMaxIpText = useMemo(() => PRODUCTS_WITH_MAX_IP_TEXT.includes(productId), [productId])
   const showOutdoorText = useMemo(() => sectionTypes?.includes("outdoor") ?? false, [sectionTypes])
 
-  // حفظ الكمية في localStorage
   useEffect(() => {
     const key = `${QUANTITY_STORAGE_KEY_PREFIX}${productId}`
     try {
@@ -336,8 +345,8 @@ export default function ProductMainInfo({
     const configData = {
       configId,
       productId,
-      basePrice: price, 
-      configPrice: totalPriceBeforeDiscount, 
+      basePrice: price,
+      configPrice: totalPriceBeforeDiscount,
       priceIncrease,
       lampPriceIncrease,
       quantity: currentQuantity,
@@ -385,35 +394,37 @@ export default function ProductMainInfo({
   }, [isSignedIn, currentQuantity, productId, tNotification, productName])
 
   const createProductDescription = useCallback((): string => {
-    const computeWattage = (): number | string | undefined => {
-      // Prefer chandelier total wattage for Mister LED lamp type
+    const computeWattage = (): string => {
       if (Brand === "mister-led" && sectionType === "chandelier") {
         if (chandelierLightingType === "lamp") {
-          const total = (hNumber ?? 0) * 12
-          return total > 0 ? total : undefined
+          const total = (hNumber ?? 0) * 12;
+          if (total > 0) {
+            return locale === 'ar' ? `${total} وات` : `${total}W`;
+          }
         }
-        // For LED type, try maximumWattage then parse from productName (e.g., "50W")
         if (chandelierLightingType === "LED") {
-          if (typeof maximumWattage === "number" && maximumWattage > 0) {
-            return maximumWattage
-          }
-          const match = /([0-9]{1,4})\s*W/i.exec(productName)
-          if (match) {
-            const parsed = Number(match[1])
-            if (parsed > 0) return parsed
+          // استخدام الدالة المحسنة مع دعم الأرقام العربية
+          const numericWattage = extractNumericValueImproved(maximumWattage);
+          if (numericWattage) {
+            return locale === 'ar' ? `${numericWattage} وات` : `${numericWattage}W`;
           }
         }
       }
-      if (typeof maximumWattage === "number" && maximumWattage > 0) {
-        return maximumWattage
+
+      if (maximumWattage !== undefined) {
+        const numericWattage = extractNumericValueImproved(maximumWattage);
+        if (numericWattage !== undefined && numericWattage > 0) {
+          return locale === 'ar' ? `${numericWattage} وات` : `${numericWattage}W`;
+        }
       }
-      return undefined
-    }
+
+      return "N/A";
+    };
 
     const params = {
       Brand: Brand,
       brand: Brand,
-      wattage: computeWattage() ?? "N/A",
+      wattage: computeWattage(),
       material: mainMaterial ?? "N/A",
       luminousFlux: luminousFlux ?? "N/A",
       beamAngle: beamAngle ?? "N/A",
@@ -451,36 +462,45 @@ export default function ProductMainInfo({
     hNumber,
     lampBase,
     tDescription,
+    locale,
   ])
 
   const createProductDescriptionFull = useCallback((): string => {
-    const computeWattage = (): number | string | undefined => {
+    const computeWattage = (): string => {
       if (Brand === "mister-led" && sectionType === "chandelier") {
         if (chandelierLightingType === "lamp") {
           const total = (hNumber ?? 0) * 12
-          return total > 0 ? total : undefined
+          if (total > 0) {
+            return locale === 'ar' ? `${total} وات` : `${total}W`;
+          }
         }
         if (chandelierLightingType === "LED") {
-          if (typeof maximumWattage === "number" && maximumWattage > 0) {
-            return maximumWattage
+          const numericWattage = extractNumericValueImproved(maximumWattage);
+          if (numericWattage) {
+            return locale === 'ar' ? `${numericWattage} وات` : `${numericWattage}W`;
           }
           const match = /([0-9]{1,4})\s*W/i.exec(productName)
           if (match) {
             const parsed = Number(match[1])
-            if (parsed > 0) return parsed
+            if (parsed > 0) {
+              return locale === 'ar' ? `${parsed} وات` : `${parsed}W`;
+            }
           }
         }
       }
-      if (typeof maximumWattage === "number" && maximumWattage > 0) {
-        return maximumWattage
+      
+      const numericWattage = extractNumericValueImproved(maximumWattage);
+      if (numericWattage && numericWattage > 0) {
+        return locale === 'ar' ? `${numericWattage} وات` : `${numericWattage}W`;
       }
-      return undefined
+      
+      return "N/A";
     }
 
     const params = {
       Brand: Brand,
       brand: Brand,
-      wattage: computeWattage() ?? "N/A",
+      wattage: computeWattage(),
       material: mainMaterial ?? "N/A",
       luminousFlux: luminousFlux ?? "N/A",
       beamAngle: beamAngle ?? "N/A",
@@ -532,6 +552,7 @@ export default function ProductMainInfo({
     hNumber,
     lampBase,
     tFullDescription,
+    locale,
   ])
 
   return (

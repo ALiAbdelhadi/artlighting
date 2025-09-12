@@ -96,9 +96,9 @@ export function constructMetadata({
       sku: productData.sku,
       brand: productData.brand
         ? {
-            "@type": "Brand",
-            name: productData.brand,
-          }
+          "@type": "Brand",
+          name: productData.brand,
+        }
         : undefined,
       category: productData.category,
       offers: {
@@ -239,7 +239,25 @@ export function convertArabicToEnglishNumbers(str: string): string {
   }
   return result
 }
+export const extractNumericValue = (value: any): number | undefined => {
+  if (typeof value === 'number') {
+    return value;
+  }
 
+  if (typeof value === 'string') {
+    // استخدام الدالة الموجودة لديك لتحويل الأرقام العربية إلى إنجليزية
+    const convertedValue = convertArabicToEnglishNumbers(value);
+
+    // استخراج الأرقام من النص
+    const match = convertedValue.match(/(\d+(?:\.\d+)?)/);
+    if (match) {
+      const parsed = parseFloat(match[1]);
+      return !isNaN(parsed) ? parsed : undefined;
+    }
+  }
+
+  return undefined;
+};
 export function formatPrice(amount: number, locale: string, currency = "EGP", useArabicNumbers = true): string {
   const formatter = new Intl.NumberFormat(locale === "ar" ? "ar-EG" : "en-US", {
     style: "currency",
