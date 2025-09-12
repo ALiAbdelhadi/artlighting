@@ -2,7 +2,7 @@
 
 import BalcomProducts from "@/app/[locale]/(main)/(pages)/category/balcom/[subCategory]/[lightingType]/[ProductId]/products";
 import ChandelierProducts from "@/app/[locale]/(main)/(pages)/category/mister-led/[subCategory]/[lightingType]/[ProductId]/products";
-import { LocalizedProductWithRelations, Configuration } from "@/types/products";
+import { Configuration, LocalizedProductWithRelations } from "@/types/products";
 
 interface ProductRouterProps {
     product: LocalizedProductWithRelations;

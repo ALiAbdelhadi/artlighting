@@ -1,17 +1,16 @@
 "use client";
 
-import ProductCard from "@/components/product-card/product-card";
 import ProductImages from "@/components/product-images-for-chand";
 import ProductMainInfo from "@/components/product-main-Info";
 import ProductSpecifications from "@/components/product-specifications-table";
 import {
   LocalizedProductWithRelations,
   Order,
+  OrderStatus,
+  ProductCardProps,
   ProductSpecification,
   ProductsProps,
-  SpecificationsTable,
-  ProductCardProps,
-  OrderStatus
+  SpecificationsTable
 } from "@/types/products";
 import { Container } from "@repo/ui";
 import { motion, type Variants } from "framer-motion";

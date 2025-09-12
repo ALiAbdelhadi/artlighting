@@ -148,15 +148,6 @@ export default async function Page({ params }: PagePropsTypes) {
     if (!subCategory || !lightingType || !ProductId) {
       notFound();
     }
-    // Only fetch related products for Balcom products
-    // For chandeliers (mister-led), we don't need related products
-    if (product.brand === "mister-led") {
-      relatedProducts = await getRelatedBalcomProducts(localizedProduct, subCategory, locale);
-    }
-    // If you want related products for chandeliers in the future, add logic here
-    // else if (product.brand === "mister-led" && product.sectionType === "chandelier") {
-    //   relatedProducts = await getRelatedChandelierProducts(localizedProduct, subCategory, locale);
-    // }
 
     return (
       <>
@@ -233,8 +224,23 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
   }
 
   const localizedName = product.translations?.[0]?.name || product.productName;
+  
+  // Get properly localized category and lighting type names
   const localizedCategory = product.category?.translations?.[0]?.name || product.category?.name || '';
   const localizedLightingType = product.lightingtype?.translations?.[0]?.name || product.lightingtype?.name || '';
+  
+  // Use fallback translations if not found in database
+  const fallbackTranslations = {
+    chandelier: {
+      ar: 'نجفة',
+      en: 'chandelier'
+    },
+    // Add other categories as needed
+  };
+  
+  const categoryName = localizedCategory || fallbackTranslations[subCategory as keyof typeof fallbackTranslations]?.[locale as 'ar' | 'en'] || subCategory;
+  const lightingTypeName = localizedLightingType || lightingType;
+  
   const specs = product.specifications?.[0];
 
   const computeMetaWattage = () => {
@@ -243,10 +249,20 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
         const total = (product.hNumber ?? 0) * 12;
         if (total > 0) return String(total);
       }
+      
       if (product.chandelierLightingType === 'LED') {
-        if (specs?.maximumWattage && Number(specs.maximumWattage) > 0) {
-          return specs.maximumWattage;
+        // First check localized specs
+        const localizedMaxWattage = specs?.maximumWattage;
+        if (localizedMaxWattage && Number(localizedMaxWattage) > 0) {
+          return localizedMaxWattage;
         }
+        
+        // Then check product direct property
+        if (product?.maximumWattage && Number(product?.maximumWattage) > 0) {
+          return String(product?.maximumWattage);
+        }
+        
+        // Extract from name as fallback
         const name = product.translations?.[0]?.name || product.productName || '';
         const match = /([0-9]{1,4})\s*W/i.exec(name);
         if (match) {
@@ -255,23 +271,35 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
         }
       }
     }
-    return specs?.maximumWattage && Number(specs.maximumWattage) > 0 ? specs.maximumWattage : '15';
+    
+    // For non-chandelier products or fallback
+    const localizedMaxWattage = specs?.maximumWattage;
+    if (localizedMaxWattage && Number(localizedMaxWattage) > 0) {
+      return localizedMaxWattage;
+    }
+    
+    if (product?.maximumWattage && Number(product.maximumWattage) > 0) {
+      return String(product?.maximumWattage);
+    }
+    
+    return '15'; // Default fallback
   };
+
   const wattage = computeMetaWattage();
   const isOutdoor = product.maxIP && product.maxIP >= 65;
   const brandName = product.brand === "mister-led" ? "Mister LED" : "Balcom";
 
   const titles = {
-    en: `${localizedName} - ${wattage}W ${subCategory} ${localizedLightingType} | ${brandName} Lighting`,
-    ar: `${localizedName} - ${wattage} وات ${subCategory} ${localizedLightingType} | إضاءة ${brandName}`
+    en: `${localizedName} - ${wattage}W ${categoryName} ${lightingTypeName} | ${brandName} Lighting`,
+    ar: `${localizedName} - ${wattage} وات ${categoryName} ${lightingTypeName} | إضاءة ${brandName}`
   };
 
   const descriptions = {
-    en: `Discover the ${localizedName}, a professional ${wattage}W ${subCategory} ${localizedLightingType.toLowerCase()} perfect for ${localizedCategory.toLowerCase()} applications. ${isOutdoor ? `With an IP rating of IP${product.maxIP}, it's ideal for outdoor use. ` : ""
+    en: `Discover the ${localizedName}, a professional ${wattage}W ${categoryName} ${lightingTypeName?.toLowerCase()} perfect for ${categoryName?.toLowerCase()} applications. ${isOutdoor ? `With an IP rating of IP${product.maxIP}, it's ideal for outdoor use. ` : ""
       }Featuring ${specs?.colorTemperature || 'adjustable color temperature'} and ${specs?.cri ? `CRI of ${specs.cri}, ` : ""
       }this ${specs?.brandOfLed || 'LED'} light offers ${specs?.luminousFlux || 'high brightness'
       } lumens. Professional lighting solutions by ${brandName}!`,
-    ar: `اكتشف ${localizedName}، مصباح احترافي ${wattage} وات ${subCategory} ${localizedLightingType.toLowerCase()} مثالي لتطبيقات ${localizedCategory.toLowerCase()}. ${isOutdoor ? `بتصنيف IP${product.maxIP}، مثالي للاستخدام الخارجي. ` : ""
+    ar: `اكتشف ${localizedName}، مصباح احترافي ${wattage} وات ${categoryName} ${lightingTypeName?.toLowerCase()} مثالي لتطبيقات ${categoryName?.toLowerCase()}. ${isOutdoor ? `بتصنيف IP${product.maxIP}، مثالي للاستخدام الخارجي. ` : ""
       }يتميز بـ${specs?.colorTemperature || 'درجة حرارة لون قابلة للتعديل'} و${specs?.cri ? `CRI ${specs.cri}، ` : ""
       }هذا المصباح ${specs?.brandOfLed || 'LED'} يوفر ${specs?.luminousFlux || 'سطوع عالي'
       } لومن. حلول إضاءة احترافية من ${brandName}!`
@@ -286,68 +314,3 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
     pathname: `/${locale}/category/mister-led/${subCategory}/${lightingType}/${ProductId}`,
   });
 }
-
-const getRelatedBalcomProducts = async (product: any, subCategory: string, locale: string) => {
-  const relatedProducts = await prisma.product.findMany({
-    where: {
-      brand: "mister-led",
-      sectionType: subCategory,
-      productId: {
-        not: product.productId,
-      },
-      isActive: true,
-      OR: [
-        {
-          spotlightType: product.spotlightType,
-        },
-        {
-          maxIP: {
-            gte: Math.max(20, (product.maxIP || 20) - 20),
-            lte: (product.maxIP || 65) + 20,
-          },
-        },
-      ],
-    },
-    include: {
-      category: true,
-      lightingtype: true,
-      translations: {
-        where: {
-          language: locale,
-        },
-      },
-      specifications: {
-        where: {
-          language: locale,
-        },
-      },
-    },
-    take: 8, 
-  });
-
-  return relatedProducts.map((relatedProduct) => ({
-    ...relatedProduct,
-    productName: relatedProduct.translations?.[0]?.name || relatedProduct.productName,
-    localizedSpecs: relatedProduct.specifications?.[0] || {},
-    chandelierLightingType: relatedProduct.chandelierLightingType || undefined,
-    input: relatedProduct.specifications?.[0]?.input || undefined,
-    maximumWattage: relatedProduct.specifications?.[0]?.maximumWattage ?
-      parseInt(relatedProduct.specifications[0].maximumWattage) : undefined,
-    brandOfLed: relatedProduct.specifications?.[0]?.brandOfLed || undefined,
-    luminousFlux: relatedProduct.specifications?.[0]?.luminousFlux || undefined,
-    mainMaterial: relatedProduct.specifications?.[0]?.mainMaterial || undefined,
-    cri: relatedProduct.specifications?.[0]?.cri || undefined,
-    beamAngle: relatedProduct.specifications?.[0]?.beamAngle || undefined,
-    workingTemperature: relatedProduct.specifications?.[0]?.workingTemperature || undefined,
-    fixtureDimmable: relatedProduct.specifications?.[0]?.fixtureDimmable || undefined,
-    electrical: relatedProduct.specifications?.[0]?.electrical || undefined,
-    powerFactor: relatedProduct.specifications?.[0]?.powerFactor || undefined,
-    colorTemperature: relatedProduct.specifications?.[0]?.colorTemperature || undefined,
-    energySaving: relatedProduct.specifications?.[0]?.energySaving || undefined,
-    lifeTime: relatedProduct.specifications?.[0]?.lifeTime || undefined,
-    finish: relatedProduct.specifications?.[0]?.finish || undefined,
-    lampBase: relatedProduct.specifications?.[0]?.lampBase || undefined,
-    ip: relatedProduct.specifications?.[0]?.ip ?
-      parseInt(relatedProduct.specifications[0].ip) : relatedProduct.maxIP || undefined,
-  }));
-};
