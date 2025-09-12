@@ -1289,7 +1289,7 @@
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
-                        },
+                        }
                     }
                 ],
                 "stairs-light": [
@@ -2096,7 +2096,7 @@
                         "mc15w009": {
                             "specificationsTable": {
                                 "Input": "AC 85-265v ~ 50/60 hz",
-                                "Maximum wattage": 0,
+                                "Maximum wattage": 18,
                                 "Main Material": "Aluminum Shade + Glass",
                                 "Finished": "Brushed Nickel",
                                 "Color Temperature": "3000K / 4000K / 6500K",

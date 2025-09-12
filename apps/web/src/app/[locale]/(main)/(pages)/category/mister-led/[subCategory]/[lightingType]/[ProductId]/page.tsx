@@ -237,9 +237,29 @@ export async function generateMetadata({ params }: PagePropsTypes): Promise<Meta
   const localizedLightingType = product.lightingtype?.translations?.[0]?.name || product.lightingtype?.name || '';
   const specs = product.specifications?.[0];
 
-  const wattage = specs?.maximumWattage || '15';
+  const computeMetaWattage = () => {
+    if (product.brand === 'mister-led' && product.sectionType === 'chandelier') {
+      if (product.chandelierLightingType === 'lamp') {
+        const total = (product.hNumber ?? 0) * 12;
+        if (total > 0) return String(total);
+      }
+      if (product.chandelierLightingType === 'LED') {
+        if (specs?.maximumWattage && Number(specs.maximumWattage) > 0) {
+          return specs.maximumWattage;
+        }
+        const name = product.translations?.[0]?.name || product.productName || '';
+        const match = /([0-9]{1,4})\s*W/i.exec(name);
+        if (match) {
+          const parsed = Number(match[1]);
+          if (parsed > 0) return String(parsed);
+        }
+      }
+    }
+    return specs?.maximumWattage && Number(specs.maximumWattage) > 0 ? specs.maximumWattage : '15';
+  };
+  const wattage = computeMetaWattage();
   const isOutdoor = product.maxIP && product.maxIP >= 65;
-  const brandName = product.brand === "mister-led" ? "Balcom" : "Mister LED";
+  const brandName = product.brand === "mister-led" ? "Mister LED" : "Balcom";
 
   const titles = {
     en: `${localizedName} - ${wattage}W ${subCategory} ${localizedLightingType} | ${brandName} Lighting`,

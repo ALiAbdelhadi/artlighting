@@ -385,10 +385,35 @@ export default function ProductMainInfo({
   }, [isSignedIn, currentQuantity, productId, tNotification, productName])
 
   const createProductDescription = useCallback((): string => {
+    const computeWattage = (): number | string | undefined => {
+      // Prefer chandelier total wattage for Mister LED lamp type
+      if (Brand === "mister-led" && sectionType === "chandelier") {
+        if (chandelierLightingType === "lamp") {
+          const total = (hNumber ?? 0) * 12
+          return total > 0 ? total : undefined
+        }
+        // For LED type, try maximumWattage then parse from productName (e.g., "50W")
+        if (chandelierLightingType === "LED") {
+          if (typeof maximumWattage === "number" && maximumWattage > 0) {
+            return maximumWattage
+          }
+          const match = /([0-9]{1,4})\s*W/i.exec(productName)
+          if (match) {
+            const parsed = Number(match[1])
+            if (parsed > 0) return parsed
+          }
+        }
+      }
+      if (typeof maximumWattage === "number" && maximumWattage > 0) {
+        return maximumWattage
+      }
+      return undefined
+    }
+
     const params = {
       Brand: Brand,
       brand: Brand,
-      wattage: maximumWattage ?? 0,
+      wattage: computeWattage() ?? "N/A",
       material: mainMaterial ?? "N/A",
       luminousFlux: luminousFlux ?? "N/A",
       beamAngle: beamAngle ?? "N/A",
@@ -429,10 +454,33 @@ export default function ProductMainInfo({
   ])
 
   const createProductDescriptionFull = useCallback((): string => {
+    const computeWattage = (): number | string | undefined => {
+      if (Brand === "mister-led" && sectionType === "chandelier") {
+        if (chandelierLightingType === "lamp") {
+          const total = (hNumber ?? 0) * 12
+          return total > 0 ? total : undefined
+        }
+        if (chandelierLightingType === "LED") {
+          if (typeof maximumWattage === "number" && maximumWattage > 0) {
+            return maximumWattage
+          }
+          const match = /([0-9]{1,4})\s*W/i.exec(productName)
+          if (match) {
+            const parsed = Number(match[1])
+            if (parsed > 0) return parsed
+          }
+        }
+      }
+      if (typeof maximumWattage === "number" && maximumWattage > 0) {
+        return maximumWattage
+      }
+      return undefined
+    }
+
     const params = {
       Brand: Brand,
       brand: Brand,
-      wattage: maximumWattage ?? 0,
+      wattage: computeWattage() ?? "N/A",
       material: mainMaterial ?? "N/A",
       luminousFlux: luminousFlux ?? "N/A",
       beamAngle: beamAngle ?? "N/A",

@@ -218,6 +218,13 @@ export default function ChandelierProducts({
                 configuration={configuration}
                 sectionTypes={[product.sectionType]}
                 sectionType={product.sectionType}
+                maximumWattage={
+                  (() => {
+                    const mw = product.localizedSpecs?.maximumWattage ?? product.maximumWattage;
+                    const n = typeof mw === 'number' ? mw : mw ? parseInt(mw as any) : undefined;
+                    return Number.isFinite(n as number) && (n as number) > 0 ? (n as number) : undefined;
+                  })()
+                }
                 mainMaterial={product.localizedSpecs?.mainMaterial || product.mainMaterial || ""}
                 beamAngle={undefined}
                 spotlightType={product.spotlightType}
