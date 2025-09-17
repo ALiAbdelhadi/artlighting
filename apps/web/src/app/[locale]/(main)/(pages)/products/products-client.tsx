@@ -201,7 +201,7 @@ export default function ProductsClient({ products, locale: propLocale = 'ar' }: 
 
   // Get localized category URL
   const getCategoryUrl = () => {
-    return `/${currentLocale}/category`;
+    return `/category`;
   };
 
   // Enhanced product transformation with type safety
