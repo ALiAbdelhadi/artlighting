@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import AddToCardIcon from "../add-to-card";
 import DiscountPrice from "../discount-price";
 import styles from "./product-card.module.css";
+import { extractNumericValue, formatWattage } from "@/lib/utils";
 
 interface Product {
   productId: string;
@@ -49,9 +50,7 @@ interface ProductCardProps {
   locale?: string;
 }
 
-// Type-safe utility functions for handling undefined values
 const safeString = (value: string | undefined, fallback: string = "N/A"): string => value ?? fallback;
-const safeNumber = (value: number | undefined, fallback: number = 0): number => value ?? fallback;
 
 export default function ProductCard({ product, locale }: ProductCardProps) {
   const [isPending, startTransition] = useTransition();
@@ -95,15 +94,10 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
   };
 
   function createLocalizedProductDescription(): string {
-    // Early return for existing translations
     if (product.translations?.description) {
       return product.translations.description;
     }
-
-    // Get specifications with null safety
     const specs = product.specifications?.[0] || {};
-
-    // Type-safe value extraction with fallbacks
     const mainMaterial = safeString(specs.mainMaterial || product.mainMaterial);
     const lampBase = safeString(specs.lampBase || product.lampBase);
     const beamAngle = safeString(specs.beamAngle || product.beamAngle);
@@ -111,19 +105,18 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
     const spotlightType = safeString(product.spotlightType);
     const hNumberCha = safeString(product.hNumber);
 
-    // Critical fix: Ensure hNumber calculation works properly
     const calculatedWattage = product.hNumber ? product.hNumber * 12 : 0;
-
+    const numericWattageCh = extractNumericValue(calculatedWattage);
     // Mister-led chandelier lamp logic
     if (product.brand === "mister-led" && product.chandelierLightingType === "lamp") {
       return t('descriptions.chandelier', {
         material: mainMaterial,
-        
         base: lampBase,
         wattage: calculatedWattage || safeString(maximumWattage),
         hNumber: hNumberCha
       });
     }
+    const numericWattage = extractNumericValue(maximumWattage);
 
     // Balcom indoor spotlight logic
     if (product.brand === "balcom" &&
@@ -140,7 +133,7 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
       (product.sectionType === "outdoor" || product.sectionType === 'إضاءة خارجية')) {
       return t('descriptions.outdoorSpotlight', {
         spotlightType: spotlightType,
-        wattage: maximumWattage,
+        wattage: maximumWattage
       });
     }
 

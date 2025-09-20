@@ -6,7 +6,7 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { SignUpButton, useAuth } from "@clerk/nextjs"
 import { Button } from "@repo/ui/button"
 import { Loader2, ShoppingBag, ShoppingCartIcon, Trash2, XIcon } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -139,11 +139,11 @@ export function CartSidebar() {
   }
 
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
-
+  const locale = useLocale()
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="relative h-9 w-9 border-border bg-transparent">
+        <Button variant="outline" size="icon" className="relative h-9 w-9 border-border">
           <ShoppingCartIcon className="h-5 w-5" />
           {totalItems > 0 && (
             <Badge
@@ -156,10 +156,10 @@ export function CartSidebar() {
           <span className="sr-only">{t('actions.openCart')}</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col w-full sm:max-w-lg z-50">
+      <SheetContent className="flex flex-col w-full sm:max-w-lg z-50" side={locale === "ar" ? "left" : "right"}>
         <SheetClose asChild className="cursor-pointer">
           <button
-            className="absolute right-3 rtl:left-3 top-4 rounded-full p-1.5 hover:bg-muted transition"
+            className="absolute ltr:right-3 rtl:left-3 top-4 rounded-full p-1.5 hover:bg-muted transition"
           >
             <XIcon className="size-5" />
           </button>

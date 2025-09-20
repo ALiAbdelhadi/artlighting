@@ -743,7 +743,7 @@
                         "jy-5050-12v-3000k": {
                             "specificationsTable": {
                                 "Input": "AC 85-265v ~ 50/60 hz",
-                                "Maximum wattage": "",
+                                "Maximum wattage": "(15W/M)",
                                 "Brand Of Led": "Epistar",
                                 "Luminous Flux": "590LM/M",
                                 "Main Material": "Die-Casting Aluminum",

@@ -11,6 +11,7 @@ interface ProductSpecificationsTableProps {
   sectionType?: string
   locale: string
   maximumWattage?: number
+  spotlightType?: string
   productName?: string
 }
 
@@ -22,6 +23,7 @@ export default function ProductSpecificationsTable({
   sectionType,
   locale,
   maximumWattage,
+  spotlightType,
   productName,
 }: ProductSpecificationsTableProps) {
 
@@ -51,14 +53,12 @@ export default function ProductSpecificationsTable({
         return `${hNumber * 12}${wattageText}`;
       }
       if (chandelierLightingType === "LED") {
-        // استخدام دالتك لاستخراج الرقم
         const numericWattage = extractNumericValue(maximumWattage);
         if (numericWattage !== undefined && numericWattage > 0) {
           return `${numericWattage}W`;
         }
 
         if (productName) {
-          // استخدام دالتك لتحويل الأرقام في اسم المنتج
           const convertedProductName = convertArabicToEnglishNumbers(productName);
           const match = /([0-9]{1,4})\s*W/i.exec(convertedProductName);
           if (match) {
@@ -68,14 +68,11 @@ export default function ProductSpecificationsTable({
         }
       }
     }
-
-    // التعامل مع القيمة من specificationsTable
     const wattageKey = locale === 'ar' ? "أقصى قوة" : "Maximum wattage";
     let wattageValue = specificationsTable[wattageKey];
 
-    // إذا لم توجد بالمفتاح الأساسي، جرب المفاتيح الأخرى
+
     if (!wattageValue) {
-      // البحث في جميع المفاتيح التي قد تحتوي على wattage
       const possibleKeys = Object.keys(specificationsTable).filter(key =>
         key.includes("أقصى قوة") ||
         key.includes("Maximum wattage") ||
@@ -93,7 +90,6 @@ export default function ProductSpecificationsTable({
       if (numericValue !== undefined) {
         return `${numericValue}W`;
       }
-      // إذا لم نستطع استخراج رقم، نعيد القيمة كما هي
       return String(wattageValue);
     }
 
@@ -102,7 +98,6 @@ export default function ProductSpecificationsTable({
 
   const formatValue = (key: string, value: string): string => {
     if (key.includes("Maximum wattage") || key.includes("أقصى قوة")) {
-      // Unified chandelier handling for Mister LED
       if (sectionType === "chandelier") {
         return calculateWattage();
       }

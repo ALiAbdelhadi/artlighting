@@ -27,7 +27,7 @@ const languages = [
         code: 'en',
         name: 'English',
         nativeName: 'English',
-        flag: '🇺🇸',
+        flag: 'US',
         dir: 'ltr'
     }
 ]
@@ -66,10 +66,7 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
                     disabled={isPending}
                 >
                     <div className="flex items-center gap-2">
-                        <span className="hidden sm:inline text-sm">
-                            {currentLanguage.nativeName}
-                        </span>
-                        <span className="text-base leading-none">{currentLanguage.flag}</span>
+                        <span className="text-base leading-none uppercase">{currentLanguage.flag}</span>
                     </div>
                     <ChevronDown className="h-3 w-3 opacity-70" />
                 </Button>
@@ -90,9 +87,6 @@ export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProp
                             <span className={`text-sm font-medium ${language.code === 'ar' ? 'font-arabic text-right' : 'text-left'
                                 }`}>
                                 {language.nativeName}
-                            </span>
-                            <span className="text-xs text-muted-foreground">
-                                {language.name}
                             </span>
                         </div>
                         {currentLocale === language.code && (
