@@ -1,0 +1,212 @@
+{
+    "projects": {
+        "dar-misr": {
+            "ProjectId": "dar-misr",
+            "ProjectName": "دار مصر",
+            "ProjectDate": "10 / مايو / 2018",
+            "ProjectImages": [
+                "/projects/dar-misr/dar-misr-1.png",
+                "/projects/dar-misr/dar-misr-2.jpg",
+                "/projects/dar-misr/dar-misr-3.webp"
+            ],
+            "ProjectDescription": "دار مصر هو مجمع عقاري فاخر.",
+            "ProjectInfor": "مشروع دار مصر هو مشروع سكني بارز أطلقته وزارة الإسكان المصرية، بهدف توفير 150,000 وحدة سكنية عالية الجودة للمواتنين ذوي الدخل المتوسط في مختلف المدن الجديدة في مصر. يتم تنفيذ المشروع على أربع مراحل، ويوفر وحدات بمساحات تتراوح بين 100 و 150 مترًا مربعًا. تتميز كل وحدة بتصميم معماري فريد ومعايير تشطيب فائقة، مما يضمن تجربة معيشية عصرية. ساهمت شركتنا في هذا المشروع بتوريد حلول إضاءة متطورة تعزز من الجاذبية الجمالية والوظيفية للمساحات السكنية.",
+            "ProjectInfor2": "ساهمت شركتنا في هذا المشروع بتوريد حلول إضاءة متطورة تعزز من الجاذبية الجمالية والوظيفية للمساحات السكنية.",
+            "usedProducts": "/category/balcom/indoor/panel-light"
+        },
+        "tolip": {
+            "ProjectId": "tolip",
+            "ProjectName": "فندق توليب",
+            "ProjectDate": "10 / يونيو / 22",
+            "ProjectImages": [
+                "/projects/tolip/tolip-1.jpg"
+            ],
+            "ProjectDescription": "فندق توليب الجلاء هو منشأة فاخرة تقع في القاهرة، مصر.",
+            "ProjectInfor": "يتألف الفندق من ثلاثة مبانٍ، يرتفع كل منها خمسة طوابق، ويضم ما مجموعه 179 غرفة. تم تصميم كل غرفة بمزيج من الديكورات الداخلية الحديثة واللمسات الكلاسيكية، مما يوفر أسلوبًا فريدًا للمعيشة بمساحات تتراوح من 38 إلى 65 مترًا مربعًا. الغرف مجهزة بنوافذ بانورامية أو شرفات، وتكييف هواء، وميني بار، وأجهزة تلفزيون بشاشات مسطحة مع قنوات فضائية.",
+            "ProjectInfor2": "قدمت شركتنا حلول إضاءة حديثة لتعزيز الأجواء وتجربة الضيوف في جميع مرافق الفندق المختلفة.",
+            "usedProducts": "/category/indoor/linear"
+        },
+        "al-majd": {
+            "ProjectId": "al-majd",
+            "ProjectName": "مركز المجد للمؤتمرات بالإسكندرية",
+            "ProjectDate": "10 / ديسمبر / 23",
+            "ProjectImages": [
+                "/projects/al-majd/al-majd-1.jpg"
+            ],
+            "ProjectDescription": "مركز المجد للمؤتمرات في الإسكندرية.",
+            "ProjectInfor": "مركز المجد للمؤتمرات في الإسكندرية هو مكان متميز مصمم لاستضافة مجموعة متنوعة من الفعاليات، بما في ذلك المؤتمرات والندوات وورش العمل.",
+            "ProjectInfor2": "يتميز المركز بهندسة معمارية حديثة ومجهز بأحدث المرافق لاستيعاب التجمعات المحلية والدولية. تم تنفيذ حلول الإضاءة الخاصة بنا لضمان إضاءة مثالية، مما يخلق جوًا جذابًا لجميع الحاضرين.",
+            "usedProducts": "/category/balcom/indoor/panel-light"
+        },
+        "mansoura-hospital": {
+            "ProjectId": "mansoura-hospital",
+            "ProjectName": "مستشفى حميات المنصورة",
+            "ProjectDate": "10 / أكتوبر / 20",
+            "ProjectImages": [
+                "/projects/mansoura-hospital/mansoura-hospital-2.png",
+                "/projects/mansoura-hospital/mansoura-hospital-1.png",
+                "/projects/mansoura-hospital/mansoura-hospital-4.png",
+                "/projects/mansoura-hospital/mansoura-hospital-3.png"
+            ],
+            "ProjectDescription": "مستشفى حميات المنصورة.",
+            "ProjectInfor": "مستشفى حميات المنصورة هو منشأة طبية متخصصة في تشخيص وعلاج الأمراض المعدية. يقع المستشفى في المنصورة، مصر، ومجهز بتقنيات طبية متقدمة ويعمل به فريق من المتخصصين في الرعاية الصحية ذوي الخبرة.",
+            "ProjectInfor2": "لدعم مهمة المستشفى في توفير رعاية استثنائية للمرضى، قامت شركتنا بتركيب أنظمة إضاءة عالية الجودة تلبي المعايير الطبية، مما يضمن بيئة آمنة ومريحة لكل من المرضى والموظفين.",
+            "usedProducts": "/category/indoor/linear"
+        },
+        "esna-hospital": {
+            "ProjectId": "esna-hospital",
+            "ProjectName": "مستشفى إسنا",
+            "ProjectDate": "10 / يونيو / 22",
+            "ProjectImages": [
+                "/projects/esna-hospital/esna-hospital-1.jpg",
+                "/projects/esna-hospital/esna-hospital-4.jpg",
+                "/projects/esna-hospital/esna-hospital-2.webp",
+                "/projects/esna-hospital/esna-hospital-3.jpg"
+            ],
+            "ProjectDescription": "مستشفى إسنا يخدم مجتمع إسنا من خلال تقديم مجموعة واسعة من الخدمات الطبية.",
+            "ProjectInfor": "مستشفى إسنا يخدم مجتمع إسنا من خلال تقديم مجموعة واسعة من الخدمات الطبية.",
+            "ProjectInfor2": "تم تصميم المستشفى لتلبية مختلف الاحتياجات الصحية، ويضم أقسامًا متعددة ووحدات متخصصة. تم اختيار تركيبات الإضاءة الخاصة بنا بعناية لتوفير إضاءة كافية في جميع المناطق، مما يعزز الرؤية ويساهم في الرفاهية العامة للمرضى ومقدمي الرعاية الصحية.",
+            "usedProducts": "/category/indoor/linear"
+        },
+        "armant-hospital": {
+            "ProjectId": "armant-hospital",
+            "ProjectName": "مستشفى أرمنت",
+            "ProjectDate": "10 / يونيو / 22",
+            "ProjectImages": [
+                "/projects/armant-hospital/armant-hospital-1.webp",
+                "/projects/armant-hospital/armant-hospital-2.jpg",
+                "/projects/armant-hospital/armant-hospital-3.jpg",
+                "/projects/armant-hospital/armant-hospital-4.jpg"
+            ],
+            "ProjectDescription": "مستشفى أرمنت هو مؤسسة رعاية صحية ملتزمة بتقديم خدمات طبية شاملة لمجتمعها.",
+            "ProjectInfor": "يُعد العشاء غالبًا لحظة سلام تجتمع فيها العائلات للتحدث عن أحداث اليوم. وتكون منطقة تناول الطعام هي نقطة التركيز في ذلك. على الرغم من أهمية الإضاءة الوظيفية، إلا أن خلق شعور المنزل بالجو والدفء المناسبين لا يقل أهمية. يساعد استخدام مصابيح HALO LED الدائرية في تحقيق ذلك.",
+            "ProjectInfor2": "يضم المرفق وحدات طوارئ وأقسامًا للمرضى الداخليين وعيادات خارجية. وإدراكًا للدور الحاسم للإضاءة المناسبة في الأماكن الطبية، قامت شركتنا بتوريد وتركيب حلول إضاءة تضمن الوضوح وتقلل من إجهاد العين وتعزز بيئة الشفاء.",
+            "usedProducts": "/category/indoor/linear"
+        },
+        "maadi-hospital": {
+            "ProjectId": "maadi-hospital",
+            "ProjectName": "مستشفى المعادي",
+            "ProjectDate": "10 / يونيو / 22",
+            "ProjectImages": [
+                "/projects/maadi-hospital/maadi-hospital-1.jpg",
+                "/projects/maadi-hospital/maadi-hospital-2.webp",
+                "/projects/maadi-hospital/maadi-hospital-3.jpg",
+                "/projects/maadi-hospital/maadi-hospital-4.jpg"
+            ],
+            "ProjectDescription": "مستشفى المعادي هو مركز طبي راسخ يقع في حي المعادي بالقاهرة. يقدم المستشفى مجموعة واسعة من خدمات الرعاية الصحية.",
+            "ProjectInfor": "مستشفى المعادي هو مركز طبي راسخ يقع في حي المعادي بالقاهرة. يقدم المستشفى مجموعة واسعة من خدمات الرعاية الصحية مدعومة بأحدث المعدات والمرافق الطبية.",
+            "ProjectInfor2": "لتعزيز البنية التحتية للمستشفى، قمنا بتوفير أنظمة إضاءة لا تلبي فقط المتطلبات الوظيفية للمساحات الطبية ولكنها تساهم أيضًا في خلق جو مهدئ للمرضى.",
+            "usedProducts": "/category/indoor/linear"
+        },
+        "al-galala-resort": {
+            "ProjectId": "al-galala-resort",
+            "ProjectName": "منتجع الجلالة",
+            "ProjectDate": "10 / نوفمبر / 19",
+            "ProjectImages": [
+                "/projects/al-galala-resort/al-galala-resort-1.jpg",
+                "/projects/al-galala-resort/al-galala-resort-2.jpg",
+                "/projects/al-galala-resort/al-galala-resort-3.jpg",
+                "/projects/al-galala-resort/al-galala-resort-4.jpg"
+            ],
+            "ProjectDescription": "منتجع الجلالة هو وجهة فاخرة تقع على طول البحر الأحمر.",
+            "ProjectInfor": "منتجع الجلالة يقدم للزوار مزيجًا من الاسترخاء والمغامرة مع أماكن إقامة راقية، ومرافق ترفيهية، وإطلالات خلابة على البحر.",
+            "ProjectInfor2": "كانت شركتنا مسؤولة عن تنفيذ تصميمات الإضاءة التي تبرز الجمال المعماري للمنتجع، وتخلق مساحات خارجية جذابة، وتضمن للضيوف تجربة لا تُنسى خلال إقامتهم.",
+            "usedProducts": "/category/indoor/linear"
+        },
+        "almaza-park": {
+            "ProjectId": "almaza-park",
+            "ProjectName": "الماظة بارك",
+            "ProjectDate": "19 / يوليو / 23",
+            "ProjectImages": [
+                "/projects/almaza-park/almaza-park-1.jpg",
+                "/projects/almaza-park/almaza-park-2.jpg"
+            ],
+            "ProjectDescription": "الماظة بارك هو مشروع متعدد الاستخدامات يجمع بين الإضاءة الكاشفة الفاخرة وإضاءة العمدان.",
+            "ProjectInfor": "تم تصميم الماظة بارك ليكون واحة عصرية تدمج المناطق السكنية والتجارية والترفيهية. مع التركيز على الاستدامة والهندسة المعمارية المبتكرة، يوفر المشروع وسائل راحة راقية ومساحات طبيعية منسقة بشكل جميل، وإضاءة كاشفة، وإضاءة عمدان، وإضاءة أرضية لخلق بيئة مجتمعية نابضة بالحياة.",
+            "ProjectInfor2": "لعبت شركتنا دورًا رئيسيًا في تعزيز الجاذبية الجمالية للمشروع من خلال تقديم حلول إضاءة متطورة. تسلط هذه التركيبات الضوء على التصميم الأنيق مع ضمان كفاءة الطاقة وجو ترحيبي في جميع أنحاء المشروع.",
+            "usedProducts": "/category/indoor/linear"
+        },
+        "al-galala-university": {
+            "ProjectId": "al-galala-university",
+            "ProjectName": "جامعة الجلالة",
+            "ProjectDate": "10 / نوفمبر / 19",
+            "ProjectImages": [
+                "/projects/al-galala-university/al-galala-university-2.jpg",
+                "/projects/al-galala-university/al-galala-university-1.jpg",
+                "/projects/al-galala-university/al-galala-university-3.jpg",
+                "/projects/al-galala-university/al-galala-university-4.jpg"
+            ],
+            "ProjectDescription": "مشروع جامعة الجلالة",
+            "ProjectInfor": "يتميز مشروع جامعة الجلالة بنظام إضاءة حديث يضمن كفاءة الطاقة، ويعزز الرؤية، ويوفر الأمان في جميع أنحاء الحرم الجامعي. يدمج المشروع حلول LED الذكية وعناصر التصميم الحديثة التي تبرز الطابع المعماري للجامعة، مما يجعله معيارًا في البيئات التعليمية المعاصرة.",
+            "ProjectInfor2": "",
+            "usedProducts": ""
+        },
+        "al-mynia-university": {
+            "ProjectId": "al-mynia-university",
+            "ProjectName": "جامعة المنيا",
+            "ProjectDate": "10 / نوفمبر / 19",
+            "ProjectImages": [
+                "/projects/al-mynia-university/al-mynia-university-1.jpg",
+                "/projects/al-mynia-university/al-mynia-university-2.jpg"
+            ],
+            "ProjectDescription": "مشروع جامعة المنيا",
+            "ProjectInfor": "يوفر مشروع جامعة المنيا تجربة إضاءة متكاملة تعزز البيئة الأكاديمية من خلال تقنيات الإضاءة الحديثة وأنظمة التحكم الذكية. يساهم هذا المشروع في خلق جو تعليمي آمن وملهم، مع تركيز قوي على الاستدامة ومعايير الجودة العالية.",
+            "ProjectInfor2": "",
+            "usedProducts": ""
+        },
+        "alkaraz": {
+            "ProjectId": "alkaraz",
+            "ProjectName": "الكرز",
+            "ProjectDate": "10 / نوفمبر / 19",
+            "ProjectImages": [
+                "/projects/alkaraz/alkaraz-1.jpg",
+                "/projects/alkaraz/alkaraz-2.jpg"
+            ],
+            "ProjectDescription": "مشروع الكرز",
+            "ProjectInfor": "يُجسد مشروع الكرز تصميمًا يمزج بين الوظيفية والجمال. أنظمة الإضاءة المتقدمة تبرز الميزات المعمارية للمبنى، محققةً توازنًا بين الكفاءة والابتكار. هذا المشروع هو مثال رئيسي على حلول الإضاءة الحديثة.",
+            "ProjectInfor2": "",
+            "usedProducts": ""
+        },
+        "auc-university": {
+            "ProjectId": "auc-university",
+            "ProjectName": "الجامعة الأمريكية بالقاهرة",
+            "ProjectDate": "10 / نوفمبر / 19",
+            "ProjectImages": [
+                "/projects/auc-university/auc-university-1.jpg",
+                "/projects/auc-university/auc-university-2.jpg",
+                "/projects/auc-university/auc-university-3.jpg"
+            ],
+            "ProjectDescription": "مشروع الجامعة الأمريكية بالقاهرة مصمم لتلبية معايير الجودة العالمية للتعلم",
+            "ProjectInfor": "مشروع الجامعة الأمريكية بالقاهرة مصمم لتلبية معايير الجودة العالمية من خلال دمج التقنيات الذكية مع أنظمة LED المتقدمة لتعزيز جمال الحرم الجامعي مع الحفاظ على تراثه المعماري الغني. يعكس هذا المشروع مزيجًا متناغمًا من التصميم الحديث والتقليد.",
+            "ProjectInfor2": "",
+            "usedProducts": ""
+        },
+        "new-ismalia-compound": {
+            "ProjectId": "new-ismalia-compound",
+            "ProjectName": "كمبوند الإسماعيلية الجديدة",
+            "ProjectDate": "10 / نوفمبر / 19",
+            "ProjectImages": [
+                "/projects/new-ismalia-compound/new-ismalia-compound-1.jpg",
+                "/projects/new-ismalia-compound/new-ismalia-compound-2.jpg"
+            ],
+            "ProjectDescription": "مشروع كمبوند الإسماعيلية الجديدة",
+            "ProjectInfor": "يوفر مشروع كمبوند الإسماعيلية الجديدة حلول إضاءة متكاملة تعتمد على أحدث تقنيات توفير الطاقة، مما يضيف عنصرًا من الأناقة والراحة إلى المساحات السكنية والمشتركة على حد سواء.",
+            "ProjectInfor2": "",
+            "usedProducts": ""
+        },
+        "wesal-compound": {
+            "ProjectId": "wesal-compound",
+            "ProjectName": "كمبوند وصال",
+            "ProjectDate": "10 / نوفمبر / 19",
+            "ProjectImages": [
+                "/projects/wesal-compound/wesal-compound-1.webp",
+                "/projects/wesal-compound/wesal-compound-2.webp",
+                "/projects/wesal-compound/wesal-compound-3.webp"
+            ],
+            "ProjectDescription": "مشروع كمبوند وصال",
+            "ProjectInfor": "يتميز مشروع كمبوند وصال بحلول إضاءة ذكية تجمع بين الأناقة والوظيفية، مما يعزز بيئة المعيشة ويسلط الضوء على الجوانب الجمالية للمنطقة. تُستخدم أنظمة LED الحديثة لضمان أقصى قدر من الكفاءة والأداء.",
+            "ProjectInfor2": "",
+            "usedProducts": ""
+        }
+    }
+}

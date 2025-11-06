@@ -1,0 +1,212 @@
+{
+  "projects": {
+    "dar-misr": {
+      "ProjectId": "dar-misr",
+      "ProjectName": "Dar-Misr",
+      "ProjectDate": "10 / May / 2018",
+      "ProjectImages": [
+        "/projects/dar-misr/dar-misr-1.png",
+        "/projects/dar-misr/dar-misr-2.jpg",
+        "/projects/dar-misr/dar-misr-3.webp"
+      ],
+      "ProjectDescription": "Dar-Misr is a real estate compound.",
+      "ProjectInfor": "Dar Misr is a prominent housing project initiated by the Egyptian Ministry of Housing, aiming to provide 150,000 high-quality residential units for middle-income citizens across various new cities in Egypt.",
+      "ProjectInfor2": "The project is being executed in four phases, offering units with areas ranging from 100 to 150 square meters. Each unit features a distinctive architectural design and superior finishing standards, ensuring a contemporary living experience. Our company contributed to this project by supplying advanced lighting solutions that enhance the aesthetic appeal and functionality of the residential spaces.",
+      "usedProducts": "/category/balcom/indoor/panel-light"
+    },
+    "tolip": {
+      "ProjectId": "tolip",
+      "ProjectName": "Tolip Hotel",
+      "ProjectDate": "10 / June / 22",
+      "ProjectImages": [
+        "/projects/tolip/tolip-1.jpg"
+      ],
+      "ProjectDescription": "Tolip Hotel El Galaa is a luxurious establishment located in Cairo, Egypt.",
+      "ProjectInfor": "The hotel comprises three buildings, each five stories high, encompassing a total of 179 rooms. Each room is designed with a blend of modern interiors and classic touches, offering a unique living style with sizes ranging from 38 to 65 square meters. The rooms are equipped with panoramic windows or balconies, air conditioning, mini-bars, and flat-screen TVs with satellite channels.",
+      "ProjectInfor2": "Our company provided state-of-the-art lighting solutions to enhance the ambiance and guest experience throughout the hotel's various facilities.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "al-majd": {
+      "ProjectId": "al-majd",
+      "ProjectName": "Al-Majd Conference Center in Alexandria",
+      "ProjectDate": "10 / Dec / 23",
+      "ProjectImages": [
+        "/projects/al-majd/al-majd-1.jpg"
+      ],
+      "ProjectDescription": "Al-Majd Conference Center in Alexandria.",
+      "ProjectInfor": "The Al-Majd Conference Center in Alexandria is a premier venue designed to host a variety of events, including conferences, seminars, and workshops.",
+      "ProjectInfor2": "The center boasts modern architecture and is equipped with state-of-the-art facilities to accommodate both local and international gatherings. Our lighting solutions were implemented to ensure optimal illumination, creating an inviting atmosphere for all attendees.",
+      "usedProducts": "/category/balcom/indoor/panel-light"
+    },
+    "mansoura-hospital": {
+      "ProjectId": "mansoura-hospital",
+      "ProjectName": "Mansoura Fever Hospital",
+      "ProjectDate": "10 / Oct / 20",
+      "ProjectImages": [
+        "/projects/mansoura-hospital/mansoura-hospital-2.png",
+        "/projects/mansoura-hospital/mansoura-hospital-1.png",
+        "/projects/mansoura-hospital/mansoura-hospital-4.png",
+        "/projects/mansoura-hospital/mansoura-hospital-3.png"
+      ],
+      "ProjectDescription": "Mansoura Fever Hospital.",
+      "ProjectInfor": "Mansoura Fever Hospital is a specialized medical facility dedicated to diagnosing and treating infectious diseases. Located in Mansoura, Egypt, the hospital is equipped with advanced medical technologies and staffed by a team of experienced healthcare professionals.",
+      "ProjectInfor2": "To support the hospital's mission of providing exceptional patient care, our company installed high-quality lighting systems that meet medical standards, ensuring a safe and comfortable environment for both patients and staff.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "esna-hospital": {
+      "ProjectId": "esna-hospital",
+      "ProjectName": "Esna Hospital",
+      "ProjectDate": "10 / June / 22",
+      "ProjectImages": [
+        "/projects/esna-hospital/esna-hospital-1.jpg",
+        "/projects/esna-hospital/esna-hospital-4.jpg",
+        "/projects/esna-hospital/esna-hospital-2.webp",
+        "/projects/esna-hospital/esna-hospital-3.jpg"
+      ],
+      "ProjectDescription": "Esna Hospital serves the community of Esna by offering a wide range of medical services.",
+      "ProjectInfor": "Esna Hospital serves the community of Esna by offering a wide range of medical services.",
+      "ProjectInfor2": "The hospital is designed to cater to various healthcare needs, featuring multiple departments and specialized units. Our lighting installations were carefully selected to provide adequate illumination across all areas, enhancing visibility and contributing to the overall well-being of patients and healthcare providers.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "armant-hospital": {
+      "ProjectId": "armant-hospital",
+      "ProjectName": "Armant Hospital",
+      "ProjectDate": "10 / June / 22",
+      "ProjectImages": [
+        "/projects/armant-hospital/armant-hospital-1.webp",
+        "/projects/armant-hospital/armant-hospital-2.jpg",
+        "/projects/armant-hospital/armant-hospital-3.jpg",
+        "/projects/armant-hospital/armant-hospital-4.jpg"
+      ],
+      "ProjectDescription": "Armant Hospital is a healthcare institution committed to delivering comprehensive medical services to its community.",
+      "ProjectInfor": "Dinner often serves as a moment of peace where families come together to talk through the day. The dining area serves as a focal point in this. While functional lighting is important, creating the feeling of home with the right atmosphere and warmth are just as important. Using the HALO LED ring lights supports this.",
+      "ProjectInfor2": "The facility includes emergency units, inpatient wards, and outpatient clinics. Understanding the critical role of proper lighting in medical settings, our company supplied and installed lighting solutions that ensure clarity, reduce eye strain, and promote a healing environment.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "maadi-hospital": {
+      "ProjectId": "maadi-hospital",
+      "ProjectName": "Maadi Hospital",
+      "ProjectDate": "10 / June / 22",
+      "ProjectImages": [
+        "/projects/maadi-hospital/maadi-hospital-1.jpg",
+        "/projects/maadi-hospital/maadi-hospital-2.webp",
+        "/projects/maadi-hospital/maadi-hospital-3.jpg",
+        "/projects/maadi-hospital/maadi-hospital-4.jpg"
+      ],
+      "ProjectDescription": "Maadi Hospital is a well-established medical center located in the Maadi district of Cairo. The hospital offers a broad spectrum of healthcare services.",
+      "ProjectInfor": "Maadi Hospital is a well-established medical center located in the Maadi district of Cairo. The hospital offers a broad spectrum of healthcare services supported by modern medical equipment and facilities.",
+      "ProjectInfor2": "To enhance the hospital's infrastructure, we provided lighting systems that not only meet the functional requirements of medical spaces but also contribute to creating a soothing atmosphere for patients.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "al-galala-resort": {
+      "ProjectId": "al-galala-resort",
+      "ProjectName": "Al-Galala Resort",
+      "ProjectDate": "10 / Nov / 19",
+      "ProjectImages": [
+        "/projects/al-galala-resort/al-galala-resort-1.jpg",
+        "/projects/al-galala-resort/al-galala-resort-2.jpg",
+        "/projects/al-galala-resort/al-galala-resort-3.jpg",
+        "/projects/al-galala-resort/al-galala-resort-4.jpg"
+      ],
+      "ProjectDescription": "Al-Galala Resort is a luxurious destination situated along the Red Sea.",
+      "ProjectInfor": "Al-Galala Resort offers visitors a blend of relaxation and adventure with upscale accommodations, recreational facilities, and breathtaking sea views.",
+      "ProjectInfor2": "Our company was responsible for implementing lighting designs that highlight the resort's architectural beauty, create inviting outdoor spaces, and ensure guests have an unforgettable experience during their stay.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "almaza-park": {
+      "ProjectId": "almaza-park",
+      "ProjectName": "Almaza Park",
+      "ProjectDate": "19 / July / 23",
+      "ProjectImages": [
+        "/projects/almaza-park/almaza-park-1.jpg",
+        "/projects/almaza-park/almaza-park-2.jpg"
+      ],
+      "ProjectDescription": "Almaza Park is a premier mixed-use development that combines luxury Flood light And bollard.",
+      "ProjectInfor": "Almaza Park is designed as a modern oasis integrating residential, commercial, and recreational areas. With a focus on sustainability and innovative architecture, the project offers upscale amenities and beautifully landscaped, Flood light, bollard, uplight surroundings to create a vibrant community environment.",
+      "ProjectInfor2": "Our company played a key role in enhancing the project's aesthetic appeal by delivering cutting-edge lighting solutions. These installations accentuate the elegant design while ensuring energy efficiency and a welcoming atmosphere throughout the development.",
+      "usedProducts": "/category/indoor/linear"
+    },
+    "al-galala-university": {
+      "ProjectId": "al-galala-university",
+      "ProjectName": "Al-Galala University",
+      "ProjectDate": "10 / November / 19",
+      "ProjectImages": [
+        "/projects/al-galala-university/al-galala-university-2.jpg",
+        "/projects/al-galala-university/al-galala-university-1.jpg",
+        "/projects/al-galala-university/al-galala-university-3.jpg",
+        "/projects/al-galala-university/al-galala-university-4.jpg"
+      ],
+      "ProjectDescription": "The Al-Galala University project ",
+      "ProjectInfor": "The Al-Galala University project features a state-of-the-art lighting system that ensures energy efficiency, enhanced visibility, and safety across the campus. The project incorporates smart LED solutions and modern design elements that highlight the architectural character of the university, making it a benchmark in contemporary educational environments.",
+      "ProjectInfor2": "",
+      "usedProducts": ""
+    },
+    "al-mynia-university": {
+      "ProjectId": "al-mynia-university",
+      "ProjectName": "Al-Mynia University",
+      "ProjectDate": "10 / November / 19",
+      "ProjectImages": [
+        "/projects/al-mynia-university/al-mynia-university-1.jpg",
+        "/projects/al-mynia-university/al-mynia-university-2.jpg"
+      ],
+      "ProjectDescription": "The Al-Mynia University project ",
+      "ProjectInfor": "The Al-Mynia University project delivers a complete lighting experience that enhances the academic environment through modern lighting technologies and smart control systems. This project contributes to creating a safe and inspiring educational atmosphere, with a strong focus on sustainability and high-quality standards. ",
+      "ProjectInfor2": "",
+      "usedProducts": ""
+    },
+    "alkaraz": {
+      "ProjectId": "alkaraz",
+      "ProjectName": "Al-Karaz",
+      "ProjectDate": "10 / November / 19",
+      "ProjectImages": [
+        "/projects/alkaraz/alkaraz-1.jpg",
+        "/projects/alkaraz/alkaraz-2.jpg"
+      ],
+      "ProjectDescription": "The Al-Karaz project",
+      "ProjectInfor": "The Al-Karaz project exemplifies a design that merges functionality with aesthetics. Advanced lighting systems highlight the architectural features of the building, achieving a balance between efficiency and innovation. This project is a prime example of modern lighting solutions. ",
+      "ProjectInfor2": "",
+      "usedProducts": ""
+    },
+    "auc-university": {
+      "ProjectId": "auc-university",
+      "ProjectName": "AUC University",
+      "ProjectDate": "10 / November / 19",
+      "ProjectImages": [
+        "/projects/auc-university/auc-university-1.jpg",
+        "/projects/auc-university/auc-university-2.jpg",
+        "/projects/auc-university/auc-university-3.jpg"
+      ],
+      "ProjectDescription": "The AUC University project is designed to meet international quality of learning",
+      "ProjectInfor": "The AUC University project is designed to meet international quality  standards by integrating smart technologies with advanced LED systems to enhance the beauty of the campus while preserving its rich architectural heritage. This project reflects a harmonious blend of modern design with tradition. ",
+      "ProjectInfor2": "",
+      "usedProducts": ""
+    },
+    "new-ismalia-compound": {
+      "ProjectId": "new-ismalia-compound",
+      "ProjectName": "New Ismalia Compound",
+      "ProjectDate": "10 / November / 19",
+      "ProjectImages": [
+        "/projects/new-ismalia-compound/new-ismalia-compound-1.jpg",
+        "/projects/new-ismalia-compound/new-ismalia-compound-2.jpg"
+      ],
+      "ProjectDescription": "The New Ismalia Compound",
+      "ProjectInfor": "The New Ismalia Compound  project offers an integrated lighting solution based on the latest energy-saving technologies, adding an element of elegance and comfort to both residential and shared spaces.",
+      "ProjectInfor2": "",
+      "usedProducts": ""
+    },
+    "wesal-compound": {
+      "ProjectId": "wesal-compound",
+      "ProjectName": "Wesal Compound",
+      "ProjectDate": "10 / November / 19",
+      "ProjectImages": [
+        "/projects/wesal-compound/wesal-compound-1.webp",
+        "/projects/wesal-compound/wesal-compound-2.webp",
+        "/projects/wesal-compound/wesal-compound-3.webp"
+      ],
+      "ProjectDescription": "The Wesal Compound project ",
+      "ProjectInfor": "The Wesal Compound project features smart lighting solutions that merge elegance with functionality, enhancing the living environment while accentuating the aesthetic aspects of the area. State-of-the-art LED systems are used to ensure maximum efficiency and performance.",
+      "ProjectInfor2": "",
+      "usedProducts": ""
+    }
+  }
+}
