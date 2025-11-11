@@ -978,7 +978,7 @@
               "price": 4649,
               "sectionType": "chandelier",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -996,7 +996,7 @@
               "price": 4734,
               "sectionType": "chandelier",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1015,7 +1015,7 @@
               "price": 3379,
               "sectionType": "chandelier",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1034,7 +1034,7 @@
               "price": 1305,
               "sectionType": "chandelier",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1053,7 +1053,7 @@
               "sectionType": "chandelier",
               "quantity": 10,
               "Hnumber": 4,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1072,7 +1072,7 @@
               "price": 5746,
               "sectionType": "chandelier",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc1608-w1": {
               "ProductId": "mc1608-w1",
@@ -1087,7 +1087,7 @@
               "price": 676,
               "sectionType": "chandelier",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1106,7 +1106,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6014-h5": {
               "ProductId": "mc6014-h5",
@@ -1121,7 +1121,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1140,7 +1140,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6015-h5": {
               "ProductId": "mc6015-h5",
@@ -1155,7 +1155,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6015-h6": {
               "ProductId": "mc6015-h6",
@@ -1170,7 +1170,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6015-w1": {
               "ProductId": "mc6015-w1",
@@ -1185,7 +1185,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1204,7 +1204,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6031-h3d": {
               "ProductId": "mc6031-h3d",
@@ -1219,7 +1219,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6031-h5": {
               "ProductId": "mc6031-h5",
@@ -1234,7 +1234,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6031-h5d": {
               "ProductId": "mc6031-h5d",
@@ -1249,7 +1249,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6031-s2": {
               "ProductId": "mc6031-s2",
@@ -1264,7 +1264,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1283,7 +1283,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1302,7 +1302,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6041-p6": {
               "ProductId": "mc6041-p6",
@@ -1317,7 +1317,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6041-p8": {
               "ProductId": "mc6041-p8",
@@ -1332,7 +1332,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1350,7 +1350,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6051-3": {
               "ProductId": "mc6051-3",
@@ -1364,7 +1364,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6051-4": {
               "ProductId": "mc6051-4",
@@ -1378,7 +1378,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6051-t8": {
               "ProductId": "mc6051-t8",
@@ -1392,7 +1392,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6051-p3": {
               "ProductId": "mc6051-p3",
@@ -1407,7 +1407,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6051-p4": {
               "ProductId": "mc6051-p4",
@@ -1422,7 +1422,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6051-p1": {
               "ProductId": "mc6051-p1",
@@ -1437,7 +1437,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6051-w1": {
               "ProductId": "mc6051-w1",
@@ -1452,7 +1452,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1471,7 +1471,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6091-h5": {
               "ProductId": "mc6091-h5",
@@ -1486,7 +1486,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6091-h8": {
               "ProductId": "mc6091-h8",
@@ -1501,7 +1501,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6091-w1": {
               "ProductId": "mc6091-w1",
@@ -1516,7 +1516,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1535,7 +1535,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1554,7 +1554,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc6097-w1": {
               "ProductId": "mc6097-w1",
@@ -1569,7 +1569,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1588,7 +1588,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc7021-h8": {
               "ProductId": "mc7021",
@@ -1603,7 +1603,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1622,7 +1622,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1641,7 +1641,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc7091-s4": {
               "ProductId": "mc7091-s4",
@@ -1656,7 +1656,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1675,7 +1675,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "mc7104-1": {
               "ProductId": "mc7104-1",
@@ -1689,7 +1689,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1707,7 +1707,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1726,7 +1726,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1745,7 +1745,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1764,7 +1764,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "oh1203-w1": {
               "ProductId": "oh1203-w1",
@@ -1779,7 +1779,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1798,7 +1798,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "oh1207-s2": {
               "ProductId": "oh1207-s2",
@@ -1813,7 +1813,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1832,7 +1832,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             },
             "oh1209-h9": {
               "ProductId": "oh1209-h9",
@@ -1847,7 +1847,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1866,7 +1866,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1885,7 +1885,7 @@
               "sectionType": "chandelier",
               "brand": "mister-led",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ],
@@ -1903,7 +1903,7 @@
               "price": 1525,
               "sectionType": "chandelier",
               "quantity": 10,
-              "discount": 0.2
+              "discount": 0.3
             }
           }
         ]

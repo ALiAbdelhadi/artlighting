@@ -1289,7 +1289,7 @@
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
-                        },
+                        }
                     }
                 ],
                 "stairs-light": [
@@ -1316,9 +1316,7 @@
                         }
                     }
                 ],
-                "up-and-down" :[
-                    
-                ]
+                "up-and-down": []
             }
         },
         "mister-led": {

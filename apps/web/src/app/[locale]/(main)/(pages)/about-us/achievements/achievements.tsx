@@ -1,7 +1,5 @@
 "use client";
 
-import { Container } from "@repo/ui"
-import { Button } from "@repo/ui/button";
 import {
   Card,
   CardContent,
@@ -9,8 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Container } from "@repo/ui";
+import { Button } from "@repo/ui/button";
 import { SquareArrowOutUpRight } from "lucide-react";
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   Line,
@@ -20,8 +22,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import Image from "next/image";
-import { useTranslations } from "next-intl";
 
 const data = [
   { year: "2010", sales: 12 },
