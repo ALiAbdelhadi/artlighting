@@ -1,6 +1,6 @@
 "use client"
 
-import { formatNumberWithConversion } from "@/lib/utils"
+import { cn, formatNumberWithConversion } from "@/lib/utils"
 import { useLocale } from "next-intl"
 
 type ProductPrices = {
@@ -8,9 +8,10 @@ type ProductPrices = {
   quantity?: number
   shippingPrice?: number
   sectionType?: string
+  className?: string
 }
 
-export default function NormalPrice({ price, quantity = 1, shippingPrice = 0 }: ProductPrices) {
+export default function NormalPrice({ price, quantity = 1, shippingPrice = 0, className }: ProductPrices) {
   const locale = useLocale()
 
   const normalPrice = price
@@ -19,7 +20,7 @@ export default function NormalPrice({ price, quantity = 1, shippingPrice = 0 }: 
 
   return (
     <div>
-      <p>{formattedTotalPrice}</p>
+      <p className={cn("", className)}>{formattedTotalPrice}</p>
     </div>
   )
 }

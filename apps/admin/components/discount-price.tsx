@@ -1,4 +1,4 @@
-import { formatPrice } from "@/lib/utils";
+import { cn, formatPrice } from "@/lib/utils";
 
 interface DiscountPriceProps {
   price: number;
@@ -6,12 +6,14 @@ interface DiscountPriceProps {
   quantity?: number;
   shippingPrice?: number;
   sectionType?: string;
+  className?: string
 }
 export default function DiscountPrice({
   price,
   discount,
   quantity = 1,
   shippingPrice = 0,
+  className
 }: DiscountPriceProps) {
   const priceIncreasing = Math.ceil(price);
   const discountedPrice = Math.ceil(priceIncreasing * (1 - discount));
@@ -20,7 +22,7 @@ export default function DiscountPrice({
   );
   return (
     <div>
-      <p className="text-destructive font-semibold">{formattedPrice}</p>
+      <p className={cn("text-destructive font-semibold",className)}>{formattedPrice}</p>
     </div>
   );
 };

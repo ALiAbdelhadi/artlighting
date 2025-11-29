@@ -1018,6 +1018,7 @@
         "title": "Shopping Cart",
         "items": "items",
         "item": "item",
+        "loading": "Loading Cart...",
         "emptyCart": {
             "title": "Your cart is empty",
             "description": "Add some items to your cart to get started",

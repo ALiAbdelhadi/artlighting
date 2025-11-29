@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ShoppingBag, ShoppingCart, Trash2, Loader2 } from "lucide-react"
+import { ShoppingBag, ShoppingCart, Trash2, Loader2, Disc } from "lucide-react"
 import Image from "next/image"
 import { useAuth } from "@clerk/nextjs"
 import { Button } from "@/components/ui/button"
@@ -10,6 +10,7 @@ import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger 
 import { useTranslations } from "next-intl"
 import { toast } from "sonner"
 import NormalPrice from "./normal-price"
+import DiscountPrice from "./discount-price"
 
 interface CartItem {
   id: string
@@ -151,9 +152,7 @@ export function CartSidebar() {
           )}
         </Button>
       </SheetTrigger>
-
       <SheetContent className="flex flex-col p-0 w-full sm:max-w-md z-50">
-        {/* Header */}
         <SheetHeader className="border-b border-border/50 px-6 py-4">
           <SheetTitle className="flex items-center gap-3 text-lg font-semibold">
             <ShoppingBag className="h-5 w-5 text-muted-foreground" />
@@ -185,9 +184,6 @@ export function CartSidebar() {
             />
           )}
         </div>
-        {cartItems.length > 0 && (
-          <CartFooter totalItems={totalItems} totalPrice={totalPrice} onCheckout={() => setIsOpen(false)} />
-        )}
       </SheetContent>
     </Sheet>
   )
@@ -214,11 +210,12 @@ function EmptyState({
 }
 
 function LoadingState() {
+  const t = useTranslations("cart")
   return (
     <div className="flex-1 flex items-center justify-center">
       <div className="flex flex-col items-center gap-3">
         <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-        <p className="text-xs text-muted-foreground">Loading cart...</p>
+        <p className="text-xs text-muted-foreground">{t("loading")}</p>
       </div>
     </div>
   )
@@ -276,8 +273,8 @@ function CartItemCard({
               className="object-cover rounded-md"
             />
             {item.discount > 0 && (
-              <Badge variant="destructive" className="absolute -top-2 -right-2 text-xs px-1.5 py-0.5 font-semibold">
-                -{Math.round(item.discount)}%
+              <Badge variant="destructive" className="absolute -top-2 -right-2 text-xs px-1.5 py-0.5">
+                -{Math.round(item.discount * 100)}%
               </Badge>
             )}
           </div>
@@ -302,11 +299,9 @@ function CartItemCard({
           </div>
           <div className="flex items-center justify-between gap-2 pt-1">
             <div className="space-y-0.5">
-              <p className="font-semibold text-sm">${(item.totalPrice / 100).toFixed(2)}</p>
+              <DiscountPrice price={item.price} quantity={item.quantity} discount={item.discount} />
               {item.discount > 0 && (
-                <p className="text-xs text-muted-foreground line-through">
-                  ${((item.price * item.quantity) / 100).toFixed(2)}
-                </p>
+                <NormalPrice price={item.price} quantity={item.quantity} className="text-xs text-muted-foreground line-through" />
               )}
             </div>
             <div className="flex items-center gap-1 bg-muted rounded-md p-1">
@@ -333,43 +328,6 @@ function CartItemCard({
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-
-function CartFooter({
-  totalItems,
-  totalPrice,
-  onCheckout,
-}: {
-  totalItems: number
-  totalPrice: number
-  onCheckout: () => void
-}) {
-  const t = useTranslations("cart")
-
-  return (
-    <div className="border-t border-border/50 bg-card/50 px-6 py-4 space-y-3">
-      <div className="space-y-2">
-        <div className="flex justify-between text-sm">
-          <span className="text-muted-foreground">Subtotal</span>
-          <span className="font-medium">
-            <NormalPrice
-              price={(totalPrice / 100)}
-            />
-          </span>
-        </div>
-        <div className="flex justify-between text-xs text-muted-foreground">
-          <span>
-            {totalItems} item{totalItems !== 1 ? "s" : ""}
-          </span>
-        </div>
-      </div>
-      <SheetClose asChild>
-        <Button className="w-full" onClick={onCheckout}>
-          Proceed to Checkout
-        </Button>
-      </SheetClose>
     </div>
   )
 }
