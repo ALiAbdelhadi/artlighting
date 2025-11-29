@@ -125,7 +125,10 @@ export default function ProductMainInfo({
     (order?.productColorTemp as ProductColorTemp) ?? ProductColorTemp.warm,
   )
   const [selectedProductIp, setSelectProductIp] = useState<PrismaProductIP>(
-    (order?.productIp as PrismaProductIP) ?? PrismaProductIP.IP20
+    (initialConfiguration?.productIp as unknown as PrismaProductIP) ?? 
+    (order?.productIp as PrismaProductIP) ?? 
+    (ip as PrismaProductIP) ?? 
+    PrismaProductIP.IP20
   )
   const [selectedProductChandelierLamp, setSelectedProductChandelierLamp] = useState<ProductChandLamp>(
     (order?.productChandLamp as ProductChandLamp) ?? ProductChandLamp.lamp9w,
@@ -268,6 +271,16 @@ export default function ProductMainInfo({
       updateProductIPConfig(debouncedProductIp, priceIncrease)
     }
   }, [debouncedProductIp, priceIncrease, configId, updateProductIPConfig])
+
+  // Update selectedProductIp when configuration changes
+  useEffect(() => {
+    if (configuration?.productIp) {
+      const configProductIp = configuration.productIp as unknown as PrismaProductIP
+      if (configProductIp !== selectedProductIp) {
+        setSelectProductIp(configProductIp)
+      }
+    }
+  }, [configuration?.productIp, selectedProductIp])
 
   const { mutate: saveConfig, isPending: isSavingConfig } = useMutation({
     mutationKey: ["save-config", configId],

@@ -375,13 +375,13 @@ export default function ThankYou({
                                 {PRODUCT_TEMP_LABEL_MAP[locale as SupportedLanguage]?.[order.productColorTemp as ProductColorTemp] || order.productColorTemp}
                               </TableCell>
                               {order.brand === "balcom" && (
-                                <TableCell className="font-semibold text-black">
+                                <TableCell className="font-semibold">
                                   {order.product.specifications?.[0]?.maximumWattage || "N/A"}W
                                 </TableCell>
                               )}
                               {order.brand === "balcom" && (
                                 <TableCell className="font-semibold">
-                                  {order.productIp}
+                                  {order.configuration?.productIp?.toString() || order.productIp || "N/A"}
                                 </TableCell>
                               )}
                               {order.brand === "mister-led" &&
