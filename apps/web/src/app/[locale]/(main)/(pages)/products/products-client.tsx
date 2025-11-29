@@ -9,11 +9,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils"
 import { Link } from "@/i18n/navigation";
-import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 import { useParams, usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface Product {
   id: string;
@@ -212,7 +212,7 @@ export default function ProductsClient({ products, locale: propLocale = 'ar' }: 
     if (product.translations) {
       if (Array.isArray(product.translations)) {
         // Find translation for current locale, or use first one as fallback
-        const localeTranslation = product.translations.find(t => t.language === currentLocale) 
+        const localeTranslation = product.translations.find(t => t.language === currentLocale)
           || product.translations[0];
         normalizedTranslations = {
           name: localeTranslation?.name,
@@ -269,7 +269,6 @@ export default function ProductsClient({ products, locale: propLocale = 'ar' }: 
               styles={localeStyles}
               locale={currentLocale}
             />
-
             <div className="flex items-center justify-center mt-10">
               <Link
                 className={cn(

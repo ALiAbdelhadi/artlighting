@@ -1,25 +1,8 @@
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
 import { PagePropsTypes } from "@/types";
-import { prisma } from "@repo/database";
 import { getTranslations } from "next-intl/server";
 import MisterLed from "./mister-led";
-
-export async function generateStaticParams() {
-  const categories = await prisma.product.groupBy({
-    by: ["sectionType"],
-    where: {
-      brand: "mister-led",
-    },
-    orderBy: {
-      sectionType: "desc",
-    },
-  });
-
-  return categories.map((category) => ({
-    sectionType: category.sectionType,
-  }));
-}
 
 export default async function Page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
