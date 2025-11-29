@@ -253,11 +253,6 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                                 {t("wattage")}
                               </TableHead>
                             )}
-                            {brand === "balcom" && (
-                              <TableHead className="font-semibold text-nowrap" dir={isRTL ? "rtl" : "ltr"}>
-                                {t("ipRating")}
-                              </TableHead>
-                            )}
                             {priceCalculations.hasDiscount && (
                               <TableHead className="font-semibold" dir={isRTL ? "rtl" : "ltr"}>
                                 {t("discount")}
@@ -301,11 +296,6 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                             {brand === "balcom" && (
                               <TableCell className="font-semibold">
                                 {order.product.specifications?.[0]?.maximumWattage || "N/A"}W
-                              </TableCell>
-                            )}
-                            {brand === "balcom" && (
-                              <TableCell className="font-semibold">
-                                {order.configuration?.productIp?.toString() || order.productIp || "N/A"}
                               </TableCell>
                             )}
                             {brand === "mister-led" &&

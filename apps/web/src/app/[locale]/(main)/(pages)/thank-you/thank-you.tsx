@@ -100,7 +100,6 @@ export default function ThankYou({
     refetchOnWindowFocus: false,
   });
 
-  // استخدام نفس منطق حساب الأسعار من ملف preview.tsx
   const priceCalculations = useMemo(() => {
     if (!order) return null
 
@@ -332,11 +331,6 @@ export default function ThankYou({
                                   {t("wattage")}
                                 </TableHead>
                               )}
-                              {order.brand === "balcom" && (
-                                <TableHead className="font-semibold text-nowrap" dir={isRTL ? "rtl" : "ltr"}>
-                                  {t("ipRating")}
-                                </TableHead>
-                              )}
                               {priceCalculations.hasDiscount && (
                                 <TableHead className="font-semibold" dir={isRTL ? "rtl" : "ltr"}>
                                   {t("discount")}
@@ -377,11 +371,6 @@ export default function ThankYou({
                               {order.brand === "balcom" && (
                                 <TableCell className="font-semibold">
                                   {order.product.specifications?.[0]?.maximumWattage || "N/A"}W
-                                </TableCell>
-                              )}
-                              {order.brand === "balcom" && (
-                                <TableCell className="font-semibold">
-                                  {order.configuration?.productIp?.toString() || order.productIp || "N/A"}
                                 </TableCell>
                               )}
                               {order.brand === "mister-led" &&

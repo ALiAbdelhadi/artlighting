@@ -272,7 +272,6 @@ export default function ProductMainInfo({
     }
   }, [debouncedProductIp, priceIncrease, configId, updateProductIPConfig])
 
-  // Update selectedProductIp when configuration changes
   useEffect(() => {
     if (configuration?.productIp) {
       const configProductIp = configuration.productIp as unknown as PrismaProductIP
