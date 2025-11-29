@@ -1,4 +1,4 @@
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { Badge } from "@/components/ui/badge";
 import { HandCoins, LampCeiling, Lightbulb, Truck } from "lucide-react";
 import { useTranslations } from "next-intl";

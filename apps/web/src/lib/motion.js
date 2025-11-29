@@ -101,7 +101,7 @@ export const fadeIn = (direction, type, delay, duration) => ({
       type,
       delay,
       duration,
-      ease: "easeOut",
+      ...(type === "tween" && { ease: "easeOut" }),
     },
   },
 });

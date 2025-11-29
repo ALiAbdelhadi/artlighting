@@ -1,9 +1,10 @@
 import { constructMetadata } from "@/lib/utils";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import ThankYou from "./thank-you";
 import { prisma } from "@repo/database";
+import { Metadata } from "next";
 import { getLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { OrderWithRelations } from "../../(configure)/complete/complete";
+import ThankYou from "./thank-you";
 
 interface ThankYouProps {
   searchParams: {
@@ -59,14 +60,31 @@ const Page = async ({ searchParams }: ThankYouProps) => {
       productName: localizedProductName,
       translations: order.product.translations,
       specifications: order.product.specifications,
-      maximumWattage: order.product.maximumWattage,
+      maximumWattage: order.product.specifications[0]?.maximumWattage,
+      mainMaterial: order.product.specifications[0]?.mainMaterial,
+      beamAngle: order.product.specifications[0]?.beamAngle,
+      lampBase: order.product.specifications[0]?.lampBase,
+      colorTemperature: order.product.specifications[0]?.colorTemperature,
+      lifeTime: order.product.specifications[0]?.lifeTime,
+      finish: order.product.specifications[0]?.finish,
+      input: order.product.specifications[0]?.input,
+      brandOfLed: order.product.specifications[0]?.brandOfLed,
+      luminousFlux: order.product.specifications[0]?.luminousFlux,
+      cri: order.product.specifications[0]?.cri,
+      workingTemperature: order.product.specifications[0]?.workingTemperature,
+      fixtureDimmable: order.product.specifications[0]?.fixtureDimmable,
+      electrical: order.product.specifications[0]?.electrical,
+      powerFactor: order.product.specifications[0]?.powerFactor,
+      ip: order.product.specifications[0]?.ip,
+      energySaving: order.product.specifications[0]?.energySaving,
+      customSpecs: order.product.specifications[0]?.customSpecs,
     },
   };
 
   return (
     <ThankYou
       discount={discount}
-      initialOrder={localizedOrder}
+      initialOrder={localizedOrder as unknown as OrderWithRelations}
     />
   );
 };

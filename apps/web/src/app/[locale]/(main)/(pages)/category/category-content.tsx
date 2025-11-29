@@ -1,14 +1,13 @@
 "use client";
 
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
+import { Container } from "@/components/container";
 import { CategoryItems } from "@/constants";
+import { Link, useRouter } from "@/i18n/navigation";
 import { SupportedLanguage } from "@/types/products";
-import { Container } from "@repo/ui";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import { useRouter } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 interface CategoryProps {
@@ -66,7 +65,7 @@ export default function CategoryContent({ locale }: CategoryProps) {
                   <Link href={category.href}>
                     <Image
                       src={category.image}
-                      alt={t(`${category.id}-title image`)}
+                      alt={t(`${category.id}-title`)}
                       width={475}
                       height={475}
                       className="rounded-[12px]"

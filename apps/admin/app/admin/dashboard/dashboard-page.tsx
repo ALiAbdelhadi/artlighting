@@ -4,6 +4,7 @@ import DashboardSummary from "@/components/dashboard-summary";
 import DiscountPrice from "@/components/discount-price";
 import NormalPrice from "@/components/normal-price";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -26,9 +27,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { formatPrice } from "@/lib/utils";
 import { OrderStatus, Product, ShippingAddress, User } from "@repo/database";
-import { Button } from "@repo/ui/button";
-import { formatPrice } from "@repo/ui/lib";
 import { MoveHorizontalIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -80,8 +80,12 @@ const LABEL_MAP_COLOR: Record<OrderStatus, string> = {
   processing: "Processing Shipment",
   cancelled: "Cancelled",
   fulfilled: "Fulfilled",
+  shipped: "Shipped",
+  delivered: "Delivered",
+  refunded: "Refunded"
 };
 const Dashboard = () => {
+  
   const [data, setData] = useState<DashboardData | null>(null);
   const [filter, setFilter] = useState("all");
   useEffect(() => {

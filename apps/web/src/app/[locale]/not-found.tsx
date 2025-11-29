@@ -14,6 +14,7 @@ interface Product {
   productId: string;
   productName: string;
   Brand: string;
+  brand: string;
   price: number;
   productImages: string[];
   sectionType: string;
@@ -42,27 +43,19 @@ export default function NotFound() {
       setIsSearching(true);
       try {
         const results = await searchProducts(debouncedSearchTerm);
-        interface SearchResult {
-          productId: string;
-          productName: string;
-          Brand: string;
-          price: number;
-          productImages: string[];
-          sectionType: string;
-          spotlightType: string;
-          discount?: number;
-          chandelierLightingType: string;
-          hNumber: number;
-          maximumWattage: string;
-          lampBase: string;
-          mainMaterial: string;
-          beamAngle: string;
-        }
 
-        const formattedResults: Product[] = (results as SearchResult[]).map((product: SearchResult): Product => ({
+        const formattedResults: Product[] = results.map((product): Product => ({
           ...product,
           ProductId: product.productId,
+          Brand: product.brand,
+          brand: product.brand,
           discount: product.discount || 0,
+          chandelierLightingType: "",
+          hNumber: 0,
+          maximumWattage: "",
+          lampBase: "",
+          mainMaterial: "",
+          beamAngle: "",
         }));
         setFilteredProducts(formattedResults);
       } catch (error) {
@@ -77,7 +70,7 @@ export default function NotFound() {
   const t = useTranslations('not-found');
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <div className="flex-grow flex flex-col items-center justify-start pt-16 px-4 md:px-6">
+      <div className="grow flex flex-col items-center justify-start pt-16 px-4 md:px-6">
         <div className="w-full space-y-8">
           <h1 className="text-4xl font-extrabold tracking-tight text-center lg:text-5xl">
             {t('title')}

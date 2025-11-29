@@ -1,15 +1,13 @@
-import { Container } from "@repo/ui";
+
 import DashboardHeader from "@/components/dashboard-header";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { prisma } from "@repo/database";
-import { Button } from "@repo/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { formatPrice } from "@repo/ui/lib/index";
 import {
   Table,
   TableBody,
@@ -21,6 +19,9 @@ import {
 import { MoveHorizontalIcon } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { Container } from "@/components/container";
+import { formatPrice } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const Products = async () => {
   const { userId } = await auth();
@@ -77,7 +78,7 @@ const Products = async () => {
                       />
                       <p className="ml-2 uppercase">{order.productName}</p>
                     </TableCell>
-                    <TableCell>{order.product.Brand}</TableCell>
+                    <TableCell>{order.product.brand}</TableCell>
                     <TableCell>
                       {formatPrice(order.productPrice + order.shippingPrice)}
                     </TableCell>

@@ -2,14 +2,14 @@
 import { addToCart } from "@/actions/cart";
 import NormalPrice from "@/components/normal-price";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useTextDirection } from "@/helpers/language";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
-import { Button } from "@repo/ui/button";
-import { cn } from "@repo/ui/lib/utils";
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
-import { useState, useTransition, useMemo } from "react";
+import { useMemo, useState, useTransition } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { toast } from "sonner";
@@ -64,7 +64,6 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
 
   const { direction, isRTL } = useTextDirection(locale);
 
-  // Enhanced product name resolution with type safety
   const displayName = useMemo(() => {
     return product.translations?.name || product.productName;
   }, [product.translations?.name, product.productName]);
@@ -95,26 +94,21 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
   };
 
   function createLocalizedProductDescription(): string {
-    // Early return for existing translations
     if (product.translations?.description) {
-      return product.translations.description;
+      return product.translations.description ?? "";
     }
 
-    // Get specifications with null safety
     const specs = product.specifications?.[0] || {};
 
-    // Type-safe value extraction with fallbacks
     const mainMaterial = safeString(specs.mainMaterial || product.mainMaterial);
     const lampBase = safeString(specs.lampBase || product.lampBase);
     const beamAngle = safeString(specs.beamAngle || product.beamAngle);
     const maximumWattage = safeString(specs.maximumWattage || product.maximumWattage);
     const spotlightType = safeString(product.spotlightType);
-    const hNumberCha = safeString(product.hNumber);
+    const hNumberCha = safeString(product.hNumber?.toString());
 
-    // Critical fix: Ensure hNumber calculation works properly
     const calculatedWattage = product.hNumber ? product.hNumber * 12 : 0;
 
-    // Mister-led chandelier lamp logic
     if (product.brand === "mister-led" && product.chandelierLightingType === "lamp") {
       return t('descriptions.chandelier', {
         material: mainMaterial,
@@ -125,7 +119,6 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
       });
     }
 
-    // Balcom indoor spotlight logic
     if (product.brand === "balcom" &&
       (product.sectionType === "indoor" || product.sectionType === 'إضاءة داخلية')) {
       return t('descriptions.indoorSpotlight', {
@@ -135,7 +128,6 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
       });
     }
 
-    // Balcom outdoor spotlight logic
     if (product.brand === "balcom" &&
       (product.sectionType === "outdoor" || product.sectionType === 'إضاءة خارجية')) {
       return t('descriptions.outdoorSpotlight', {
@@ -143,8 +135,6 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
         wattage: maximumWattage,
       });
     }
-
-    // Mister-led LED chandelier logic
     if (product.brand === "mister-led" && product.chandelierLightingType === "LED") {
       return t('descriptions.ledChandelier', {
         material: mainMaterial,
@@ -159,10 +149,10 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
     <div className="relative p-2.5 select-none">
       <div>
         <div className={cn(
-          "absolute top-[5%] z-10 px-[5px] py-[7px] flex items-center justify-center text-background text-xs bg-[#676769] dark:bg-[#dad4d4]",
+          "absolute top-[5%] z-10 px-[5px] py-[7px] flex items-center justify-center text-muted text-xs bg-[#676769] dark:bg-[#dad4d4]",
           isRTL
-            ? "right-0 rounded-tr-[0] rounded-bl-[5px] rounded-tl-[5px] rounded-br-[0]"
-            : "left-0 rounded-tl-[0] rounded-br-[5px] rounded-tr-[5px] rounded-bl-[0]"
+            ? "right-0 rounded-tr-none rounded-bl-[5px] rounded-tl-[5px] rounded-br-none"
+            : "left-0 rounded-tl-none rounded-br-[5px] rounded-tr-[5px] rounded-bl-none"
         )}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -241,7 +231,7 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
             {createLocalizedProductDescription()}
           </p>
           <div>
-            <div className="font-medium text-lg mt-[5] mx-[0] mb-[0] text-left rtl:text-right">
+            <div className="font-medium text-lg mt-[5] mx-0 mb-0 text-left rtl:text-right">
               {product.discount > 0 ? (
                 <div className={cn(
                   "flex items-center",

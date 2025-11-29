@@ -1,24 +1,27 @@
 "use client";
 
-import { Button } from "@repo/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 import { OrderStatus } from "@repo/database";
 import { useMutation } from "@tanstack/react-query";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { changeOrderStatus } from "./action";
-import { cn } from "@repo/ui";
 
 const LABEL_MAP: Record<OrderStatus, string> = {
   awaiting_shipment: "Awaiting Shipment",
   processing: "Processing Shipment",
   cancelled: "Cancelled",
   fulfilled: "Fulfilled",
+  shipped: "Shipped",
+  delivered: "Delivered",
+  refunded: "Refunded"
 };
 
 const StatusDropdown = ({

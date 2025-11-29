@@ -112,7 +112,7 @@ const ProductsSection = async ({ params }: PagePropsTypes) => {
       ],
     });
 
-    const formattedProducts: ProductTranslationData[] = selectedProducts.map(product => {
+    const formattedProducts = selectedProducts.map(product => {
       const primaryTranslation = product.translations?.[0];
       const primarySpec = product.specifications?.[0];
       const getLocalizedName = () => {
@@ -122,6 +122,7 @@ const ProductsSection = async ({ params }: PagePropsTypes) => {
       };
 
       return {
+        id: product.id,
         productId: product.productId,
         productName: getLocalizedName(),
         brand: product.brand,
@@ -130,17 +131,26 @@ const ProductsSection = async ({ params }: PagePropsTypes) => {
         sectionType: product.sectionType,
         spotlightType: product.spotlightType,
         discount: product.discount,
+        quantity: product.quantity,
+        isActive: product.isActive,
+        featured: product.featured,
         chandelierLightingType: product.chandelierLightingType || undefined,
         hNumber: product.hNumber || undefined,
-        maximumWattage: primarySpec?.maximumWattage || undefined,
-        mainMaterial: primarySpec?.mainMaterial || undefined,
-        beamAngle: primarySpec?.beamAngle || undefined,
-        lampBase: primarySpec?.lampBase || undefined,
+        maximumWattage: primarySpec?.maximumWattage ?? undefined,
+        mainMaterial: primarySpec?.mainMaterial ?? undefined,
+        beamAngle: primarySpec?.beamAngle ?? undefined,
+        lampBase: primarySpec?.lampBase ?? undefined,
         translations: {
-          name: primaryTranslation?.name,
-          description: primaryTranslation?.description,
+          name: primaryTranslation?.name || undefined,
+          description: primaryTranslation?.description || undefined,
         },
-        specifications: product.specifications,
+        specifications: product.specifications.map(spec => ({
+          language: spec.language,
+          maximumWattage: spec.maximumWattage ?? undefined,
+          mainMaterial: spec.mainMaterial ?? undefined,
+          beamAngle: spec.beamAngle ?? undefined,
+          lampBase: spec.lampBase ?? undefined,
+        })),
       };
     });
     console.log(`[ProductsSection] Loading ${formattedProducts.length} products for locale: ${locale}`);

@@ -1,15 +1,15 @@
 "use client";
 
 import { changeProductColorTemp } from "@/actions/product-color-temp";
-import { Button } from "@repo/ui/button";
-import { cn } from "@repo/ui";
+import { Button } from "@/components/ui/button";
+import { PRODUCT_TEMP_LABEL_MAP } from "@/config/config";
+import { useRouter } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
+import { SupportedLanguage } from "@/types/products";
 import { ProductColorTemp } from "@repo/database";
 import { useMutation } from "@tanstack/react-query";
-import {  useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useState } from "react";
-import { SupportedLanguage } from "@/types/products";
-import { useRouter } from "@/i18n/navigation";
-import { PRODUCT_TEMP_LABEL_MAP } from "@/config/config";
 
 
 

@@ -1,14 +1,15 @@
+import { getLocaleFromParams } from "@/lib/i18n/utils"
 import { constructMetadata } from "@/lib/utils"
+import { PagePropsTypes } from "@/types"
 import { prisma } from "@repo/database"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Confirm from "./confirm"
-import { Metadata } from "next"
-import { getLocaleFromParams } from "@/lib/i18n/utils"
-import { PagePropsTypes } from "@/types"
 
 
 export default async function Page({ searchParams }: PagePropsTypes) {
-  const orderId = searchParams?.orderId
+  const resolvedSearchParams = searchParams ? await searchParams : undefined
+  const orderId = resolvedSearchParams?.orderId
 
   if (!orderId || typeof orderId !== "string") {
     return notFound()
@@ -30,9 +31,10 @@ export default async function Page({ searchParams }: PagePropsTypes) {
 }
 
 export async function generateMetadata({ params, searchParams }: PagePropsTypes): Promise<Metadata> {
-  const orderId = searchParams?.orderId
-  const { locale: localeParam } = await params
-  const locale = getLocaleFromParams(await params)
+  const resolvedSearchParams = searchParams ? await searchParams : undefined
+  const orderId = resolvedSearchParams?.orderId
+  const resolvedParams = await params
+  const locale = getLocaleFromParams(resolvedParams)
 
   const titles: Record<string, string> = {
     en: "Confirm your order by typing all your info",

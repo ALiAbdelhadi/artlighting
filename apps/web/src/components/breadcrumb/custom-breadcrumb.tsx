@@ -1,7 +1,7 @@
 "use client";
 
-import { Container } from "@repo/ui";
-import { Breadcrumb, BreadcrumbItem } from "@repo/ui/breadcrumb";
+import { Container } from "@/components/container";
+import { Breadcrumb, BreadcrumbItem } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./breadcrumb.module.css";

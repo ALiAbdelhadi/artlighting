@@ -1,8 +1,9 @@
 "use client";
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
-import DiscountPrice from "@/components/discount-price";
+import { Container } from "@/components/container";
 import NormalPrice from "@/components/normal-price";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -14,15 +15,14 @@ import {
 import { PRODUCT_TEMP_LABEL_MAP } from "@/config/config";
 import { Link, useRouter } from "@/i18n/navigation";
 import { calculateEstimatedDeliveryDate, formatNumber, isProductChandLamp } from "@/lib/utils";
-import type { Configuration, Order, Product, ProductSpecification, ShippingAddress } from "@/types/products"
-import { Container } from "@repo/ui";
-import { Separator } from "@repo/ui/separator";
+import type { Configuration, Order, Product, ProductSpecification, ShippingAddress, SupportedLanguage } from "@/types/products";
+import { ProductColorTemp } from "@/types/products";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 type OrderWithRelations = Order & {
@@ -362,7 +362,7 @@ export default function ThankYou({
                                     <h4 className="text-nowrap font-semibold text-card-foreground">
                                       {order.productName}
                                     </h4>
-                                    <p className="text-muted-foreground font-medium text-xs md:text-sm break-words text-wrap">
+                                    <p className="text-muted-foreground font-medium text-xs md:text-sm wrap-break-word text-wrap">
                                       {t("modernDesign")}
                                     </p>
                                   </div>
@@ -372,7 +372,7 @@ export default function ThankYou({
                                 {formatNumber(priceCalculations.quantity, isRTL ? "ar" : "en")}
                               </TableCell>
                               <TableCell className="font-semibold capitalize">
-                                {PRODUCT_TEMP_LABEL_MAP[locale]?.[order.productColorTemp] || order.productColorTemp}
+                                {PRODUCT_TEMP_LABEL_MAP[locale as SupportedLanguage]?.[order.productColorTemp as ProductColorTemp] || order.productColorTemp}
                               </TableCell>
                               {order.brand === "balcom" && (
                                 <TableCell className="font-semibold text-black">

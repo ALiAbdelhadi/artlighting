@@ -3,12 +3,12 @@ import { PagePropsTypes } from "@/types"
 import { prisma } from "@repo/database"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import Preview from "./preview"
+import Preview, { type ProductWithSpecs } from "./preview"
 
 const Page = async ({ params, searchParams }: PagePropsTypes) => {
   const resolvedParams = await params
   const locale = getLocaleFromParams(resolvedParams)
-  const { ProductId } = resolvedParams // Changed to match parameter name
+  const { ProductId } = resolvedParams
   const resolvedSearchParams = await searchParams
   const id = resolvedSearchParams?.id
 
@@ -19,7 +19,6 @@ const Page = async ({ params, searchParams }: PagePropsTypes) => {
     timestamp: new Date().toISOString()
   })
 
-  // Initialize i18n service for this locale
   const { service } = await getServerI18n(locale)
 
   if (!ProductId && (!id || typeof id !== "string")) {
@@ -158,13 +157,31 @@ const Page = async ({ params, searchParams }: PagePropsTypes) => {
       console.error("Product not found after all attempts")
       return notFound()
     }
-    const localizedProduct = {
+    const primarySpecification = product.specifications?.[0] || productSpecification || undefined
+
+    const localizedProduct: ProductWithSpecs = {
       ...product,
       productName: product.translations?.[0]?.name || product.productName,
-      description: product.translations?.[0]?.description || null,
-      localizedSpecs: product.specifications?.[0] || {},
+      description: product.translations?.[0]?.description ?? undefined,
+      localizedSpecs: primarySpecification,
+      specification: primarySpecification,
       categoryName: product.category?.translations?.[0]?.name || product.category?.name,
-      lightingTypeName: product.lightingtype?.translations?.[0]?.name || product.lightingtype?.name
+      lightingTypeName: product.lightingtype?.translations?.[0]?.name || product.lightingtype?.name,
+      maxIP: product.maxIP ?? undefined,
+      luminousFlux: primarySpecification?.luminousFlux ?? undefined,
+      mainMaterial: primarySpecification?.mainMaterial ?? undefined,
+      beamAngle: primarySpecification?.beamAngle ?? undefined,
+      colorTemperature: primarySpecification?.colorTemperature ?? undefined,
+      lifeTime: primarySpecification?.lifeTime ?? undefined,
+      energySaving: primarySpecification?.energySaving ?? undefined,
+      cri: primarySpecification?.cri ?? undefined,
+      brandOfLed: primarySpecification?.brandOfLed ?? undefined,
+      electrical: primarySpecification?.electrical ?? undefined,
+      input: primarySpecification?.input ?? undefined,
+      finish: primarySpecification?.finish ?? undefined,
+      lampBase: primarySpecification?.lampBase ?? undefined,
+      hNumber: product.hNumber ?? undefined,
+      chandelierLightingType: product.chandelierLightingType ?? undefined,
     }
 
     console.log("Final data for preview:", {

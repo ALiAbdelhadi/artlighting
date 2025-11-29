@@ -50,7 +50,7 @@ export default async function Page({ params }: PagePropsTypes) {
       totalProducts: products.length,
       productsWithHNumber: productsWithHNumber.length,
       productsWithChandelierType: productsWithChandelierType.length,
-      allProductsHaveSpecifications: products.every(p => p.specifications || p.specificationsArray?.length > 0),
+      allProductsHaveSpecifications: products.every(p => p.specifications || (p.specificationsArray && p.specificationsArray.length > 0)),
     });
 
     const displayName = currentLightingType.localizedName;
@@ -62,7 +62,7 @@ export default async function Page({ params }: PagePropsTypes) {
           subCategory={subCategory}
           lightingType={displayName}
           locale={locale}
-          total={total}
+          total={total} hasMore={false}
         />
       </>
     );

@@ -1,6 +1,6 @@
 "use client";
 
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import ProductCard from "@/components/product-card/product-card";
 import {
   Carousel,
@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { cn } from "@repo/ui/lib/utils";
+import { cn } from "@/lib/utils"
 import { Link } from "@/i18n/navigation";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -80,31 +80,44 @@ interface ProductsClientProps {
   locale?: string;
 }
 
+type ProductCardProduct = Omit<Product, 'translations' | 'specifications'> & {
+  translations?: {
+    name?: string;
+    description?: string;
+  };
+  specifications?: Array<{
+    maximumWattage?: string;
+    mainMaterial?: string;
+    beamAngle?: string;
+    lampBase?: string;
+  }>;
+};
+
 const getLocaleAwareStyles = (locale: string) => {
   const isRTL = locale === 'ar';
 
   return {
     carouselContent: cn(
       "pl-4",
-      isRTL && "pr-4 pl-0"
+      isRTL && "pr-6 pl-0"
     ),
     carouselItem: cn(
-      "pl-1 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 m-0",
-      isRTL && "pr-1 pl-0"
+      "pl-6 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 m-0",
+      isRTL && "pr-6 pl-0"
     ),
     carouselPrevious: cn(
       "h-10 w-10 bg-slate-50 text-gray-950",
-      isRTL ? "mr-9" : "ml-9"
+      isRTL ? "mr-6" : "ml-6"
     ),
     carouselNext: cn(
       "h-10 w-10 bg-slate-50 text-gray-950",
-      isRTL ? "ml-9" : "mr-9"
+      isRTL ? "ml-6" : "mr-6"
     ),
     direction: isRTL ? 'rtl' : 'ltr'
   };
 };
 
-// Debug utility with enhanced analytics
+
 const analyzeProductData = (products: Product[], locale: string) => {
   if (products.length === 0) {
     console.log('[ProductsClient] No products available for analysis');
@@ -130,13 +143,12 @@ const analyzeProductData = (products: Product[], locale: string) => {
   });
 };
 
-// Hydration-safe carousel component with SSR compatibility
 const HydrationSafeCarousel = ({
   products,
   styles,
   locale
 }: {
-  products: Product[],
+  products: ProductCardProduct[],
   styles: ReturnType<typeof getLocaleAwareStyles>,
   locale: string
 }) => {
@@ -146,7 +158,6 @@ const HydrationSafeCarousel = ({
     setIsMounted(true);
   }, []);
 
-  // Return server-compatible version during SSR
   if (!isMounted) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
@@ -159,7 +170,6 @@ const HydrationSafeCarousel = ({
     );
   }
 
-  // Return interactive carousel after hydration
   return (
     <Carousel className="w-full">
       <CarouselContent className={styles.carouselContent}>
@@ -178,17 +188,14 @@ const HydrationSafeCarousel = ({
 export default function ProductsClient({ products, locale: propLocale = 'ar' }: ProductsClientProps) {
   const [isClicked, setIsClicked] = useState(false);
 
-  // Use prop locale directly to prevent hydration mismatch
   const currentLocale = propLocale;
 
   const params = useParams();
   const pathname = usePathname();
   const t = useTranslations("products-client");
 
-  // Pre-calculate styles during render to ensure consistency
   const localeStyles = getLocaleAwareStyles(currentLocale);
 
-  // Enhanced product data analysis
   useEffect(() => {
     if (products.length > 0) {
       analyzeProductData(products, currentLocale);
@@ -199,30 +206,39 @@ export default function ProductsClient({ products, locale: propLocale = 'ar' }: 
     setIsClicked(true);
   };
 
-  // Get localized category URL
-  const getCategoryUrl = () => {
-    return `/${currentLocale}/category`;
-  };
-
-  // Enhanced product transformation with type safety
-  const transformProductData = (product: Product): Product => {
-    let normalizedTranslations: Array<{ language: string; name?: string; description?: string }> | undefined;
+  const transformProductData = (product: Product): ProductCardProduct => {
+    let normalizedTranslations: { name?: string; description?: string } | undefined;
 
     if (product.translations) {
       if (Array.isArray(product.translations)) {
-        normalizedTranslations = product.translations;
+        // Find translation for current locale, or use first one as fallback
+        const localeTranslation = product.translations.find(t => t.language === currentLocale) 
+          || product.translations[0];
+        normalizedTranslations = {
+          name: localeTranslation?.name,
+          description: localeTranslation?.description
+        };
       } else {
-        normalizedTranslations = [{
-          language: currentLocale,
+        // Already in the correct format
+        normalizedTranslations = {
           name: product.translations.name,
           description: product.translations.description
-        }];
+        };
       }
     }
+
+    // Transform specifications to match ProductCard format
+    const normalizedSpecifications = product.specifications?.map(spec => ({
+      maximumWattage: spec.maximumWattage,
+      mainMaterial: spec.mainMaterial,
+      beamAngle: spec.beamAngle,
+      lampBase: spec.lampBase,
+    }));
 
     return {
       ...product,
       translations: normalizedTranslations,
+      specifications: normalizedSpecifications,
       hNumber: product.hNumber ?? undefined,
       quantity: product.quantity ?? 0,
       isActive: product.isActive ?? true,
@@ -265,7 +281,7 @@ export default function ProductsClient({ products, locale: propLocale = 'ar' }: 
                       isClicked,
                   }
                 )}
-                href={getCategoryUrl()}
+                href="/category"
                 onClick={handleClickedButtons}
               >
                 {t("exploreAllProducts")}

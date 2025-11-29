@@ -17,9 +17,6 @@ const Page = async () => {
     toast.error("User not authorized, redirecting to 404")
     return redirect("/404");
   }
-  const discountData = await prisma.configuration.findFirst({
-    select: { discount: true },
-  });
-  return <Dashboard discount={discountData?.discount || 0} />;
+  return <Dashboard />;
 };
 export default Page;

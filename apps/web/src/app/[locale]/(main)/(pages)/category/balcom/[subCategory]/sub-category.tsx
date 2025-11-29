@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { SupportedLanguage } from "@/types/products";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { motion } from "framer-motion";
 
 interface LocalizedLightingType {

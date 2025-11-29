@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation"
-import { cn } from "@repo/ui/lib/utils"
+import { cn } from "@/lib/utils"
 import Image from "next/image"
 
 interface Project {

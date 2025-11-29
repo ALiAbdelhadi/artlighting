@@ -105,7 +105,10 @@ export default async function Page({ params }: PagePropsTypes) {
       // Convert null to undefined for chandelierLightingType
       chandelierLightingType: product.chandelierLightingType || undefined,
       category: product.category,
-      lightingtype: product.lightingtype,
+      // Map lightingtype to lightingType (camelCase) for type compatibility
+      lightingType: product.lightingtype,
+      // Add productChandelierLamp with default value if missing
+      productChandelierLamp: (product.productChandLamp as any) || "lamp9w",
       // Add missing specification fields from the database model
       input: localizedSpecs.input || undefined,
       maximumWattage: localizedSpecs.maximumWattage ? parseInt(localizedSpecs.maximumWattage) : undefined,
@@ -152,13 +155,21 @@ export default async function Page({ params }: PagePropsTypes) {
       console.log(`New configuration created with ID: ${configuration.id}`);
     }
 
+    // Convert null to undefined for lampPriceIncrease and productIp to match Configuration type
+    const normalizedConfiguration = configuration ? {
+      ...configuration,
+      lampPriceIncrease: configuration.lampPriceIncrease ?? undefined,
+      productIp: configuration.productIp ?? undefined,
+      currency: configuration.currency as any,
+    } : undefined;
+
     return (
       <>
         <Breadcrumb />
         <ProductRouter
-          product={localizedProduct}
-          relatedProducts={relatedProducts}
-          configuration={configuration}
+          product={localizedProduct as any}
+          relatedProducts={relatedProducts as any}
+          configuration={normalizedConfiguration as any}
           locale={locale}
         />
       </>
@@ -303,6 +314,10 @@ const getRelatedBalcomProducts = async (product: any, subCategory: string, local
     productName: relatedProduct.translations?.[0]?.name || relatedProduct.productName,
     localizedSpecs: relatedProduct.specifications?.[0] || {},
     chandelierLightingType: relatedProduct.chandelierLightingType || undefined,
+    // Map lightingtype to lightingType (camelCase) for type compatibility
+    lightingType: relatedProduct.lightingtype,
+    // Add productChandelierLamp with default value if missing
+    productChandelierLamp: (relatedProduct.productChandLamp as any) || "lamp9w",
     input: relatedProduct.specifications?.[0]?.input || undefined,
     maximumWattage: relatedProduct.specifications?.[0]?.maximumWattage ?
       parseInt(relatedProduct.specifications[0].maximumWattage) : undefined,

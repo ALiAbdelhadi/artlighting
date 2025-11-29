@@ -1,12 +1,12 @@
 "use client";
-import { Button } from "@repo/ui/button";
+import { Button } from "@/components/ui/button";
 import { DASHBOARDS } from "@/constant";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode, useState } from "react";
-import { cn } from "@repo/ui";
+import { cn } from "@/lib/utils";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);

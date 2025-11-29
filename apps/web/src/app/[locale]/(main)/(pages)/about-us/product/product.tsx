@@ -1,4 +1,4 @@
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import Button from "@/components/custom-button";
 import Image from "next/image";
 import { useTranslations } from "next-intl";

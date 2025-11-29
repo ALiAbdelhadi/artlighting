@@ -1,5 +1,5 @@
-import { cn } from "@repo/ui"
-import { motion } from "framer-motion";
+import { cn } from "@/lib/utils"
+import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import { fadeIn } from "../lib/motion";
 
@@ -21,10 +21,10 @@ export default function EftarRamdanCard({
 }: EftarRamdanCardProps) {
   return (
     <motion.div
-      variants={fadeIn("right", "spring", index * 0.3, 0.75)}
+      variants={fadeIn("right", "spring", index * 0.3, 0.75) as Variants}
       className={cn(
         "relative flex items-center justify-center min-w-[150px] h-[400px] sm:h-[500px] md:h-[600px] transition-[flex] duration-500 ease-out cursor-pointer",
-        active === id ? "lg:flex-[3.5] flex-[10]" : "lg:flex-[0.2] flex-[1.5]",
+        active === id ? "lg:flex-[3.5] flex-10" : "lg:flex-[0.2] flex-[1.5]",
       )}
       onClick={() => handleActive(id)}
       animate="show"
@@ -38,7 +38,7 @@ export default function EftarRamdanCard({
         className="absolute h-full object-cover rounded-[20px] sm:rounded-[24px]"
       />
       {active !== id ? (
-        <h3 className="font-semibold sm:text-[26px] text-[18px] text-white absolute z-0 lg:bottom-20 lg:rotate-[-90deg] lg:origin-[0,0]">
+        <h3 className="font-semibold sm:text-[26px] text-[18px] text-white absolute z-0 lg:bottom-20 lg:-rotate-90 lg:origin-[0,0]">
           {title}
         </h3>
       ) : (

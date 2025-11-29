@@ -1,12 +1,12 @@
 "use client"
 
 import { BentoGridItem } from "@/components/bento-grid-item"
-import { Container } from "@repo/ui"
-import { cn } from "@repo/ui/lib/utils"
+import { Container } from "@/components/container"
+import { Link } from "@/i18n/navigation"
+import { cn } from "@/lib/utils"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { TextPlugin } from "gsap/TextPlugin"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 
 interface Project {

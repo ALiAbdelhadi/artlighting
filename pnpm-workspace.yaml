@@ -6,6 +6,7 @@ onlyBuiltDependencies:
   - '@clerk/shared'
   - '@prisma/client'
   - '@prisma/engines'
+  - '@swc/core'
   - '@tailwindcss/oxide'
   - es5-ext
   - esbuild

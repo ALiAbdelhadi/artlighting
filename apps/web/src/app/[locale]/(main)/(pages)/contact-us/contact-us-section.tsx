@@ -1,7 +1,7 @@
   "use client";
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import { Link } from "@/i18n/navigation";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { motion } from "framer-motion";
 import { Check, Facebook, Instagram, Youtube } from "lucide-react";
 import { useTranslations } from 'next-intl';

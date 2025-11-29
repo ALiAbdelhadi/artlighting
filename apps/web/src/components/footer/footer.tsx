@@ -1,6 +1,6 @@
 import { ChandelierItems, IndoorItems, OutdoorItems } from "@/constants";
 import { Link } from "@/i18n/navigation";
-import { Container } from "@repo/ui/container";
+import { Container } from "@/components/container";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import { useTranslations } from "next-intl";
 import ChangeTheme from "../theme-changer";

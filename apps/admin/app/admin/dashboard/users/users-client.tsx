@@ -1,8 +1,6 @@
 "use client";
 
 import DashboardHeader from "@/components/dashboard-header";
-import UserAvatar from "@/components/user-avatar";
-import { ShippingAddress, User } from "@repo/database";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,11 +11,24 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import UserAvatar from "@/components/user-avatar";
 import { SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
-type UserWithShipping = User & { shippingAddress: ShippingAddress | null };
+type UserWithShipping = {
+  id: string;
+  email: string | null;
+  createdAt: Date;
+  shippingAddress: {
+    fullName: string;
+    phoneNumber: string;
+    address: string;
+  } | null;
+  orders: {
+    isCompleted: boolean;
+  }[];
+};
 
 const UsersClient = ({ users }: { users: UserWithShipping[] }) => {
   const [searchItem, setSearchItem] = useState<string>("");
@@ -117,12 +128,12 @@ const UsersClient = ({ users }: { users: UserWithShipping[] }) => {
                     filteredUsers.map((user) => (
                       <TableRow key={user.id}>
                         <TableCell>
-                          <Link href={`/admin/dashboard/Users/${user.id}`}>
+                          <Link href={`/admin/dashboard/users/${user.id}`}>
                             {user.id}
                           </Link>
                         </TableCell>
                         <TableCell className="flex items-center text-nowrap">
-                          <UserAvatar email={user.email} className="mr-1.5" />
+                          <UserAvatar email={user.email ?? ""} className="mr-1.5" />
                           {user.shippingAddress?.fullName}
                         </TableCell>
                         <TableCell>

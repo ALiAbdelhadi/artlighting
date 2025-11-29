@@ -47,7 +47,7 @@ export const DashboardServer = async () => {
 
   const simplifiedOrders = orders.map((order) => {
     const discountRate =
-      order.product.discount ?? order.configuration.discount ?? 0; // Fetch discount for each product
+      order.product.discount ?? order.configuration?.discount
     let totalPrice;
     if (discountRate > 0) {
       const discountedPrice = order.configPrice * (1 - discountRate);

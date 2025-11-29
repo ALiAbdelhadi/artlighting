@@ -1,12 +1,19 @@
 import { CompletingAllOrderInfo } from "@/app/[locale]/(main)/(configure)/complete/action";
 import { prisma } from "@repo/database";
 
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 export async function GET(
-  request: Request,
-  { params }: { params: { orderId: string } },
+  request: NextRequest,
+  { params }: { params: Promise<{ locale: string }> },
 ) {
-  const orderId = parseInt(params.orderId, 10);
+  const { locale } = await params;
+  // Note: orderId should come from query params or body, not route params
+  const { searchParams } = new URL(request.url);
+  const orderIdParam = searchParams.get("orderId");
+  if (!orderIdParam) {
+    return NextResponse.json({ error: "Order ID is required" }, { status: 400 });
+  }
+  const orderId = parseInt(orderIdParam, 10);
   if (isNaN(orderId)) {
     return NextResponse.json({ error: "Invalid order ID" }, { status: 400 });
   }
@@ -24,7 +31,11 @@ export async function GET(
     );
   }
 }
-export async function POST(request: Request) {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ locale: string }> }
+) {
+  const { locale } = await params;
   try {
     const body = await request.json();
     const orderId = parseInt(body.orderId, 10);

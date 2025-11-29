@@ -1,6 +1,7 @@
 "use client";
 
 import ColorTemperatureSection from "@/components/color-temperature-section";
+import { Container } from "@/components/container";
 import ProductCard from "@/components/product-card/product-card";
 import ProductFeatures from "@/components/product-features";
 import ProductImages from "@/components/product-images";
@@ -12,9 +13,11 @@ import {
   ProductCardProps,
   ProductSpecification,
   ProductsProps,
-  SpecificationsTable
+  SpecificationsTable,
+  OrderStatus,
+  SupportedLanguage,
+  ProductIP
 } from "@/types/products";
-import { Container } from "@repo/ui";
 import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 
@@ -60,9 +63,9 @@ export default function BalcomProducts({
     productChandLamp: product.productChandelierLamp || "lamp9w",
     quantity: quantity,
     isCompleted: false,
-    status: "awaiting_shipment",
+    status: "awaiting_shipment" as OrderStatus,
     currency: "EGP",
-    customerLanguage: locale,
+    customerLanguage: locale as SupportedLanguage,
     createdAt: new Date(),
     updatedAt: new Date(),
     configurationId: configuration?.id || "",
@@ -175,7 +178,6 @@ export default function BalcomProducts({
 
   const specificationsTable = buildBalcomSpecificationsTable();
 
-  // Transform for Balcom products (technical specifications focused)
   const transformToBalcomProductCardProps = (relatedProduct: LocalizedProductWithRelations): ProductCardProps => {
     const specs = relatedProduct.localizedSpecs || {};
 
@@ -184,7 +186,7 @@ export default function BalcomProducts({
       productId: relatedProduct.productId,
       language: locale,
       input: specs.input || relatedProduct.input || null,
-      maximumWattage: specs.maximumWattage || relatedProduct.maximumWattage?.toString() || null,
+      maximumWattage: specs.maximumWattage ? parseInt(specs.maximumWattage) : (relatedProduct.maximumWattage ?? undefined),
       brandOfLed: specs.brandOfLed || relatedProduct.brandOfLed || null,
       luminousFlux: specs.luminousFlux || relatedProduct.luminousFlux || null,
       mainMaterial: specs.mainMaterial || relatedProduct.mainMaterial || null,
@@ -201,7 +203,7 @@ export default function BalcomProducts({
       finish: specs.finish || relatedProduct.finish || null,
       lampBase: specs.lampBase || relatedProduct.lampBase || null,
       bulb: null,
-      customSpecs: null,
+      customSpecs: undefined,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -210,7 +212,7 @@ export default function BalcomProducts({
       productId: relatedProduct.productId,
       productName: relatedProduct.productName,
       price: relatedProduct.price,
-      discount: relatedProduct.discount,
+      discount: relatedProduct.discount || 0,
       productImages: relatedProduct.productImages,
       Brand: relatedProduct.brand,
       brand: relatedProduct.brand,
@@ -259,7 +261,7 @@ export default function BalcomProducts({
                 configuration={configuration}
                 sectionTypes={[product.sectionType]}
                 sectionType={product.sectionType}
-                maximumWattage={product.localizedSpecs?.maximumWattage}
+                maximumWattage={product.localizedSpecs?.maximumWattage ? parseInt(product.localizedSpecs.maximumWattage) : undefined}
                 mainMaterial={product.localizedSpecs?.mainMaterial || product.mainMaterial || ""}
                 beamAngle={product.localizedSpecs?.beamAngle || product.beamAngle || ""}
                 spotlightType={product.spotlightType}
@@ -273,7 +275,7 @@ export default function BalcomProducts({
                 finish={product.localizedSpecs?.finish || product.finish || undefined}
                 input={product.localizedSpecs?.input || product.input || undefined}
                 lampBase={product.localizedSpecs?.lampBase || product.lampBase || undefined}
-                ip={product.localizedSpecs?.ip ? parseInt(product.localizedSpecs.ip) : product.ip || 20}
+                ip={(product.localizedSpecs?.ip as ProductIP) || product.productIp || ("IP20" as ProductIP)}
               />
             </div>
 
@@ -286,17 +288,14 @@ export default function BalcomProducts({
                 sectionType={product.sectionType}
                 locale={locale}
               />
-
               <ProductFeatures
                 specificationsTable={specificationsTable}
-                locale={locale}
               />
-
-              <ColorTemperatureSection
-                specificationsTable={specificationsTable}
-                locale={locale}
-              />
-
+              {specificationsTable["Color Temperature"] && (
+                <ColorTemperatureSection
+                  specificationsTable={specificationsTable as any}
+                />
+              )}
               <section className="space-y-8">
                 <div className="text-center space-y-2">
                   <h2 className="text-2xl md:text-3xl font-semibold">
@@ -318,13 +317,12 @@ export default function BalcomProducts({
                     </p>
                   )}
                 </div>
-
                 {relatedProducts.length > 0 && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 mb-12">
                     {relatedProducts.map((relatedProduct) => (
                       <ProductCard
                         key={relatedProduct.productId}
-                        product={transformToBalcomProductCardProps(relatedProduct)}
+                        product={transformToBalcomProductCardProps(relatedProduct) as any}
                         locale={locale}
                       />
                     ))}

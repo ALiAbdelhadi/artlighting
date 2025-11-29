@@ -1,12 +1,13 @@
-import { Container } from "@repo/ui"
+import { Container } from "@/components/container";
 import { useTranslations } from "next-intl";
+
 export default function MissionAndVision() {
   const t = useTranslations("mission-vision");
   return (
     <div className="py-16">
       <Container>
         <div
-          className={`flex my-[0] flex-col md:max-w-screen-lg w-full space-y-12`}
+          className={`flex my-0 flex-col md:max-w-5xl w-full space-y-12`}
         >
           <div className="space-y-4">
             <h2 className="md:text-4xl text-2xl text-primary font-semibold">

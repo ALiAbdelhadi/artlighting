@@ -1,14 +1,14 @@
 "use client";
 
+import { Container } from "@/components/container";
 import LoginModal from "@/components/login-model";
 import NormalPrice from "@/components/normal-price";
 import ProductImages from "@/components/product-images";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useRouter } from "@/i18n/navigation";
 import { useUser } from "@clerk/nextjs";
 import { Configuration } from "@repo/database";
-import { Container } from "@repo/ui";
-import { Button } from "@repo/ui/button";
-import { ScrollArea } from "@repo/ui/scroll-area";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
@@ -19,7 +19,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { toast } from "sonner";
 import { createOrder } from "./action";
 
-interface ProductWithSpecs {
+export interface ProductWithSpecs {
   id: string;
   productId: string;
   productName: string;
@@ -49,6 +49,9 @@ interface ProductWithSpecs {
   chandelierLightingType?: string;
   specification?: any;
   localizedSpecs?: any;
+  description?: string;
+  categoryName?: string;
+  lightingTypeName?: string;
 }
 
 const fetchProduct = async (productId: string, locale: string): Promise<ProductWithSpecs> => {
@@ -140,7 +143,7 @@ export default function Preview({
     enabled: !!actualProductId && !initialProduct,
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 
   const {
@@ -159,7 +162,6 @@ export default function Preview({
   const finalProduct = initialProduct || product;
   const finalConfiguration = initialConfiguration || configuration || fetchedConfiguration;
 
-  // حساب الأسعار المبسط - نستخدم ما هو محفوظ في قاعدة البيانات
   const priceCalculations = useMemo(() => {
     if (!finalConfiguration) {
       return {
@@ -172,12 +174,11 @@ export default function Preview({
       };
     }
 
-    const configPrice = finalConfiguration.configPrice || 0; // السعر قبل الخصم
-    const totalPrice = finalConfiguration.totalPrice || 0; // السعر النهائي بعد الخصم
+    const configPrice = finalConfiguration.configPrice || 0;
+    const totalPrice = finalConfiguration.totalPrice || 0;
     const quantity = finalConfiguration.quantity || 1;
     const discount = finalConfiguration.discount || 0;
 
-    // حساب السعر للوحدة الواحدة بعد الخصم
     const unitPriceAfterDiscount = quantity > 0 ? totalPrice / quantity : 0;
     const hasDiscount = discount > 0;
 
@@ -365,7 +366,7 @@ export default function Preview({
               )}
             </div>
             <div>
-              <div className="h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col">
+              <div className="h-150 w-full col-span-full lg:col-span-1 flex flex-col">
                 <ScrollArea className="relative flex-1 overflow-auto" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                   <div className="p-[18px]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                     <div className="-ml-4">

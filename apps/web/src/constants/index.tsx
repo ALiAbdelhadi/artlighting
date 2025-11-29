@@ -47,19 +47,22 @@ export const brands = [
   {
     id: "balcom",
     name: "Balcom",
-    logo: "/brand/balcom.jpeg",
+    logo1: "/brand/balcom-black.png",
+    logo2: "/brand/balcom-white.png",
     link: "/category/balcom",
   },
   {
     id: "misterLed",
     name: "Mister LED",
-    logo: "/brand/mrled.png",
+    logo1: "/brand/mrled-black.png",
+    logo2: "/brand/mrled-white.png",
     link: "/category/mister-led",
   },
   {
     id: "jetra",
     name: "Jetra",
-    logo: "/brand/jetra.png",
+    logo1: "/brand/jetra-black.png",
+    logo2: "/brand/jetra-white.png",
     link: "/category/jetra",
   },
 ];

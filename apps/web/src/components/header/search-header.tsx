@@ -3,8 +3,8 @@
 import { searchProducts } from "@/actions/search"
 import { Input } from "@/components/ui/input"
 import { Link } from "@/i18n/navigation"
-import { Button } from "@repo/ui/button"
-import { ScrollArea } from "@repo/ui/scroll-area"
+import { Button } from "@/components/ui/button"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Loader2, Search } from "lucide-react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
@@ -121,7 +121,7 @@ export function SearchHeader({ isMobile = false, isMobileSheet = false }: Search
 
     return (
         <div className="relative" ref={searchRef}>
-            <div className={`relative ${isMobileSheet ? "w-full" : "w-80"}`}>
+            <div className={`relative ${isMobileSheet ? "w-full" : "w-64"}`}>
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground rtl:left-auto rtl:right-3" />
                 <Input
                     type="search"
@@ -132,7 +132,6 @@ export function SearchHeader({ isMobile = false, isMobileSheet = false }: Search
                     onFocus={handleInputFocus}
                 />
             </div>
-
             {showResults && (
                 <SearchResults
                     isSearching={isSearching}
@@ -241,7 +240,7 @@ function ProductItem({ product, onResultClick }: {
                     <Image
                         src={product.productImages[0]}
                         alt={product.productName}
-                        className="object-cover rounded w-16 h-16 flex-shrink-0"
+                        className="object-cover rounded w-16 h-16 shrink-0"
                         width={64}
                         height={64}
                     />

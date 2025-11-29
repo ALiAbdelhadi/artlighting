@@ -1,11 +1,11 @@
 "use client";
 
 import { changeProductChandLamp } from "@/actions/product-chandLamp";
-import { saveConfig } from "@/components/action";
+import { saveConfig, type SaveConfigArgs } from "@/components/action";
 import { formatNumber } from "@/lib/utils";
 import { ProductChandLamp } from "@repo/database";
-import { cn } from "@repo/ui";
-import { Button } from "@repo/ui/button";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -22,6 +22,7 @@ interface ProductChandelierLampButtonsProps {
   productChandLamp: ProductChandLamp;
   hNumber: number;
   basePrice: number;
+  discount?: number;
   priceIncrease?: number;
   onProductLampChange: (
     newProductLamp: ProductChandLamp,
@@ -35,6 +36,7 @@ export default function ProductChandelierLampButtons({
   productChandLamp,
   hNumber,
   basePrice,
+  discount = 0,
   priceIncrease = 0,
   onProductLampChange,
 }: ProductChandelierLampButtonsProps) {
@@ -85,14 +87,14 @@ export default function ProductChandelierLampButtons({
     const lampPriceIncrease = calculateLampPriceIncrease(lampType);
     const totalConfigPrice = basePrice + priceIncrease + lampPriceIncrease;
 
-    const configData = {
+    const configData: SaveConfigArgs = {
       configId,
       productId,
-      configPrice: totalConfigPrice,
+      basePrice,
       priceIncrease,
       lampPriceIncrease,
+      discount,
       quantity: 1,
-      totalPrice: Math.ceil(totalConfigPrice),
     };
 
     console.log("Saving lamp configuration:", {

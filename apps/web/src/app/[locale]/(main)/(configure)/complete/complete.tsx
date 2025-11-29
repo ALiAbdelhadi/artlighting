@@ -1,14 +1,13 @@
 "use client"
-import DiscountPrice from "@/components/discount-price"
+import { Container } from "@/components/container"
 import NormalPrice from "@/components/normal-price"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { PRODUCT_TEMP_LABEL_MAP } from "@/config/config"
 import { useRouter } from "@/i18n/navigation"
 import { calculateEstimatedDeliveryDate, formatNumber, isProductChandLamp } from "@/lib/utils"
-import type { Configuration, Order, Product, ProductSpecification, ShippingAddress } from "@/types/products"
-import { Container } from "@repo/ui"
-import { Button } from "@repo/ui/button"
+import type { Configuration, Order, Product, ProductColorTemp, ProductSpecification, ShippingAddress, SupportedLanguage } from "@/types/products"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { motion } from "framer-motion"
 import { CheckCircle, DiscIcon, LightbulbIcon, Loader2, Package, Truck, VariableIcon } from "lucide-react"
@@ -18,7 +17,7 @@ import { useSearchParams } from "next/navigation"
 import { useEffect, useMemo } from "react"
 import { toast } from "sonner"
 
-type OrderWithRelations = Order & {
+export type OrderWithRelations = Order & {
   product: Product & {
     specifications: ProductSpecification[]
   }
@@ -72,7 +71,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
   const searchParams = useSearchParams()
   const orderId = searchParams.get("orderId")
   const router = useRouter()
-  const locale = useLocale()
+  const locale = (useLocale() as SupportedLanguage) || "en"
   const t = useTranslations("complete")
   const tLamp = useTranslations('ProductChandLampButtons');
   const isRTL = locale === "ar"
@@ -189,6 +188,9 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
       .replace(/\s/g, "")
       .match(/cairo|القاهرة/) !== null
 
+  const productColorTempLabel =
+    PRODUCT_TEMP_LABEL_MAP[locale]?.[(order.productColorTemp as ProductColorTemp)] ?? order.productColorTemp
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -284,7 +286,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                                   <h4 className="text-nowrap font-semibold text-card-foreground">
                                     {order.productName}
                                   </h4>
-                                  <p className="text-muted-foreground font-medium text-xs md:text-sm break-words text-wrap">
+                                  <p className="text-muted-foreground font-medium text-xs md:text-sm text-wrap">
                                     {t("modernDesign")}
                                   </p>
                                 </div>
@@ -294,16 +296,16 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                               {formatNumber(priceCalculations.quantity, isRTL ? "ar" : "en")}
                             </TableCell>
                             <TableCell className="font-semibold capitalize">
-                              {PRODUCT_TEMP_LABEL_MAP[locale][order.productColorTemp] || order.productColorTemp}
+                              {productColorTempLabel}
                             </TableCell>
                             {brand === "balcom" && (
-                              <TableCell className="font-semibold text-black">
+                              <TableCell className="font-semibold">
                                 {order.product.specifications?.[0]?.maximumWattage || "N/A"}W
                               </TableCell>
                             )}
                             {brand === "balcom" && (
                               <TableCell className="font-semibold">
-                                {order.productIp}
+                                {order.configuration?.productIp?.toString() || order.productIp || "N/A"}
                               </TableCell>
                             )}
                             {brand === "mister-led" &&
@@ -510,7 +512,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                   <div className="p-6 pt-0  min-w-[300px]">
                     <div className="grid gap-4">
                       <div className={`flex items-start gap-4 ${isRTL ? "flex-row-reverse" : ""}`}>
-                        <LightbulbIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0" />
+                        <LightbulbIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary shrink-0" />
                         <div>
                           <h3 className="font-medium text-base sm:text-lg">{t("energyEfficient")}</h3>
                           <p className="text-muted-foreground tracking-wide sm:text-base text-sm leading-5 -my-1">
@@ -519,7 +521,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                         </div>
                       </div>
                       <div className={`flex items-start gap-4 ${isRTL ? "flex-row-reverse" : ""}`}>
-                        <VariableIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0" />
+                        <VariableIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary shrink-0" />
                         <div>
                           <h3 className="font-medium text-base sm:text-lg">{t("adjustableBrightness")}</h3>
                           <p className="text-muted-foreground tracking-wide sm:text-base text-sm leading-5 -my-1">
@@ -528,7 +530,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
                         </div>
                       </div>
                       <div className={`flex items-start gap-4 ${isRTL ? "flex-row-reverse" : ""}`}>
-                        <DiscIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0" />
+                        <DiscIcon className="h-6 w-6 sm:h-8 sm:w-8 text-primary shrink-0" />
                         <div>
                           <h3 className="font-medium text-base sm:text-lg">{t("durableConstruction")}</h3>
                           <p className="text-muted-foreground tracking-wide sm:text-base text-sm leading-5 -my-1">
@@ -549,7 +551,7 @@ const Complete = ({ discount, brand, order: initialOrder }: CompleteProps) => {
               handleComplete()
             }}
             disabled={isPending}
-            className="inline-flex sm:h-[52px] h-[40px] items-center justify-center rounded-md bg-primary sm:px-10 px-8 sm:text-lg text-base font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
+            className="inline-flex sm:h-[52px] h-10 items-center justify-center rounded-md bg-primary sm:px-10 px-8 sm:text-lg text-base font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
           >
             {isPending ? (
               <div className="flex items-center gap-3">

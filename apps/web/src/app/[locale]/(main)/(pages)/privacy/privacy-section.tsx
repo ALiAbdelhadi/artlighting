@@ -1,7 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
-import { Container } from "@repo/ui"
+import { Container } from "@/components/container"
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";

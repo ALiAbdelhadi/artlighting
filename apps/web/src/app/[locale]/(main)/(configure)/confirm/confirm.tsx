@@ -1,21 +1,20 @@
 "use client"
 
+import { Container } from "@/components/container"
 import CustomInput from "@/components/custom-input"
-import DiscountPrice from "@/components/discount-price"
 import LoadingState from "@/components/loading-state"
 import NormalPrice from "@/components/normal-price"
 import ProductImages from "@/components/product-images"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import { useRouter } from "@/i18n/navigation"
 import { authFormConfirmingOrderSchema } from "@/lib/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Container } from "@repo/ui"
-import { Button } from "@repo/ui/button"
 import { useQuery } from "@tanstack/react-query"
 import { motion } from "framer-motion"
-import { useTranslations } from "next-intl"
 import { AlertCircle, CheckCircle, Home, Loader2, RefreshCw } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 import { useForm } from "react-hook-form"
@@ -51,7 +50,6 @@ type Order = {
     country: string
     phoneNumber: string
   }
-  // إضافة خصائص Configuration المطلوبة
   configuration?: {
     id: string
     configPrice: number
@@ -72,16 +70,12 @@ const fetchOrderDetails = async (orderId: string): Promise<Order> => {
 
 const OrderSummary = ({ order }: { order: Order }) => {
   const t = useTranslations("confirm")
-
-  // استخدام نفس منطق حساب الأسعار من ملف preview.tsx
   const priceCalculations = useMemo(() => {
-    // إعطاء الأولوية لبيانات configuration إذا كانت متوفرة
     const configPrice = order.configuration?.configPrice || order.configPrice || 0
     const totalPrice = order.configuration?.totalPrice || order.totalPrice || 0
     const quantity = order.configuration?.quantity || order.quantity || 1
     const discount = order.configuration?.discount || order.discountRate || 0
 
-    // حساب السعر للوحدة الواحدة بعد الخصم
     const unitPriceAfterDiscount = quantity > 0 ? totalPrice / quantity : 0
     const hasDiscount = discount > 0
 
@@ -106,8 +100,7 @@ const OrderSummary = ({ order }: { order: Order }) => {
     }
   }, [order])
 
-  // A strategic best practice would be to source this value from a config file or the API
-  // to avoid hardcoding business logic in the UI.
+
   const shippingCost = 69
   const finalTotal = priceCalculations.totalPrice + shippingCost
   const itemsText = priceCalculations.quantity === 1 ? t("orderSummary.item") : t("orderSummary.items")
@@ -116,7 +109,6 @@ const OrderSummary = ({ order }: { order: Order }) => {
     <div className="bg-muted/50 backdrop-blur-sm rounded-2xl p-6 sticky top-6 border border-border">
       <h3 className="text-lg font-semibold text-foreground mb-6">{t("orderSummary.title")}</h3>
       <div className="space-y-4 mb-6">
-        {/* عرض السعر الأصلي قبل الخصم */}
         <div className="flex justify-between items-center text-muted-foreground">
           <span>{`${t("orderSummary.subtotal")} (${priceCalculations.quantity} ${itemsText})`}</span>
           {priceCalculations.hasDiscount ? (
@@ -127,8 +119,6 @@ const OrderSummary = ({ order }: { order: Order }) => {
             <NormalPrice price={priceCalculations.subtotal} />
           )}
         </div>
-
-        {/* عرض الخصم إذا كان متوفراً */}
         {priceCalculations.hasDiscount && (
           <div className="flex justify-between items-center text-green-600">
             <span>{`${t("orderSummary.discount")} (${Math.round(priceCalculations.discount > 1 ? priceCalculations.discount : priceCalculations.discount * 100)}%)`}</span>
@@ -137,21 +127,16 @@ const OrderSummary = ({ order }: { order: Order }) => {
             </span>
           </div>
         )}
-
-        {/* عرض سعر المنتج بعد الخصم */}
         {priceCalculations.hasDiscount && (
           <div className="flex justify-between items-center text-foreground">
             <span>{t("orderSummary.subtotalAfterDiscount")}</span>
             <NormalPrice price={priceCalculations.totalPrice} />
           </div>
         )}
-
-        {/* تكلفة الشحن */}
         <div className="flex justify-between items-center text-muted-foreground">
           <span>{t("orderSummary.shipping")}</span>
           <NormalPrice price={shippingCost} />
         </div>
-
         <div className="border-t border-border pt-4">
           <div className="flex justify-between items-center">
             <span className="text-lg font-semibold text-foreground">{t("orderSummary.total")}</span>
@@ -253,7 +238,6 @@ const Confirm = () => {
     },
   })
 
-  // استخدام نفس منطق حساب الأسعار من ملف preview.tsx
   const priceCalculations = useMemo(() => {
     if (!order) return null
 
@@ -324,7 +308,7 @@ const Confirm = () => {
         quantity: priceCalculations.quantity,
         configPrice: priceCalculations.configPrice,
         productPrice: order.product.price,
-        totalPrice: priceCalculations.totalPrice, // استخدام السعر المحسوب من التكوين
+        totalPrice: priceCalculations.totalPrice,
         shippingMethod: "standard",
         shippingPrice: 69,
         configurationId: order.configurationId,

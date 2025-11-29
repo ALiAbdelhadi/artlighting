@@ -8,11 +8,11 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { buttonVariants } from "@/components/ui/button";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
-import { buttonVariants } from "@repo/ui/button";
 import { Lock, LogIn, X } from "lucide-react";
-import type { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
+import type { Dispatch, SetStateAction } from "react";
 
 const LoginModal = ({
   isOpen,

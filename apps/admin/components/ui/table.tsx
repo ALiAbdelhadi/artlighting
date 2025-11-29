@@ -1,18 +1,31 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/lib/utils"
 
-import { cn } from "@/components/lib/utils"
-
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+function Table({ className, dir, ...props }: React.ComponentProps<"table"> & { dir?: "rtl" | "ltr" }) {
   return (
     <div
       data-slot="table-container"
       className="relative w-full overflow-x-auto"
+      dir={dir}
     >
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn(
+          "w-full caption-bottom text-sm",
+          // RTL styles
+          dir === "rtl" && [
+            "[&_th]:text-right [&_td]:text-right",
+            "[&_th]:border-r [&_th]:border-l-0 [&_th:first-child]:border-l [&_th:first-child]:border-r-0",
+            "[&_td]:border-r [&_td]:border-l-0 [&_td:first-child]:border-l [&_td:first-child]:border-r-0",
+          ],
+          // LTR styles (default)
+          dir !== "rtl" && [
+            "[&_th]:text-left [&_td]:text-left",
+          ],
+          className
+        )}
         {...props}
       />
     </div>
@@ -65,12 +78,18 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   )
 }
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+function TableHead({
+  className,
+  dir,
+  ...props
+}: React.ComponentProps<"th"> & { dir?: "rtl" | "ltr" }) {
   return (
     <th
       data-slot="table-head"
       className={cn(
-        "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        "text-foreground h-10 px-2 align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        // RTL/LTR text alignment
+        dir === "rtl" ? "text-right" : "text-left",
         className
       )}
       {...props}
@@ -78,12 +97,18 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   )
 }
 
-function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+function TableCell({
+  className,
+  dir,
+  ...props
+}: React.ComponentProps<"td"> & { dir?: "rtl" | "ltr" }) {
   return (
     <td
       data-slot="table-cell"
       className={cn(
         "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        // RTL/LTR text alignment
+        dir === "rtl" ? "text-right" : "text-left",
         className
       )}
       {...props}
@@ -91,10 +116,7 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   )
 }
 
-function TableCaption({
-  className,
-  ...props
-}: React.ComponentProps<"caption">) {
+function TableCaption({ className, ...props }: React.ComponentProps<"caption">) {
   return (
     <caption
       data-slot="table-caption"

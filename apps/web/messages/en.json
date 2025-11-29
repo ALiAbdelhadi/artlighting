@@ -551,6 +551,10 @@
         "onlyAvailableRating": "Only available rating for this product",
         "maxIPInfo": "Maximum IP rating available: {{maxIP}}",
         "priceIncrease": "Price increase: {{percent}} EGP",
+        "change-error": "An error occurred while updating the spotlight IP. Please try again.",
+        "change-success": "The spotlight IP has been updated successfully.",
+        "saving-success": "The spotlight configuration has been saved successfully.",
+        "saving-error": "An error occurred while saving the spotlight configuration. Please try again.",
         "ratings": {
             "IP20": {
                 "label": "IP 20",

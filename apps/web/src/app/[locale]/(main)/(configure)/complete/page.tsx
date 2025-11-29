@@ -1,14 +1,25 @@
 import { getLocaleFromParams } from "@/lib/i18n/utils"
 import { constructMetadata } from "@/lib/utils"
 import { PagePropsTypes } from "@/types"
+import type {
+  Configuration,
+  OrderStatus,
+  Product,
+  ProductIP,
+  ProductSpecification,
+  ProductTranslation,
+  SupportedCurrency,
+  SupportedLanguage,
+} from "@/types/products"
 import { prisma } from "@repo/database"
 import { Metadata } from "next"
 import { getLocale } from "next-intl/server"
 import { notFound } from "next/navigation"
-import Complete from "./complete"
+import Complete, { type OrderWithRelations } from "./complete"
 
 const Page = async ({ searchParams }: PagePropsTypes) => {
-  const orderId = searchParams?.orderId
+  const resolvedSearchParams = searchParams ? await searchParams : undefined
+  const orderId = resolvedSearchParams?.orderId
 
   if (!orderId || typeof orderId !== "string") {
     return notFound()
@@ -46,19 +57,74 @@ const Page = async ({ searchParams }: PagePropsTypes) => {
   const localizedProductName =
     order.product.translations[0]?.name || order.product.productName
 
-  const localizedOrder = {
+  const localizedSpecifications: ProductSpecification[] = order.product.specifications.map(spec => ({
+    ...spec,
+    maximumWattage:
+      spec.maximumWattage !== null && spec.maximumWattage !== undefined
+        ? Number(spec.maximumWattage)
+        : undefined,
+    customSpecs: spec.customSpecs as Record<string, any> | undefined,
+  }))
+
+  const localizedTranslations: ProductTranslation[] = order.product.translations.map(trans => ({
+    id: trans.id,
+    productId: trans.productId,
+    language: trans.language as SupportedLanguage,
+    name: trans.name,
+    description: trans.description ?? undefined,
+    createdAt: trans.createdAt,
+    updatedAt: trans.updatedAt,
+  }))
+
+  const orderDiscount = order.configuration?.discount || order.discountRate || 0
+
+  const localizedConfiguration: Configuration | null = order.configuration
+    ? {
+        id: order.configuration.id,
+        productId: order.configuration.productId,
+        configPrice: order.configuration.configPrice,
+        priceIncrease: order.configuration.priceIncrease,
+        shippingPrice: order.configuration.shippingPrice,
+        discount: order.configuration.discount,
+        quantity: order.configuration.quantity,
+        lampPriceIncrease: order.configuration.lampPriceIncrease ?? undefined,
+        totalPrice: order.configuration.totalPrice,
+        currency: order.configuration.currency as SupportedCurrency,
+        productIp: order.configuration.productIp
+          ? (order.configuration.productIp as ProductIP)
+          : undefined,
+        createdAt: order.configuration.createdAt,
+        updatedAt: order.configuration.updatedAt,
+      }
+    : null
+
+  const localizedOrder: OrderWithRelations = {
     ...order,
+    status: order.status as OrderStatus,
+    currency: order.currency as SupportedCurrency,
+    customerLanguage: order.customerLanguage as SupportedLanguage,
+    priceIncrease: order.priceIncrease ?? undefined,
+    brand: order.brand ?? undefined,
+    chandelierLightingType: order.chandelierLightingType ?? undefined,
+    configurationId: order.configurationId ?? undefined,
+    discount: orderDiscount,
     productName: localizedProductName,
+    configuration: localizedConfiguration,
     product: {
       ...order.product,
-      translations: order.product.translations,
-      specifications: order.product.specifications,
-    },
+      maxIP: order.product.maxIP ?? undefined,
+      priceIncrease: order.product.priceIncrease ?? undefined,
+      hNumber: order.product.hNumber ?? undefined,
+      chandelierLightingType: order.product.chandelierLightingType ?? undefined,
+      translations: localizedTranslations,
+      specifications: localizedSpecifications,
+      productChandelierLamp: (order.product as any).productChandelierLamp ?? null,
+    } as Product & { specifications: ProductSpecification[] },
   }
 
   return (
     <Complete
-      discount={order.configuration?.discount || 0}
+      discount={orderDiscount}
       brand={order.brand || ""}
       order={localizedOrder}
     />
@@ -66,9 +132,11 @@ const Page = async ({ searchParams }: PagePropsTypes) => {
 }
 
 export async function generateMetadata({ params, searchParams }: PagePropsTypes): Promise<Metadata> {
-  const orderId = searchParams?.orderId
-  const { locale: localeParam } = await params
-  const locale = getLocaleFromParams(await params)
+  const resolvedSearchParams = searchParams ? await searchParams : undefined
+  const orderId = resolvedSearchParams?.orderId
+  const resolvedParams = await params
+  const { locale: localeParam } = resolvedParams
+  const locale = getLocaleFromParams(resolvedParams)
 
   const titles: Record<string, string> = {
     en: "Order Confirmed!",
@@ -80,7 +148,7 @@ export async function generateMetadata({ params, searchParams }: PagePropsTypes)
     ar: "يرجى مراجعة طلبك قبل إتمامه.",
   }
 
-  let productImage: string = locale === 'ar' ? "/logo-ar.png" : "/logo-en.png"
+  let productImage: string = locale === "ar" ? "/logo-ar.png" : "/logo-en.png"
 
   if (orderId && typeof orderId === "string") {
     const order = await prisma.order.findUnique({

@@ -3,7 +3,7 @@ import { BentoGridItem } from "@/components/bento-grid-item";
 import ProjectExample from "@/components/project-example";
 import projectsDetailsAr from "@/data/projects-details-ar.json";
 import projectsDetailsEn from "@/data/projects-details-en.json";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 

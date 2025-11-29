@@ -2,7 +2,7 @@
 
 import BalcomProducts from "@/app/[locale]/(main)/(pages)/category/balcom/[subCategory]/[lightingType]/[ProductId]/products";
 import ChandelierProducts from "@/app/[locale]/(main)/(pages)/category/mister-led/[subCategory]/[lightingType]/[ProductId]/products";
-import { LocalizedProductWithRelations, Configuration } from "@/types/products";
+import type { Configuration, LocalizedProductWithRelations } from "@/types/products";
 
 interface ProductRouterProps {
     product: LocalizedProductWithRelations;
@@ -18,12 +18,9 @@ export default function ProductRouter({
     locale
 }: ProductRouterProps) {
 
-    // Safeguard against undefined relatedProducts with default empty array
     const safeRelatedProducts = relatedProducts ?? [];
 
-    // Determine which component to render based on product brand and type
     const renderProductComponent = () => {
-        // Check if it's a Balcom product (technical lighting)
         if (product.brand === "balcom") {
             const balcomRelated = safeRelatedProducts.filter(p => p.brand === "balcom");
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ScrollArea } from "@repo/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { SignUp } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";

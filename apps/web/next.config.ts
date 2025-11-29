@@ -2,18 +2,12 @@ import type { NextConfig } from "next";
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   reactStrictMode: true,
   compiler: {
     styledComponents: true,
   },
   experimental: {
-    optimizePackageImports: ['lucide-react', '@repo/ui'],
+    optimizePackageImports: ['lucide-react', '@/components/ui'],
   },
   async headers() {
     return [

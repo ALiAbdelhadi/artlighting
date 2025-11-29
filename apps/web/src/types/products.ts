@@ -263,7 +263,6 @@ export interface LocalizedProduct {
   updatedAt?: Date;
 }
 
-// Fixed LocalizedProductWithRelations to include all necessary properties
 export interface LocalizedProductWithRelations extends BaseProduct {
   category: Category
   lightingType: LightingType
@@ -272,7 +271,6 @@ export interface LocalizedProductWithRelations extends BaseProduct {
   localizedSpecs?: LocalizedSpecs
 }
 
-// Fixed ProductCardProps - this was missing from your types
 export interface ProductCardProps {
   productId: string
   productName: string
@@ -280,7 +278,7 @@ export interface ProductCardProps {
   price: number
   discount?: number
   brand: string
-  Brand?: string // Keep both for compatibility
+  Brand?: string
   quantity?: number
   maxIP?: number
   spotlightType: string

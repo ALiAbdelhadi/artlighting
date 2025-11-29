@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@repo/ui/button";
+import { Button } from "@/components/ui/button";
 import { Clock, X } from "lucide-react";
 import { useState } from "react";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { useTranslations } from "next-intl";
 
 export default function WhiteFridayBanner() {

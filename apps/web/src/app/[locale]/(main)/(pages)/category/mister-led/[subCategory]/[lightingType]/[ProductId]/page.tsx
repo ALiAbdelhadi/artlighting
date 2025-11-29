@@ -7,7 +7,6 @@ import { prisma } from "@repo/database";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-
 export async function generateStaticParams() {
   const products = await prisma.product.findMany({
     select: {
@@ -94,16 +93,14 @@ export default async function Page({ params }: PagePropsTypes) {
 
     const localizedName = product.translations?.[0]?.name || product.productName;
     const localizedSpecs = product.specifications?.[0] || {};
-
-    // Create product with localized data and proper type conversion
     const localizedProduct = {
       ...product,
       productName: localizedName,
       localizedSpecs,
-      // Convert null to undefined for chandelierLightingType
       chandelierLightingType: product.chandelierLightingType || undefined,
       category: product.category,
-      lightingtype: product.lightingtype,
+      lightingType: product.lightingtype,
+      productChandelierLamp: (product.productChandLamp as any) || "lamp9w",
       input: localizedSpecs.input || undefined,
       maximumWattage: localizedSpecs.maximumWattage ? parseInt(localizedSpecs.maximumWattage) : undefined,
       brandOfLed: localizedSpecs.brandOfLed || undefined,
@@ -143,17 +140,20 @@ export default async function Page({ params }: PagePropsTypes) {
       console.log(`New configuration created with ID: ${configuration.id}`);
     }
 
-    // Conditionally fetch related products based on product type
+    const normalizedConfiguration = configuration ? {
+      ...configuration,
+      lampPriceIncrease: configuration.lampPriceIncrease ?? undefined,
+      productIp: configuration.productIp ?? undefined,
+      currency: configuration.currency as any,
+    } : undefined;
     let relatedProducts = undefined;
     if (!subCategory || !lightingType || !ProductId) {
       notFound();
     }
-    // Only fetch related products for Balcom products
-    // For chandeliers (mister-led), we don't need related products
     if (product.brand === "mister-led") {
       relatedProducts = await getRelatedBalcomProducts(localizedProduct, subCategory, locale);
     }
-    // If you want related products for chandeliers in the future, add logic here
+    // related products for chandeliers in the future.
     // else if (product.brand === "mister-led" && product.sectionType === "chandelier") {
     //   relatedProducts = await getRelatedChandelierProducts(localizedProduct, subCategory, locale);
     // }
@@ -162,9 +162,9 @@ export default async function Page({ params }: PagePropsTypes) {
       <>
         <Breadcrumb />
         <ProductRouter
-          product={localizedProduct}
-          relatedProducts={undefined}
-          configuration={configuration}
+          product={localizedProduct as any}
+          relatedProducts={relatedProducts as any}
+          configuration={normalizedConfiguration as any}
           locale={locale}
         />
       </>
@@ -306,6 +306,8 @@ const getRelatedBalcomProducts = async (product: any, subCategory: string, local
     productName: relatedProduct.translations?.[0]?.name || relatedProduct.productName,
     localizedSpecs: relatedProduct.specifications?.[0] || {},
     chandelierLightingType: relatedProduct.chandelierLightingType || undefined,
+    lightingType: relatedProduct.lightingtype,
+    productChandelierLamp: (relatedProduct.productChandLamp as any) || "lamp9w",
     input: relatedProduct.specifications?.[0]?.input || undefined,
     maximumWattage: relatedProduct.specifications?.[0]?.maximumWattage ?
       parseInt(relatedProduct.specifications[0].maximumWattage) : undefined,

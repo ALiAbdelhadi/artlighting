@@ -1,8 +1,9 @@
 "use client"
+import { Container } from "@/components/container"
 import ProductCard from "@/components/product-card/product-card"
 import { Badge } from "@/components/ui/badge"
+import { cn } from "@/lib/utils"
 import type { LocalizedProduct, SupportedLanguage } from "@/types/products"
-import { cn, Container } from "@repo/ui"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
@@ -43,13 +44,20 @@ const transformProductForCard = (product: LocalizedProduct, locale: SupportedLan
       input: product.input || "AC 220V",
     }],
 
-    translations: product.translations?.length > 0
-      ? product.translations
-      : [{
-        language: locale,
+    translations: (() => {
+      const fallback = {
         name: product.localizedName || product.productName,
-        description: product.localizedDescription
-      }],
+        description: product.localizedDescription,
+      };
+      if (Array.isArray(product.translations) && product.translations.length > 0) {
+        const [firstTranslation] = product.translations;
+        return {
+          name: firstTranslation?.name || fallback.name,
+          description: firstTranslation?.description || fallback.description,
+        };
+      }
+      return fallback;
+    })(),
     quantity: product.quantity || 0,
     isActive: product.isActive ?? true,
     featured: product.featured ?? false,

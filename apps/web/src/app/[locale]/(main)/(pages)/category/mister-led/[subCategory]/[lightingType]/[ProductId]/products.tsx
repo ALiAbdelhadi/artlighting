@@ -13,7 +13,7 @@ import {
   ProductCardProps,
   OrderStatus
 } from "@/types/products";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 

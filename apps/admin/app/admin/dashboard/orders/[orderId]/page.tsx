@@ -1,10 +1,13 @@
 
 import { prisma } from "@repo/database";
+import { notFound } from "next/navigation";
 import OrderPage from "./order-page";
-const OrderIdPage = async ({ params }: { params: { orderId: string } }) => {
-  const order = await prisma.order.findFirst({
+
+const OrderIdPage = async ({ params }: { params: Promise<{ orderId: string }> }) => {
+  const resolvedParams = await params;
+  const order = await prisma.order.findUnique({
     where: {
-      isCompleted: true,
+      id: parseInt(resolvedParams.orderId),
     },
     include: {
       shippingAddress: true,
@@ -12,18 +15,15 @@ const OrderIdPage = async ({ params }: { params: { orderId: string } }) => {
       user: true,
       configuration: true
     },
-    orderBy: {
-      createdAt: "desc",
-    },
   });
-  if (!order) {
-    return (
-      <div className="container mx-auto px-4 py-8 text-center">
-        Order not found.
-      </div>
-    );
+  if (!order || !order.configuration) {
+    return notFound();
   }
-  return <OrderPage order={order} />;
+  const orderWithConfig = {
+    ...order,
+    configuration: order.configuration,
+  };
+  return <OrderPage order={orderWithConfig} />;
 };
 
 export default OrderIdPage;

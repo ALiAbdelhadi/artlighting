@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@repo/ui"
+import { cn } from "@/lib/utils"
 import { motion } from "framer-motion";
 import { CheckCircle, Circle } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -46,7 +46,7 @@ const Steps = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-neutral-50-50 to-background dark:from-[#1c1a17] dark:to-[#1d1d1d] rounded-lg shadow-md px-4 sm:px-6 pb-8 pt-10 mb-8">
+    <div className="bg-linear-to-r from-neutral-50-50 to-background dark:from-[#1c1a17] dark:to-[#1d1d1d] rounded-lg shadow-md px-4 sm:px-6 pb-8 pt-10 mb-8">
       <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8 gap-4 relative">
         {STEPS.map((step, i) => {
           const currentStepIndex = getCurrentStepIndex();

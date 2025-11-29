@@ -64,7 +64,7 @@ export default async function RootLayout({
       >
         <body
           className={cn(
-            "antialiased overflow-x-hidden scroll-smooth",
+            "antialiased overflow-x-hidden scroll-smooth bg-muted/30",
             locale === "ar" ? almarai.className : roboto.className
           )}
           suppressHydrationWarning

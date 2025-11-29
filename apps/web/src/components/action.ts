@@ -5,12 +5,12 @@ import { prisma } from "@repo/database"
 export interface SaveConfigArgs {
   configId: string
   productId: string
-  basePrice: number // السعر الأساسي للمنتج (بدون زيادات)
-  priceIncrease: number // زيادة IP
-  lampPriceIncrease: number // زيادة المصابيح
-  shippingPrice?: number // سعر الشحن
-  quantity: number // الكمية
-  discount: number // نسبة الخصم
+  basePrice: number 
+  priceIncrease: number
+  lampPriceIncrease: number 
+  shippingPrice?: number 
+  quantity: number 
+  discount: number
 }
 
 export async function saveConfig({
@@ -26,17 +26,12 @@ export async function saveConfig({
   try {
     const normalizedDiscount = discount > 1 ? discount / 100 : discount
 
-    // 1. السعر بعد الخصم (قبل أي زيادات)
     const discountedBase = basePrice * (1 - normalizedDiscount)
 
-    // 2. إضافة الزيادات بعد الخصم
     const finalUnitPrice =
       discountedBase + priceIncrease + (lampPriceIncrease || 0) + shippingPrice
 
-    // 3. ضرب في الكمية
     const totalPrice = Math.ceil(finalUnitPrice * Math.max(1, quantity))
-
-    // 4. configPrice = السعر الأساسي + كل الزيادات (بدون خصم)
     const configPrice =
       basePrice + priceIncrease + (lampPriceIncrease || 0) + shippingPrice
 

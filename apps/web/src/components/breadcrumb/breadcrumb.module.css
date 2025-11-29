@@ -5,7 +5,7 @@
 }
 .breadcrumbItem a {
   text-decoration: none;
-  color: #222321;
+  color: hsl(var(--color-muted-foreground));
   cursor: pointer;
 }
 .breadcrumbItem a:hover {

@@ -1,7 +1,4 @@
 "use client";
-import { Configuration, Order, Product, ShippingAddress, User } from "@repo/database";
-import { Container } from "@repo/ui";
-import { Avatar, AvatarFallback, AvatarImage } from "@repo/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -10,15 +7,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { formatPrice } from "@repo/ui/lib";
 import { Progress } from "@/components/ui/progress";
-import { Separator } from "@repo/ui/separator";
+import { Configuration, Order, Product, ShippingAddress, User } from "@repo/database";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { formatPrice } from "@/lib/utils";
+import { Separator } from "@/components/ui/separator";
 import { format } from "date-fns";
 import { Box, Calendar, MapPin, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import StatusDropdown from "../../status-dropdown-menu";
+import { Container } from "@/components/container";
 
 interface OrderPageProps {
   order: Order & {
@@ -89,15 +89,15 @@ export default function OrderPage({ order }: OrderPageProps) {
                       label="Color Temperature"
                       value={order.productColorTemp}
                     />
-                    <ProductDetail label="IP Rating" value={order.configuration.productIp} />
+                    <ProductDetail label="IP Rating" value={order.configuration.productIp ?? ""} />
                     {order.chandelierLightingType && (
                       <ProductDetail
                         label="Lamp Type"
                         value={order.productChandLamp}
                       />
                     )}
-                    {order.Brand && (
-                      <ProductDetail label="Brand" value={order.Brand} />
+                    {order.brand && (
+                      <ProductDetail label="Brand" value={order.brand} />
                     )}
                     {order.chandelierLightingType && (
                       <ProductDetail
@@ -162,7 +162,7 @@ export default function OrderPage({ order }: OrderPageProps) {
                       <Avatar className="h-7 w-7 mr-1.5">
                         <AvatarImage
                           src={`https://api.dicebear.com/6.x/initials/svg?seed=${order.user.email}`}
-                          alt={order.user.email}
+                          alt={order.user.email ?? ""}
                         />
                         <AvatarFallback>
                           {order.user.email
@@ -197,10 +197,10 @@ export default function OrderPage({ order }: OrderPageProps) {
                     />
                   </div>
                   <div className="space-y-4">
-                    {order.OrderTimeReceived && (
+                    {order.orderTimeReceived && (
                       <ShippingDetail
                         icon={Calendar}
-                        value={`Estimated Delivery: ${format(order.OrderTimeReceived, "PPP")}`}
+                        value={`Estimated Delivery: ${format(order.orderTimeReceived, "PPP")}`}
                       />
                     )}
                   </div>

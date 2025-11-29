@@ -1,5 +1,5 @@
 "use client";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
@@ -111,7 +111,7 @@ export default function About() {
                   className="grid grid-cols-[auto_1fr] gap-1 text-sm relative animate-timeline"
                 >
                   <div className="mt-[3px] aspect-square w-3 bg-primary rounded-full z-10" />
-                  <div className="font-medium mt-[-1px]">{item}</div>
+                  <div className="font-medium -mt-px">{item}</div>
                 </div>
               ))}
             </div>

@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { SpecificationsTable } from "@/types/products"
-import { cn } from "@repo/ui"
+import { cn } from "@/lib/utils"
 
 interface ProductSpecificationsTableProps {
   specificationsTable: SpecificationsTable

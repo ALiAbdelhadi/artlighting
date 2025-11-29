@@ -1,5 +1,8 @@
 "use client";
 
+
+import { Container } from "@/components/container";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -7,8 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Container } from "@repo/ui";
-import { Button } from "@repo/ui/button";
 import { SquareArrowOutUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -86,7 +87,7 @@ export default function Achievements() {
           <div className="text-center">
             <div className={`flex justify-center items-center my-4 mx-4 rtl:flex-row-reverse `}>
               <div
-                className="number text-4xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-400 to-indigo-300 transition-all duration-300 ease-in-out"
+                className="number text-4xl bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-blue-400 to-indigo-300 transition-all duration-300 ease-in-out"
                 data-goal="87"
               >
                 0
@@ -117,7 +118,7 @@ export default function Achievements() {
           <div className="text-center">
             <div className="flex justify-center items-center my-4 mx-4 rtl:flex-row-reverse">
               <div
-                className="number text-4xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-400 to-indigo-300 transition-all duration-300 ease-in-out"
+                className="number text-4xl bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-blue-400 to-indigo-300 transition-all duration-300 ease-in-out"
                 data-goal="95"
               >
                 0
@@ -147,7 +148,6 @@ export default function Achievements() {
           </div>
         </div>
         <SalesChart t={t} />
-        {/* Approvals */}
         <div className="my-10 md:my-12 lg:my-16">
           <div className="space-y-16">
             <div>

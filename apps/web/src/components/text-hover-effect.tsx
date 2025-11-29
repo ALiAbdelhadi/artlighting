@@ -23,8 +23,6 @@ export const TextHover = ({
           filter: "blur(20px)",
         }}
       />
-
-      {/* Main text container */}
       <motion.div
         className="relative cursor-pointer select-none"
         onMouseEnter={() => setIsHovered(true)}
@@ -34,7 +32,7 @@ export const TextHover = ({
         }}
         transition={{
           duration: 0.3,
-          ease: [0.25, 0.46, 0.45, 0.94] // Apple's preferred easing
+          ease: [0.25, 0.46, 0.45, 0.94] 
         }}
       >
         <div
@@ -81,10 +79,8 @@ export const TextHover = ({
           {text}
         </motion.div>
       </motion.div>
-
-      {/* Minimal accent dots */}
       <motion.div
-        className="absolute -top-2 -left-2 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-white to-yellow-200"
+        className="absolute -top-2 -left-2 w-1.5 h-1.5 rounded-full bg-linear-to-r from-white to-yellow-200"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: isHovered ? 0.6 : 0,
@@ -95,9 +91,8 @@ export const TextHover = ({
           boxShadow: "0 0 10px rgba(255, 215, 0, 0.4)",
         }}
       />
-
       <motion.div
-        className="absolute -bottom-2 -right-2 w-1.5 h-1.5 rounded-full bg-gradient-to-r from-yellow-200 to-white"
+        className="absolute -bottom-2 -right-2 w-1.5 h-1.5 rounded-full bg-linear-to-r from-yellow-200 to-white"
         initial={{ opacity: 0, scale: 0 }}
         animate={{
           opacity: isHovered ? 0.6 : 0,

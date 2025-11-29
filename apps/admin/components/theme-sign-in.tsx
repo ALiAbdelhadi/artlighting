@@ -1,10 +1,10 @@
 "use client";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { SignIn } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { ScrollArea } from "@repo/ui/scroll-area";
 import "../app/clerk.css";
 
 export function ThemedSignIn() {

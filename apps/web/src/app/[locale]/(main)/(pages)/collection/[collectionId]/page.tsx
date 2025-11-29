@@ -2,7 +2,7 @@
 
 import CustomBreadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import { newCollectionProducts } from "@/constants";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";

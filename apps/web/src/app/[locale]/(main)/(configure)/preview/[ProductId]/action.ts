@@ -40,7 +40,6 @@ export async function createOrder({
     let dbUser = await prisma.user.findUnique({ where: { id: userId } })
 
     if (!dbUser) {
-      // Get the Clerk client instance properly
       const clerk = await clerkClient()
       const clerkUser = await clerk.users.getUser(userId)
 
@@ -96,7 +95,7 @@ export async function createOrder({
         shippingPrice: shippingPrice,
         shippingAddressId: shippingAddress.id,
         productColorTemp: product.productColor || "",
-        productIp: product.productIp || "",
+        productIp: configuration.productIp?.toString() || product.productIp?.toString() || "IP20",
         productChandLamp: product.productChandLamp || "",
         brand: product.brand,
         chandelierLightingType: product.chandelierLightingType,

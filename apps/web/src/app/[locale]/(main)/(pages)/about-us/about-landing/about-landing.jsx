@@ -1,6 +1,6 @@
 "use client";
 import { TextHover } from "@/components/text-hover-effect";
-import { Container } from "@repo/ui";
+import { Container } from "@/components/container";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
@@ -30,7 +30,7 @@ function AboutLanding() {
       <div className={"py-24"}>
         <Container>
           <div className={"flex justify-center items-center flex-col"}>
-            <div className="lg:h-screen h-[30rem] xl:mb-32 xl:-mt-44 lg:mb-28 lg:-mt-40 -mt-[150px]  flex items-center justify-center">
+            <div className="lg:h-screen h-120 xl:mb-32 xl:-mt-44 lg:mb-28 lg:-mt-40 -mt-[150px]  flex items-center justify-center">
               <TextHover text="ART LIGHTING" />
             </div>
             <div>

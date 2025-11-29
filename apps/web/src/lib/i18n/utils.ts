@@ -40,35 +40,6 @@ export async function getServerI18n(locale?: SupportedLanguage) {
     };
 }
 
-/**
- * Get localized product details with automatic language detection
- */
-export async function getLocalizedProductDetails(
-    productId: string,
-    locale?: SupportedLanguage
-) {
-    const { service, locale: currentLocale } = await getServerI18n(locale);
-
-    try {
-        const product = await service.getLocalizedProduct(productId, currentLocale);
-
-        if (!product) return null;
-
-        // Check what languages are actually available
-        const availableLanguages = await service.getAvailableLanguagesForProduct(productId);
-
-        return {
-            product,
-            currentLocale,
-            availableLanguages,
-            hasTranslation: availableLanguages.translations.includes(currentLocale),
-            hasSpecification: availableLanguages.specifications.includes(currentLocale),
-        };
-    } catch (error) {
-        console.error(`Error fetching localized product ${productId}:`, error);
-        return null;
-    }
-}
 
 /**
  * Helper to determine best display language for product info

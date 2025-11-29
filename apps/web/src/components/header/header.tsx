@@ -1,5 +1,7 @@
 "use client"
 
+import { Container } from "@/components/container"
+import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,16 +12,14 @@ import {
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ChandelierItems, IndoorItems, OutdoorItems } from "@/constants"
 import { Link } from "@/i18n/navigation"
-import { Container } from "@repo/ui"
-import { Button } from "@repo/ui/button"
 import { BoxIcon, BriefcaseIcon, MailIcon, MenuIcon, MoveRight, NewspaperIcon, UserIcon, XIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
+import { CartSidebar } from "../cart-sidebar"
+import LanguageSwitcher from "../language-switcher"
 import AuthSection from "./auth-section"
 import { AuthSectionWrapper } from "./auth-section-wrapper"
 import { SearchHeader } from "./search-header"
-import LanguageSwitcher from "../language-switcher"
-import { CartSidebar } from "../cart-sidebar"
 
 interface Project {
   ProjectId: string
@@ -37,10 +37,11 @@ export default function Header({ projectsForHeader }: HeaderProps) {
   const tProducts = useTranslations("products")
   const locale = useLocale()
   const isRTL = locale === 'ar'
+
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/30 border-b border-border/30">
+    <header className="sticky top-0 z-50 w-full bg-white/20 dark:bg-black/20 backdrop-blur-md">
       <Container className="container">
-        <div className="flex items-center justify-between h-16 gap-4 rt:flex-row-reverse">
+        <div className="flex items-center justify-between h-16 gap-4">
           <Link href="/" className="flex items-center gap-2 shrink-0" prefetch={false} aria-label="Art Lighting - Home">
             <Image
               width={80}
@@ -51,8 +52,9 @@ export default function Header({ projectsForHeader }: HeaderProps) {
               priority
             />
           </Link>
+
           <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList className="space-x-3 rtl:flex-row-reverse">
+            <NavigationMenuList className="flex items-center gap-3 rtl:flex-row-reverse">
               <NavigationMenuItem>
                 <Link href="/about-us" prefetch={false}>
                   <Button
@@ -63,8 +65,9 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                   </Button>
                 </Link>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="h-10 px-3 py-2 text-sm font-medium bg-transparent hover:underline">
+                <NavigationMenuTrigger className="h-10 px-3 py-2 text-sm font-medium bg-transparent hover:underline hover:bg-transparent">
                   {t("projects")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -84,14 +87,16 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                               alt={project.ProjectName}
                             />
                           </div>
-                          <div className="rtl:text-right text-left space-y-2">
-                            <h3 className="font-semibold text-[15px] line-clamp-2">{project.ProjectName}</h3>
-                            <p className="text-[13px] text-muted-foreground line-clamp-2">{project.ProjectDescription}</p>
-                            <span className="text-[13px] text-primary mt-2 flex items-center rtl:items-start rtl:justify-end group-hover:underline gap-2">
+                          <div className="space-y-2">
+                            <h3 className="font-semibold text-[15px] line-clamp-2 text-right rtl:text-right ltr:text-left">
+                              {project.ProjectName}
+                            </h3>
+                            <p className="text-[13px] text-muted-foreground line-clamp-2 text-right rtl:text-right ltr:text-left">
+                              {project.ProjectDescription}
+                            </p>
+                            <span className="text-[13px] text-primary mt-2 inline-flex items-center rtl:flex-row-reverse gap-2 group-hover:underline">
                               {t('view-details')}
-                              <span>
-                                <MoveRight className="rtl:-rotate-180" />
-                              </span>
+                              <MoveRight className={isRTL ? "rotate-180" : ""} size={16} />
                             </span>
                           </div>
                         </Link>
@@ -100,19 +105,20 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
-                <NavigationMenuTrigger className="h-10 px-3 py-2 text-sm font-medium bg-transparent hover:underline">
+                <NavigationMenuTrigger className="h-10 px-3 py-2 text-sm font-medium bg-transparent hover:underline hover:bg-transparent">
                   {t("products")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <div className="grid w-[700px] grid-cols-3 gap-6 p-6 justify-items-center ">
-                    <div className="space-y-3  rtl:space-y-reverse">
+                  <div className="grid w-[700px] grid-cols-3 gap-6 p-6">
+                    <div className="space-y-3">
                       <h4 className="font-semibold text-primary text-base mb-3">
                         <Link href="/category/balcom/indoor" className="hover:underline">
                           {tProducts("indoor.title") || "Indoor"}
                         </Link>
                       </h4>
-                      <ul className="space-y-2  rtl:space-y-reverse">
+                      <ul className="space-y-2">
                         {IndoorItems.map((item) => (
                           <li key={item.id}>
                             <Link
@@ -125,13 +131,14 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                         ))}
                       </ul>
                     </div>
-                    <div className="space-y-3  rtl:space-y-reverse">
+
+                    <div className="space-y-3">
                       <h4 className="font-semibold text-primary text-base mb-3">
                         <Link href="/category/balcom/outdoor" className="hover:underline">
                           {tProducts("outdoor.title") || "Outdoor"}
                         </Link>
                       </h4>
-                      <ul className="space-y-2  rtl:space-y-reverse">
+                      <ul className="space-y-2">
                         {OutdoorItems.map((item) => (
                           <li key={item.id}>
                             <Link
@@ -144,13 +151,14 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                         ))}
                       </ul>
                     </div>
-                    <div className="space-y-3  rtl:space-y-reverse">
+
+                    <div className="space-y-3">
                       <h4 className="font-semibold text-primary text-base mb-3">
                         <Link href="/category/mister-led/chandelier" className="hover:underline">
                           {tProducts("chandelier.title") || "Chandelier"}
                         </Link>
                       </h4>
-                      <ul className="space-y-2  rtl:space-y-reverse">
+                      <ul className="space-y-2">
                         {ChandelierItems.slice(0, 12).map((item) => (
                           <li key={item.id}>
                             <Link
@@ -166,6 +174,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <Link href="/blog" prefetch={false}>
                   <Button
@@ -176,6 +185,7 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                   </Button>
                 </Link>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <Link href="/contact-us" prefetch={false}>
                   <Button
@@ -186,7 +196,8 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                   </Button>
                 </Link>
               </NavigationMenuItem>
-              <div className="hidden lg:flex items-center space-x-3 rtl:flex-row-reverse">
+
+              <div className="hidden lg:flex items-center gap-3 rtl:flex-row-reverse">
                 <SearchHeader />
                 <AuthSectionWrapper>
                   <AuthSection />
@@ -195,10 +206,11 @@ export default function Header({ projectsForHeader }: HeaderProps) {
               </div>
             </NavigationMenuList>
           </NavigationMenu>
-          <div className="flex items-center gap-2 lg:hidden">
+
+          <div className="flex items-center gap-2 lg:hidden ">
             <Sheet>
-              <SheetTrigger asChild >
-                <div className="flex items-center gap-2">
+              <SheetTrigger asChild>
+                <div className="flex items-center gap-2 rtl:flex-row-reverse">
                   <LanguageSwitcher currentLocale={locale} />
                   <Button
                     variant="outline"
@@ -210,8 +222,9 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                   </Button>
                 </div>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[85vw] max-w-sm overflow-y-auto">
-                <div className="flex justify-between px-3 py-2">
+
+              <SheetContent side={isRTL ? "left" : "right"} className="w-[85vw] max-w-sm overflow-y-auto">
+                <div className="flex justify-between px-3 py-2 rtl:flex-row-reverse">
                   <SheetHeader className="py-0 px-0">
                     <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                     <AuthSectionWrapper>
@@ -223,63 +236,70 @@ export default function Header({ projectsForHeader }: HeaderProps) {
                     <span className="sr-only">Close</span>
                   </SheetClose>
                 </div>
+
                 <div className="flex flex-col h-full">
                   <div className="px-3 border-b border-t">
                     <div className="py-4">
                       <SearchHeader isMobileSheet />
                     </div>
                   </div>
-                  <nav className="flex flex-col space-y-1  rtl:space-y-reverse pt-6 flex-1">
+
+                  <nav className="flex flex-col space-y-1 pt-6 flex-1">
                     <SheetClose asChild>
                       <Link
                         href="/about-us"
-                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3 p-3 text-sm font-medium rounded-md hover:bg-accent rtl:flex-row-reverse"
                         prefetch={false}
                       >
-                        <UserIcon className="h-4 w-4" />
+                        <UserIcon className="h-4 w-4 shrink-0" />
                         {t("about-us")}
                       </Link>
                     </SheetClose>
+
                     <SheetClose asChild>
                       <Link
                         href="/all-projects"
-                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3 p-3 text-sm font-medium rounded-md hover:bg-accent rtl:flex-row-reverse"
                         prefetch={false}
                       >
-                        <BriefcaseIcon className="h-4 w-4" />
+                        <BriefcaseIcon className="h-4 w-4 shrink-0" />
                         {t("projects")}
                       </Link>
                     </SheetClose>
+
                     <SheetClose asChild>
                       <Link
                         href="/category"
-                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3 p-3 text-sm font-medium rounded-md hover:bg-accent rtl:flex-row-reverse"
                         prefetch={false}
                       >
-                        <BoxIcon className="h-4 w-4" />
+                        <BoxIcon className="h-4 w-4 shrink-0" />
                         {t("products")}
                       </Link>
                     </SheetClose>
+
                     <SheetClose asChild>
                       <Link
                         href="/blog"
-                        className="flex items-center gap-3  p-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3 p-3 text-sm font-medium rounded-md hover:bg-accent rtl:flex-row-reverse"
                         prefetch={false}
                       >
-                        <NewspaperIcon className="h-4 w-4" />
+                        <NewspaperIcon className="h-4 w-4 shrink-0" />
                         {t("blog")}
                       </Link>
                     </SheetClose>
+
                     <SheetClose asChild>
                       <Link
                         href="/contact-us"
-                        className="flex items-center gap-3 p-3 text-sm font-medium rounded-md hover:bg-accent"
+                        className="flex items-center gap-3 p-3 text-sm font-medium rounded-md hover:bg-accent rtl:flex-row-reverse"
                         prefetch={false}
                       >
-                        <MailIcon className="h-4 w-4" />
+                        <MailIcon className="h-4 w-4 shrink-0" />
                         {t("contact-us")}
                       </Link>
                     </SheetClose>
+
                     <div className="px-1.5 py-3">
                       <CartSidebar />
                     </div>

@@ -1,16 +1,15 @@
 "use client";
 
 import { updateProductIP } from "@/actions/product-ip";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { formatNumber } from "@/lib/utils";
+import { cn, formatNumber } from "@/lib/utils";
 import { ProductIP } from "@repo/database";
-import { cn } from "@repo/ui";
-import { Button } from "@repo/ui/button";
 import { Droplets } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";

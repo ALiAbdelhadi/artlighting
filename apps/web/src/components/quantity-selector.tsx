@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@repo/ui/button"
-import { cn } from "@repo/ui"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { Minus, Plus } from "lucide-react"
 
 interface QuantitySelectProps {

@@ -1,6 +1,6 @@
 "use client";
 import { Link } from "@/i18n/navigation";
-import { Container } from "@repo/ui"
+import { Container } from "@/components/container"
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
@@ -91,7 +91,7 @@ export function NewCollection() {
                   src="/new-collection/new-collection-3.jpg"
                 />
                 <div
-                  className={`py-2 px-4 select-none bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary dark:text-secondary-foreground absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}
+                  className={`py-2 px-4 select-none bg-[linear-gradient(90deg,transparent_0%,#ffb96914_90%)] inline-flex w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary dark:text-secondary-foreground absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}
                 >
                   <p className="overflow-hidden">{t('new')}</p>
                 </div>
@@ -143,7 +143,7 @@ export function NewCollection() {
                 src="/new-collection/new-collection-1.jpg"
               />
               <div
-                className={`py-2 px-4 select-none  bg-[linear-gradient(90deg,_transparent_0%,_#ffb96914_90%)] inline-flex dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}
+                className={`py-2 px-4 select-none  bg-[linear-gradient(90deg,transparent_0%,#ffb96914_90%)] inline-flex dark:text-secondary-foreground w-fit items-center whitespace-nowrap rounded-full border text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent text-secondary absolute top-0 right-0 mt-4 mr-4 shadow-lg backdrop-blur-[6px] overflow-hidden  `}
               >
                 <p className="overflow-hidden">{t('new')}</p>
               </div>

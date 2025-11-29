@@ -16,7 +16,7 @@ export default function ProjectExample() {
           height={480}
           src="/projects/almaza-park/almaza-park-1.jpg"
           alt="almaza park"
-          className="rounded-md w-full max-w-[45rem] h-[30rem] object-cover"
+          className="rounded-md w-full max-w-180 h-120 object-cover"
         />
       </div>
       <div className="w-full md:w-1/2 mt-4 md:mt-0">

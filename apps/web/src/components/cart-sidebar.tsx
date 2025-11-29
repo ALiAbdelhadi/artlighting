@@ -1,17 +1,14 @@
 "use client"
 
-import { QuantitySelector } from "@/components/quantity-selector"
+import { useState, useEffect } from "react"
+import { ShoppingBag, ShoppingCart, Trash2, Loader2 } from "lucide-react"
+import Image from "next/image"
+import { useAuth } from "@clerk/nextjs"
+import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { SignUpButton, useAuth } from "@clerk/nextjs"
-import { Button } from "@repo/ui/button"
-import { Loader2, ShoppingBag, ShoppingCartIcon, Trash2, XIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
-import Image from "next/image"
-import Link from "next/link"
-import { useEffect, useState } from "react"
 import { toast } from "sonner"
-import DiscountPrice from "./discount-price"
 import NormalPrice from "./normal-price"
 
 interface CartItem {
@@ -29,37 +26,36 @@ interface CartItem {
 }
 
 export function CartSidebar() {
-  const t = useTranslations('cart')
+  const { isSignedIn, userId } = useAuth()
+  const t = useTranslations("cart")
   const [isOpen, setIsOpen] = useState(false)
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [isUpdating, setIsUpdating] = useState<string | null>(null)
-  const { isSignedIn, userId } = useAuth()
 
   useEffect(() => {
     const fetchCartItems = async () => {
       if (!isSignedIn || !userId) return
-
       setIsLoading(true)
       try {
-        const response = await fetch(`/api/cart`)
+        const response = await fetch("/api/cart")
         if (response.ok) {
           const items = await response.json()
           setCartItems(items)
         } else {
           const errorData = await response.json()
           console.error("Failed to fetch cart items:", errorData)
-          toast.error(t('messages.failedToLoad'))
+          toast.error(t("messages.failedToLoad"))
         }
       } catch (error) {
         console.error("Error fetching cart items:", error)
-        toast.error(t('messages.errorLoading'))
+        toast.error(t("messages.errorLoading"))
       } finally {
         setIsLoading(false)
       }
     }
 
-    if (isOpen) {
+    if (isOpen && isSignedIn) {
       fetchCartItems()
     }
   }, [isOpen, isSignedIn, userId, t])
@@ -71,7 +67,11 @@ export function CartSidebar() {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.id === itemId
-          ? { ...item, quantity: newQuantity, totalPrice: item.price * newQuantity * (1 - item.discount / 100) }
+          ? {
+            ...item,
+            quantity: newQuantity,
+            totalPrice: item.price * newQuantity * (1 - item.discount / 100),
+          }
           : item,
       ),
     )
@@ -80,9 +80,7 @@ export function CartSidebar() {
     try {
       const response = await fetch("/api/cart", {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId, quantity: newQuantity }),
       })
 
@@ -90,17 +88,14 @@ export function CartSidebar() {
         const updatedItem = await response.json()
         setCartItems((prevItems) => prevItems.map((item) => (item.id === itemId ? updatedItem : item)))
         localStorage.setItem(`quantity-${itemId}`, newQuantity.toString())
-        toast.success(t('messages.quantityUpdated'))
+        toast.success(t("messages.quantityUpdated"))
       } else {
         setCartItems(previousItems)
-        const errorData = await response.json()
-        console.error("Failed to update quantity:", errorData)
-        toast.error(errorData.error || t('messages.failedToUpdate'))
+        toast.error(t("messages.failedToUpdate"))
       }
-    } catch (error) {
+    } catch {
       setCartItems(previousItems)
-      console.error("Error updating quantity:", error)
-      toast.error(t('messages.failedToUpdate'))
+      toast.error(t("messages.failedToUpdate"))
     } finally {
       setIsUpdating(null)
     }
@@ -114,209 +109,267 @@ export function CartSidebar() {
     try {
       const response = await fetch("/api/cart", {
         method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId }),
       })
 
       if (response.ok) {
         localStorage.removeItem(`quantity-${itemId}`)
-        toast.success(t('messages.itemRemoved'))
+        toast.success(t("messages.itemRemoved"))
       } else {
         setCartItems(previousItems)
-        const errorData = await response.json()
-        console.error("Failed to remove item:", errorData)
-        toast.error(errorData.error || t('messages.failedToRemove'))
+        toast.error(t("messages.failedToRemove"))
       }
-    } catch (error) {
+    } catch {
       setCartItems(previousItems)
-      console.error("Error removing item:", error)
-      toast.error(t('messages.failedToRemove'))
+      toast.error(t("messages.failedToRemove"))
     } finally {
       setIsUpdating(null)
     }
   }
 
   const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0)
+  const totalPrice = cartItems.reduce((total, item) => total + item.totalPrice, 0)
 
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="relative h-9 w-9 border-border bg-transparent">
-          <ShoppingCartIcon className="h-5 w-5" />
+        <Button
+          variant="outline"
+          size="icon"
+          className="relative h-9 w-9 border-border/30 hover:border-border hover:bg-accent/5 transition-all bg-transparent"
+          aria-label={t("actions.openCart")}
+        >
+          <ShoppingCart className="h-4 w-4" />
           {totalItems > 0 && (
             <Badge
               variant="destructive"
-              className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs font-medium"
+              className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center text-xs font-semibold"
             >
               {totalItems > 99 ? "99+" : totalItems}
             </Badge>
           )}
-          <span className="sr-only">{t('actions.openCart')}</span>
         </Button>
       </SheetTrigger>
-      <SheetContent className="flex flex-col w-full sm:max-w-lg z-50">
-        <SheetClose asChild className="cursor-pointer">
-          <button
-            className="absolute right-3 rtl:left-3 top-4 rounded-full p-1.5 hover:bg-muted transition"
-          >
-            <XIcon className="size-5" />
-          </button>
-        </SheetClose>
-        <SheetHeader className="border-b pb-4">
-          <SheetTitle className="flex items-center gap-2 text-xl font-bold">
-            <ShoppingBag className="h-5 w-5" />
-            {t('title')}
+
+      <SheetContent className="flex flex-col p-0 w-full sm:max-w-md z-50">
+        {/* Header */}
+        <SheetHeader className="border-b border-border/50 px-6 py-4">
+          <SheetTitle className="flex items-center gap-3 text-lg font-semibold">
+            <ShoppingBag className="h-5 w-5 text-muted-foreground" />
+            <span>{t("title")}</span>
             {totalItems > 0 && (
-              <Badge variant="secondary" className="ml-auto">
-                {totalItems} {totalItems === 1 ? t('item') : t('items')}
+              <Badge variant="secondary" className="ml-auto text-xs">
+                {totalItems}
               </Badge>
             )}
           </SheetTitle>
         </SheetHeader>
         <div className="flex-1 overflow-hidden flex flex-col">
           {!isSignedIn ? (
-            <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
-              <ShoppingCartIcon className="h-16 w-16 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{t('signInRequired.title')}</h3>
-              <p className="text-muted-foreground mb-6">{t('signInRequired.description')}</p>
-              <SignUpButton mode="modal">
-                <Button size="lg" className="w-full max-w-xs">
-                  {t('signInRequired.signUp')}
-                </Button>
-              </SignUpButton>
-            </div>
+            <EmptyState
+              icon={ShoppingCart}
+              title={t("signInRequired.title")}
+              description={t("signInRequired.description")}
+            />
           ) : isLoading ? (
-            <div className="flex-1 flex items-center justify-center">
-              <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-            </div>
+            <LoadingState />
           ) : cartItems.length === 0 ? (
-            <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
-              <ShoppingCartIcon className="h-16 w-16 text-muted-foreground mb-4" />
-              <h3 className="text-lg font-semibold mb-2">{t('emptyCart.title')}</h3>
-              <p className="text-muted-foreground mb-6">{t('emptyCart.description')}</p>
-              <SheetClose asChild>
-                <Button variant="outline" size="lg" className="w-full max-w-xs bg-transparent">
-                  {t('emptyCart.continueShopping')}
-                </Button>
-              </SheetClose>
-            </div>
+            <EmptyState icon={ShoppingCart} title={t("emptyCart.title")} description={t("emptyCart.description")} />
           ) : (
-            <>
-              <div className="flex-1 overflow-y-auto px-1">
-                <div className="space-y-3 py-4">
-                  {cartItems.map((item) => (
-                    <div key={item.id} className="group relative">
-                      <div className="bg-card border border-border rounded-lg p-4 hover:shadow-sm transition-shadow">
-                        <div className="flex gap-4">
-                          <div className="relative flex-shrink-0">
-                            {item.productImages && item.productImages[0] && (
-                              <Image
-                                src={item.productImages[0] || "/placeholder.svg"}
-                                alt={item.productName}
-                                className="object-cover rounded-lg border"
-                                width={80}
-                                height={80}
-                              />
-                            )}
-                            {item.discount > 0 && (
-                              <Badge variant="destructive" className="absolute -top-2 -right-2 text-xs px-1.5 py-0.5">
-                                -{Math.round(item.discount * 100)}%
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="flex-1 min-w-0 space-y-3">
-                            <div className="flex justify-between items-start">
-                              <div className="space-y-1">
-                                <h4 className="font-semibold text-sm leading-tight line-clamp-2">{item.productName}</h4>
-                                <p className="text-xs text-muted-foreground capitalize">
-                                  {item.brand} • <span className="uppercase">{item.spotlightType}</span>
-                                </p>
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="icon"
-                                className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity"
-                                onClick={() => removeItem(item.id)}
-                                disabled={isUpdating === item.id}
-                                title={t('actions.remove')}
-                              >
-                                {isUpdating === item.id ? (
-                                  <Loader2 className="h-4 w-4 animate-spin" />
-                                ) : (
-                                  <Trash2 className="h-4 w-4" />
-                                )}
-                              </Button>
-                            </div>
-                            <div className="space-y-1">
-                              {item.discount > 0 ? (
-                                <div className="flex items-center gap-2">
-                                  <span className="font-bold text-lg text-destructive">
-                                    <DiscountPrice
-                                      price={item.price}
-                                      discount={item.discount}
-                                      quantity={item.quantity}
-                                      sectionType={item.sectionType}
-                                    />
-                                  </span>
-                                  <span className="text-sm text-muted-foreground line-through">
-                                    <NormalPrice
-                                      price={item.price}
-                                      quantity={item.quantity}
-                                      sectionType={item.sectionType}
-                                    />
-                                  </span>
-                                </div>
-                              ) : (
-                                <span className="font-bold text-lg">
-                                  <NormalPrice
-                                    price={item.price}
-                                    quantity={item.quantity}
-                                    sectionType={item.sectionType}
-                                  />
-                                </span>
-                              )}
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <QuantitySelector
-                                quantity={item.quantity}
-                                onIncrease={() => updateQuantity(item.id, item.quantity + 1)}
-                                onDecrease={() => updateQuantity(item.id, item.quantity - 1)}
-                                disabled={isUpdating === item.id}
-                                size="sm"
-                                minQuantity={1}
-                              />
-                              <div className="flex items-center gap-3">
-                                <SheetClose asChild>
-                                  <Link
-                                    href={`/category/${item.brand}/${item.sectionType}/${item.spotlightType}/${item.productId}`}
-                                    className="text-xs text-muted-foreground hover:text-foreground transition-colors"
-                                  >
-                                    {t('actions.viewDetails')}
-                                  </Link>
-                                </SheetClose>
-                                <SheetClose asChild>
-                                  <Link
-                                    href={`/preview/${item.productId}`}
-                                    className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-                                  >
-                                    {t('actions.orderNow')}
-                                  </Link>
-                                </SheetClose>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </>
+            <CartItemsList
+              items={cartItems}
+              isUpdating={isUpdating}
+              onUpdateQuantity={updateQuantity}
+              onRemoveItem={removeItem}
+            />
           )}
         </div>
+        {cartItems.length > 0 && (
+          <CartFooter totalItems={totalItems} totalPrice={totalPrice} onCheckout={() => setIsOpen(false)} />
+        )}
       </SheetContent>
     </Sheet>
+  )
+}
+
+function EmptyState({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: any
+  title: string
+  description: string
+}) {
+  return (
+    <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+      <div className="h-12 w-12 rounded-full bg-muted flex items-center justify-center mb-4">
+        <Icon className="h-6 w-6 text-muted-foreground" />
+      </div>
+      <h3 className="text-sm font-semibold mb-1.5">{title}</h3>
+      <p className="text-xs text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+function LoadingState() {
+  return (
+    <div className="flex-1 flex items-center justify-center">
+      <div className="flex flex-col items-center gap-3">
+        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+        <p className="text-xs text-muted-foreground">Loading cart...</p>
+      </div>
+    </div>
+  )
+}
+
+function CartItemsList({
+  items,
+  isUpdating,
+  onUpdateQuantity,
+  onRemoveItem,
+}: {
+  items: CartItem[]
+  isUpdating: string | null
+  onUpdateQuantity: (id: string, quantity: number) => Promise<void>
+  onRemoveItem: (id: string) => Promise<void>
+}) {
+  return (
+    <div className="flex-1 overflow-y-auto px-4 py-3">
+      <div className="space-y-2">
+        {items.map((item) => (
+          <CartItemCard
+            key={item.id}
+            item={item}
+            isUpdating={isUpdating === item.id}
+            onUpdateQuantity={onUpdateQuantity}
+            onRemoveItem={onRemoveItem}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function CartItemCard({
+  item,
+  isUpdating,
+  onUpdateQuantity,
+  onRemoveItem,
+}: {
+  item: CartItem
+  isUpdating: boolean
+  onUpdateQuantity: (id: string, quantity: number) => Promise<void>
+  onRemoveItem: (id: string) => Promise<void>
+}) {
+  return (
+    <div className="group relative bg-card border border-border/50 rounded-lg p-3 hover:border-border/80 hover:shadow-sm transition-all duration-200">
+      <div className="flex gap-3">
+        {/* Product Image */}
+        {item.productImages?.[0] && (
+          <div className="relative shrink-0 w-16 h-16">
+            <Image
+              src={item.productImages[0] || "/placeholder.svg"}
+              alt={item.productName}
+              fill
+              className="object-cover rounded-md"
+            />
+            {item.discount > 0 && (
+              <Badge variant="destructive" className="absolute -top-2 -right-2 text-xs px-1.5 py-0.5 font-semibold">
+                -{Math.round(item.discount)}%
+              </Badge>
+            )}
+          </div>
+        )}
+        <div className="flex-1 min-w-0 flex flex-col justify-between">
+          <div className="space-y-1">
+            <div className="flex justify-between items-start gap-2">
+              <h4 className="font-medium text-sm leading-tight line-clamp-2">{item.productName}</h4>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+                onClick={() => onRemoveItem(item.id)}
+                disabled={isUpdating}
+              >
+                {isUpdating ? <Loader2 className="h-3 w-3 animate-spin" /> : <Trash2 className="h-3 w-3" />}
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {item.brand} • {item.spotlightType}
+            </p>
+          </div>
+          <div className="flex items-center justify-between gap-2 pt-1">
+            <div className="space-y-0.5">
+              <p className="font-semibold text-sm">${(item.totalPrice / 100).toFixed(2)}</p>
+              {item.discount > 0 && (
+                <p className="text-xs text-muted-foreground line-through">
+                  ${((item.price * item.quantity) / 100).toFixed(2)}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center gap-1 bg-muted rounded-md p-1">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-5 w-5 text-xs"
+                onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                disabled={isUpdating || item.quantity <= 1}
+              >
+                −
+              </Button>
+              <span className="w-6 text-center text-xs font-medium">{item.quantity}</span>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-5 w-5 text-xs"
+                onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                disabled={isUpdating}
+              >
+                +
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CartFooter({
+  totalItems,
+  totalPrice,
+  onCheckout,
+}: {
+  totalItems: number
+  totalPrice: number
+  onCheckout: () => void
+}) {
+  const t = useTranslations("cart")
+
+  return (
+    <div className="border-t border-border/50 bg-card/50 px-6 py-4 space-y-3">
+      <div className="space-y-2">
+        <div className="flex justify-between text-sm">
+          <span className="text-muted-foreground">Subtotal</span>
+          <span className="font-medium">
+            <NormalPrice
+              price={(totalPrice / 100)}
+            />
+          </span>
+        </div>
+        <div className="flex justify-between text-xs text-muted-foreground">
+          <span>
+            {totalItems} item{totalItems !== 1 ? "s" : ""}
+          </span>
+        </div>
+      </div>
+      <SheetClose asChild>
+        <Button className="w-full" onClick={onCheckout}>
+          Proceed to Checkout
+        </Button>
+      </SheetClose>
+    </div>
   )
 }

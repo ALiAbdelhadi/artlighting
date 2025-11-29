@@ -1,12 +1,12 @@
 "use client";
 
-import { Container } from "@repo/ui"
+import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
+import { Container } from "@/components/container";
 import Landing from "@/components/landing";
+import { Link } from "@/i18n/navigation";
+import { LocalizedCategory, SupportedLanguage } from "@/types/products";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
-import React from "react";
-import { LocalizedCategory, SupportedLanguage } from "@/types/products";
 
 interface MisterLedProps {
   categories: LocalizedCategory[];
@@ -35,6 +35,7 @@ export default function MisterLed({
   return (
     <>
       <Landing images={images} />
+      <Breadcrumb />
       <motion.section
         className={`py-11 md:py-15 lg:py-19 ${isRTL ? 'rtl' : 'ltr'}`}
         initial="hidden"

@@ -10,6 +10,7 @@ import ProductChandelierLampButtons from "@/components/product-chand-lamp-button
 import ProductColorTempButtons from "@/components/product-color-temp-buttons"
 import ProductIPButtons from "@/components/product-ip-buttons"
 import { QuantitySelector } from "@/components/quantity-selector"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogClose,
@@ -20,10 +21,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { usePathname, useRouter } from "@/i18n/navigation"
-import { type Configuration, type Order, ProductChandelierLamp, ProductColorTemp, ProductIP } from "@/types/products"
+import { cn } from "@/lib/utils"
+import { type Configuration, type Order, type SupportedCurrency, ProductIP } from "@/types/products"
+import { ProductColorTemp, ProductIP as PrismaProductIP, ProductChandLamp } from "@repo/database"
 import { useAuth } from "@clerk/nextjs"
-import { cn } from "@repo/ui"
-import { Button } from "@repo/ui/button"
 import { useMutation } from "@tanstack/react-query"
 import { ArrowRight } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
@@ -51,8 +52,8 @@ interface ProductMainInfoProps {
   Brand: string
   hNumber?: number
   configuration?: Configuration
-  ip?: ProductIP
-  maxIP?: ProductIP
+  ip?: PrismaProductIP
+  maxIP?: PrismaProductIP
   sectionTypes?: string[]
   sectionType: string
   maximumWattage?: number
@@ -123,9 +124,11 @@ export default function ProductMainInfo({
   const [selectedColorTemp, setSelectedColorTemp] = useState<ProductColorTemp>(
     (order?.productColorTemp as ProductColorTemp) ?? ProductColorTemp.warm,
   )
-  const [selectedProductIp, setSelectProductIp] = useState<ProductIP>((order?.productIp as ProductIP) ?? ProductIP.IP20)
-  const [selectedProductChandelierLamp, setSelectedProductChandelierLamp] = useState<ProductChandelierLamp>(
-    (order?.productChandLamp as ProductChandelierLamp) ?? ProductChandelierLamp.lamp9w,
+  const [selectedProductIp, setSelectProductIp] = useState<PrismaProductIP>(
+    (order?.productIp as PrismaProductIP) ?? PrismaProductIP.IP20
+  )
+  const [selectedProductChandelierLamp, setSelectedProductChandelierLamp] = useState<ProductChandLamp>(
+    (order?.productChandLamp as ProductChandLamp) ?? ProductChandLamp.lamp9w,
   )
   const [priceIncrease, setPriceIncrease] = useState(0)
   const [lampPriceIncrease, setLampPriceIncrease] = useState(0)
@@ -134,7 +137,6 @@ export default function ProductMainInfo({
   const lastUpdateRef = useRef<string>("")
   const [debouncedProductIp] = useDebounce(selectedProductIp, DEBOUNCE_DELAY)
 
-  // حساب السعر الإجمالي قبل الخصم: السعر الأساسي + جميع الزيادات
   const totalPriceBeforeDiscount = useMemo(() => {
     const total = price + priceIncrease + lampPriceIncrease
     console.log("Price calculation:", {
@@ -146,11 +148,10 @@ export default function ProductMainInfo({
     return total
   }, [price, priceIncrease, lampPriceIncrease])
 
-  // حساب السعر بعد الخصم للوحدة الواحدة
   const discountedUnitPrice = useMemo(() => {
     const normalizedDiscount = discount > 1 ? discount / 100 : discount
     const discountedPrice = totalPriceBeforeDiscount * (1 - normalizedDiscount)
-    const finalPrice = Math.ceil(discountedPrice) // تقريب للأعلى
+    const finalPrice = Math.ceil(discountedPrice)
 
     console.log("Discount calculation:", {
       totalPriceBeforeDiscount,
@@ -163,7 +164,6 @@ export default function ProductMainInfo({
     return finalPrice
   }, [totalPriceBeforeDiscount, discount])
 
-  // حساب السعر النهائي للكمية المطلوبة (هذا ما سيُحفظ في قاعدة البيانات)
   const finalTotalPrice = useMemo(() => {
     return discountedUnitPrice * currentQuantity
   }, [discountedUnitPrice, currentQuantity])
@@ -172,7 +172,6 @@ export default function ProductMainInfo({
   const showMaxIpText = useMemo(() => PRODUCTS_WITH_MAX_IP_TEXT.includes(productId), [productId])
   const showOutdoorText = useMemo(() => sectionTypes?.includes("outdoor") ?? false, [sectionTypes])
 
-  // حفظ الكمية في localStorage
   useEffect(() => {
     const key = `${QUANTITY_STORAGE_KEY_PREFIX}${productId}`
     try {
@@ -195,7 +194,7 @@ export default function ProductMainInfo({
   }, [currentQuantity, decreaseQuantity])
 
   const handleProductChandelierLampChange = useCallback(
-    (newProductLamp: ProductChandelierLamp, newLampPriceIncrease: number) => {
+    (newProductLamp: ProductChandLamp, newLampPriceIncrease: number) => {
       console.log("Chandelier lamp change:", {
         newProductLamp,
         newLampPriceIncrease,
@@ -212,7 +211,7 @@ export default function ProductMainInfo({
     setSelectedColorTemp(newColorTemp)
   }, [])
 
-  const handleProductIPChange = useCallback((newProductIp: ProductIP, newPriceIncrease: number) => {
+  const handleProductIPChange = useCallback((newProductIp: PrismaProductIP, newPriceIncrease: number) => {
     console.log("IP change:", {
       newProductIp,
       newPriceIncrease,
@@ -224,7 +223,7 @@ export default function ProductMainInfo({
   }, [price, lampPriceIncrease])
 
   const updateProductIPConfig = useCallback(
-    async (newProductIp: ProductIP, newPriceIncrease: number) => {
+    async (newProductIp: PrismaProductIP, newPriceIncrease: number) => {
       if (!configId || isUpdatingRef.current) return
 
       const updateKey = `${configId}-${newProductIp}-${newPriceIncrease}`
@@ -244,6 +243,8 @@ export default function ProductMainInfo({
         if (result.success && result.updatedConfig) {
           const updatedConfig: Configuration = {
             ...result.updatedConfig,
+            currency: result.updatedConfig.currency as SupportedCurrency,
+            productIp: result.updatedConfig.productIp ? (result.updatedConfig.productIp as unknown as ProductIP) : undefined,
             lampPriceIncrease: result.updatedConfig.lampPriceIncrease ?? undefined,
             priceIncrease: result.updatedConfig.priceIncrease ?? undefined,
           }
@@ -336,8 +337,8 @@ export default function ProductMainInfo({
     const configData = {
       configId,
       productId,
-      basePrice: price, 
-      configPrice: totalPriceBeforeDiscount, 
+      basePrice: price,
+      configPrice: totalPriceBeforeDiscount,
       priceIncrease,
       lampPriceIncrease,
       quantity: currentQuantity,
@@ -360,6 +361,7 @@ export default function ProductMainInfo({
     priceIncrease,
     lampPriceIncrease,
     discount,
+    price,
   ])
 
   const handleAddToBag = useCallback(() => {
@@ -522,9 +524,7 @@ export default function ProductMainInfo({
                 productIp={selectedProductIp}
                 onProductIpChange={handleProductIPChange}
                 basePrice={price}
-                lampPriceIncrease={lampPriceIncrease}
-                discount={discount}
-              />
+                discount={discount} maxIP={maxIP ?? PrismaProductIP.IP20}              />
             )}
           </div>
           <div className="space-y-4">

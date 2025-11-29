@@ -1,4 +1,3 @@
-import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
 import { PagePropsTypes } from "@/types";
@@ -31,7 +30,6 @@ export default async function Page({ params }: PagePropsTypes) {
 
     return (
       <>
-        <Breadcrumb />
         <MisterLed categories={localizedCategories} locale={locale} />
       </>
     );

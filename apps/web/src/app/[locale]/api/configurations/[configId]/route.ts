@@ -1,11 +1,8 @@
-"use server"
-
 import { prisma } from "@repo/database"
+import { type NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 
-// Enhanced validation schema
 const SaveConfigSchema = z.object({
-    configId: z.string().min(1, "Configuration ID is required"),
     productId: z.string().min(1, "Product ID is required"),
     configPrice: z.number().positive("Config price must be positive"),
     priceIncrease: z.number().min(0, "Price increase cannot be negative"),
@@ -24,16 +21,21 @@ interface SaveConfigResponse {
     data?: any
 }
 
-export async function saveConfig(args: SaveConfigArgs): Promise<SaveConfigResponse> {
-    console.log("Save config started with args:", args)
-
+export async function POST(
+    request: NextRequest,
+    { params }: { params: Promise<{ configId: string }> }
+) {
     try {
+        const { configId } = await params
+        const body = await request.json()
+        
+        console.log("Save config started with args:", { configId, ...body })
+
         // Validate input data
-        const validatedData = SaveConfigSchema.parse(args)
+        const validatedData = SaveConfigSchema.parse(body)
         console.log("Data validation passed:", validatedData)
 
         const {
-            configId,
             productId,
             configPrice,
             priceIncrease,
@@ -55,10 +57,13 @@ export async function saveConfig(args: SaveConfigArgs): Promise<SaveConfigRespon
 
         if (!existingConfig) {
             console.error(`Configuration not found: ${configId}`)
-            return {
-                success: false,
-                error: "Configuration not found"
-            }
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Configuration not found"
+                },
+                { status: 404 }
+            )
         }
 
         // Verify that the product exists
@@ -75,18 +80,24 @@ export async function saveConfig(args: SaveConfigArgs): Promise<SaveConfigRespon
 
         if (!product) {
             console.error(`Product not found: ${productId}`)
-            return {
-                success: false,
-                error: "Product not found"
-            }
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Product not found"
+                },
+                { status: 404 }
+            )
         }
 
         if (!product.isActive) {
             console.error(`Product is not active: ${productId}`)
-            return {
-                success: false,
-                error: "Product is not available"
-            }
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: "Product is not available"
+                },
+                { status: 400 }
+            )
         }
 
         // Calculate final total price
@@ -101,7 +112,6 @@ export async function saveConfig(args: SaveConfigArgs): Promise<SaveConfigRespon
             providedTotalPrice: totalPrice
         })
 
-        // Update configuration with comprehensive data
         const updatedConfig = await prisma.configuration.update({
             where: { id: configId },
             data: {
@@ -111,8 +121,8 @@ export async function saveConfig(args: SaveConfigArgs): Promise<SaveConfigRespon
                 lampPriceIncrease,
                 quantity,
                 discount,
-                totalPrice: calculatedTotalPrice, // Use calculated value for consistency
-                shippingPrice: existingConfig.shippingPrice || 69, // Maintain existing shipping or default
+                totalPrice: calculatedTotalPrice,
+                shippingPrice: existingConfig.shippingPrice || 69, 
                 updatedAt: new Date(),
             }
         })
@@ -123,11 +133,9 @@ export async function saveConfig(args: SaveConfigArgs): Promise<SaveConfigRespon
             totalPrice: updatedConfig.totalPrice,
             quantity: updatedConfig.quantity
         })
-
-        // Cache the configuration ID for the preview page
         console.log("Configuration saved and ready for preview")
 
-        return {
+        return NextResponse.json({
             success: true,
             configId: updatedConfig.id,
             data: {
@@ -138,23 +146,29 @@ export async function saveConfig(args: SaveConfigArgs): Promise<SaveConfigRespon
                     productName: product.productName
                 }
             }
-        }
+        })
 
     } catch (error) {
         console.error("Error saving configuration:", error)
 
         if (error instanceof z.ZodError) {
-            const errorMessage = error.errors.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
+            const errorMessage = error.issues.map(e => `${e.path.join('.')}: ${e.message}`).join(', ')
             console.error("Validation errors:", errorMessage)
-            return {
-                success: false,
-                error: `Validation failed: ${errorMessage}`
-            }
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: `Validation failed: ${errorMessage}`
+                },
+                { status: 400 }
+            )
         }
 
-        return {
-            success: false,
-            error: error instanceof Error ? error.message : "Unknown error occurred"
-        }
+        return NextResponse.json(
+            {
+                success: false,
+                error: error instanceof Error ? error.message : "Unknown error occurred"
+            },
+            { status: 500 }
+        )
     }
 }

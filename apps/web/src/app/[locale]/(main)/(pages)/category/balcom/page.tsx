@@ -1,8 +1,7 @@
-import Breadcrumb from "@/components/breadcrumb/custom-breadcrumb";
 import { getLocaleFromParams, getServerI18n } from "@/lib/i18n/utils";
 import { constructMetadata } from "@/lib/utils";
-import Balcom from "./balcom";
 import { PagePropsTypes } from "@/types";
+import Balcom from "./balcom";
 
 export default async function Page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
@@ -13,7 +12,6 @@ export default async function Page({ params }: PagePropsTypes) {
 
     return (
       <>
-        <Breadcrumb />
         <Balcom
           categories={localizedCategories}
           locale={locale}

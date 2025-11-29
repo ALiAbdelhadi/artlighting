@@ -1,6 +1,7 @@
 "use client";
-import { formatPrice } from "@repo/ui/lib/index";
-import SummaryCard from "../../web/src/components/summary-card";
+
+import { formatPrice } from "../lib/utils";
+import SummaryCard from "./summary-card";
 
 const DashboardSummary = ({
   totalSales,

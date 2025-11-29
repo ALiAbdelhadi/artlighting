@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { formatPrice } from "@repo/ui/lib";
+import { formatPrice } from "@/lib/utils";
 import { Prisma } from "@repo/database";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
@@ -165,13 +165,13 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
                         {order.productColorTemp}
                       </TableCell>
                       <TableCell className="font-medium">
-                        {order && order.Brand === "balcom"
+                        {order && order.brand === "balcom"
                           ? order.configuration?.productIp
                           : "No IP"}
                       </TableCell>
                       <TableCell>
                         {order &&
-                          order.Brand === "mister-led" &&
+                          order.brand === "mister-led" &&
                           order.product?.chandelierLightingType === "lamp"
                           ? order.productChandLamp
                           : "No Lamp"}
@@ -224,7 +224,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
                         {order.createdAt.toLocaleDateString()}
                       </TableCell>
                       <TableCell className="text-nowrap">
-                        {order.OrderTimeReceived?.toLocaleDateString()}
+                        {order.orderTimeReceived?.toLocaleDateString()}
                       </TableCell>
                       <TableCell>
                         <StatusDropdown

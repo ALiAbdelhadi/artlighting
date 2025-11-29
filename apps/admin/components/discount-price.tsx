@@ -1,6 +1,4 @@
-import { formatPrice } from "@repo/ui/lib";
-
-
+import { formatPrice } from "@/lib/utils";
 
 interface DiscountPriceProps {
   price: number;

@@ -1,5 +1,5 @@
 import { Link } from "@/i18n/navigation"
-import { Button } from "@repo/ui/button"
+import { Button } from "@/components/ui/button"
 import { Facebook, Instagram, Youtube, Phone, MessageCircle } from "lucide-react"
 import { useTranslations } from "next-intl"
 
@@ -7,7 +7,7 @@ export default function Cta() {
     const t = useTranslations("cta")
     
     return (
-        <section className="w-full py-16 bg-background text-foreground">
+        <section className="w-full py-16">
             <div className="max-w-4xl mx-auto px-6 text-center space-y-10">
                 <div className="space-y-4">
                     <h2 className="text-4xl md:text-5xl font-bold text-primary">
