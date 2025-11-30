@@ -17,7 +17,9 @@ export default function WhiteFridayBanner() {
   if (!isBannerVisible) return null;
 
   return (
-    <div className="bg-gradient-to-r to-primary via-accent from-secondary text-primary-foreground shadow-lg relative overflow-hidden">
+    <div
+      className="bg-linear-to-r from-amber-200 via-yellow-100 to-amber-300 text-gray-900 shadow-lg relative overflow-hidden"
+    >
       <div className="absolute inset-0 opacity-10" />
       <Container>
         <div className="flex flex-col sm:flex-row justify-between items-center py-6 px-4 sm:px-6 relative z-10">

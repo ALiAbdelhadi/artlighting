@@ -26,6 +26,7 @@ export default function Balcom({
     "/balcom-landing/landing1.jpg",
     "/balcom-landing/landing2.png",
     "/balcom-landing/landing3.jpg",
+    "/balcom-landing/landing4.jpg",
   ];
 
   const isRTL = locale === "ar";
