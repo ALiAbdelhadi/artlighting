@@ -52,20 +52,6 @@ export default function DiscountPrice({
     locale
   )
 
-  console.log("DiscountPrice Calculations:", {
-    originalPrice: price,
-    priceIncrease,
-    lampPriceIncrease,
-    normalizedDiscount,
-    discountedBaseRaw,
-    discountedBase,
-    unitPriceWithIncreases,
-    quantity,
-    itemsTotal,
-    shipping,
-    finalTotal,
-  })
-
   return (
     <div className="flex flex-col gap-1">
       <p className="font-semibold text-destructive">

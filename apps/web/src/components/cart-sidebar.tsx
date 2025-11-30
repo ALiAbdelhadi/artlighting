@@ -1,16 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { ShoppingBag, ShoppingCart, Trash2, Loader2, Disc } from "lucide-react"
-import Image from "next/image"
-import { useAuth } from "@clerk/nextjs"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { useAuth } from "@clerk/nextjs"
+import { Loader2, ShoppingBag, ShoppingCart, Trash2 } from "lucide-react"
 import { useTranslations } from "next-intl"
+import Image from "next/image"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
-import NormalPrice from "./normal-price"
 import DiscountPrice from "./discount-price"
+import NormalPrice from "./normal-price"
 
 interface CartItem {
   id: string
