@@ -1,10 +1,12 @@
 generator client {
   provider = "prisma-client-js"
 }
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model Configuration {
   id                String     @id @default(cuid())
   productId         String
@@ -51,6 +53,7 @@ model User {
 
   @@map("users")
 }
+
 model OrderItem {
   id              String  @id @default(cuid())
   orderId         Int
@@ -111,6 +114,7 @@ model Order {
 
   @@map("orders")
 }
+
 model ShippingAddress {
   id          String  @id @default(cuid())
   userId      String  @unique
@@ -122,7 +126,7 @@ model ShippingAddress {
   country     String
   countryCode String  @default("EG")
   phoneNumber String
-  isDefault   Boolean @default(false) 
+  isDefault   Boolean @default(false)
 
   // Relations
   orders Order[]
@@ -160,6 +164,7 @@ model CartItem {
   @@unique([cartId, productId])
   @@map("cart_items")
 }
+
 model Product {
   id                     String   @id @default(cuid())
   productId              String   @unique
@@ -175,8 +180,8 @@ model Product {
   discount               Float    @default(0)
   chandelierLightingType String?
   hNumber                Int?
-  isActive               Boolean  @default(true) 
-  featured               Boolean  @default(false) 
+  isActive               Boolean  @default(true)
+  featured               Boolean  @default(false)
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 
@@ -207,11 +212,12 @@ model Product {
   @@index([featured])
   @@map("products")
 }
+
 model ProductTranslation {
   id          String   @id @default(cuid())
   productId   String
   language    String
-  name        String 
+  name        String
   description String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -360,6 +366,13 @@ enum ProductIP {
   IP68
 
   @@map("ProductIP")
+}
+
+enum ProductChandLamp {
+  lamp9w
+  lamp12w
+
+  @@map("ProductChandLamp")
 }
 
 enum OrderOption {
