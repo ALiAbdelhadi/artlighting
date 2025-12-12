@@ -362,13 +362,6 @@ enum ProductIP {
   @@map("ProductIP")
 }
 
-enum ProductChandLamp {
-  lamp9w
-  lamp12w
-
-  @@map("ProductChandLamp")
-}
-
 enum OrderOption {
   BasicShipping
   StandardShipping

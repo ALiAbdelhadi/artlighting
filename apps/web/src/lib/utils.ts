@@ -305,5 +305,3 @@ export function formatNumberWithConversion(amount: number, locale: string): stri
     return `${config.symbol} ${formattedNumber}`;
   }
 }
-
-
