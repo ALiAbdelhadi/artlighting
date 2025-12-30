@@ -148,144 +148,40 @@ export const OutdoorItems = [
     href: "/category/balcom/outdoor/wall-washer",
   },
 ];
-// Chandelier items
+
+
 export const ChandelierItems = [
-  {
-    id: "MC15C",
-    spotlightType: "MC15C",
-    href: "/category/mister-led/chandelier/MC15C",
-  },
-  {
-    id: "MC15E",
-    spotlightType: "MC15E",
-    href: "/category/mister-led/chandelier/MC15E",
-  },
-  {
-    id: "MC15F",
-    spotlightType: "MC15F",
-    href: "/category/mister-led/chandelier/MC15F",
-  },
-  {
-    id: "MC15W",
-    spotlightType: "MC15W",
-    href: "/category/mister-led/chandelier/MC15W",
-  },
-  {
-    id: "MC15P",
-    spotlightType: "MC15P",
-    href: "/category/mister-led/chandelier/MC15P",
-  },
-  {
-    id: "MC1608",
-    spotlightType: "MC1608",
-    href: "/category/mister-led/chandelier/MC1608",
-  },
-  {
-    id: "MC6014",
-    spotlightType: "MC6014",
-    href: "/category/mister-led/chandelier/MC6014",
-  },
-  {
-    id: "MC6015",
-    spotlightType: "MC6015",
-    href: "/category/mister-led/chandelier/MC6015",
-  },
-  {
-    id: "MC6031",
-    spotlightType: "MC6031",
-    href: "/category/mister-led/chandelier/MC6031",
-  },
-  {
-    id: "MC6038",
-    spotlightType: "MC6038",
-    href: "/category/mister-led/chandelier/MC6038",
-  },
-  {
-    id: "MC6041",
-    spotlightType: "MC6041",
-    href: "/category/mister-led/chandelier/MC6041",
-  },
-  {
-    id: "MC6051",
-    spotlightType: "MC6051",
-    href: "/category/mister-led/chandelier/MC6051",
-  },
-  {
-    id: "MC6091",
-    spotlightType: "MC6091",
-    href: "/category/mister-led/chandelier/MC6091",
-  },
-  {
-    id: "MC6094",
-    spotlightType: "MC6094",
-    href: "/category/mister-led/chandelier/MC6094",
-  },
-  {
-    id: "MC6097",
-    spotlightType: "MC6097",
-    href: "/category/mister-led/chandelier/MC6097",
-  },
-  {
-    id: "MC7021",
-    spotlightType: "MC7021",
-    href: "/category/mister-led/chandelier/MC7021",
-  },
-  {
-    id: "MC7023",
-    spotlightType: "MC7023",
-    href: "/category/mister-led/chandelier/MC7023",
-  },
-  {
-    id: "MC7091",
-    spotlightType: "MC7091",
-    href: "/category/mister-led/chandelier/MC7091",
-  },
-  {
-    id: "MC7104",
-    spotlightType: "MC7104",
-    href: "/category/mister-led/chandelier/MC7104",
-  },
-  {
-    id: "MC7105",
-    spotlightType: "MC7105",
-    href: "/category/mister-led/chandelier/MC7105",
-  },
-  {
-    id: "OH0109",
-    spotlightType: "OH0109",
-    href: "/category/mister-led/chandelier/OH0109",
-  },
-  {
-    id: "OH1109",
-    spotlightType: "OH1109",
-    href: "/category/mister-led/chandelier/OH1109",
-  },
-  {
-    id: "OH1203",
-    spotlightType: "OH1203",
-    href: "/category/mister-led/chandelier/OH1203",
-  },
-  {
-    id: "OH1207",
-    spotlightType: "OH1207",
-    href: "/category/mister-led/chandelier/OH1207",
-  },
-  {
-    id: "OH1209",
-    spotlightType: "OH1209",
-    href: "/category/mister-led/chandelier/OH1209",
-  },
-  {
-    id: "OH1309",
-    spotlightType: "OH1309",
-    href: "/category/mister-led/chandelier/OH1309",
-  },
-  {
-    id: "OH1601",
-    spotlightType: "OH1601",
-    href: "/category/mister-led/chandelier/OH1601",
-  },
-];
+  { id: "MC15C", spotlightType: "MC15C", href: "/category/mister-led/chandelier/MC15C" },
+  { id: "MC15E", spotlightType: "MC15E", href: "/category/mister-led/chandelier/MC15E" },
+  { id: "MC15F", spotlightType: "MC15F", href: "/category/mister-led/chandelier/MC15F" },
+  { id: "MC15W", spotlightType: "MC15W", href: "/category/mister-led/chandelier/MC15W" },
+  { id: "MC15P", spotlightType: "MC15P", href: "/category/mister-led/chandelier/MC15P" },
+  { id: "MC1608", spotlightType: "MC1608", href: "/category/mister-led/chandelier/MC1608" },
+  { id: "MC6014", spotlightType: "MC6014", href: "/category/mister-led/chandelier/MC6014" },
+  { id: "MC6015", spotlightType: "MC6015", href: "/category/mister-led/chandelier/MC6015" },
+  { id: "MC6031", spotlightType: "MC6031", href: "/category/mister-led/chandelier/MC6031" },
+  { id: "MC6038", spotlightType: "MC6038", href: "/category/mister-led/chandelier/MC6038" },
+  { id: "MC6041", spotlightType: "MC6041", href: "/category/mister-led/chandelier/MC6041" },
+  { id: "MC6051", spotlightType: "MC6051", href: "/category/mister-led/chandelier/MC6051" },
+  { id: "MC6091", spotlightType: "MC6091", href: "/category/mister-led/chandelier/MC6091" },
+  { id: "MC6094", spotlightType: "MC6094", href: "/category/mister-led/chandelier/MC6094" },
+  { id: "MC6097", spotlightType: "MC6097", href: "/category/mister-led/chandelier/MC6097" },
+  { id: "MC7021", spotlightType: "MC7021", href: "/category/mister-led/chandelier/MC7021" },
+  { id: "MC7023", spotlightType: "MC7023", href: "/category/mister-led/chandelier/MC7023" },
+  { id: "MC7091", spotlightType: "MC7091", href: "/category/mister-led/chandelier/MC7091" },
+  { id: "MC7104", spotlightType: "MC7104", href: "/category/mister-led/chandelier/MC7104" },
+  { id: "MC7105", spotlightType: "MC7105", href: "/category/mister-led/chandelier/MC7105" },
+  { id: "OH0109", spotlightType: "OH0109", href: "/category/mister-led/chandelier/OH0109" },
+  { id: "OH1109", spotlightType: "OH1109", href: "/category/mister-led/chandelier/OH1109" },
+  { id: "OH1203", spotlightType: "OH1203", href: "/category/mister-led/chandelier/OH1203" },
+  { id: "OH1207", spotlightType: "OH1207", href: "/category/mister-led/chandelier/OH1207" },
+  { id: "OH1209", spotlightType: "OH1209", href: "/category/mister-led/chandelier/OH1209" },
+  { id: "OH1309", spotlightType: "OH1309", href: "/category/mister-led/chandelier/OH1309" },
+  { id: "OH1601", spotlightType: "OH1601", href: "/category/mister-led/chandelier/OH1601" },
+].map(item => ({
+  ...item,
+  href: item.href.toLowerCase()
+}));
 
 export const projectDataForHeader = [
   {

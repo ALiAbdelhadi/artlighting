@@ -266,14 +266,14 @@ export default function ProductCard({ product, locale }: ProductCardProps) {
             </div>
           </div>
         </div>
-        <div className={cn(styles.buttons, "flex pt-[10px] w-full gap-3 ")}>
+        <div className={cn(styles.buttons, "flex pt-2.5 w-full gap-3 ")}>
           <span className="w-full">
             <Link
               prefetch={true}
               href={`/category/${product.brand}/${product.sectionType}/${product.spotlightType.toLowerCase()}/${product.productId.toLowerCase()}`}
               aria-label={t('moreDetails')}
               className={cn(
-                "px-[25px] py-[10px] rounded-[3px] cursor-pointer h-10 flex justify-center items-center border border-black dark:border-gray-50 text-gray-950 dark:hover:text-gray-950 dark:text-gray-50 w-full hover:bg-gray-950 hover:text-gray-50 dark:hover:bg-gray-50 transition-colors",
+                "px-[25px] py-2.5 rounded-[3px] cursor-pointer h-10 flex justify-center items-center border border-black dark:border-gray-50 text-gray-950 dark:hover:text-gray-950 dark:text-gray-50 w-full hover:bg-gray-950 hover:text-gray-50 dark:hover:bg-gray-50 transition-colors",
                 {
                   "dark:bg-gray-50 dark:text-primary-foreground bg-black text-gray-50":
                     isClicked,

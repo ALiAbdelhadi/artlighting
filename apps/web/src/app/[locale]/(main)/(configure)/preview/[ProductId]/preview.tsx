@@ -487,10 +487,10 @@ export default function Preview({
                 <Button
                   onClick={handleConfirm}
                   disabled={isPending || !authState.isAuthChecked}
-                  className="sm:h-[52px] h-[40px] sm:px-10 px-8 bg-primary text-primary-foreground sm:text-lg text-base"
+                  className="sm:h-[52px] h-10 sm:px-10 px-8 bg-primary text-primary-foreground sm:text-lg text-base"
                 >
                   {isPending ? t('confirmingOrder') : t('confirmOrder')}
-                  <ArrowRight className="sm:h-[18px] sm:w-[18px] h-[16px] w-[16px] ml-1.5 inline" />
+                  <ArrowRight className="sm:h-[18px] sm:w-[18px] h-4 w-4 ml-1.5 inline" />
                 </Button>
               </div>
             </div>
