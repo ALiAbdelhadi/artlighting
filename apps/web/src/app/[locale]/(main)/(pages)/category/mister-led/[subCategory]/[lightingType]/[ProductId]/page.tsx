@@ -41,8 +41,6 @@ export default async function Page({ params }: PagePropsTypes) {
   const locale = getLocaleFromParams(await params);
   const { service } = await getServerI18n(locale);
 
-  console.log("Fetching product with params:", { ProductId, subCategory, lightingType, locale });
-
   try {
     const product = await prisma.product.findUnique({
       where: {

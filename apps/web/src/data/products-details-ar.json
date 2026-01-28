@@ -2,7 +2,7 @@
     "categories": {
         "balcom": {
             "indoor": {
-                "تراك لايت": [
+                "track-light": [
                     {
                         "jy-202-15w": {
                             "specificationsTable": {
@@ -276,7 +276,7 @@
                         }
                     }
                 ],
-                "اضاءه بانل": [
+                "panel-light": [
                     {
                         "jy-903-8w": {
                             "specificationsTable": {
@@ -660,7 +660,7 @@
                         }
                     }
                 ],
-                "الكشافات المزدوجة": [
+                "double-spotlight": [
                     {
                         "jy-dw-0124gls-28w": {
                             "specificationsTable": {
@@ -702,7 +702,7 @@
                         }
                     }
                 ],
-                "شريط ليد": [
+                "strip": [
                     {
                         "jy-5050-12v-3000k": {
                             "specificationsTable": {
@@ -744,7 +744,7 @@
                         }
                     }
                 ],
-                "اضاءة سقفيه خطية": [
+                "linear": [
                     {
                         "jy-pdt-0140030ln30-15w": {
                             "specificationsTable": {
@@ -959,7 +959,7 @@
                 ]
             },
             "outdoor": {
-                "اب لايت": [
+                "uplight": [
                     {
                         "jy-un-002-24w": {
                             "specificationsTable": {
@@ -1058,7 +1058,7 @@
                         }
                     }
                 ],
-                "الحربات": [
+                "spikes": [
                     {
                         "jy-316-5w": {
                             "specificationsTable": {
@@ -1100,7 +1100,7 @@
                         }
                     }
                 ],
-                "كشافات واجهات": [
+                "flood-light": [
                     {
                         "jy-5053-100w": {
                             "specificationsTable": {
@@ -1161,7 +1161,7 @@
                         }
                     }
                 ],
-                "اعمدة": [
+                "bollard": [
                     {
                         "jy-bo-001-650mm-8w": {
                             "specificationsTable": {
@@ -1184,7 +1184,7 @@
                         }
                     }
                 ],
-                "إضاءة جدارية": [
+                "wall-washer": [
                     {
                         "jy-309-36w": {
                             "specificationsTable": {
