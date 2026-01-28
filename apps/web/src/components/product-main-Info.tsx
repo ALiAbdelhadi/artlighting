@@ -22,9 +22,9 @@ import {
 } from "@/components/ui/dialog"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
-import { type Configuration, type Order, type SupportedCurrency, ProductIP } from "@/types/products"
-import { ProductColorTemp, ProductIP as PrismaProductIP, ProductChandLamp } from "@repo/database"
+import { ProductIP, type Configuration, type Order, type SupportedCurrency } from "@/types/products"
 import { useAuth } from "@clerk/nextjs"
+import { ProductIP as PrismaProductIP, ProductChandLamp, ProductColorTemp } from "@repo/database"
 import { useMutation } from "@tanstack/react-query"
 import { ArrowRight } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
@@ -56,7 +56,7 @@ interface ProductMainInfoProps {
   maxIP?: PrismaProductIP
   sectionTypes?: string[]
   sectionType: string
-  maximumWattage?: number
+  maximumWattage?: string
   mainMaterial?: string
   beamAngle?: string
   spotlightType: string
@@ -105,7 +105,6 @@ export default function ProductMainInfo({
   input,
   lampBase,
 }: ProductMainInfoProps) {
-  // Enhanced hooks for translations, navigation, and locale
   const t = useTranslations("product-main-info")
   const tDescription = useTranslations("product-descriptions")
   const tFullDescription = useTranslations("product-fullDescriptions")
@@ -115,7 +114,6 @@ export default function ProductMainInfo({
   const locale = useLocale()
   const pathname = usePathname()
 
-  // State management
   const [isPending, startTransition] = useTransition()
   const [showDialog, setShowDialog] = useState(false)
   const [currentQuantity, setCurrentQuantity] = useState(quantity)
@@ -374,7 +372,7 @@ export default function ProductMainInfo({
     const params = {
       Brand: Brand,
       brand: Brand,
-      wattage: maximumWattage ?? 0,
+      wattage: maximumWattage ?? "",
       material: mainMaterial ?? "N/A",
       luminousFlux: luminousFlux ?? "N/A",
       beamAngle: beamAngle ?? "N/A",
