@@ -1,0 +1,404 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Configuration {
+  id                String    @id @default(cuid())
+  productId         String
+  configPrice       Float
+  priceIncrease     Float     @default(0)
+  shippingPrice     Float     @default(0)
+  discount          Float     @default(0)
+  quantity          Int       @default(1)
+  lampPriceIncrease Float     @default(0)
+  totalPrice        Float
+  currency          String    @default("EGP")
+  productIp         ProductIP @default(IP20)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  orders     Order[]     @relation("ConfigurationToOrder")
+  users      User[]      @relation("ConfigurationToUser")
+  orderItems OrderItem[]
+
+  @@index([productId])
+  @@index([productId, updatedAt(sort: Desc)], name: "idx_configuration_product_updated")
+  @@map("configurations")
+}
+
+model User {
+  id                String   @id
+  email             String?
+  phoneNumber       String?
+  preferredLanguage String   @default("ar")
+  preferredCurrency String   @default("EGP")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  configurationId   String?
+  productId         String?
+  shippingAddressId String?  @unique
+
+  configuration   Configuration?   @relation("ConfigurationToUser", fields: [configurationId], references: [id])
+  product         Product?         @relation(fields: [productId], references: [id])
+  shippingAddress ShippingAddress?
+  cart            Cart?
+  orders          Order[]
+
+  @@index([email])
+  @@map("users")
+}
+
+model OrderItem {
+  id              String  @id @default(cuid())
+  orderId         Int
+  productId       String
+  quantity        Int
+  configPrice     Float
+  configurationId String?
+  localizedName   String?
+
+  order         Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product       Product        @relation(fields: [productId], references: [id])
+  configuration Configuration? @relation(fields: [configurationId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+model Order {
+  id                     Int         @id @default(autoincrement())
+  userId                 String
+  productId              String
+  productName            String
+  productImages          String[]
+  productColorTemp       String
+  productIp              String
+  productChandLamp       String
+  quantity               Int
+  isCompleted            Boolean     @default(false)
+  status                 OrderStatus @default(awaiting_shipment)
+  currency               String      @default("EGP")
+  customerLanguage       String      @default("ar")
+  createdAt              DateTime    @default(now())
+  updatedAt              DateTime    @updatedAt
+  productPrice           Float
+  discountedPrice        Float?
+  discountApplied        Boolean     @default(false)
+  discountRate           Float       @default(0)
+  totalPrice             Float
+  configPrice            Float
+  priceIncrease          Float       @default(0)
+  shippingPrice          Float       @default(0)
+  brand                  String?
+  chandelierLightingType String?
+  orderTimeReceived      DateTime?
+  configurationId        String?
+  shippingAddressId      String?
+
+  orderItems      OrderItem[]
+  product         Product          @relation(fields: [productId], references: [id])
+  shippingAddress ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
+  user            User             @relation(fields: [userId], references: [id])
+  configuration   Configuration?   @relation("ConfigurationToOrder", fields: [configurationId], references: [id])
+
+  @@index([userId])
+  @@index([productId])
+  @@index([status])
+  @@index([isCompleted])
+  @@index([userId, createdAt(sort: Desc)], name: "idx_order_user_created")
+  @@index([status, createdAt(sort: Desc)], name: "idx_order_status_created")
+  @@index([isCompleted, createdAt(sort: Desc)], name: "idx_order_completed_created")
+  @@map("orders")
+}
+
+model ShippingAddress {
+  id          String  @id @default(cuid())
+  userId      String  @unique
+  fullName    String
+  address     String
+  city        String
+  state       String
+  zipCode     String
+  country     String
+  countryCode String  @default("EG")
+  phoneNumber String
+  isDefault   Boolean @default(false)
+
+  orders Order[]
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("shipping_addresses")
+}
+
+model Cart {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  currency  String   @default("EGP")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user  User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items CartItem[]
+
+  @@map("carts")
+}
+
+model CartItem {
+  id        String   @id @default(cuid())
+  cartId    String
+  productId String
+  quantity  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cart    Cart    @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([cartId, productId])
+  @@index([cartId])
+  @@index([productId])
+  @@map("cart_items")
+}
+
+model Product {
+  id                     String           @id @default(cuid())
+  productId              String           @unique
+  productName            String
+  productImages          String[]
+  maxIP                  Int?
+  spotlightType          String
+  price                  Float
+  priceIncrease          Float            @default(0)
+  sectionType            String
+  quantity               Int              @default(0)
+  brand                  String
+  discount               Float            @default(0)
+  chandelierLightingType String?
+  hNumber                Int?
+  isActive               Boolean          @default(true)
+  featured               Boolean          @default(false)
+  createdAt              DateTime         @default(now())
+  updatedAt              DateTime         @updatedAt
+  categoryId             String
+  lightingtypeId         String
+  productColor           ProductColorTemp @default(warm)
+  productIp              ProductIP        @default(IP20)
+  productChandLamp       ProductChandLamp @default(lamp9w)
+
+  cartItems      CartItem[]
+  orders         Order[]
+  orderItems     OrderItem[]
+  users          User[]
+  category       Category               @relation(fields: [categoryId], references: [id])
+  lightingtype   LightingType           @relation(fields: [lightingtypeId], references: [id])
+  specifications ProductSpecification[]
+  translations   ProductTranslation[]
+
+  @@index([productId])
+  @@index([categoryId])
+  @@index([lightingtypeId])
+  @@index([brand])
+  @@index([sectionType])
+  @@index([spotlightType])
+  @@index([isActive])
+  @@index([featured])
+  @@index([brand, sectionType, isActive, featured], name: "idx_product_brand_section_active_featured")
+  @@index([brand, sectionType, spotlightType, isActive], name: "idx_product_brand_section_spotlight_active")
+  @@map("products")
+}
+
+model ProductTranslation {
+  id          String   @id @default(cuid())
+  productId   String
+  language    String
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  product     Product  @relation(fields: [productId], references: [productId], onDelete: Cascade)
+
+  @@unique([productId, language])
+  @@index([language])
+  @@index([productId, language], name: "idx_product_translation_product_language")
+  @@map("product_translations")
+}
+
+model ProductSpecification {
+  id                 String   @id @default(cuid())
+  productId          String
+  language           String
+  input              String?
+  maximumWattage     String?
+  brandOfLed         String?
+  luminousFlux       String?
+  mainMaterial       String?
+  cri                String?
+  beamAngle          String?
+  workingTemperature String?
+  fixtureDimmable    String?
+  electrical         String?
+  powerFactor        String?
+  colorTemperature   String?
+  ip                 String?
+  energySaving       String?
+  lifeTime           String?
+  finish             String?
+  lampBase           String?
+  bulb               String?
+  customSpecs        Json?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  product            Product  @relation(fields: [productId], references: [productId], onDelete: Cascade)
+
+  @@unique([productId, language])
+  @@index([language])
+  @@index([productId])
+  @@index([productId, language], name: "idx_product_spec_product_language")
+  @@map("product_specifications")
+}
+
+model Category {
+  id           String                @id @default(cuid())
+  name         String                @unique
+  slug         String                @unique
+  isActive     Boolean               @default(true)
+  sortOrder    Int                   @default(0)
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+  products     Product[]
+  translations CategoryTranslation[]
+
+  @@index([isActive])
+  @@index([sortOrder])
+  @@index([slug])
+  @@map("categories")
+}
+
+model CategoryTranslation {
+  id          String   @id @default(cuid())
+  categoryId  String
+  language    String
+  name        String
+  description String?
+  metaTitle   String?
+  metaDesc    String?
+  slug        String?
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([categoryId, language])
+  @@unique([language, slug])
+  @@index([language])
+  @@index([categoryId, language], name: "idx_category_translation_category_language")
+  @@map("category_translations")
+}
+
+model LightingType {
+  id           String                    @id @default(cuid())
+  name         String                    @unique
+  slug         String                    @unique
+  isActive     Boolean                   @default(true)
+  sortOrder    Int                       @default(0)
+  createdAt    DateTime                  @default(now())
+  updatedAt    DateTime                  @updatedAt
+  products     Product[]
+  translations LightingTypeTranslation[]
+
+  @@index([isActive])
+  @@index([sortOrder])
+  @@index([slug])
+  @@map("lighting_types")
+}
+
+model LightingTypeTranslation {
+  id             String       @id @default(cuid())
+  lightingTypeId String
+  language       String
+  name           String
+  description    String?
+  metaTitle      String?
+  metaDesc       String?
+  slug           String?
+  lightingType   LightingType @relation(fields: [lightingTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([lightingTypeId, language])
+  @@unique([language, slug])
+  @@index([language])
+  @@index([lightingTypeId, language], name: "idx_lighting_type_trans_type_language")
+  @@map("lighting_type_translations")
+}
+
+model SystemSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("system_settings")
+}
+
+model CurrencyRate {
+  id           String   @id @default(cuid())
+  fromCurrency String
+  toCurrency   String
+  rate         Float
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([fromCurrency, toCurrency])
+  @@index([isActive])
+  @@map("currency_rates")
+}
+
+enum ProductColorTemp {
+  warm
+  cool
+  white
+
+  @@map("ProductColorTemp")
+}
+
+enum ProductIP {
+  IP20
+  IP44
+  IP54
+  IP65
+  IP68
+
+  @@map("ProductIP")
+}
+
+enum ProductChandLamp {
+  lamp9w
+  lamp12w
+
+  @@map("ProductChandLamp")
+}
+
+enum OrderOption {
+  BasicShipping
+  StandardShipping
+  ExpressShipping
+
+  @@map("OrderOption")
+}
+
+enum OrderStatus {
+  awaiting_shipment
+  processing
+  shipped
+  delivered
+  fulfilled
+  cancelled
+  refunded
+
+  @@map("OrderStatus")
+}
