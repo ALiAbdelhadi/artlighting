@@ -7,6 +7,8 @@ import { PagePropsTypes } from "@/types"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
+export const dynamic = "force-dynamic"
+
 export default async function Page({ params }: PagePropsTypes) {
   const awaitedParams = await params
   const subCategory = awaitedParams.subCategory as string

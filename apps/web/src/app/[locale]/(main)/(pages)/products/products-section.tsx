@@ -80,37 +80,53 @@ const ProductsSection = async ({ params }: PagePropsTypes) => {
 
 
   try {
-    const selectedProducts = await prisma.product.findMany({
+    const includeConfig = {
+      specifications: {
+        where: {
+          language: locale
+        }
+      },
+      translations: {
+        where: {
+          language: locale
+        }
+      },
+      category: {
+        include: {
+          translations: {
+            where: {
+              language: locale
+            }
+          }
+        }
+      }
+    } as const;
+
+    let selectedProducts = await prisma.product.findMany({
       where: {
         productId: { in: featuredProductIds },
         isActive: true,
       },
-      include: {
-        specifications: {
-          where: {
-            language: locale
-          }
-        },
-        translations: {
-          where: {
-            language: locale
-          }
-        },
-        category: {
-          include: {
-            translations: {
-              where: {
-                language: locale
-              }
-            }
-          }
-        }
-      },
+      include: includeConfig,
       orderBy: [
         { featured: 'desc' },
         { createdAt: 'desc' }
       ],
     });
+
+    if (selectedProducts.length === 0) {
+      selectedProducts = await prisma.product.findMany({
+        where: {
+          isActive: true,
+        },
+        include: includeConfig,
+        orderBy: [
+          { featured: 'desc' },
+          { createdAt: 'desc' }
+        ],
+        take: 20,
+      });
+    }
 
     const formattedProducts = selectedProducts.map(product => {
       const primaryTranslation = product.translations?.[0];

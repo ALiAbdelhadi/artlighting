@@ -8,6 +8,9 @@ import { prisma } from "@repo/database"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
+
+export const dynamic = "force-dynamic"
+
 export async function generateStaticParams() {
   const products = await prisma.product.findMany({
     select: { productId: true, sectionType: true, spotlightType: true },
