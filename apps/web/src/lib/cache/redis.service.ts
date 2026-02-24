@@ -31,9 +31,20 @@ export const CachePrefix = {
 export class CacheService {
   static async get<T>(key: string): Promise<T | null> {
     try {
-      const raw = await redis.get<string | null>(key);
-      if (!raw) return null;
-      return JSON.parse(raw) as T;
+      const raw = await redis.get(key);
+      if (raw === null || raw === undefined) return null;
+
+      // If value is already an object/array/number, return it directly
+      if (typeof raw !== "string") {
+        return raw as T;
+      }
+
+      // If value is a string, try to JSON.parse – fall back to raw string if it fails
+      try {
+        return JSON.parse(raw) as T;
+      } catch {
+        return raw as T;
+      }
     } catch (error) {
       console.error(`Cache GET error for key ${key}:`, error);
       return null;
@@ -123,11 +134,14 @@ export class CacheService {
 
   static async mget<T>(keys: string[]): Promise<(T | null)[]> {
     try {
-      const rawResults = await redis.mget<(string | null)[]>(...keys);
+      const rawResults = await redis.mget(...keys);
       return rawResults.map((raw) => {
         if (!raw) return null;
         try {
-          return JSON.parse(raw) as T;
+          if (typeof raw === "string") {
+            return JSON.parse(raw) as T;
+          }
+          return raw as T;
         } catch {
           return null;
         }
