@@ -51,7 +51,6 @@ export interface LocalizedProductData {
   chandelierLightingType: string | null;
   categoryId: string | null;
   lightingtypeId: string | null;
-  sortOrder: number;
   createdAt: Date;
   updatedAt: Date;
   specifications: LocalizedSpecsData | null;
@@ -140,7 +139,6 @@ export function transformToLocalizedProduct(
     chandelierLightingType: product.chandelierLightingType ?? null,
     categoryId: product.categoryId ?? null,
     lightingtypeId: product.lightingtypeId ?? null,
-    sortOrder: product.sortOrder ?? 0,
     createdAt: product.createdAt,
     updatedAt: product.updatedAt,
     specifications: specs,
@@ -224,7 +222,7 @@ export class ProductService {
         include: buildProductInclude(language),
         ...(cursor ? { cursor: { id: cursor }, skip: 1 } : { skip }),
         take: safeLimit + 1,
-        orderBy: [{ sortOrder: "asc" }, { featured: "desc" }, { createdAt: "desc" }],
+        orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
       }),
       prisma.product.count({ where }),
     ]);
@@ -313,7 +311,7 @@ export class ProductService {
       },
       include: buildProductInclude(language, true),
       take: limit,
-      orderBy: [{ sortOrder: "asc" }, { featured: "desc" }],
+      orderBy: [{ featured: "desc" }, { createdAt: "desc" }],
     });
 
     const products = raw.map((p) => transformToLocalizedProduct(p, language));

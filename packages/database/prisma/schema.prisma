@@ -106,7 +106,6 @@ model Order {
   shippingAddressId      String?
 
   orderItems      OrderItem[]
-  coupons         OrderCoupon[]
   product         Product          @relation(fields: [productId], references: [id])
   shippingAddress ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
   user            User             @relation(fields: [userId], references: [id])
@@ -196,7 +195,6 @@ model Product {
   discount               Float            @default(0)
   chandelierLightingType String?          // "LED" | "lamp"
   hNumber                Int?             // Number of heads/lights (chandeliers)
-  sortOrder              Int              @default(0)
   isActive               Boolean          @default(true)
   featured               Boolean          @default(false)
   createdAt              DateTime         @default(now())
@@ -224,7 +222,6 @@ model Product {
   @@index([spotlightType])
   @@index([isActive])
   @@index([featured])
-  @@index([sortOrder])
   @@index([brand, sectionType, isActive, featured],     name: "idx_product_brand_section_active_featured")
   @@index([brand, sectionType, spotlightType, isActive], name: "idx_product_brand_section_spotlight_active")
   @@map("products")
@@ -294,14 +291,12 @@ model Category {
   name         String                @unique
   slug         String                @unique  // "indoor" | "outdoor" | "chandelier"
   isActive     Boolean               @default(true)
-  sortOrder    Int                   @default(0)
   createdAt    DateTime              @default(now())
   updatedAt    DateTime              @updatedAt
   products     Product[]
   translations CategoryTranslation[]
 
   @@index([isActive])
-  @@index([sortOrder])
   @@index([slug])
   @@map("categories")
 }
@@ -331,14 +326,12 @@ model LightingType {
   name         String                    @unique
   slug         String                    @unique
   isActive     Boolean                   @default(true)
-  sortOrder    Int                       @default(0)
   createdAt    DateTime                  @default(now())
   updatedAt    DateTime                  @updatedAt
   products     Product[]
   translations LightingTypeTranslation[]
 
   @@index([isActive])
-  @@index([sortOrder])
   @@index([slug])
   @@map("lighting_types")
 }
@@ -387,49 +380,6 @@ model CurrencyRate {
   @@map("currency_rates")
 }
 
-// ─── Coupons ─────────────────────────────────────────────────
-model Coupon {
-  id             String      @id @default(cuid())
-  code           String      @unique
-  description    String?
-  type           CouponType
-  scope          CouponScope @default(ORDER)
-  value          Float
-  maxUses        Int?
-  usedCount      Int         @default(0)
-  maxUsesPerUser Int?
-  minOrderTotal  Float?
-  startsAt       DateTime?
-  endsAt         DateTime?
-  isActive       Boolean     @default(true)
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
-
-  orderCoupons OrderCoupon[]
-
-  @@index([isActive])
-  @@index([startsAt])
-  @@index([endsAt])
-  @@map("coupons")
-}
-
-model OrderCoupon {
-  id             String   @id @default(cuid())
-  orderId        Int
-  couponId       String
-  userId         String
-  discountAmount Float
-  appliedAt      DateTime @default(now())
-
-  order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
-
-  @@unique([orderId, couponId], name: "uniq_order_coupon")
-  @@index([orderId])
-  @@index([couponId])
-  @@index([userId])
-  @@map("order_coupons")
-}
 
 // ─── Enums ───────────────────────────────────────────────────
 enum ProductColorTemp {
@@ -455,16 +405,6 @@ enum ProductChandLamp {
   lamp12w
 
   @@map("ProductChandLamp")
-}
-
-enum CouponType {
-  PERCENT
-  FIXED
-}
-
-enum CouponScope {
-  ORDER
-  PRODUCT
 }
 
 enum OrderOption {

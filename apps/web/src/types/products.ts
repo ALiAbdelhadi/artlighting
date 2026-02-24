@@ -134,7 +134,6 @@ export interface Category {
   name: string
   slug: string
   isActive: boolean
-  sortOrder: number
   createdAt: Date
   updatedAt: Date
   translations?: CategoryTranslation[]
@@ -145,7 +144,6 @@ export interface LightingType {
   name: string
   slug: string
   isActive: boolean
-  sortOrder: number
   createdAt: Date
   updatedAt: Date
   translations?: LightingTypeTranslation[]
@@ -501,7 +499,6 @@ export interface SearchParams {
   page?: number
   limit?: number
   sortBy?: "price" | "name" | "createdAt" | "featured"
-  sortOrder?: "asc" | "desc"
   filters?: ProductFilters
   locale?: SupportedLanguage
 }
