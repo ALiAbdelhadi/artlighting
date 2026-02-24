@@ -12,15 +12,10 @@ import ProductIPButtons from "@/components/product-ip-buttons"
 import { QuantitySelector } from "@/components/quantity-selector"
 import { Button } from "@/components/ui/button"
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
+  Dialog, DialogClose, DialogContent, DialogDescription,
+  DialogFooter, DialogHeader, DialogTitle,
 } from "@/components/ui/dialog"
-import { usePathname, useRouter } from "@/i18n/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { ProductIP, type Configuration, type Order, type SupportedCurrency } from "@/types/products"
 import { useAuth } from "@clerk/nextjs"
@@ -53,7 +48,7 @@ interface ProductMainInfoProps {
   hNumber?: number
   configuration?: Configuration
   ip?: PrismaProductIP
-  maxIP?: PrismaProductIP
+  maxIP?: number
   sectionTypes?: string[]
   sectionType: string
   maximumWattage?: string
@@ -112,60 +107,61 @@ export default function ProductMainInfo({
   const tDialog = useTranslations("product-dialog")
   const router = useRouter()
   const locale = useLocale()
-  const pathname = usePathname()
 
   const [isPending, startTransition] = useTransition()
   const [showDialog, setShowDialog] = useState(false)
   const [currentQuantity, setCurrentQuantity] = useState(quantity)
   const [isClicked, setIsClicked] = useState(false)
   const [configuration, setConfiguration] = useState<Configuration | undefined>(initialConfiguration)
+
   const [selectedColorTemp, setSelectedColorTemp] = useState<ProductColorTemp>(
-    (order?.productColorTemp as ProductColorTemp) ?? ProductColorTemp.warm,
+    (order?.productColorTemp as ProductColorTemp) ?? ProductColorTemp.warm
   )
+
   const [selectedProductIp, setSelectProductIp] = useState<PrismaProductIP>(
     (initialConfiguration?.productIp as unknown as PrismaProductIP) ??
     (order?.productIp as PrismaProductIP) ??
-    (ip as PrismaProductIP) ??
+    ip ??
     PrismaProductIP.IP20
   )
-  const [selectedProductChandelierLamp, setSelectedProductChandelierLamp] = useState<ProductChandLamp>(
-    (order?.productChandLamp as ProductChandLamp) ?? ProductChandLamp.lamp9w,
-  )
+
+  const [selectedProductChandelierLamp, setSelectedProductChandelierLamp] =
+    useState<ProductChandLamp>((order?.productChandLamp as ProductChandLamp) ?? ProductChandLamp.lamp9w)
+
   const [priceIncrease, setPriceIncrease] = useState(0)
   const [lampPriceIncrease, setLampPriceIncrease] = useState(0)
+
   const { isSignedIn } = useAuth()
   const isUpdatingRef = useRef(false)
   const lastUpdateRef = useRef<string>("")
+
   const [debouncedProductIp] = useDebounce(selectedProductIp, DEBOUNCE_DELAY)
 
-  const totalPriceBeforeDiscount = useMemo(() => {
-    const total = price + priceIncrease + lampPriceIncrease
-    return total
-  }, [price, priceIncrease, lampPriceIncrease])
+  const totalPriceBeforeDiscount = useMemo(
+    () => price + priceIncrease + lampPriceIncrease,
+    [price, priceIncrease, lampPriceIncrease]
+  )
 
   const discountedUnitPrice = useMemo(() => {
-    const normalizedDiscount = discount > 1 ? discount / 100 : discount
-    const discountedPrice = totalPriceBeforeDiscount * (1 - normalizedDiscount)
-    const finalPrice = Math.ceil(discountedPrice)
-
-    return finalPrice
+    const normalized = discount > 1 ? discount / 100 : discount
+    return Math.ceil(totalPriceBeforeDiscount * (1 - normalized))
   }, [totalPriceBeforeDiscount, discount])
 
-  const finalTotalPrice = useMemo(() => {
-    return discountedUnitPrice * currentQuantity
-  }, [discountedUnitPrice, currentQuantity])
+  const finalTotalPrice = useMemo(
+    () => discountedUnitPrice * currentQuantity,
+    [discountedUnitPrice, currentQuantity]
+  )
+
+  const effectiveMaxIP = useMemo(() => maxIP ?? 20, [maxIP])
 
   const showIP20Text = useMemo(() => PRODUCTS_WITH_IP20_TEXT.includes(productId), [productId])
   const showMaxIpText = useMemo(() => PRODUCTS_WITH_MAX_IP_TEXT.includes(productId), [productId])
   const showOutdoorText = useMemo(() => sectionTypes?.includes("outdoor") ?? false, [sectionTypes])
 
   useEffect(() => {
-    const key = `${QUANTITY_STORAGE_KEY_PREFIX}${productId}`
     try {
-      localStorage.setItem(key, currentQuantity.toString())
-    } catch (error) {
-      console.error("Failed to save quantity to localStorage:", error)
-    }
+      localStorage.setItem(`${QUANTITY_STORAGE_KEY_PREFIX}${productId}`, currentQuantity.toString())
+    } catch { }
   }, [currentQuantity, productId])
 
   const handleIncreaseQuantity = useCallback(() => {
@@ -182,64 +178,54 @@ export default function ProductMainInfo({
 
   const handleProductChandelierLampChange = useCallback(
     (newProductLamp: ProductChandLamp, newLampPriceIncrease: number) => {
-      console.log("Chandelier lamp change:", {
-        newProductLamp,
-        newLampPriceIncrease,
-        basePrice: price,
-        currentPriceIncrease: priceIncrease,
-      })
       setSelectedProductChandelierLamp(newProductLamp)
       setLampPriceIncrease(newLampPriceIncrease)
     },
-    [price, priceIncrease],
+    []
   )
 
   const handleColorTempChange = useCallback((newColorTemp: ProductColorTemp) => {
     setSelectedColorTemp(newColorTemp)
   }, [])
 
-  const handleProductIPChange = useCallback((newProductIp: PrismaProductIP, newPriceIncrease: number) => {
-    setSelectProductIp(newProductIp)
-    setPriceIncrease(newPriceIncrease)
-  }, [price, lampPriceIncrease])
+  const handleProductIPChange = useCallback(
+    (newProductIp: PrismaProductIP, newPriceIncrease: number) => {
+      setSelectProductIp(newProductIp)
+      setPriceIncrease(newPriceIncrease)
+    },
+    []
+  )
 
   const updateProductIPConfig = useCallback(
     async (newProductIp: PrismaProductIP, newPriceIncrease: number) => {
       if (!configId || isUpdatingRef.current) return
-
       const updateKey = `${configId}-${newProductIp}-${newPriceIncrease}`
       if (lastUpdateRef.current === updateKey) return
 
       isUpdatingRef.current = true
       lastUpdateRef.current = updateKey
-
       try {
-        const result = await updateProductIP({
-          configId,
-          newProductIp,
-        })
-
+        const result = await updateProductIP({ configId, newProductIp })
         if (result.success && result.updatedConfig) {
-          const updatedConfig: Configuration = {
+          setConfiguration({
             ...result.updatedConfig,
             currency: result.updatedConfig.currency as SupportedCurrency,
-            productIp: result.updatedConfig.productIp ? (result.updatedConfig.productIp as unknown as ProductIP) : undefined,
+            productIp: result.updatedConfig.productIp
+              ? (result.updatedConfig.productIp as unknown as ProductIP)
+              : undefined,
             lampPriceIncrease: result.updatedConfig.lampPriceIncrease ?? undefined,
             priceIncrease: result.updatedConfig.priceIncrease ?? undefined,
-          }
-          setConfiguration(updatedConfig)
+          })
         } else {
-          console.error("Failed to update configuration:", result.error)
           toast.error(tNotification("updateError"))
         }
-      } catch (error) {
-        console.error("Error updating product IP:", error)
+      } catch {
         toast.error(tNotification("updateError"))
       } finally {
         isUpdatingRef.current = false
       }
     },
-    [configId, productId, tNotification],
+    [configId, tNotification]
   )
 
   useEffect(() => {
@@ -251,28 +237,23 @@ export default function ProductMainInfo({
   useEffect(() => {
     if (configuration?.productIp) {
       const configProductIp = configuration.productIp as unknown as PrismaProductIP
-      if (configProductIp !== selectedProductIp) {
-        setSelectProductIp(configProductIp)
-      }
+      if (configProductIp !== selectedProductIp) setSelectProductIp(configProductIp)
     }
   }, [configuration?.productIp, selectedProductIp])
 
   const { mutate: saveConfig, isPending: isSavingConfig } = useMutation({
     mutationKey: ["save-config", configId],
     mutationFn: (args: SaveConfigArgs) => _saveConfig(args),
-    onError: (error) => {
-      console.error("Configuration save error:", error)
+    onError: () => {
       toast.error(tNotification("orderError"))
       setIsClicked(false)
     },
-    onSuccess: (data) => {
-      console.log("Configuration saved successfully:", data)
+    onSuccess: () => {
       try {
         localStorage.removeItem("cached-config")
         router.push(`/preview/${productId}`)
-        toast.success(tNotification("configSaved") || "Configuration saved successfully!")
-      } catch (error) {
-        console.error("Navigation error:", error)
+        toast.success(tNotification("configSaved"))
+      } catch {
         toast.error("Navigation failed. Please try again.")
         setIsClicked(false)
       }
@@ -280,89 +261,25 @@ export default function ProductMainInfo({
   })
 
   const handleOrderNow = useCallback(() => {
-    console.log("Order Now clicked - Complete price breakdown", {
-      basePrice: price,
-      priceIncrease,
-      lampPriceIncrease,
-      totalPriceBeforeDiscount,
-      discount,
-      discountedUnitPrice,
-      currentQuantity,
-      finalTotalPrice,
-      configId,
-      productId,
-    })
-    if (isSavingConfig) {
-      console.log("Already processing configuration save")
-      return
-    }
-
-    if (!configId) {
-      console.error("Missing configuration ID")
-      toast.error("Configuration not found. Please refresh the page.")
-      return
-    }
-
-    if (!productId) {
-      console.error("Missing product ID")
-      toast.error("Product information missing. Please refresh the page.")
-      return
-    }
-
-    if (currentQuantity < 1) {
-      console.error("Invalid quantity")
-      toast.error("Please select a valid quantity.")
-      return
-    }
-
-    if (isClicked) {
-      console.log("Button already clicked, preventing duplicate request")
-      return
-    }
-
+    if (isSavingConfig || isClicked || !configId || !productId || currentQuantity < 1) return
     setIsClicked(true)
-
-    const configData: SaveConfigArgs = {
-      configId,
-      productId,
-      quantity: currentQuantity,
-    }
-
-    console.log("Final configuration data being saved:", configData)
-    saveConfig(configData)
-  }, [
-    isSavingConfig,
-    configId,
-    productId,
-    currentQuantity,
-    totalPriceBeforeDiscount,
-    discountedUnitPrice,
-    finalTotalPrice,
-    isClicked,
-    saveConfig,
-    priceIncrease,
-    lampPriceIncrease,
-    discount,
-    price,
-  ])
+    saveConfig({ configId, productId, quantity: currentQuantity })
+  }, [isSavingConfig, isClicked, configId, productId, currentQuantity, saveConfig])
 
   const handleAddToBag = useCallback(() => {
     if (!isSignedIn) {
       toast.error(tNotification("signInRequired"))
       return
     }
-
     startTransition(async () => {
       if (currentQuantity >= BULK_ORDER_THRESHOLD) {
         setShowDialog(true)
         return
       }
-
       try {
         await addToCart(productId)
         toast.success(tNotification("addedToCart", { productName }))
-      } catch (error) {
-        console.error("Failed to add item to cart:", error)
+      } catch {
         toast.error(tNotification("failedToAdd"))
       }
     })
@@ -370,52 +287,35 @@ export default function ProductMainInfo({
 
   const createProductDescription = useCallback((): string => {
     const params = {
-      Brand: Brand,
-      brand: Brand,
+      Brand, brand: Brand,
       wattage: maximumWattage ?? "",
       material: mainMaterial ?? "N/A",
       luminousFlux: luminousFlux ?? "N/A",
       beamAngle: beamAngle ?? "N/A",
       ip: ip ?? "N/A",
-      spotlightType: spotlightType,
+      spotlightType,
       colorTemperature: colorTemperature ?? "N/A",
       finish: finish ?? "N/A",
       totalWattage: (hNumber || 0) * 12,
       hNumber: hNumber ?? 0,
       lampBase: lampBase ?? "N/A",
     }
-
-    if (Brand === "balcom") {
-      return sectionType === "indoor" ? tDescription("balcomIndoor", params) : tDescription("balcomOutdoor", params)
-    }
-    if (Brand === "mister-led" && sectionType === "chandelier") {
+    if (Brand === "balcom")
+      return sectionType === "indoor"
+        ? tDescription("balcomIndoor", params)
+        : tDescription("balcomOutdoor", params)
+    if (Brand === "mister-led" && sectionType === "chandelier")
       return chandelierLightingType === "LED"
         ? tDescription("misterLedChandelierLED", params)
         : tDescription("misterLedChandelierLamp", params)
-    }
-
     return ""
-  }, [
-    Brand,
-    sectionType,
-    chandelierLightingType,
-    maximumWattage,
-    mainMaterial,
-    luminousFlux,
-    beamAngle,
-    ip,
-    spotlightType,
-    colorTemperature,
-    finish,
-    hNumber,
-    lampBase,
-    tDescription,
-  ])
+  }, [Brand, sectionType, chandelierLightingType, maximumWattage, mainMaterial,
+    luminousFlux, beamAngle, ip, spotlightType, colorTemperature, finish,
+    hNumber, lampBase, tDescription])
 
   const createProductDescriptionFull = useCallback((): string => {
     const params = {
-      Brand: Brand,
-      brand: Brand,
+      Brand, brand: Brand,
       wattage: maximumWattage ?? 0,
       material: mainMaterial ?? "N/A",
       luminousFlux: luminousFlux ?? "N/A",
@@ -427,48 +327,26 @@ export default function ProductMainInfo({
       ip: ip ?? "N/A",
       brandOfLed: brandOfLed ?? "N/A",
       electrical: electrical ?? "N/A",
-      spotlightType: spotlightType,
+      spotlightType,
       finish: finish ?? "N/A",
       input: input ?? "N/A",
       totalWattage: (hNumber || 0) * 12,
       hNumber: hNumber ?? 0,
       lampBase: lampBase ?? "N/A",
     }
-
-    if (Brand === "balcom") {
+    if (Brand === "balcom")
       return sectionType === "indoor"
         ? tFullDescription("balcomIndoor", params)
         : tFullDescription("balcomOutdoor", params)
-    }
-    if (Brand === "mister-led" && sectionType === "chandelier") {
+    if (Brand === "mister-led" && sectionType === "chandelier")
       return chandelierLightingType === "LED"
         ? tFullDescription("misterLedChandelierLED", params)
         : tFullDescription("misterLedChandelierLamp", params)
-    }
-
     return ""
-  }, [
-    Brand,
-    sectionType,
-    chandelierLightingType,
-    maximumWattage,
-    mainMaterial,
-    luminousFlux,
-    beamAngle,
-    colorTemperature,
-    lifeTime,
-    energySaving,
-    cri,
-    ip,
-    brandOfLed,
-    electrical,
-    spotlightType,
-    finish,
-    input,
-    hNumber,
-    lampBase,
-    tFullDescription,
-  ])
+  }, [Brand, sectionType, chandelierLightingType, maximumWattage, mainMaterial,
+    luminousFlux, beamAngle, colorTemperature, lifeTime, energySaving, cri,
+    ip, brandOfLed, electrical, spotlightType, finish, input, hNumber,
+    lampBase, tFullDescription])
 
   return (
     <div className="md:ml-7 ml-0">
@@ -478,14 +356,13 @@ export default function ProductMainInfo({
           {createProductDescription()}
         </p>
       </div>
+
       <div className="space-y-6 mt-6">
-        <div
-          className={cn(
-            "grid gap-6",
-            chandelierLightingType === "lamp" && Brand === "mister-led" && "sm:grid-cols-2",
-            Brand === "balcom" && "sm:grid-cols-2",
-          )}
-        >
+        <div className={cn(
+          "grid gap-6",
+          chandelierLightingType === "lamp" && Brand === "mister-led" && "sm:grid-cols-2",
+          Brand === "balcom" && "sm:grid-cols-2",
+        )}>
           <div className="space-y-4">
             {chandelierLightingType === "lamp" && Brand === "mister-led" && (
               <ProductChandelierLampButtons
@@ -505,7 +382,9 @@ export default function ProductMainInfo({
                 productIp={selectedProductIp}
                 onProductIpChange={handleProductIPChange}
                 basePrice={price}
-                discount={discount} maxIP={maxIP ?? PrismaProductIP.IP20} />
+                discount={discount}
+                maxIP={effectiveMaxIP}
+              />
             )}
           </div>
           <div className="space-y-4">
@@ -516,6 +395,7 @@ export default function ProductMainInfo({
             />
           </div>
         </div>
+
         <div className="flex items-center space-x-3">
           {discount > 0 ? (
             <>
@@ -542,6 +422,7 @@ export default function ProductMainInfo({
             </span>
           )}
         </div>
+
         <div className="flex justify-between items-center py-4 border-t border-b">
           <div className="flex items-center text-primary">
             <span className="text-base md:text-lg font-medium">{t("checkAvailability")}</span>
@@ -550,17 +431,14 @@ export default function ProductMainInfo({
           <div className="text-right">
             <span className="text-green-600 font-medium">{t("inStock")}</span>
             {showIP20Text && <div className="text-destructive text-[13px] font-medium">{t("availableOnlyIP20")}</div>}
-            {showMaxIpText && (
-              <div className="text-destructive text-[13px] font-medium">{t("availableOnlyIP20IP44IP54")}</div>
-            )}
-            {showOutdoorText && (
-              <div className="text-destructive text-[13px] font-medium">{t("availableOnlyIP65IP68")}</div>
-            )}
+            {showMaxIpText && <div className="text-destructive text-[13px] font-medium">{t("availableOnlyIP20IP44IP54")}</div>}
+            {showOutdoorText && <div className="text-destructive text-[13px] font-medium">{t("availableOnlyIP65IP68")}</div>}
           </div>
         </div>
       </div>
+
       <div className="fixed bottom-0 left-0 right-0 z-10 bg-white dark:bg-neutral-900 border-t shadow-lg px-4 md:relative md:bg-transparent md:border-0 md:shadow-none md:p-0 md:mt-6">
-        <div className="flex flex-col gap-3 mx-auto md:max-w-none md:p-0 py-4 ">
+        <div className="flex flex-col gap-3 mx-auto md:max-w-none md:p-0 py-4">
           <div className="flex items-center gap-4">
             <QuantitySelector
               quantity={currentQuantity}
@@ -579,11 +457,11 @@ export default function ProductMainInfo({
             disabled={isClicked || isSavingConfig}
             variant="outline"
             onClick={handleOrderNow}
-            className="w-full h-12 bg-transparent text-base relative"
+            className="w-full h-12 bg-transparent text-base"
           >
             {isClicked || isSavingConfig ? (
               <div className="flex items-center gap-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current" />
                 {t("processingOrder")}
               </div>
             ) : (
@@ -592,10 +470,12 @@ export default function ProductMainInfo({
           </Button>
         </div>
       </div>
+
       <div className="mt-8 mb-20 md:mb-0">
         <h2 className="text-xl font-semibold mb-4">{t("description")}</h2>
         <p className="text-muted-foreground leading-relaxed text-base">{createProductDescriptionFull()}</p>
       </div>
+
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
         <DialogContent>
           <DialogHeader>

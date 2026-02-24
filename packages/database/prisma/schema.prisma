@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ─── Configuration ──────────────────────────────────────────
 model Configuration {
   id                String    @id @default(cuid())
   productId         String
@@ -31,6 +32,7 @@ model Configuration {
   @@map("configurations")
 }
 
+// ─── User ────────────────────────────────────────────────────
 model User {
   id                String   @id
   email             String?
@@ -53,6 +55,7 @@ model User {
   @@map("users")
 }
 
+// ─── OrderItem ───────────────────────────────────────────────
 model OrderItem {
   id              String  @id @default(cuid())
   orderId         Int
@@ -71,6 +74,7 @@ model OrderItem {
   @@map("order_items")
 }
 
+// ─── Order ───────────────────────────────────────────────────
 model Order {
   id                     Int         @id @default(autoincrement())
   userId                 String
@@ -118,6 +122,7 @@ model Order {
   @@map("orders")
 }
 
+// ─── ShippingAddress ─────────────────────────────────────────
 model ShippingAddress {
   id          String  @id @default(cuid())
   userId      String  @unique
@@ -137,6 +142,7 @@ model ShippingAddress {
   @@map("shipping_addresses")
 }
 
+// ─── Cart ────────────────────────────────────────────────────
 model Cart {
   id        String   @id @default(cuid())
   userId    String   @unique
@@ -167,21 +173,30 @@ model CartItem {
   @@map("cart_items")
 }
 
+// ─── Product ─────────────────────────────────────────────────
+// Source of truth: products-details-static.json
+// maxIP          → static.MaxIP     (maximum IP rating available, e.g. 65 means can go up to IP65)
+// spotlightType  → static.spotlightType  (cob / track-light / panel-light / mc15c / etc.)
+// sectionType    → static.sectionType    (indoor / outdoor / chandelier)
+// brand          → static.brand          (balcom / mister-led)
+// hNumber        → static.Hnumber        (number of lamp heads for chandeliers)
+// chandelierLightingType → static.chandelierLightingType (LED / lamp)
 model Product {
   id                     String           @id @default(cuid())
-  productId              String           @unique
+  productId              String           @unique  // e.g. "jy-202-15w"
   productName            String
   productImages          String[]
-  maxIP                  Int?
-  spotlightType          String
+  maxIP                  Int?             // Max IP rating integer (20/44/54/65/68)
+  spotlightType          String           // e.g. "cob", "track-light", "mc15c"
   price                  Float
   priceIncrease          Float            @default(0)
-  sectionType            String
+  sectionType            String           // "indoor" | "outdoor" | "chandelier"
   quantity               Int              @default(0)
-  brand                  String
+  brand                  String           // "balcom" | "mister-led"
   discount               Float            @default(0)
-  chandelierLightingType String?
-  hNumber                Int?
+  chandelierLightingType String?          // "LED" | "lamp"
+  hNumber                Int?             // Number of heads/lights (chandeliers)
+  sortOrder              Int              @default(0)
   isActive               Boolean          @default(true)
   featured               Boolean          @default(false)
   createdAt              DateTime         @default(now())
@@ -189,7 +204,7 @@ model Product {
   categoryId             String
   lightingtypeId         String
   productColor           ProductColorTemp @default(warm)
-  productIp              ProductIP        @default(IP20)
+  productIp              ProductIP        @default(IP20)  // Base IP enum derived from EN specs
   productChandLamp       ProductChandLamp @default(lamp9w)
 
   cartItems      CartItem[]
@@ -209,15 +224,17 @@ model Product {
   @@index([spotlightType])
   @@index([isActive])
   @@index([featured])
-  @@index([brand, sectionType, isActive, featured], name: "idx_product_brand_section_active_featured")
+  @@index([sortOrder])
+  @@index([brand, sectionType, isActive, featured],     name: "idx_product_brand_section_active_featured")
   @@index([brand, sectionType, spotlightType, isActive], name: "idx_product_brand_section_spotlight_active")
   @@map("products")
 }
 
+// ─── ProductTranslation ──────────────────────────────────────
 model ProductTranslation {
   id          String   @id @default(cuid())
   productId   String
-  language    String
+  language    String   // "en" | "ar"
   name        String
   description String?
   createdAt   DateTime @default(now())
@@ -230,28 +247,34 @@ model ProductTranslation {
   @@map("product_translations")
 }
 
+// ─── ProductSpecification ────────────────────────────────────
+// Stores the specificationsTable from EN/AR JSON files per language.
+// Note: maxIP is NOT stored here — it lives in Product.maxIP.
 model ProductSpecification {
   id                 String   @id @default(cuid())
   productId          String
-  language           String
-  input              String?
-  maximumWattage     String?
-  brandOfLed         String?
-  luminousFlux       String?
+  language           String   // "en" | "ar"
+  // Balcom (LED spotlights, panels, strips, etc.)
+  input              String?  // AC voltage / input type
+  maximumWattage     String?  // watts
+  brandOfLed         String?  // LED chip brand (Epistar, etc.)
+  luminousFlux       String?  // lumens (may include /M for strips)
   mainMaterial       String?
-  cri                String?
+  cri                String?  // Color Rendering Index
   beamAngle          String?
   workingTemperature String?
   fixtureDimmable    String?
-  electrical         String?
+  electrical         String?  // driver info
   powerFactor        String?
-  colorTemperature   String?
-  ip                 String?
+  colorTemperature   String?  // e.g. "3000K / 4000K / 6500K"
+  ip                 String?  // Base IP as stored in spec (string)
   energySaving       String?
   lifeTime           String?
-  finish             String?
-  lampBase           String?
-  bulb               String?
+  // Mister LED chandeliers only
+  finish             String?  // e.g. "Brushed Nickel"
+  lampBase           String?  // e.g. "E27"
+  bulb               String?  // "Yes" | "No"
+  // Extra / future use
   customSpecs        Json?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
@@ -264,10 +287,12 @@ model ProductSpecification {
   @@map("product_specifications")
 }
 
+// ─── Category ────────────────────────────────────────────────
+// Maps to sectionType: "indoor" | "outdoor" | "chandelier"
 model Category {
   id           String                @id @default(cuid())
   name         String                @unique
-  slug         String                @unique
+  slug         String                @unique  // "indoor" | "outdoor" | "chandelier"
   isActive     Boolean               @default(true)
   sortOrder    Int                   @default(0)
   createdAt    DateTime              @default(now())
@@ -299,6 +324,8 @@ model CategoryTranslation {
   @@map("category_translations")
 }
 
+// ─── LightingType ────────────────────────────────────────────
+// Maps to spotlightType: "cob" | "track-light" | "mc15c" | etc.
 model LightingType {
   id           String                    @id @default(cuid())
   name         String                    @unique
@@ -334,6 +361,7 @@ model LightingTypeTranslation {
   @@map("lighting_type_translations")
 }
 
+// ─── System / Config ─────────────────────────────────────────
 model SystemSetting {
   id          String   @id @default(cuid())
   key         String   @unique
@@ -359,29 +387,30 @@ model CurrencyRate {
   @@map("currency_rates")
 }
 
+// ─── Coupons ─────────────────────────────────────────────────
 model Coupon {
-  id              String       @id @default(cuid())
-  code            String       @unique
-  description     String?
-  type            CouponType
-  scope           CouponScope  @default(ORDER)
-  value           Float        // percent (e.g. 0.15) or fixed amount depending on type
-  maxUses         Int?
-  usedCount       Int          @default(0)
-  maxUsesPerUser  Int?
-  minOrderTotal   Float?
-  startsAt        DateTime?
-  endsAt          DateTime?
-  isActive        Boolean      @default(true)
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id             String      @id @default(cuid())
+  code           String      @unique
+  description    String?
+  type           CouponType
+  scope          CouponScope @default(ORDER)
+  value          Float
+  maxUses        Int?
+  usedCount      Int         @default(0)
+  maxUsesPerUser Int?
+  minOrderTotal  Float?
+  startsAt       DateTime?
+  endsAt         DateTime?
+  isActive       Boolean     @default(true)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
 
-  orderCoupons    OrderCoupon[]
+  orderCoupons OrderCoupon[]
 
-  @@map("coupons")
   @@index([isActive])
   @@index([startsAt])
   @@index([endsAt])
+  @@map("coupons")
 }
 
 model OrderCoupon {
@@ -395,17 +424,18 @@ model OrderCoupon {
   order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
   coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
 
-  @@map("order_coupons")
+  @@unique([orderId, couponId], name: "uniq_order_coupon")
   @@index([orderId])
   @@index([couponId])
   @@index([userId])
-  @@unique([orderId, couponId], name: "uniq_order_coupon")
+  @@map("order_coupons")
 }
 
+// ─── Enums ───────────────────────────────────────────────────
 enum ProductColorTemp {
-  warm
-  cool
-  white
+  warm   // 3000K
+  cool   // 6500K
+  white  // 4000K / neutral
 
   @@map("ProductColorTemp")
 }
