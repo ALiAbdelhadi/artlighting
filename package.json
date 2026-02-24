@@ -30,7 +30,12 @@
   "engines": {
     "node": ">=18"
   },
-  "dependencies": {
-    "lodash": "^4.17.21"
+  "pnpm": {
+    "overrides": {
+      "minimatch": ">=10.2.1",
+      "shelljs": ">=0.8.5",
+      "lodash.template": ">=4.5.0",
+      "ajv": ">=6.12.3"
+    }
   }
 }

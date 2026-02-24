@@ -10,21 +10,32 @@ function getCorsOriginHeader() {
   if (allowedOrigins.length === 0) {
     return "https://artlighting-eg.com";
   }
-
-  if (allowedOrigins.length === 1) {
-    return allowedOrigins[0];
-  }
-
   return allowedOrigins[0];
 }
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
   compiler: {
     styledComponents: true,
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "@/components/ui"],
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+    dangerouslyAllowSVG: false,
+    contentDispositionType: "attachment",
   },
   async headers() {
     const corsOrigin = getCorsOriginHeader();
@@ -52,6 +63,24 @@ const nextConfig: NextConfig = {
           {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
+          },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.artlighting-eg.com https://*.clerk.accounts.dev",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "font-src 'self' https://fonts.gstatic.com",
+              "img-src 'self' data: blob: https://res.cloudinary.com https://images.unsplash.com https://img.clerk.com",
+              "connect-src 'self' https://*.clerk.accounts.dev https://*.upstash.io https://artlighting-eg.com",
+              "frame-ancestors 'none'",
+              "base-uri 'self'",
+              "form-action 'self'",
+            ].join("; "),
           },
         ],
       },
@@ -83,8 +112,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  compress: true,
-  poweredByHeader: false,
 };
 
 const withNextIntl = createNextIntlPlugin();
