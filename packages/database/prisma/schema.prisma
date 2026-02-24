@@ -16,7 +16,7 @@ model Configuration {
   shippingPrice     Float     @default(0)
   discount          Float     @default(0)
   quantity          Int       @default(1)
-  lampPriceIncrease Float     @default(0)
+  lampPriceIncrease Float?    @default(0)
   totalPrice        Float
   currency          String    @default("EGP")
   productIp         ProductIP @default(IP20)
