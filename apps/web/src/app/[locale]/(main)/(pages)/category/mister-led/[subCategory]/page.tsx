@@ -20,7 +20,7 @@ export default async function Page({ params }: PagePropsTypes) {
       "mister-led",
       subCategory,
       locale
-    );
+    ) as any[];
 
     if (!localizedLightingTypes.length) {
       notFound();
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: PagePropsTypes) {
       "mister-led",
       subCategory,
       locale
-    );
+    ) as any[];
 
     if (!localizedLightingTypes.length) {
       notFound();

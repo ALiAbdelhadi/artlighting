@@ -17,7 +17,7 @@ export default async function Page({ params }: PagePropsTypes) {
       "balcom",
       subCategory,
       locale
-    );
+    ) as any[];
 
     if (!localizedLightingTypes.length) {
       notFound();
@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: PagePropsTypes) {
       "balcom",
       subCategory,
       locale
-    );
+    ) as any[];
 
     if (!localizedLightingTypes.length) {
       notFound();

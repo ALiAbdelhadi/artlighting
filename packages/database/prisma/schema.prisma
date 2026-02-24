@@ -102,6 +102,7 @@ model Order {
   shippingAddressId      String?
 
   orderItems      OrderItem[]
+  coupons         OrderCoupon[]
   product         Product          @relation(fields: [productId], references: [id])
   shippingAddress ShippingAddress? @relation(fields: [shippingAddressId], references: [id])
   user            User             @relation(fields: [userId], references: [id])
@@ -358,6 +359,49 @@ model CurrencyRate {
   @@map("currency_rates")
 }
 
+model Coupon {
+  id              String       @id @default(cuid())
+  code            String       @unique
+  description     String?
+  type            CouponType
+  scope           CouponScope  @default(ORDER)
+  value           Float        // percent (e.g. 0.15) or fixed amount depending on type
+  maxUses         Int?
+  usedCount       Int          @default(0)
+  maxUsesPerUser  Int?
+  minOrderTotal   Float?
+  startsAt        DateTime?
+  endsAt          DateTime?
+  isActive        Boolean      @default(true)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  orderCoupons    OrderCoupon[]
+
+  @@map("coupons")
+  @@index([isActive])
+  @@index([startsAt])
+  @@index([endsAt])
+}
+
+model OrderCoupon {
+  id             String   @id @default(cuid())
+  orderId        Int
+  couponId       String
+  userId         String
+  discountAmount Float
+  appliedAt      DateTime @default(now())
+
+  order  Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  coupon Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
+
+  @@map("order_coupons")
+  @@index([orderId])
+  @@index([couponId])
+  @@index([userId])
+  @@unique([orderId, couponId], name: "uniq_order_coupon")
+}
+
 enum ProductColorTemp {
   warm
   cool
@@ -381,6 +425,16 @@ enum ProductChandLamp {
   lamp12w
 
   @@map("ProductChandLamp")
+}
+
+enum CouponType {
+  PERCENT
+  FIXED
+}
+
+enum CouponScope {
+  ORDER
+  PRODUCT
 }
 
 enum OrderOption {

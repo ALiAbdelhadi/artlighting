@@ -97,7 +97,7 @@ export default async function Page({ params }: PagePropsTypes) {
       currency: configuration.currency as any,
     }
 
-    const relatedProducts = await getRelatedProducts(localizedProduct, subCategory, locale)
+    const relatedProducts = await getRelatedProducts(localizedProduct, subCategory ?? '', locale)
 
     return (
       <>

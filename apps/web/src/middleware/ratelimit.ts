@@ -145,7 +145,7 @@ function getClientIp(request: NextRequest): string {
     return realIp;
   }
   
-  return request.ip || "127.0.0.1";
+  return (request as any).ip || "127.0.0.1";
 }
 
 /**

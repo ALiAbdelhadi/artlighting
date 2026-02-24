@@ -261,7 +261,7 @@ export default function BalcomProducts({
                 configuration={configuration}
                 sectionTypes={[product.sectionType]}
                 sectionType={product.sectionType}
-                maximumWattage={product.localizedSpecs?.maximumWattage ? parseInt(product.localizedSpecs.maximumWattage) : undefined}
+                maximumWattage={product.localizedSpecs?.maximumWattage || undefined}
                 mainMaterial={product.localizedSpecs?.mainMaterial || product.mainMaterial || ""}
                 beamAngle={product.localizedSpecs?.beamAngle || product.beamAngle || ""}
                 spotlightType={product.spotlightType}

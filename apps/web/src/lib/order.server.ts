@@ -64,7 +64,7 @@ export class OrderService {
                 chandelierLightingType: product.chandelierLightingType,
                 configPrice: dto.configPrice,
             },
-        });
+        }) as any as Order;
     }
 
     private static async upsertShippingAddress(
@@ -109,6 +109,6 @@ export class OrderService {
             where: { id: orderId },
             data: { isCompleted: true },
             include: { user: true, shippingAddress: true },
-        });
+        }) as any as Order;
     }
 }

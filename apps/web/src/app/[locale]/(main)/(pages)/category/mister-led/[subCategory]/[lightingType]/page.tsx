@@ -16,7 +16,7 @@ export default async function Page({ params }: PagePropsTypes) {
     notFound();
   }
   try {
-    const lightingTypes = await service.getLocalizedLightingTypes("mister-led", subCategory, locale);
+    const lightingTypes = await service.getLocalizedLightingTypes("mister-led", subCategory, locale) as any[];
 
     const currentLightingType = lightingTypes.find(
       (lt: any) => lt.slug === lightingType || lt.localizedSlug === lightingType || lt.spotlightType === lightingType
