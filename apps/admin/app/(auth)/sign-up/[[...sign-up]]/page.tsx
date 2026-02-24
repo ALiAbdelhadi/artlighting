@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 const SignUpPage = () => {
   return (
-    <main className="flex items-center justify-center bg-gradient-to-br from-primary/20 via-background to-secondary/20 py-24">
+    <main className="flex items-center justify-center bg-linear-to-br from-primary/20 via-background to-secondary/20 py-24">
       <Link
         href="/"
         className="absolute top-4 left-4 text-foreground hover:text-primary transition-colors"

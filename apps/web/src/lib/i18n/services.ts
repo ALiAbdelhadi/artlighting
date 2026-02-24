@@ -115,9 +115,9 @@ export class I18nService {
 
             const lightingTypeIds = [...new Set(lightingTypesWithCounts.map(lt => lt.lightingtypeId))];
             const categoryIds = [...new Set(lightingTypesWithCounts.map(lt => lt.categoryId))];
+            const spotlightTypes = [...new Set(lightingTypesWithCounts.map(lt => lt.spotlightType))];
 
-            // OPTIMIZED: Parallel queries instead of sequential
-            const [lightingTypesWithTranslations, categoriesWithTranslations, firstProductImages] = await Promise.all([
+            const [lightingTypesWithTranslations, categoriesWithTranslations, firstProducts] = await Promise.all([
                 prisma.lightingType.findMany({
                     where: { id: { in: lightingTypeIds }, isActive: true },
                     include: { translations: { where: { language } } },
@@ -126,33 +126,41 @@ export class I18nService {
                     where: { id: { in: categoryIds }, isActive: true },
                     include: { translations: { where: { language } } },
                 }),
-                Promise.all(
-                    lightingTypesWithCounts.map(async (groupItem) => {
-                        const firstProduct = await prisma.product.findFirst({
-                            where: {
-                                brand,
-                                sectionType,
-                                spotlightType: groupItem.spotlightType,
-                                isActive: true,
-                                productImages: { isEmpty: false },
-                            },
-                            select: { productImages: true, spotlightType: true },
-                            orderBy: { createdAt: "asc" },
-                        });
-                        return {
-                            spotlightType: groupItem.spotlightType,
-                            firstImage: firstProduct?.productImages?.[0] || null,
-                        };
-                    })
-                )
+                prisma.product.findMany({
+                    where: {
+                        brand,
+                        sectionType,
+                        isActive: true,
+                        spotlightType: { in: spotlightTypes },
+                        productImages: { isEmpty: false },
+                    },
+                    select: {
+                        spotlightType: true,
+                        productImages: true,
+                        createdAt: true,
+                    },
+                    orderBy: {
+                        createdAt: "asc",
+                    },
+                }),
             ]);
+
+            const firstImageBySpotlightType = new Map<string, string | null>();
+            for (const product of firstProducts) {
+                if (!firstImageBySpotlightType.has(product.spotlightType)) {
+                    firstImageBySpotlightType.set(
+                        product.spotlightType,
+                        product.productImages[0] || null
+                    );
+                }
+            }
 
             const localizedLightingTypes = lightingTypesWithCounts.map(groupItem => {
                 const lightingTypeDetail = lightingTypesWithTranslations.find(lt => lt.id === groupItem.lightingtypeId);
                 const translation = lightingTypeDetail?.translations[0];
-                const imageData = firstProductImages.find(img => img.spotlightType === groupItem.spotlightType);
                 const categoryDetail = categoriesWithTranslations.find(c => c.id === groupItem.categoryId);
                 const categoryTranslation = categoryDetail?.translations[0];
+                const firstImage = firstImageBySpotlightType.get(groupItem.spotlightType) || null;
 
                 return {
                     id: groupItem.lightingtypeId,
@@ -162,12 +170,11 @@ export class I18nService {
                     localizedSlug: translation?.slug || lightingTypeDetail?.slug || groupItem.spotlightType,
                     spotlightType: groupItem.spotlightType,
                     productCount: groupItem._count._all,
-                    firstProductImage: imageData?.firstImage || null,
+                    firstProductImage: firstImage,
                     localizedCategoryName: categoryTranslation?.name || categoryDetail?.name || "",
                 };
             });
 
-            // Cache in Redis
             await CacheService.set(cacheKey, localizedLightingTypes, CacheTTL.FIVE_MINUTES);
 
             return localizedLightingTypes;

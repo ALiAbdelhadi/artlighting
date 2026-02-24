@@ -1,18 +1,7 @@
-// apps/web/src/lib/cache/redis.service.ts
 import { Redis } from "@upstash/redis";
 
-/**
- * Redis Caching Service
- * Replaces in-memory caching for production scalability
- * Works in serverless environments
- */
-
-// Initialize Redis (uses UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN from env)
 const redis = Redis.fromEnv();
 
-/**
- * Cache TTL (Time To Live) configurations in seconds
- */
 export const CacheTTL = {
   ONE_MINUTE: 60,
   FIVE_MINUTES: 300,
@@ -23,9 +12,6 @@ export const CacheTTL = {
   ONE_WEEK: 604800,
 } as const;
 
-/**
- * Cache key prefixes for organization
- */
 export const CachePrefix = {
   PRODUCT: "product:",
   PRODUCTS_LIST: "products:list:",
@@ -43,30 +29,25 @@ export const CachePrefix = {
 } as const;
 
 export class CacheService {
-  /**
-   * Get value from cache
-   * Returns null if key doesn't exist or has expired
-   */
   static async get<T>(key: string): Promise<T | null> {
     try {
-      const data = await redis.get(key);
-      return data as T;
+      const raw = await redis.get<string | null>(key);
+      if (!raw) return null;
+      return JSON.parse(raw) as T;
     } catch (error) {
       console.error(`Cache GET error for key ${key}:`, error);
       return null;
     }
   }
 
-  /**
-   * Set value in cache with TTL
-   */
   static async set<T>(
     key: string,
     data: T,
     ttl: number = CacheTTL.FIVE_MINUTES
   ): Promise<boolean> {
     try {
-      await redis.setex(key, ttl, JSON.stringify(data));
+      const payload = JSON.stringify(data);
+      await redis.setex(key, ttl, payload);
       return true;
     } catch (error) {
       console.error(`Cache SET error for key ${key}:`, error);
@@ -74,9 +55,6 @@ export class CacheService {
     }
   }
 
-  /**
-   * Delete a specific key from cache
-   */
   static async delete(key: string): Promise<boolean> {
     try {
       await redis.del(key);
@@ -87,15 +65,11 @@ export class CacheService {
     }
   }
 
-  /**
-   * Delete all keys matching a pattern
-   * Use with caution - can be slow with many keys
-   */
   static async deletePattern(pattern: string): Promise<number> {
     try {
       const keys = await redis.keys(pattern);
       if (keys.length === 0) return 0;
-      
+
       await redis.del(...keys);
       return keys.length;
     } catch (error) {
@@ -104,9 +78,6 @@ export class CacheService {
     }
   }
 
-  /**
-   * Check if key exists
-   */
   static async exists(key: string): Promise<boolean> {
     try {
       const result = await redis.exists(key);
@@ -117,10 +88,6 @@ export class CacheService {
     }
   }
 
-  /**
-   * Get TTL of a key in seconds
-   * Returns -1 if key doesn't exist, -2 if key has no TTL
-   */
   static async getTTL(key: string): Promise<number> {
     try {
       return await redis.ttl(key);
@@ -130,10 +97,6 @@ export class CacheService {
     }
   }
 
-  /**
-   * Increment a counter
-   * Useful for rate limiting or analytics
-   */
   static async increment(key: string, amount: number = 1): Promise<number> {
     try {
       return await redis.incrby(key, amount);
@@ -143,56 +106,46 @@ export class CacheService {
     }
   }
 
-  /**
-   * Cache-aside pattern helper
-   * Tries to get from cache, if miss then fetches from source and caches
-   */
   static async getOrSet<T>(
     key: string,
     fetchFn: () => Promise<T>,
     ttl: number = CacheTTL.FIVE_MINUTES
   ): Promise<T> {
-    // Try to get from cache
     const cached = await this.get<T>(key);
     if (cached !== null) {
       return cached;
     }
 
-    // Cache miss - fetch from source
     const data = await fetchFn();
-    
-    // Store in cache
     await this.set(key, data, ttl);
-    
     return data;
   }
 
-  /**
-   * Get multiple keys at once (pipeline)
-   * More efficient than multiple individual gets
-   */
   static async mget<T>(keys: string[]): Promise<(T | null)[]> {
     try {
-      const results = await redis.mget(...keys);
-      return results as (T | null)[];
+      const rawResults = await redis.mget<(string | null)[]>(...keys);
+      return rawResults.map((raw) => {
+        if (!raw) return null;
+        try {
+          return JSON.parse(raw) as T;
+        } catch {
+          return null;
+        }
+      });
     } catch (error) {
       console.error(`Cache MGET error for keys ${keys.join(", ")}:`, error);
       return keys.map(() => null);
     }
   }
 
-  /**
-   * Set multiple keys at once (pipeline)
-   * More efficient than multiple individual sets
-   */
   static async mset(items: Record<string, unknown>): Promise<boolean> {
     try {
       const pipeline = redis.pipeline();
-      
+
       Object.entries(items).forEach(([key, value]) => {
         pipeline.set(key, JSON.stringify(value));
       });
-      
+
       await pipeline.exec();
       return true;
     } catch (error) {
@@ -201,10 +154,6 @@ export class CacheService {
     }
   }
 
-  /**
-   * Clear all cache
-   * USE WITH EXTREME CAUTION - only for testing/development
-   */
   static async flushAll(): Promise<boolean> {
     try {
       await redis.flushall();

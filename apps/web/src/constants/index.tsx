@@ -57,14 +57,7 @@ export const brands = [
     logo1: "/brand/mrled-black.png",
     logo2: "/brand/mrled-white.png",
     link: "/category/mister-led",
-  },
-  {
-    id: "jetra",
-    name: "Jetra",
-    logo1: "/brand/jetra-black.png",
-    logo2: "/brand/jetra-white.png",
-    link: "/category/jetra",
-  },
+  }
 ];
 
 export const brandConfig = {

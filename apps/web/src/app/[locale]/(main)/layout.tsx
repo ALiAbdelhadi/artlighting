@@ -4,20 +4,20 @@ import HeaderWrapper from "@/components/header/header-wrapper"
 import type React from "react"
 
 export default async function MainLayout({
-    children,
-    params,
+  children,
+  params,
 }: {
-    children: React.ReactNode
-    params: Promise<{ locale: string }>
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>
 }) {
-    const { locale } = await params
+  const { locale } = await params;
 
-    return (
-        <>
-            <DiscountBanner />
-            <HeaderWrapper locale={locale} />
-            <main role="main">{children}</main>
-            <Footer />
-        </>
-    )
+  return (
+    <>
+      <DiscountBanner />
+      <HeaderWrapper locale={locale} />
+      <main role="main">{children}</main>
+      <Footer />
+    </>
+  );
 }
