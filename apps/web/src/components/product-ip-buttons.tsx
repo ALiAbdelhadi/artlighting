@@ -16,10 +16,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const PRODUCT_IP_LABEL_MAP: Record<
-  ProductIP,
-  { label: string; description: string; increaseOnPricePercent: number }
-> = {
+const PRODUCT_IP_LABEL_MAP = {
   IP20: {
     label: "IP 20",
     description: "Protected against solid objects over 12mm",
@@ -45,12 +42,20 @@ const PRODUCT_IP_LABEL_MAP: Record<
     description: "Dust tight and protected against long periods of immersion",
     increaseOnPricePercent: 0.08,
   },
-};
+} satisfies Record<ProductIP, { label: string; description: string; increaseOnPricePercent: number }>;
+
+const IP_NUMERIC_MAP = {
+  IP20: 20,
+  IP44: 44,
+  IP54: 54,
+  IP65: 65,
+  IP68: 68,
+} satisfies Record<ProductIP, number>;
 
 interface ProductIPButtonsProps {
   configId: string;
   productIp: ProductIP;
-  maxIP: string;
+  maxIP: number;
   basePrice: number;
   discount: number;
   onProductIpChange: (newProductIp: ProductIP, priceIncrease: number) => void;
@@ -61,6 +66,7 @@ export default function ProductIPButtons({
   productIp,
   basePrice,
   discount,
+  maxIP,
   onProductIpChange,
 }: ProductIPButtonsProps) {
   const [selectedIp, setSelectedIp] = useState<ProductIP>(productIp);
@@ -69,88 +75,100 @@ export default function ProductIPButtons({
   const locale = useLocale();
   const isRTL = locale === "ar";
 
-  const calculatePriceIncrease = useCallback((ip: ProductIP) => {
-    const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[ip];
-    return Math.ceil(basePrice * increaseOnPricePercent);
-  }, [basePrice]);
+  const calculatePriceIncrease = useCallback(
+    (ip: ProductIP) => {
+      const { increaseOnPricePercent } = PRODUCT_IP_LABEL_MAP[ip];
+      return Math.ceil(basePrice * increaseOnPricePercent);
+    },
+    [basePrice]
+  );
 
   useEffect(() => {
     const priceIncrease = calculatePriceIncrease(selectedIp);
     onProductIpChange(selectedIp, priceIncrease);
   }, [selectedIp, calculatePriceIncrease, onProductIpChange]);
 
-  const handleIpChange = useCallback(async (newIp: ProductIP) => {
-    if (newIp === selectedIp || isUpdating) return;
+  const handleIpChange = useCallback(
+    async (newIp: ProductIP) => {
+      if (newIp === selectedIp || isUpdating) return;
+      setIsUpdating(true);
+      try {
+        await updateProductIP({ configId, newProductIp: newIp });
+        setSelectedIp(newIp);
+        toast.success(t("change-success"));
+      } catch (error) {
+        console.error("Failed to change IP rating:", error);
+        toast.error(t("change-error"));
+      } finally {
+        setIsUpdating(false);
+      }
+    },
+    [selectedIp, isUpdating, configId, t]
+  );
 
-    setIsUpdating(true);
 
-    try {
-      const priceIncrease = calculatePriceIncrease(newIp);
+  const baseNumericIP = IP_NUMERIC_MAP[productIp];
 
-      await updateProductIP({
-        configId,
-        newProductIp: newIp,
-      });
 
-      setSelectedIp(newIp);
-      toast.success(t("change-success"));
-    } catch (error) {
-      console.error("Failed to change IP rating:", error);
-      toast.error(t("change-error"));
-    } finally {
-      setIsUpdating(false);
-    }
-  }, [selectedIp, isUpdating, configId, calculatePriceIncrease, t]);
+  const effectiveMaxIP = Math.max(baseNumericIP, maxIP);
+
+  const availableEntries = (
+    Object.entries(PRODUCT_IP_LABEL_MAP) as [
+      ProductIP,
+      { label: string; description: string; increaseOnPricePercent: number }
+    ][]
+  ).filter(([ip]) => {
+    const numeric = IP_NUMERIC_MAP[ip];
+    return numeric >= baseNumericIP && numeric <= effectiveMaxIP;
+  });
 
   return (
     <div className="space-y-2">
       <h3 className="text-lg font-semibold mb-2">{t("title")}</h3>
       <div className="grid sm:grid-cols-3 grid-cols-1 gap-2">
-        {Object.entries(PRODUCT_IP_LABEL_MAP).map(
-          ([ip, { label, description, increaseOnPricePercent }]) => {
-            const displayedIncrease = calculatePriceIncrease(ip as ProductIP);
+        {availableEntries.map(([ip, { label, description, increaseOnPricePercent }]) => {
+          const displayedIncrease = calculatePriceIncrease(ip);
 
-            return (
-              <TooltipProvider key={ip}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      onClick={() => handleIpChange(ip as ProductIP)}
-                      disabled={isUpdating}
-                      variant={selectedIp === ip ? "default" : "outline"}
-                      className={cn(
-                        "flex items-center justify-center w-full rounded-full transition-all duration-200",
-                        selectedIp === ip
-                          ? "bg-primary text-primary-foreground shadow-lg"
-                          : "bg-background hover:bg-secondary",
-                        isUpdating && "opacity-60 cursor-not-allowed"
-                      )}
-                    >
-                      <Droplets className="w-4 h-4 mr-1" />
-                      <span className={cn("rtl:mr-1 ltr:ml-1")}>
-                        {t(`ratings.${ip}.label`)}
+          return (
+            <TooltipProvider key={ip}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    onClick={() => handleIpChange(ip)}
+                    disabled={isUpdating}
+                    variant={selectedIp === ip ? "default" : "outline"}
+                    className={cn(
+                      "flex items-center justify-center w-full rounded-full transition-all duration-200",
+                      selectedIp === ip
+                        ? "bg-primary text-primary-foreground shadow-lg"
+                        : "bg-background hover:bg-secondary",
+                      isUpdating && "opacity-60 cursor-not-allowed"
+                    )}
+                  >
+                    <Droplets className="w-4 h-4 mr-1" />
+                    <span className={cn("rtl:mr-1 ltr:ml-1")}>
+                      {t(`ratings.${ip}.label`)}
+                    </span>
+                    {displayedIncrease > 0 && (
+                      <span className="ml-2 text-sm opacity-70">
+                        +{formatNumber(displayedIncrease, isRTL ? "ar" : "en")}
                       </span>
-                      {displayedIncrease > 0 && (
-                        <span className="ml-2 text-sm opacity-70">
-                          +{formatNumber(displayedIncrease, isRTL ? "ar" : "en")}
-                        </span>
-                      )}
-                      {isUpdating && selectedIp === ip && (
-                        <div className="ml-2 animate-spin rounded-full h-3 w-3 border-b-2 border-current" />
-                      )}
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent className="block font-medium max-w-xs">
-                    <p>{t(`ratings.${ip}.description`)}</p>
-                    <p className="text-xs mt-1 opacity-75">
-                      {t("onlyAvailableRating")}
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            );
-          },
-        )}
+                    )}
+                    {isUpdating && selectedIp === ip && (
+                      <div className="ml-2 animate-spin rounded-full h-3 w-3 border-b-2 border-current" />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="block font-medium max-w-xs">
+                  <p>{t(`ratings.${ip}.description`)}</p>
+                  <p className="text-xs mt-1 opacity-75">
+                    {t("onlyAvailableRating")}
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          );
+        })}
       </div>
     </div>
   );

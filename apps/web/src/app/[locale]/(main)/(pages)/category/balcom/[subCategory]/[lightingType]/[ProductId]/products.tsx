@@ -275,6 +275,7 @@ export default function BalcomProducts({
                 finish={product.localizedSpecs?.finish || product.finish || undefined}
                 input={product.localizedSpecs?.input || product.input || undefined}
                 lampBase={product.localizedSpecs?.lampBase || product.lampBase || undefined}
+                maxIP={product.maxIP ?? undefined}
                 ip={(product.localizedSpecs?.ip as ProductIP) || product.productIp || ("IP20" as ProductIP)}
               />
             </div>

@@ -18,8 +18,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -42,8 +42,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K /  6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -62,8 +62,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -82,8 +82,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -102,8 +102,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -122,8 +122,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "44",
+                                "IP": 20,
+                                "maxIP": 44,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -142,8 +142,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "44",
+                                "IP": 20,
+                                "maxIP": 44,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -162,8 +162,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "44",
+                                "IP": 20,
+                                "maxIP": 44,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -182,8 +182,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "44",
+                                "IP": 20,
+                                "maxIP": 44,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -202,8 +202,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -222,8 +222,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -242,8 +242,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -262,8 +262,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -282,8 +282,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -306,8 +306,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -326,8 +326,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -346,8 +346,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -366,8 +366,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -386,8 +386,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -406,8 +406,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -426,8 +426,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -446,8 +446,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -466,8 +466,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -486,8 +486,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -506,8 +506,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -526,8 +526,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -546,8 +546,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -566,8 +566,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -586,8 +586,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -606,8 +606,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -626,8 +626,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -646,8 +646,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -710,8 +710,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -730,8 +730,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -754,8 +754,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -774,8 +774,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "20",
-                                "maxIP": "65",
+                                "IP": 20,
+                                "maxIP": 65,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1024,8 +1024,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1044,8 +1044,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1064,8 +1064,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1084,8 +1084,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1104,8 +1104,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1128,8 +1128,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1148,8 +1148,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1172,8 +1172,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1192,8 +1192,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1212,8 +1212,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1236,8 +1236,8 @@
                                 "Electrical": "balcom internal Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K / 4000K / 6500K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
@@ -1260,8 +1260,8 @@
                                 "Electrical": "balcom External Driver",
                                 "Power Factor": "≥0.5",
                                 "Color Temperature": "3000K",
-                                "IP": "65",
-                                "maxIP": "68",
+                                "IP": 65,
+                                "maxIP": 68,
                                 "Energy Saving": "90%",
                                 "Life Time": "50,000"
                             }
