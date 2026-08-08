@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/table";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPrice } from "@/lib/utils";
-import { OrderStatus, Product, ShippingAddress, User } from "@repo/database";
+import type { OrderStatus, Product, ShippingAddress, User } from "@repo/database";
 import { MoveHorizontalIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";

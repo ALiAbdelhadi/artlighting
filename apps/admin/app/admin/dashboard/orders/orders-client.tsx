@@ -13,7 +13,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { formatPrice } from "@/lib/utils";
-import { Prisma } from "@repo/database";
+import type { Prisma } from "@repo/database";
 import { SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

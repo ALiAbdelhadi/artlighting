@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Container } from "@/components/container";
@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText } from "lucide-react";
+import { FileText, Upload, Loader2 } from "lucide-react";
 import { formatPrice } from "@/lib/utils";
 import {
   updateProductGeneral,
@@ -26,6 +26,7 @@ import {
   softDeleteProduct,
   duplicateProduct,
   addProductImage,
+  uploadProductImage,
   removeProductImage,
   setPrimaryImage,
   reorderProductImages,
@@ -519,20 +520,28 @@ export default function ProductEditor({
             <CardHeader>
               <CardTitle>Images</CardTitle>
               <p className="text-sm text-muted-foreground">
-                URL-based for now — no file storage provider (Vercel Blob / Cloudinary / S3)
-                has been chosen yet, so this adds existing image URLs rather than uploading files.
+                Upload files directly, or paste a URL for an image already hosted elsewhere.
+                JPEG/PNG/WEBP/AVIF, up to 8MB.
               </p>
             </CardHeader>
             <CardContent className="space-y-4">
+              <ImageUploadDropzone
+                productId={product.id}
+                productSku={product.productId}
+                isPending={isPending}
+                run={run}
+              />
+
               <div className="flex max-w-xl gap-2">
                 <Input
                   className="rounded-xl"
-                  placeholder="https://... image URL"
+                  placeholder="or paste an existing image URL"
                   value={newImageUrl}
                   onChange={(e) => setNewImageUrl(e.target.value)}
                 />
                 <Button
                   className="rounded-xl"
+                  variant="outline"
                   disabled={isPending || !newImageUrl}
                   onClick={() =>
                     run(async () => {
@@ -541,7 +550,7 @@ export default function ProductEditor({
                     }, "Image added")
                   }
                 >
-                  Add
+                  Add URL
                 </Button>
               </div>
 
@@ -950,6 +959,75 @@ function SpecificationForm({
       >
         Save {language.toUpperCase()} specifications
       </Button>
+    </div>
+  );
+}
+
+function ImageUploadDropzone({
+  productId,
+  productSku,
+  isPending,
+  run,
+}: {
+  productId: string;
+  productSku: string;
+  isPending: boolean;
+  run: (fn: () => Promise<unknown>, msg: string) => void;
+}) {
+  const [isDragging, setIsDragging] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  function uploadFiles(files: FileList | null) {
+    if (!files || files.length === 0) return;
+    const list = Array.from(files);
+
+    setIsUploading(true);
+    run(async () => {
+      for (const file of list) {
+        const formData = new FormData();
+        formData.set("file", file);
+        await uploadProductImage(productId, productSku, formData);
+      }
+    }, list.length > 1 ? `${list.length} images uploaded` : "Image uploaded");
+    setIsUploading(false);
+  }
+
+  const busy = isPending || isUploading;
+
+  return (
+    <div
+      onDragOver={(e) => {
+        e.preventDefault();
+        setIsDragging(true);
+      }}
+      onDragLeave={() => setIsDragging(false)}
+      onDrop={(e) => {
+        e.preventDefault();
+        setIsDragging(false);
+        uploadFiles(e.dataTransfer.files);
+      }}
+      onClick={() => !busy && inputRef.current?.click()}
+      className={`flex max-w-xl cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed p-8 text-center transition-colors ${
+        isDragging ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+      } ${busy ? "pointer-events-none opacity-60" : ""}`}
+    >
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/jpeg,image/png,image/webp,image/avif"
+        multiple
+        className="hidden"
+        onChange={(e) => uploadFiles(e.target.files)}
+      />
+      {busy ? (
+        <Loader2 className="h-6 w-6 animate-spin text-primary" />
+      ) : (
+        <Upload className="h-6 w-6 text-muted-foreground" />
+      )}
+      <p className="text-sm font-medium">
+        {busy ? "Uploading..." : "Drag images here, or click to browse"}
+      </p>
     </div>
   );
 }

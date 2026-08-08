@@ -4,6 +4,7 @@ import { prisma } from "@repo/database";
 import { requireAdmin, requireOwner } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 import type { ProductColorTemp, ProductIP, ProductChandLamp } from "@repo/database";
+import { cloudinary } from "@/lib/cloudinary";
 
 // ─── Product CRUD ──────────────────────────────────────────────
 
@@ -230,10 +231,10 @@ export async function duplicateProduct(productId: string) {
 }
 
 // ─── Images ─────────────────────────────────────────────────────
-// URL-based (add/reorder/remove/set-primary), not file upload — no storage
-// provider (Vercel Blob / Cloudinary / S3) has been chosen yet, per the
-// rebuild spec's open §1 field. Wiring actual file upload is follow-up work
-// once that decision is made.
+// Two ways in: paste an existing URL (addProductImage), or upload a file
+// directly to Cloudinary (uploadProductImage). Both land in the same
+// ProductImage table — uploaded ones also carry Cloudinary's public_id in
+// `providerId` so they can be cleanly deleted later.
 
 export async function addProductImage(productId: string, url: string, altText?: string) {
   await requireAdmin();
@@ -245,8 +246,60 @@ export async function addProductImage(productId: string, url: string, altText?: 
   return image;
 }
 
+const MAX_IMAGE_BYTES = 8 * 1024 * 1024; // 8MB
+const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp", "image/avif"];
+
+export async function uploadProductImage(productId: string, sku: string, formData: FormData) {
+  await requireAdmin();
+
+  const file = formData.get("file");
+  if (!(file instanceof File)) {
+    throw new Error("No file provided");
+  }
+  if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+    throw new Error("Only JPEG, PNG, WEBP, or AVIF images are allowed");
+  }
+  if (file.size > MAX_IMAGE_BYTES) {
+    throw new Error("Image must be under 8MB");
+  }
+
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const dataUri = `data:${file.type};base64,${buffer.toString("base64")}`;
+
+  const result = await cloudinary.uploader.upload(dataUri, {
+    folder: `products/${sku}`,
+    resource_type: "image",
+  });
+
+  const count = await prisma.productImage.count({ where: { productId } });
+  const image = await prisma.productImage.create({
+    data: {
+      productId,
+      url: result.secure_url,
+      providerId: result.public_id,
+      order: count,
+      isPrimary: count === 0,
+    },
+  });
+
+  revalidatePath(`/admin/dashboard/products/${productId}`);
+  return image;
+}
+
 export async function removeProductImage(imageId: string, productId: string) {
   await requireAdmin();
+
+  const image = await prisma.productImage.findUniqueOrThrow({ where: { id: imageId } });
+
+  if (image.providerId) {
+    try {
+      await cloudinary.uploader.destroy(image.providerId);
+    } catch {
+      // Best-effort — don't block removing the DB row if the asset is
+      // already gone or credentials aren't configured in this environment.
+    }
+  }
+
   await prisma.productImage.delete({ where: { id: imageId } });
   revalidatePath(`/admin/dashboard/products/${productId}`);
 }

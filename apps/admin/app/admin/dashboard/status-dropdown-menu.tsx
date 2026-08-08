@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { OrderStatus } from "@repo/database";
+import type { OrderStatus } from "@repo/database";
 import { useMutation } from "@tanstack/react-query";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,20 @@ const LABEL_MAP: Record<OrderStatus, string> = {
   delivered: "Delivered",
   refunded: "Refunded"
 };
+
+// Plain string literals, not Object.values(OrderStatus) — importing the
+// Prisma enum as a runtime value here would pull the entire @repo/database
+// module (including the live PrismaClient instantiation) into this
+// "use client" bundle, which crashes since Prisma can't run in a browser.
+const ORDER_STATUSES: OrderStatus[] = [
+  "awaiting_shipment",
+  "processing",
+  "cancelled",
+  "fulfilled",
+  "shipped",
+  "delivered",
+  "refunded",
+];
 
 const StatusDropdown = ({
   id,
@@ -50,7 +64,7 @@ const StatusDropdown = ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-popover text-popover-foreground border-border w-52">
-        {Object.values(OrderStatus).map((status) => (
+        {ORDER_STATUSES.map((status) => (
           <DropdownMenuItem
             onClick={() => mutate({ id, newStatus: status as OrderStatus })}
             key={status}

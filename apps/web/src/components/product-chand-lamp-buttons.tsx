@@ -5,7 +5,7 @@ import { saveConfig, type SaveConfigArgs } from "@/components/action";
 import { Button } from "@/components/ui/button";
 import { formatNumber } from "@/lib/numbers";
 import { cn } from "@/lib/utils";
-import { ProductChandLamp } from "@repo/database";
+import type { ProductChandLamp } from "@repo/database";
 import { useMutation } from "@tanstack/react-query";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/tooltip";
 import { formatNumber } from "@/lib/numbers";
 import { cn } from "@/lib/utils";
-import { ProductIP } from "@repo/database";
+import type { ProductIP } from "@repo/database";
 import { Droplets } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";

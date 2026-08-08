@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Configuration, Order, Product, ShippingAddress, User } from "@repo/database";
+import type { Configuration, Order, Product, ShippingAddress, User } from "@repo/database";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatPrice } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";

@@ -19,7 +19,7 @@ import { useRouter } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { ProductIP, type Configuration, type Order, type SupportedCurrency } from "@/types/products"
 import { useAuth } from "@/lib/auth-hooks"
-import { ProductIP as PrismaProductIP, ProductChandLamp, ProductColorTemp } from "@repo/database"
+import type { ProductIP as PrismaProductIP, ProductChandLamp, ProductColorTemp } from "@repo/database"
 import { useMutation } from "@tanstack/react-query"
 import { ArrowRight } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
@@ -115,18 +115,18 @@ export default function ProductMainInfo({
   const [configuration, setConfiguration] = useState<Configuration | undefined>(initialConfiguration)
 
   const [selectedColorTemp, setSelectedColorTemp] = useState<ProductColorTemp>(
-    (order?.productColorTemp as ProductColorTemp) ?? ProductColorTemp.warm
+    (order?.productColorTemp as ProductColorTemp) ?? "warm"
   )
 
   const [selectedProductIp, setSelectProductIp] = useState<PrismaProductIP>(
     (initialConfiguration?.productIp as unknown as PrismaProductIP) ??
     (order?.productIp as PrismaProductIP) ??
     ip ??
-    PrismaProductIP.IP20
+    "IP20"
   )
 
   const [selectedProductChandelierLamp, setSelectedProductChandelierLamp] =
-    useState<ProductChandLamp>((order?.productChandLamp as ProductChandLamp) ?? ProductChandLamp.lamp9w)
+    useState<ProductChandLamp>((order?.productChandLamp as ProductChandLamp) ?? "lamp9w")
 
   const [priceIncrease, setPriceIncrease] = useState(0)
   const [lampPriceIncrease, setLampPriceIncrease] = useState(0)

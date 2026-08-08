@@ -324,13 +324,14 @@ model ProductVariant {
 // still read the array; only admin writes/reads this table for now. Seeded
 // from the same array at migration time.
 model ProductImage {
-  id        String   @id @default(cuid())
-  productId String
-  url       String
-  altText   String?
-  order     Int      @default(0)
-  isPrimary Boolean  @default(false)
-  createdAt DateTime @default(now())
+  id         String   @id @default(cuid())
+  productId  String
+  url        String
+  providerId String?  // Cloudinary public_id — needed to delete the asset later; parsing it back out of the URL is fragile, so it's stored directly. Null for images added by pasting an external URL.
+  altText    String?
+  order      Int      @default(0)
+  isPrimary  Boolean  @default(false)
+  createdAt  DateTime @default(now())
 
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
