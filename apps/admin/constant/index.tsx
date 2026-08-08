@@ -1,4 +1,4 @@
-import { BellDot, Boxes, HomeIcon, PackageIcon, UsersIcon } from "lucide-react";
+import { BellDot, Boxes, FolderTree, HomeIcon, PackageIcon, PercentIcon, ShieldIcon, UsersIcon } from "lucide-react";
 
 export const DASHBOARDS = [
     {
@@ -17,9 +17,24 @@ export const DASHBOARDS = [
         url: "/admin/dashboard/products",
     },
     {
+        name: "Categories",
+        icon: <FolderTree className="h-5 w-5" />,
+        url: "/admin/dashboard/categories",
+    },
+    {
+        name: "Discounts",
+        icon: <PercentIcon className="h-5 w-5" />,
+        url: "/admin/dashboard/discounts",
+    },
+    {
         name: "Customers",
         icon: <UsersIcon className="h-5 w-5" />,
         url: "/admin/dashboard/users",
+    },
+    {
+        name: "Team",
+        icon: <ShieldIcon className="h-5 w-5" />,
+        url: "/admin/dashboard/team",
     },
     {
         name: "Notification",

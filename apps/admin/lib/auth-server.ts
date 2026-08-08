@@ -1,0 +1,35 @@
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import { prisma } from "@repo/database";
+
+/**
+ * Admin identity — a separate pool from apps/web's customer identity, backed
+ * by the Admin/AdminSession/AdminAccount/AdminVerification models (own
+ * tables, not shared with users/sessions/accounts). `role` rides along as an
+ * additional field on the Admin model.
+ */
+export const auth = betterAuth({
+  database: prismaAdapter(prisma, { provider: "postgresql" }),
+  secret: process.env.BETTER_AUTH_SECRET,
+  baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL,
+  emailAndPassword: {
+    enabled: true,
+  },
+  user: {
+    modelName: "admin",
+    additionalFields: {
+      role: { type: "string", required: false, defaultValue: "staff" },
+    },
+  },
+  session: {
+    modelName: "adminSession",
+    fields: { userId: "adminId" },
+  },
+  account: {
+    modelName: "adminAccount",
+    fields: { userId: "adminId" },
+  },
+  verification: {
+    modelName: "adminVerification",
+  },
+});

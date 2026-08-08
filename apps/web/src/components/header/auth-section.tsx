@@ -8,7 +8,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs"
+import { SignedIn, SignedOut, SignInButton, SignUpButton, useUser } from "@/lib/auth-hooks"
+import { UserButton } from "@/components/user-button"
 import { ChevronDown, LogIn, UserPlus } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { CartSidebar } from "../cart-sidebar"
@@ -120,20 +121,5 @@ interface UserAvatarProps {
 }
 
 function UserAvatar({ isMobile = false }: UserAvatarProps) {
-  return (
-    <UserButton
-      afterSignOutUrl="/"
-      appearance={{
-        elements: {
-          avatarBox: `${isMobile ? "w-9 h-9" : "w-10 h-10"} transition-opacity hover:opacity-80`,
-          userButtonPopoverCard: "border border-border",
-          userButtonPopoverFooter: "hidden",
-        },
-        variables: {
-          fontSize: isMobile ? "13px" : "14px",
-          borderRadius: "0.5rem",
-        },
-      }}
-    />
-  )
+  return <UserButton className={isMobile ? "w-9 h-9" : "w-10 h-10"} />
 }

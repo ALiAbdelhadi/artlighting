@@ -18,7 +18,7 @@ import {
 import { useRouter } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
 import { ProductIP, type Configuration, type Order, type SupportedCurrency } from "@/types/products"
-import { useAuth } from "@clerk/nextjs"
+import { useAuth } from "@/lib/auth-hooks"
 import { ProductIP as PrismaProductIP, ProductChandLamp, ProductColorTemp } from "@repo/database"
 import { useMutation } from "@tanstack/react-query"
 import { ArrowRight } from "lucide-react"

@@ -1,19 +1,18 @@
 "use server";
 
-import { getAuth } from "@clerk/nextjs/server";
+import { auth } from "@/lib/auth-server";
 import { prisma } from "@repo/database";
 import { NextRequest } from "next/server";
 
 export const getCompleteOrderStatus = async ({
   orderId,
-  req,
-  locale = "ar", 
+  locale = "ar",
 }: {
   orderId: string;
-  req: NextRequest;
+  req?: NextRequest;
   locale?: string;
 }) => {
-  const { userId } = await getAuth(req);
+  const { userId } = await auth();
   console.log("User ID:", userId);
 
   if (!userId) {

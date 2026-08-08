@@ -81,7 +81,7 @@ const UsersClient = ({ users }: { users: UserWithShipping[] }) => {
       </DashboardHeader>
       <div className="mt-10 px-6">
         <h2 className="text-xl font-semibold mb-4">All Customers</h2>
-        <Card className="overflow-hidden">
+        <Card className="overflow-hidden glass-surface rounded-2xl">
           <CardHeader className="px-4 py-3">
             <CardTitle className="text-lg sm:text-xl">Customers</CardTitle>
           </CardHeader>

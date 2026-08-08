@@ -37,3 +37,6 @@ yarn-error.log*
 .DS_Store
 *.pem
 packages/database/scripts/import-products.ts
+
+# Local DB backups (may contain real customer/product data)
+.backups/

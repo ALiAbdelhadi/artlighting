@@ -1,13 +1,6 @@
-
 import DashboardHeader from "@/components/dashboard-header";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { requireAdmin, AdminAuthError } from "@/lib/auth";
 import { prisma } from "@repo/database";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -16,44 +9,44 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { MoveHorizontalIcon } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/container";
 import { formatPrice } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
-const Products = async () => {
-  const { userId } = await auth();
-  const user = await currentUser();
-  if (!userId || !user) {
-    console.log("User Not Found.");
-    return notFound();
+const ProductsPage = async () => {
+  try {
+    await requireAdmin();
+  } catch (err) {
+    if (err instanceof AdminAuthError) return notFound();
+    throw err;
   }
-  const isAuthenticated = !!userId;
-  console.log("Is user authenticated", isAuthenticated);
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-  if (user.emailAddresses[0].emailAddress !== ADMIN_EMAIL) {
-    console.log("User Not authorized");
-    return notFound();
-  }
-  const orders = await prisma.order.findMany({
-    where: {
-      isCompleted: true,
-    },
+
+  const products = await prisma.product.findMany({
+    where: { deletedAt: null },
     orderBy: { createdAt: "desc" },
     include: {
-      user: true,
-      shippingAddress: true,
-      product: true,
+      category: { select: { name: true } },
+      lightingtype: { select: { name: true } },
+      variants: { where: { isDefault: true }, select: { stock: true } },
     },
   });
+
   return (
     <div className="flex flex-col min-h-screen pb-10">
-      <DashboardHeader Route="Products" />
+      <DashboardHeader Route="Products">
+        <Button asChild size="sm">
+          <Link href="/admin/dashboard/products/new">New product</Link>
+        </Button>
+      </DashboardHeader>
       <div className="mt-8">
         <Container>
-          <h1 className="font-semibold text-lg">Products</h1>
+          <h1 className="font-semibold text-lg mb-4">
+            Products ({products.length})
+          </h1>
           <div className="overflow-x-auto border rounded-lg shadow">
             <Table>
               <TableHeader>
@@ -61,41 +54,50 @@ const Products = async () => {
                   <TableHead>Product</TableHead>
                   <TableHead>Category</TableHead>
                   <TableHead>Price</TableHead>
-                  <TableHead>quantity</TableHead>
-                  <TableHead>action</TableHead>
+                  <TableHead>Stock</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {orders.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell className="flex items-center">
-                      <Image
-                        src={order.productImages[0]}
-                        alt={order.productName}
-                        width={60}
-                        height={60}
-                        className="rounded-lg"
-                      />
-                      <p className="ml-2 uppercase">{order.productName}</p>
+                {products.map((product) => (
+                  <TableRow key={product.id}>
+                    <TableCell className="flex items-center gap-2">
+                      {product.productImages[0] ? (
+                        <Image
+                          src={product.productImages[0]}
+                          alt={product.productName}
+                          width={48}
+                          height={48}
+                          className="rounded-lg object-cover"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-lg bg-muted" />
+                      )}
+                      <div>
+                        <p className="font-medium">{product.productName}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {product.productId}
+                        </p>
+                      </div>
                     </TableCell>
-                    <TableCell>{order.product.brand}</TableCell>
                     <TableCell>
-                      {formatPrice(order.productPrice + order.shippingPrice)}
+                      {product.category.name} / {product.lightingtype.name}
                     </TableCell>
-                    <TableCell>{order.quantity}</TableCell>
+                    <TableCell>{formatPrice(product.price)}</TableCell>
+                    <TableCell>{product.variants[0]?.stock ?? product.quantity}</TableCell>
                     <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon">
-                            <MoveHorizontalIcon className="w-4 h-4" />
-                            <span className="sr-only">Actions</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem>View order</DropdownMenuItem>
-                          <DropdownMenuItem>Customer details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                      <div className="flex gap-1">
+                        <Badge variant={product.isActive ? "default" : "secondary"}>
+                          {product.isActive ? "Active" : "Inactive"}
+                        </Badge>
+                        {product.featured && <Badge variant="outline">Featured</Badge>}
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button asChild variant="ghost" size="sm">
+                        <Link href={`/admin/dashboard/products/${product.id}`}>Edit</Link>
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -108,4 +110,4 @@ const Products = async () => {
   );
 };
 
-export default Products;
+export default ProductsPage;

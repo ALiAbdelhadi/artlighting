@@ -64,15 +64,17 @@ interface DashboardData {
 const getStatusBadgeClassName = (status: OrderStatus) => {
   switch (status) {
     case "cancelled":
-      return "bg-[#ef4444] text-white hover:bg-red-600";
+    case "refunded":
+      return "bg-destructive text-white hover:bg-destructive/90";
     case "processing":
-      return "bg-[#f5a623] text-white hover:bg-[#f5a623]";
+      return "bg-primary text-primary-foreground hover:bg-primary/90";
     case "fulfilled":
-      return "bg-teal-400 text-white hover:bg-teal-400";
+    case "delivered":
+      return "bg-emerald-500 text-white hover:bg-emerald-500/90";
     case "awaiting_shipment":
-      return "bg-[#0070f3] text-white hover:bg-[#0070f3]";
+      return "bg-secondary text-secondary-foreground hover:bg-secondary/90";
     default:
-      return "bg-[#f3f4f6] text-black hover:bg-[#f0f0f0]";
+      return "bg-muted text-muted-foreground hover:bg-muted/90";
   }
 };
 const LABEL_MAP_COLOR: Record<OrderStatus, string> = {
@@ -115,7 +117,7 @@ const Dashboard = () => {
         <TableRow key={order.id}>
           <TableCell className="px-4 py-2">
             <Link
-              href={`/admin/dashboard/Orders/${order.id}`}
+              href={`/admin/dashboard/orders/${order.id}`}
               className="hover:text-primary hover:underline"
             >
               # {order.id}
@@ -179,8 +181,12 @@ const Dashboard = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>View Order</DropdownMenuItem>
-                <DropdownMenuItem>Customer Details</DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={`/admin/dashboard/orders/${order.id}`}>View Order</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={`/admin/dashboard/users/${order.user.id}`}>Customer Details</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </TableCell>
@@ -190,13 +196,13 @@ const Dashboard = () => {
   );
   if (!data)
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex h-screen items-center justify-center text-muted-foreground">
         Loading...
       </div>
     );
   const { totalCustomers, totalOrdersThatOrdered, user } = data;
   return (
-    <div className=" min-h-screen">
+    <div className="min-h-screen">
       <div className="flex flex-col">
         <DashboardHeader user={user} Route="Dashboard" />
         <div className="px-3 lg:px-4">
@@ -207,7 +213,7 @@ const Dashboard = () => {
               totalOrders={totalOrdersThatOrdered}
             />
             <Tabs defaultValue="all" className="mt-4">
-              <TabsList className="space-x-0 md:space-x-2 ">
+              <TabsList className="flex-wrap space-x-0 md:space-x-2 ">
                 <TabsTrigger
                   className="text-[10px] md:text-sm"
                   value="all"
@@ -246,7 +252,7 @@ const Dashboard = () => {
               </TabsList>
             </Tabs>
             <section className="pt-5 space-y-6">
-              <Card className="shadow-lg">
+              <Card className="glass-surface rounded-2xl">
                 <CardHeader className="flex md:flex-row flex-col items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-lg sm:text-xl font-semibold">
                     Recent Orders

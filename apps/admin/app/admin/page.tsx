@@ -1,22 +1,16 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { requireAdminOrRedirect } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import AdminClient from "./admin-client";
 
+/**
+ * The Better Auth session (via requireAdminOrRedirect) is the real auth
+ * check now — there's no separate password-reverification step anymore
+ * (that used to compare against Admin.hashedPassword, which no longer
+ * exists post-Clerk removal). If you're here and authenticated, go straight
+ * to the dashboard.
+ */
 const AdminPage = async () => {
-  const user = await currentUser();
-  const { userId } = await auth();
-
-  if (!userId || !user) {
-    return redirect("/sign-in");
-  }
-
-  const isAdmin = user.emailAddresses?.[0]?.emailAddress === process.env.ADMIN_EMAIL;
-
-  if (!isAdmin) {
-    return redirect("/404");
-  }
-
-  return <AdminClient />;
+  await requireAdminOrRedirect();
+  redirect("/admin/dashboard");
 };
 
 export default AdminPage;

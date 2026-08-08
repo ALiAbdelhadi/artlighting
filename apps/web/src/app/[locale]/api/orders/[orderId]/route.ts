@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs/server"
+import { auth } from "@/lib/auth-server"
 import { OrderService } from "@/lib/order.server"
 import { NextRequest, NextResponse } from "next/server"
 

@@ -1,42 +1,36 @@
 import { ThemedSignIn } from "@/components/theme-sign-in";
-import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
+import { ArrowLeft } from "lucide-react";
 
 const SignInPage = () => {
   return (
-    <main className="flex items-center justify-center bg-gradient-to-br from-primary/20 via-background to-secondary/20 py-24">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 py-16">
+      {/* Ambient glow field — the same warm light the product line sells,
+          used as the interface's own atmosphere. */}
+      <div
+        className="glow-orb glow-orb-animate -top-32 -left-24 h-[28rem] w-[28rem] bg-primary/30 dark:bg-primary/20"
+        aria-hidden
+      />
+      <div
+        className="glow-orb glow-orb-animate top-1/2 -right-32 h-[24rem] w-[24rem] bg-primary/20 dark:bg-primary/15"
+        style={{ animationDelay: "-7s" }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,var(--background)_70%)]"
+        aria-hidden
+      />
+
       <Link
         href="/"
-        className="absolute top-4 left-4 text-foreground hover:text-primary transition-colors"
+        className="absolute left-4 top-4 z-10 flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:left-6 sm:top-6"
       >
-        <span className="flex items-center">
-          <ArrowLeft className="mr-2 w-5 h-5" />
-          Back to Home
-        </span>
+        <ArrowLeft className="h-4 w-4" />
+        Back to home
       </Link>
-      <div className="w-full max-w-4xl flex xl:shadow-2xl shadow-none  rounded-xl overflow-hidden">
-        <div className="flex-1 hidden lg:block relative">
-          <Image
-            src="/new-collection/new-collection-2.jpg"
-            alt="Art Lighting Showcase"
-            fill
-            className="object-cover rounded-l-xl"
-            
-          />
-          <div className="absolute inset-0 bg-background/60 backdrop-blur-sm flex flex-col justify-end p-8 text-foreground">
-            <h2 className="text-3xl font-bold mb-2">Sign in to Art lighting</h2>
-            <p className="text-sm">
-            Welcome back! Please sign in to continue
-            </p>
-          </div>
-        </div>
-        <div className="flex-1 text-card-foreground flex items-center flex-col justify-center">
-          <Suspense fallback={<div>Loading...</div>}>
-            <ThemedSignIn />
-          </Suspense>
-        </div>
+
+      <div className="relative z-10 w-full max-w-md">
+        <ThemedSignIn />
       </div>
     </main>
   );

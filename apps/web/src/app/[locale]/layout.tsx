@@ -5,7 +5,6 @@ import { routing } from "@/i18n/routing";
 import { constructMetadata } from "@/lib/metadata";
 import { cn } from "@/lib/utils";
 import { SupportedLanguage } from "@/types/products";
-import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -53,39 +52,30 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <ClerkProvider
-      appearance={{
-        variables: {
-          fontFamily: roboto.style.fontFamily,
-          fontSize: "16px",
-        },
-      }}
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      dir={locale === "ar" ? "rtl" : "ltr"}
     >
-      <html
-        lang={locale}
+      <body
+        className={cn(
+          "antialiased overflow-x-hidden scroll-smooth bg-muted/30",
+          locale === "ar" ? almarai.className : roboto.className
+        )}
         suppressHydrationWarning
-        dir={locale === "ar" ? "rtl" : "ltr"}
       >
-        <body
-          className={cn(
-            "antialiased overflow-x-hidden scroll-smooth bg-muted/30",
-            locale === "ar" ? almarai.className : roboto.className
-          )}
-          suppressHydrationWarning
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <NextIntlClientProvider locale={locale} messages={messages}>
-              <Providers>{children}</Providers>
-            </NextIntlClientProvider>
-            <Toaster />
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Providers>{children}</Providers>
+          </NextIntlClientProvider>
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

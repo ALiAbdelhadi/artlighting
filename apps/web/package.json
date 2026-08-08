@@ -12,8 +12,7 @@
     "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.26.0",
-    "@clerk/themes": "^2.4.1",
+    "better-auth": "^1.2.7",
     "@hookform/resolvers": "^5.2.0",
     "@prisma/client": "^6.14.0",
     "@radix-ui/react-alert-dialog": "^1.1.14",

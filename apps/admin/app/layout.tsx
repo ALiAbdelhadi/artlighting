@@ -1,6 +1,5 @@
 import { Provider } from "@/components/providers";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
@@ -23,32 +22,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider
-      appearance={{
-        variables: {
-          fontFamily: roboto.style.fontFamily,
-          fontSize: "16px",
-        },
-      }}
-    >
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${roboto.className} antialiased overflow-x-hidden scroll-smooth`}
-          suppressHydrationWarning
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${roboto.className} antialiased overflow-x-hidden scroll-smooth`}
+        suppressHydrationWarning
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Provider>
-              {children}
-            </Provider>
-          </ThemeProvider>
-          <Toaster />
-        </body>
-      </html>
-    </ClerkProvider>
+          <Provider>
+            {children}
+          </Provider>
+        </ThemeProvider>
+        <Toaster />
+      </body>
+    </html>
   );
 }

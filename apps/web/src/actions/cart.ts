@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
+import { auth } from "@/lib/auth-server";
 import { prisma } from "@repo/database";
 
 export async function addToCart(productId: string, quantity: number = 1) {
@@ -9,14 +9,8 @@ export async function addToCart(productId: string, quantity: number = 1) {
     throw new Error("User not authenticated");
   }
   try {
-    let user = await prisma.user.findUnique({
-      where: { id: userId },
-    });
-    if (!user) {
-      user = await prisma.user.create({
-        data: { id: userId },
-      });
-    }
+    // The User row already exists once `userId` is a valid session's user id
+    // — Better Auth writes it directly to this table at sign-up.
     const product = await prisma.product.findUnique({
       where: { productId },
     });

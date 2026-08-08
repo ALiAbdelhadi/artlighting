@@ -339,6 +339,51 @@
     backdrop-filter: blur(10px);
     border: 1px solid oklch(0.38 0.04 80 / 0.3);
   }
+
+  /* Ambient glow orb — soft radial light source behind glass surfaces. */
+  .glow-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .glow-orb-animate {
+      animation: glow-drift 14s ease-in-out infinite;
+    }
+  }
+
+  @keyframes glow-drift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(2%, -3%) scale(1.08);
+    }
+  }
+
+  /* Plain alpha-channel oklch literals rather than color-mix() — color-mix()
+     with a `transparent` endpoint produced a malformed hue ("none") in
+     testing, silently invalidating the whole declaration block. */
+  .glow-ring-focus:focus-within {
+    box-shadow: 0 0 0 4px oklch(0.852 0.199 91.936 / 0.35);
+  }
+
+  .dark .glow-ring-focus:focus-within {
+    box-shadow: 0 0 0 4px oklch(0.795 0.184 86.047 / 0.35);
+  }
+
+  .glass-surface {
+    background: oklch(1 0 0 / 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .dark .glass-surface {
+    background: oklch(0.21 0.006 285.885 / 0.75);
+  }
 }
 
 nav[aria-label="breadcrumb"] ol {

@@ -1,91 +1,130 @@
 "use client";
 
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { SignUp } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import "../app/clerk.css";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import { User, Mail, Lock, Loader2, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { authClient } from "@/lib/auth-client";
 
 export function ThemedSignUp() {
-  const { theme } = useTheme();
-  const [mountedComponent, setMountedComponent] = useState(false);
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setMountedComponent(true);
-  }, []);
-
-  if (!mountedComponent) {
-    return null;
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setError(null);
+    setIsLoading(true);
+    const { error } = await authClient.signUp.email({ email, password, name });
+    setIsLoading(false);
+    if (error) {
+      setError(error.message ?? "Could not create account");
+      return;
+    }
+    router.push("/");
+    router.refresh();
   }
 
   return (
-    <div className="max-h-[90vh] col-span-full lg:col-span-1 overflow-auto hide-scrollbar">
-      <ScrollArea>
-        <div>
-          <SignUp
-            appearance={{
-              baseTheme: theme === "dark" ? dark : undefined,
-              elements: {
-                formButtonPrimary: {
-                  backgroundColor: "hsl(var(--primary))",
-                  color: "hsl(var(--primary-foreground))",
-                  "&:hover": {
-                    backgroundColor: "hsl(var(--primary) / 0.9)",
-                  },
-                },
-                card: {
-                  backgroundColor: "hsl(var(--card))",
-                  color: "hsl(var(--card))",
-                  boxShadow: "none",
-                },
-                maxHeight: "80vh",
-                overflow: "auto",
-                headerTitle: {
-                  color: "hsl(var(--foreground))",
-                },
-                headerSubtitle: {
-                  color: "hsl(var(--muted-foreground))",
-                },
-                socialButtonsBlockButton: {
-                  borderColor: "hsl(var(--border))",
-                  color: "hsl(var(--foreground))",
-                  "&:hover": {
-                    backgroundColor: "hsl(var(--secondary))",
-                  },
-                },
-                formFieldLabel: {
-                  color: "hsl(var(--foreground))",
-                },
-                formFieldInput: {
-                  backgroundColor:
-                    theme === "dark"
-                      ? "hsl(var(--primary) / 0.3)"
-                      : "hsl(var(--primary) / 0.2)",
-                  borderColor: "hsl(var(--input))",
-                  color: "hsl(var(--foreground))",
-                  "&::placeholder": {
-                    color: "hsl(var(--muted-foreground))",
-                  },
-                  "&:focus": {
-                    backgroundColor:
-                      theme === "dark"
-                        ? "hsl(var(--primary) / 0.4)"
-                        : "hsl(var(--primary) / 0.3)",
-                    borderColor: "hsl(var(--primary))",
-                  },
-                },
-                footerActionLink: {
-                  color: "hsl(var(--primary))",
-                  "&:hover": {
-                    color: "hsl(var(--primary) / 0.9)",
-                  },
-                },
-              },
-            }}
-          />
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-sm animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-6"
+    >
+      <div>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+          Join us
+        </p>
+        <h1 className="mt-2 text-2xl font-semibold text-foreground">Create your account</h1>
+        <p className="mt-1 text-sm text-muted-foreground">Join Art Lighting</p>
+      </div>
+
+      {error && (
+        <div
+          role="alert"
+          aria-live="polite"
+          className="flex items-start gap-2 rounded-xl border border-destructive/20 bg-destructive/10 px-3 py-2.5 text-sm text-destructive"
+        >
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>{error}</span>
         </div>
-      </ScrollArea>
-    </div>
+      )}
+
+      <div className="space-y-4">
+        <div className="glow-ring-focus space-y-2 rounded-xl">
+          <Label htmlFor="name">Name</Label>
+          <div className="relative">
+            <User className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="h-11 rounded-xl ps-10 pe-3"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="glow-ring-focus space-y-2 rounded-xl">
+          <Label htmlFor="email">Email</Label>
+          <div className="relative">
+            <Mail className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="email"
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="h-11 rounded-xl ps-10 pe-3"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="glow-ring-focus space-y-2 rounded-xl">
+          <Label htmlFor="password">Password</Label>
+          <div className="relative">
+            <Lock className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="password"
+              type="password"
+              autoComplete="new-password"
+              minLength={8}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="h-11 rounded-xl ps-10 pe-3"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <Button
+        type="submit"
+        className="h-11 w-full rounded-xl text-base font-medium shadow-lg shadow-primary/20 transition-shadow hover:shadow-primary/30 disabled:opacity-70"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Creating account...
+          </>
+        ) : (
+          "Sign up"
+        )}
+      </Button>
+
+      <p className="text-center text-sm text-muted-foreground">
+        Already have an account?{" "}
+        <Link href="/sign-in" className="font-medium text-primary hover:underline">
+          Sign in
+        </Link>
+      </p>
+    </form>
   );
 }

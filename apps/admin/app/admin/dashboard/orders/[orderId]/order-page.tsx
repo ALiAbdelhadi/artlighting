@@ -35,7 +35,7 @@ export default function OrderPage({ order }: OrderPageProps) {
   return (
     <div className="py-8">
       <Container>
-        <Card className="mb-8 overflow-hidden">
+        <Card className="mb-8 overflow-hidden glass-surface rounded-2xl">
           <CardHeader className="p-6 bg-primary text-primary-foreground ">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
@@ -62,7 +62,7 @@ export default function OrderPage({ order }: OrderPageProps) {
           </CardContent>
         </Card>
         <div className="grid gap-8 md:grid-cols-3 grid-cols-1">
-          <Card className="md:col-span-2">
+          <Card className="md:col-span-2 glass-surface rounded-2xl">
             <CardHeader>
               <CardTitle className="flex items-center text-xl sm:text-2xl">
                 <Box className="mr-2" /> Product Information
@@ -110,7 +110,7 @@ export default function OrderPage({ order }: OrderPageProps) {
               </div>
             </CardContent>
           </Card>
-          <Card className="overflow-hidden">
+          <Card className="overflow-hidden glass-surface rounded-2xl">
             <CardHeader>
               <CardTitle className="flex items-center text-xl sm:text-2xl">
                 Price Breakdown
@@ -148,7 +148,7 @@ export default function OrderPage({ order }: OrderPageProps) {
               </div>
             </CardContent>
           </Card>
-          <Card className="md:col-span-3">
+          <Card className="md:col-span-3 glass-surface rounded-2xl">
             <CardHeader>
               <CardTitle className="flex items-center text-xl sm:text-2xl">
                 <Truck className="mr-2" /> Shipping Information

@@ -151,7 +151,7 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
           </h1>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="col-span-1">
+          <Card className="col-span-1 glass-surface rounded-2xl">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg">Personal Information</CardTitle>
@@ -198,7 +198,7 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
               </div>
             </CardContent>
           </Card>
-          <Card className="col-span-1 md:col-span-2">
+          <Card className="col-span-1 md:col-span-2 glass-surface rounded-2xl">
             <CardHeader className="pb-4">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg">Shipping Information</CardTitle>
@@ -240,7 +240,7 @@ const UserPageClient = ({ user }: UserPageClientProps) => {
             </CardContent>
           </Card>
         </div>
-        <Card>
+        <Card className="glass-surface rounded-2xl">
           <CardHeader className="pb-4">
             <div>
               <CardTitle className="text-lg">Order History</CardTitle>

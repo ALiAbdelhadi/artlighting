@@ -1,0 +1,63 @@
+"use server";
+
+import { prisma } from "@repo/database";
+import { requireOwner } from "@/lib/auth";
+import { auth as authInstance } from "@/lib/auth-server";
+import { revalidatePath } from "next/cache";
+
+/**
+ * Creates a new admin/staff account. This is the only way an account gets
+ * created now — /sign-up is gone, so only an existing owner (gated by
+ * requireOwner) can reach this. Internally still goes through Better Auth's
+ * own signUpEmail so the password is hashed exactly the way it expects; the
+ * public route it used to be reachable from is what's removed, not the
+ * underlying signup logic.
+ */
+export async function createStaffAccount(data: {
+  email: string;
+  name: string;
+  password: string;
+  role: "owner" | "staff";
+}) {
+  await requireOwner();
+
+  if (data.password.length < 12) {
+    throw new Error("Password must be at least 12 characters");
+  }
+
+  const existing = await prisma.admin.findUnique({ where: { email: data.email } });
+  if (existing) {
+    throw new Error("An admin with this email already exists");
+  }
+
+  await authInstance.api.signUpEmail({
+    body: { email: data.email, password: data.password, name: data.name },
+  });
+
+  const admin = await prisma.admin.update({
+    where: { email: data.email },
+    data: { role: data.role },
+  });
+
+  revalidatePath("/admin/dashboard/team");
+  return admin;
+}
+
+export async function updateAdminRole(adminId: string, role: "owner" | "staff") {
+  const owner = await requireOwner();
+  if (adminId === owner.id && role === "staff") {
+    throw new Error("You can't demote yourself");
+  }
+  const admin = await prisma.admin.update({ where: { id: adminId }, data: { role } });
+  revalidatePath("/admin/dashboard/team");
+  return admin;
+}
+
+export async function revokeAdminAccess(adminId: string) {
+  const owner = await requireOwner();
+  if (adminId === owner.id) {
+    throw new Error("You can't revoke your own access");
+  }
+  await prisma.admin.delete({ where: { id: adminId } });
+  revalidatePath("/admin/dashboard/team");
+}

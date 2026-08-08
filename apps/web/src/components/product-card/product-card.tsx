@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useTextDirection } from "@/helpers/language";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@clerk/nextjs";
+import { useAuth } from "@/lib/auth-hooks";
 import { useTranslations } from 'next-intl';
 import Image from "next/image";
 import { useMemo, useState, useTransition } from "react";

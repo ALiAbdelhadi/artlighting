@@ -1,5 +1,6 @@
 "use client";
 
+import { DollarSign, Users, ShoppingBag } from "lucide-react";
 import { formatPrice } from "../lib/utils";
 import SummaryCard from "./summary-card";
 
@@ -15,22 +16,21 @@ const DashboardSummary = ({
   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
     <SummaryCard
       title="Total Sales"
-      description="Overview of total sales on the website."
+      description="Completed orders, after cancellations"
       value={formatPrice(totalSales ?? 0)}
-      percentage="+15% from last month"
-      valueClass="text-green-600"
+      icon={<DollarSign className="h-4 w-4" />}
     />
     <SummaryCard
       title="Customers"
-      description="List of customers with search functionality."
+      description="Registered accounts"
       value={totalCustomers}
-      percentage="+5% from last month"
+      icon={<Users className="h-4 w-4" />}
     />
     <SummaryCard
       title="Orders"
-      description="List of Orders that have sold out."
+      description="Completed orders"
       value={totalOrders}
-      percentage="-10% from last month"
+      icon={<ShoppingBag className="h-4 w-4" />}
     />
   </div>
 );

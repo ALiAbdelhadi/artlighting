@@ -33,9 +33,15 @@ model Configuration {
 }
 
 // ─── User ────────────────────────────────────────────────────
+// Doubles as the Better Auth "user" model (name/email/emailVerified/image are
+// Better Auth's required fields) so customer identity and the existing
+// e-commerce profile live in one table instead of two linked ones.
 model User {
-  id                String   @id
-  email             String?
+  id                String   @id @default(cuid())
+  name              String   @default("")
+  email             String   @unique
+  emailVerified     Boolean  @default(false)
+  image             String?
   phoneNumber       String?
   preferredLanguage String   @default("ar")
   preferredCurrency String   @default("EGP")
@@ -50,27 +56,77 @@ model User {
   shippingAddress ShippingAddress?
   cart            Cart?
   orders          Order[]
+  sessions        Session[]
+  accounts        Account[]
 
-  @@index([email])
   @@map("users")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("accounts")
+}
+
+model Verification {
+  id         String    @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
+
+  @@map("verifications")
 }
 
 // ─── OrderItem ───────────────────────────────────────────────
 model OrderItem {
-  id              String  @id @default(cuid())
-  orderId         Int
-  productId       String
-  quantity        Int
-  configPrice     Float
-  configurationId String?
-  localizedName   String?
+  id               String  @id @default(cuid())
+  orderId          Int
+  productId        String
+  productVariantId String?
+  quantity         Int
+  configPrice      Float
+  configurationId  String?
+  localizedName    String?
 
-  order         Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  product       Product        @relation(fields: [productId], references: [id])
-  configuration Configuration? @relation(fields: [configurationId], references: [id])
+  order         Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product       Product         @relation(fields: [productId], references: [id])
+  variant       ProductVariant? @relation(fields: [productVariantId], references: [id])
+  configuration Configuration?  @relation(fields: [configurationId], references: [id])
 
   @@index([orderId])
   @@index([productId])
+  @@index([productVariantId])
   @@map("order_items")
 }
 
@@ -185,6 +241,7 @@ model Product {
   productId              String           @unique  // e.g. "jy-202-15w"
   productName            String
   productImages          String[]
+  specSheetUrl           String?          // downloadable PDF datasheet — URL-based, same rationale as ProductImage (no storage provider chosen yet)
   maxIP                  Int?             // Max IP rating integer (20/44/54/65/68)
   spotlightType          String           // e.g. "cob", "track-light", "mc15c"
   price                  Float
@@ -199,20 +256,26 @@ model Product {
   featured               Boolean          @default(false)
   createdAt              DateTime         @default(now())
   updatedAt              DateTime         @updatedAt
+  deletedAt              DateTime?        // soft-delete: never hard-delete, historical orders reference products
   categoryId             String
   lightingtypeId         String
   productColor           ProductColorTemp @default(warm)
   productIp              ProductIP        @default(IP20)  // Base IP enum derived from EN specs
   productChandLamp       ProductChandLamp @default(lamp9w)
 
-  cartItems      CartItem[]
-  orders         Order[]
-  orderItems     OrderItem[]
-  users          User[]
-  category       Category               @relation(fields: [categoryId], references: [id])
-  lightingtype   LightingType           @relation(fields: [lightingtypeId], references: [id])
-  specifications ProductSpecification[]
-  translations   ProductTranslation[]
+  cartItems         CartItem[]
+  orders             Order[]
+  orderItems         OrderItem[]
+  users              User[]
+  category           Category                @relation("ProductTopCategory", fields: [categoryId], references: [id])
+  lightingtype       Category                @relation("ProductSubCategory", fields: [lightingtypeId], references: [id])
+  specifications     ProductSpecification[]
+  translations       ProductTranslation[]
+  variants           ProductVariant[]
+  images             ProductImage[]
+  productCategories  ProductCategory[]
+  discounts          Discount[]
+  priceHistory       PriceHistory[]
 
   @@index([productId])
   @@index([categoryId])
@@ -222,9 +285,58 @@ model Product {
   @@index([spotlightType])
   @@index([isActive])
   @@index([featured])
+  @@index([deletedAt])
   @@index([brand, sectionType, isActive, featured],     name: "idx_product_brand_section_active_featured")
   @@index([brand, sectionType, spotlightType, isActive], name: "idx_product_brand_section_spotlight_active")
   @@map("products")
+}
+
+// ─── ProductVariant ──────────────────────────────────────────
+// New: per-SKU purchasable unit. Every existing product gets exactly one
+// default variant at migration time (mirroring its current price/stock/
+// colorTemp) since no product currently has more than one purchasable
+// configuration — this is additive, existing Product.price/quantity fields
+// are untouched so the storefront keeps reading them unchanged.
+model ProductVariant {
+  id            String            @id @default(cuid())
+  productId     String
+  sku           String            @unique
+  wattage       String?
+  colorTemp     ProductColorTemp?
+  finish        String?
+  size          String?
+  stock         Int               @default(0)
+  priceOverride Float?
+  isDefault     Boolean           @default(true)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+
+  @@index([productId])
+  @@map("product_variants")
+}
+
+// ─── ProductImage ────────────────────────────────────────────
+// New: per-image entity for the admin bulk-upload/reorder/set-primary flow.
+// Additive alongside Product.productImages (String[]) — storefront components
+// still read the array; only admin writes/reads this table for now. Seeded
+// from the same array at migration time.
+model ProductImage {
+  id        String   @id @default(cuid())
+  productId String
+  url       String
+  altText   String?
+  order     Int      @default(0)
+  isPrimary Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([productId, order])
+  @@map("product_images")
 }
 
 // ─── ProductTranslation ──────────────────────────────────────
@@ -285,19 +397,36 @@ model ProductSpecification {
 }
 
 // ─── Category ────────────────────────────────────────────────
-// Maps to sectionType: "indoor" | "outdoor" | "chandelier"
+// Two-level hierarchy: top-level rows (parentId null) map to the former
+// sectionType ("indoor" | "outdoor" | "chandelier"); child rows (parentId set)
+// map to the former LightingType / spotlightType ("cob", "track-light", etc.),
+// folded in here 2026-08 — confirmed 1:1 (every LightingType belonged to
+// exactly one Category) before merging, so no product needed multi-parent support.
+// Product.categoryId keeps pointing at the top-level row and Product.lightingtypeId
+// (relation name "lightingtype", kept for zero call-site churn) now points at the
+// child row here instead of the old LightingType table — both are plain Category
+// rows post-merge. ProductCategory below is the new, genuinely many-to-many surface.
 model Category {
   id           String                @id @default(cuid())
   name         String                @unique
-  slug         String                @unique  // "indoor" | "outdoor" | "chandelier"
+  slug         String                @unique
+  parentId     String?
+  order        Int                   @default(0)
   isActive     Boolean               @default(true)
   createdAt    DateTime              @default(now())
   updatedAt    DateTime              @updatedAt
-  products     Product[]
-  translations CategoryTranslation[]
+
+  parent            Category?             @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children          Category[]            @relation("CategoryHierarchy")
+  products          Product[]             @relation("ProductTopCategory")
+  subProducts       Product[]             @relation("ProductSubCategory")
+  productCategories ProductCategory[]
+  discounts         Discount[]
+  translations      CategoryTranslation[]
 
   @@index([isActive])
   @@index([slug])
+  @@index([parentId])
   @@map("categories")
 }
 
@@ -319,39 +448,138 @@ model CategoryTranslation {
   @@map("category_translations")
 }
 
-// ─── LightingType ────────────────────────────────────────────
-// Maps to spotlightType: "cob" | "track-light" | "mc15c" | etc.
-model LightingType {
-  id           String                    @id @default(cuid())
-  name         String                    @unique
-  slug         String                    @unique
-  isActive     Boolean                   @default(true)
-  createdAt    DateTime                  @default(now())
-  updatedAt    DateTime                  @updatedAt
-  products     Product[]
-  translations LightingTypeTranslation[]
+// ─── ProductCategory ─────────────────────────────────────────
+// Genuinely many-to-many product/category membership, additive to the
+// legacy Product.categoryId / Product.lightingtypeId direct FKs below
+// (kept so apps/web/src/lib/i18n/services.ts and the /category/* route
+// tree don't need to change). New admin category tagging should use this.
+model ProductCategory {
+  id         String   @id @default(cuid())
+  productId  String
+  categoryId String
+  createdAt  DateTime @default(now())
 
-  @@index([isActive])
-  @@index([slug])
-  @@map("lighting_types")
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, categoryId])
+  @@index([productId])
+  @@index([categoryId])
+  @@map("product_categories")
 }
 
-model LightingTypeTranslation {
-  id             String       @id @default(cuid())
-  lightingTypeId String
-  language       String
-  name           String
-  description    String?
-  metaTitle      String?
-  metaDesc       String?
-  slug           String?
-  lightingType   LightingType @relation(fields: [lightingTypeId], references: [id], onDelete: Cascade)
+// ─── Discount ────────────────────────────────────────────────
+model Discount {
+  id         String        @id @default(cuid())
+  type       DiscountType
+  scope      DiscountScope
+  value      Float
+  code       String?       @unique // null = automatic discount, set = coupon code
+  productId  String?
+  categoryId String?
+  startsAt   DateTime?
+  endsAt     DateTime?
+  isActive   Boolean       @default(true)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
 
-  @@unique([lightingTypeId, language])
-  @@unique([language, slug])
-  @@index([language])
-  @@index([lightingTypeId, language], name: "idx_lighting_type_trans_type_language")
-  @@map("lighting_type_translations")
+  product  Product?  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@index([scope])
+  @@index([productId])
+  @@index([categoryId])
+  @@index([code])
+  @@index([startsAt, endsAt])
+  @@map("discounts")
+}
+
+// ─── PriceHistory ────────────────────────────────────────────
+// Written automatically by a Prisma Client extension (see packages/database/index.ts)
+// on every Product.price update — never written to manually by admin code.
+model PriceHistory {
+  id        String   @id @default(cuid())
+  productId String
+  oldPrice  Float
+  newPrice  Float
+  changedBy String   // Admin.id, or "system" for non-admin-initiated changes
+  changedAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([changedAt(sort: Desc)])
+  @@map("price_history")
+}
+
+// ─── Admin ───────────────────────────────────────────────────
+// Identity is Clerk (clerkUserId ties to the Clerk session); hashedPassword
+// is an optional secondary-verification step for the admin dashboard gate,
+// bcrypt-hashed — never compared in plaintext.
+// Doubles as Better Auth's "user" model for the admin app — a separate
+// identity pool from the customer-facing User/Session/Account/Verification
+// above (own tables via modelName mapping in apps/admin's auth config), so
+// admin and customer sessions/credentials never share a table.
+model Admin {
+  id            String    @id @default(cuid())
+  name          String    @default("")
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  role          AdminRole @default(staff)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  sessions AdminSession[]
+  accounts AdminAccount[]
+
+  @@map("admins")
+}
+
+model AdminSession {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  adminId   String
+
+  admin Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@map("admin_sessions")
+}
+
+model AdminAccount {
+  id                    String    @id @default(cuid())
+  accountId             String
+  providerId            String
+  adminId               String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  admin Admin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@map("admin_accounts")
+}
+
+model AdminVerification {
+  id         String    @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime? @default(now())
+  updatedAt  DateTime? @updatedAt
+
+  @@map("admin_verifications")
 }
 
 // ─── System / Config ─────────────────────────────────────────
@@ -425,4 +653,26 @@ enum OrderStatus {
   refunded
 
   @@map("OrderStatus")
+}
+
+enum DiscountType {
+  percentage
+  fixed
+
+  @@map("DiscountType")
+}
+
+enum DiscountScope {
+  product
+  category
+  global
+
+  @@map("DiscountScope")
+}
+
+enum AdminRole {
+  owner
+  staff
+
+  @@map("AdminRole")
 }

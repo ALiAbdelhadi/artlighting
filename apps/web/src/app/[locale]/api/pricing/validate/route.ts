@@ -1,7 +1,7 @@
 // apps/web/src/app/[locale]/api/pricing/validate/route.ts
 import { PricingService } from "@/lib/pricing.server";
 import { applyRateLimit } from "@/middleware/ratelimit";
-import { auth } from "@clerk/nextjs/server";
+import { auth } from "@/lib/auth-server";
 import { prisma } from "@repo/database";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";

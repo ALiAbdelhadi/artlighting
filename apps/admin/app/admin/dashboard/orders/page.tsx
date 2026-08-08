@@ -1,17 +1,14 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { requireAdmin, AdminAuthError } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import OrdersClient from "./orders-client";
 import { prisma } from "@repo/database";
 
 const OrdersPage = async () => {
-  const { userId } = await auth();
-  const user = await currentUser();
-  if (!userId || !user) {
-    return notFound();
-  }
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-  if (user.emailAddresses[0].emailAddress !== ADMIN_EMAIL) {
-    return notFound();
+  try {
+    await requireAdmin();
+  } catch (err) {
+    if (err instanceof AdminAuthError) return notFound();
+    throw err;
   }
   const orders = await prisma.order.findMany({
     where: { isCompleted: true },

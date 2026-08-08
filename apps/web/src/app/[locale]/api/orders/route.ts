@@ -1,6 +1,6 @@
 import { OrderService } from "@/lib/order.server";
 import { applyRateLimit } from "@/middleware/ratelimit";
-import { auth } from "@clerk/nextjs/server";
+import { auth } from "@/lib/auth-server";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 

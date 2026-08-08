@@ -1,15 +1,9 @@
 "use server";
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { requireAdminOrRedirect } from "@/lib/auth";
 import { prisma } from "@repo/database";
-import { redirect } from "next/navigation";
 
 export const DashboardServer = async () => {
-  const user = await currentUser();
-  const { userId } = await auth();
-
-  if (!userId || !user) {
-    return redirect("/404");
-  }
+  const admin = await requireAdminOrRedirect();
 
   const orders = await prisma.order.findMany({
     where: {
@@ -94,7 +88,7 @@ export const DashboardServer = async () => {
       },
     },
     user: {
-      imageUrl: user.imageUrl,
+      imageUrl: admin.image,
     },
   };
 

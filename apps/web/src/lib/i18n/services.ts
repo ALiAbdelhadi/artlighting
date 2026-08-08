@@ -118,7 +118,10 @@ export class I18nService {
             const spotlightTypes = [...new Set(lightingTypesWithCounts.map(lt => lt.spotlightType))];
 
             const [lightingTypesWithTranslations, categoriesWithTranslations, firstProducts] = await Promise.all([
-                prisma.lightingType.findMany({
+                // LightingType rows were folded into Category (as parentId-linked
+                // children) — see packages/database/prisma/schema.prisma. Same
+                // shape (id, name, slug, translations), so nothing else here changes.
+                prisma.category.findMany({
                     where: { id: { in: lightingTypeIds }, isActive: true },
                     include: { translations: { where: { language } } },
                 }),

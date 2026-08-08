@@ -1,6 +1,6 @@
 "use server"
 
-import { auth, clerkClient } from "@clerk/nextjs/server"
+import { auth } from "@/lib/auth-server"
 import { prisma } from "@repo/database"
 
 export async function createOrder({
@@ -37,39 +37,26 @@ export async function createOrder({
       throw new Error("Product not found")
     }
 
-    let dbUser = await prisma.user.findUnique({ where: { id: userId } })
-
-    if (!dbUser) {
-      const clerk = await clerkClient()
-      const clerkUser = await clerk.users.getUser(userId)
-
-      dbUser = await prisma.user.create({
-        data: {
-          id: userId,
-          email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
-          phoneNumber: clerkUser.phoneNumbers[0]?.phoneNumber ?? "",
-        },
-      })
-    }
+    // The User row already exists once `userId` is a valid session's user id
+    // — Better Auth writes it directly to this same table at sign-up, no
+    // separate identity provider to sync from anymore.
+    const dbUser = await prisma.user.findUniqueOrThrow({ where: { id: userId } })
 
     let shippingAddress = await prisma.shippingAddress.findFirst({
       where: { userId: userId },
     })
 
     if (!shippingAddress) {
-      const clerk = await clerkClient()
-      const clerkUser = await clerk.users.getUser(userId)
-
       shippingAddress = await prisma.shippingAddress.create({
         data: {
           userId: userId,
-          fullName: `${clerkUser.firstName ?? ""} ${clerkUser.lastName ?? ""}`,
+          fullName: dbUser.name,
           address: "",
           city: "",
           state: "",
           zipCode: "",
           country: "",
-          phoneNumber: clerkUser.phoneNumbers[0]?.phoneNumber ?? "",
+          phoneNumber: dbUser.phoneNumber ?? "",
         },
       })
     }
